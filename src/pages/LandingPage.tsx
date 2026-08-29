@@ -6,6 +6,7 @@ import { WhyChooseUsSection } from '../components/WhyChooseUsSection';
 import { SocialProofSection } from '../components/SocialProofSection';
 import { PricingSection } from '../components/PricingSection';
 import { FeatureComparisonSection } from '../components/FeatureComparisonSection';
+import { RefundPolicySection } from '../components/RefundPolicySection';
 import { FaqSection } from '../components/FaqSection';
 import { CtaBannerSection } from '../components/CtaBannerSection';
 
@@ -37,7 +38,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThankYou }
       {/* 8. Comparison Table Section */}
       <FeatureComparisonSection />
 
-      {/* 9. FAQ Section */}
+      {/* 9. 100% Refund Policy Section */}
+      <RefundPolicySection onNavigateToThankYou={onNavigateToThankYou} />
+
+      {/* 10. FAQ Section */}
       <FaqSection />
 
       {/* 10. CTA Banner Section */}

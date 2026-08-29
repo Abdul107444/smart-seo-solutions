@@ -606,8 +606,8 @@ export const FAQ_LIST: FAQItem[] = [
   },
   {
     id: 'faq-2',
-    question: 'Do you guarantee Fiverr orders?',
-    answer: 'No honest SEO or optimization professional can guarantee specific order numbers, rankings, or revenue, as Fiverr algorithms, buyer decisions, and market conditions fluctuate. What we guarantee is a professional, high-standard optimization of your profile, keywords, copy, and positioning based on proven best practices to maximize your visibility and conversion potential.',
+    question: 'What is your 20–25 Days 100% Refund Policy?',
+    answer: 'We provide a 100% Money-Back Guarantee. Once you implement our complete optimization, we give Fiverr algorithms 20 to 25 days to index your keywords and boost search impressions. If you do not start receiving buyer messages or client outreach within 20–25 days, you can contact us on WhatsApp and receive a full 100% refund immediately.',
   },
   {
     id: 'faq-3',
@@ -632,7 +632,7 @@ export const FAQ_LIST: FAQItem[] = [
   {
     id: 'faq-7',
     question: 'What information do you need from me?',
-    answer: 'We only need your Fiverr profile link, target niche/service, existing gig links (if any), and your primary goals. We will never ask for your account password or sensitive login credentials.',
+    answer: 'To perform direct optimization and implement all keyword changes, account login access is required. However, if you are unable or prefer not to share login credentials, we can easily and securely perform the complete optimization live on your screen via AnyDesk or TeamViewer.',
   },
   {
     id: 'faq-8',

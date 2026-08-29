@@ -307,7 +307,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
 
               <div className="flex items-center justify-center gap-2 text-xs text-white/40 text-center">
                 <ShieldCheck className="w-4 h-4 text-green-400" />
-                <span>Your information is strictly confidential. No password or login details needed.</span>
+                <span>Your information is strictly confidential. Work can be done directly or via AnyDesk remote screen.</span>
               </div>
             </div>
           </form>

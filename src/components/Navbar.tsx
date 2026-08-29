@@ -94,6 +94,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               Pricing
             </button>
             <button
+              id="nav-link-refund"
+              onClick={() => scrollToSection('refund-policy-section')}
+              className="hover:text-emerald-400 transition-colors py-1 cursor-pointer flex items-center gap-1"
+            >
+              <span>Refund Policy</span>
+            </button>
+            <button
               id="nav-link-faq"
               onClick={() => scrollToSection('faq-section')}
               className="hover:text-orange-400 transition-colors py-1 cursor-pointer"
@@ -194,6 +201,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                 className="text-left py-1.5 px-2 hover:bg-white/10 rounded-lg text-white"
               >
                 💼 Pricing (Rs. 10,000)
+              </button>
+              <button
+                onClick={() => scrollToSection('refund-policy-section')}
+                className="text-left py-1.5 px-2 hover:bg-white/10 rounded-lg text-emerald-300 font-medium"
+              >
+                🛡️ 100% Refund Policy (20–25 Days)
               </button>
               <button
                 onClick={() => scrollToSection('faq-section')}
