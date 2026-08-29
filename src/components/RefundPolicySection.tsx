@@ -6,11 +6,11 @@ import {
   CheckCircle2, 
   Sparkles, 
   ArrowRight, 
-  MessageSquare,
   BadgeCheck,
   Zap,
   HelpCircle
 } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { BUSINESS_INFO } from '../data/funnelData';
 
 interface RefundPolicySectionProps {
@@ -34,7 +34,7 @@ export const RefundPolicySection: React.FC<RefundPolicySectionProps> = ({ onNavi
     {
       title: 'Hassle-Free WhatsApp Claims',
       description: 'No complicated dispute forms or delays. Just message our support team on WhatsApp with your profile link for instant resolution.',
-      icon: <MessageSquare className="w-5 h-5 text-sky-400" />,
+      icon: <WhatsAppIcon className="w-5 h-5 text-emerald-400" />,
       tag: 'Instant Support'
     }
   ];
@@ -211,9 +211,9 @@ export const RefundPolicySection: React.FC<RefundPolicySectionProps> = ({ onNavi
               href={BUSINESS_INFO.whatsAppLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-colors"
+              className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 text-[#25D366] text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-colors"
             >
-              <MessageSquare className="w-4 h-4 text-emerald-400" />
+              <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
               <span>Ask on WhatsApp</span>
             </a>
           </div>

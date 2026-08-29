@@ -1,7 +1,8 @@
 import React from 'react';
 import { SmartSeoLogo } from './SmartSeoLogo';
 import { BUSINESS_INFO } from '../data/funnelData';
-import { MessageSquare, ArrowUp, ShieldCheck } from 'lucide-react';
+import { ArrowUp, ShieldCheck } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface FooterProps {
   onNavigateToThankYou: () => void;
@@ -121,10 +122,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToThankYou, onNavigate
                 href={BUSINESS_INFO.whatsAppLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white text-sm font-bold transition-all shadow-md group"
+                className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 text-[#25D366] text-sm font-bold transition-all shadow-md group"
               >
-                <MessageSquare className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" />
-                <span>💬 Chat With Us on WhatsApp</span>
+                <WhatsAppIcon className="w-4 h-4 text-[#25D366] group-hover:scale-110 transition-transform" />
+                <span>Chat With Us on WhatsApp</span>
               </a>
 
               <div className="text-xs text-white/50 space-y-1 pt-1">

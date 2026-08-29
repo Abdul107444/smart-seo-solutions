@@ -4,7 +4,8 @@ import { Footer } from './components/Footer';
 import { LandingPage } from './pages/LandingPage';
 import { ThankYouPage } from './pages/ThankYouPage';
 import { BUSINESS_INFO } from './data/funnelData';
-import { MessageSquare, ArrowUp } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
+import { WhatsAppIcon } from './components/WhatsAppIcon';
 
 export default function App() {
   // Determine initial path from URL
@@ -70,10 +71,10 @@ export default function App() {
           href={BUSINESS_INFO.whatsAppLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-purple-950 font-black text-xs md:text-sm shadow-2xl hover:scale-105 transition-all glow-gold duration-200 border border-emerald-300/40"
+          className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-[#0d2215] font-black text-xs md:text-sm shadow-2xl hover:scale-105 transition-all duration-200 border border-white/20 shadow-emerald-950/60"
           aria-label="Direct WhatsApp Consultation"
         >
-          <MessageSquare className="w-4 h-4 fill-purple-950" />
+          <WhatsAppIcon className="w-5 h-5 text-[#0d2215]" />
           <span className="hidden sm:inline">WhatsApp Us: {BUSINESS_INFO.whatsAppNumber}</span>
           <span className="sm:hidden">WhatsApp</span>
         </a>

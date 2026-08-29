@@ -12,13 +12,13 @@ export const SmartSeoLogo: React.FC<SmartSeoLogoProps> = ({
   showText = true,
 }) => {
   const iconDimensions = {
-    sm: 'w-8 h-8',
-    md: 'w-11 h-11',
-    lg: 'w-14 h-14',
+    sm: 'w-7 h-7 sm:w-8 sm:h-8',
+    md: 'w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11',
+    lg: 'w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14',
   }[size];
 
   return (
-    <div className={`inline-flex items-center gap-3 select-none ${className}`}>
+    <div className={`inline-flex items-center gap-2 sm:gap-2.5 md:gap-3 select-none ${className}`}>
       {/* Brand Icon SVG */}
       <div className={`relative ${iconDimensions} flex-shrink-0`}>
         <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full drop-shadow-md">
@@ -98,11 +98,11 @@ export const SmartSeoLogo: React.FC<SmartSeoLogoProps> = ({
       {/* Brand Text */}
       {showText && (
         <div className="flex flex-col leading-none">
-          <div className="flex items-center gap-1.5 font-extrabold tracking-tight text-lg md:text-xl">
+          <div className="flex items-center gap-1 font-black tracking-tight text-sm sm:text-base md:text-xl">
             <span className="text-sky-400">Smart</span>
             <span className="text-purple-400">SEO</span>
           </div>
-          <span className="text-[11px] md:text-xs font-semibold tracking-wider text-sky-400/90 uppercase mt-0.5">
+          <span className="text-[9px] sm:text-[10px] md:text-xs font-bold tracking-widest text-sky-400/80 uppercase mt-0.5">
             Solutions
           </span>
         </div>

@@ -1,9 +1,7 @@
 import React from 'react';
 import { BUSINESS_INFO } from '../data/funnelData';
-import { 
-  ArrowRight, 
-  MessageSquare
-} from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { TrustedPartnersShowcase } from './TrustedPartnersShowcase';
 
 interface HeroSectionProps {
@@ -64,10 +62,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigateToThankYou }
             href={BUSINESS_INFO.whatsAppLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto px-6 py-4 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white hover:text-white text-sm font-bold flex items-center justify-center gap-2.5 backdrop-blur-md transition-all shadow-md"
+            className="w-full sm:w-auto px-6 py-4 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 text-[#25D366] text-sm font-bold flex items-center justify-center gap-2.5 backdrop-blur-md transition-all shadow-md"
           >
-            <MessageSquare className="w-4 h-4 text-emerald-400" />
-            <span>💬 Talk on WhatsApp</span>
+            <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+            <span>Chat on WhatsApp</span>
           </a>
         </div>
 
