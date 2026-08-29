@@ -2,7 +2,6 @@ import React from 'react';
 import { HeroSection } from '../components/HeroSection';
 import { ServicesSection } from '../components/ServicesSection';
 import { PreviousWorkSection } from '../components/PreviousWorkSection';
-import { LogoWallSection } from '../components/LogoWallSection';
 import { WhyChooseUsSection } from '../components/WhyChooseUsSection';
 import { SocialProofSection } from '../components/SocialProofSection';
 import { PricingSection } from '../components/PricingSection';
@@ -26,10 +25,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThankYou }
       {/* 3. Previous Work Section */}
       <PreviousWorkSection onNavigateToThankYou={onNavigateToThankYou} />
 
-      {/* 4. Client / Company Logos Section */}
-      <LogoWallSection />
-
-      {/* 5. Why Choose Us Section */}
+      {/* 4. Why Choose Us Section */}
       <WhyChooseUsSection />
 
       {/* 6. Results / Social Proof Section */}

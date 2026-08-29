@@ -32,7 +32,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigateToThankYou }
         {/* Main Headline */}
         <div className="text-center max-w-4xl mx-auto mb-6">
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
-            Get More Visibility & Orders on Fiverr
+            Get More Visibility & Clients on Fiverr
             <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-500 font-black">
               Through Professional Optimization
             </span>
