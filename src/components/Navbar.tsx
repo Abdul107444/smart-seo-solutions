@@ -101,13 +101,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <span>Refund Policy</span>
             </button>
-            <button
-              id="nav-link-faq"
-              onClick={() => scrollToSection('faq-section')}
-              className="hover:text-orange-400 transition-colors py-1 cursor-pointer"
-            >
-              FAQ
-            </button>
           </nav>
         )}
 
@@ -158,39 +151,33 @@ export const Navbar: React.FC<NavbarProps> = ({
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-white/85 pb-3 border-b border-white/10">
               <button
                 onClick={() => scrollToSection('services-section')}
-                className="text-left py-2 px-3 hover:bg-white/10 rounded-xl text-white font-medium flex items-center gap-2 cursor-pointer"
+                className="text-left py-2 px-3 hover:bg-white/10 rounded-xl text-white font-medium cursor-pointer"
               >
-                <span>🟣 Services</span>
+                <span>Services</span>
               </button>
               <button
                 onClick={() => scrollToSection('work-section')}
-                className="text-left py-2 px-3 hover:bg-white/10 rounded-xl text-white font-medium flex items-center gap-2 cursor-pointer"
+                className="text-left py-2 px-3 hover:bg-white/10 rounded-xl text-white font-medium cursor-pointer"
               >
-                <span>🔥 Previous Work</span>
+                <span>Previous Work</span>
               </button>
               <button
                 onClick={() => scrollToSection('why-us-section')}
-                className="text-left py-2 px-3 hover:bg-white/10 rounded-xl text-white font-medium flex items-center gap-2 cursor-pointer"
+                className="text-left py-2 px-3 hover:bg-white/10 rounded-xl text-white font-medium cursor-pointer"
               >
-                <span>🎯 Why Choose Us</span>
+                <span>Why Choose Us</span>
               </button>
               <button
                 onClick={() => scrollToSection('pricing-section')}
-                className="text-left py-2 px-3 hover:bg-white/10 rounded-xl text-white font-medium flex items-center gap-2 cursor-pointer"
+                className="text-left py-2 px-3 hover:bg-white/10 rounded-xl text-white font-medium cursor-pointer"
               >
-                <span>💼 Pricing (Rs. 10,000)</span>
+                <span>Pricing</span>
               </button>
               <button
                 onClick={() => scrollToSection('refund-policy-section')}
-                className="text-left py-2 px-3 hover:bg-emerald-500/15 rounded-xl text-emerald-300 font-semibold flex items-center gap-2 cursor-pointer border border-emerald-500/20 sm:col-span-2"
+                className="text-left py-2.5 px-3 hover:bg-emerald-500/15 rounded-xl text-emerald-300 font-semibold cursor-pointer border border-emerald-500/20 sm:col-span-2"
               >
-                <span>🛡️ 100% Refund Policy (20–25 Days)</span>
-              </button>
-              <button
-                onClick={() => scrollToSection('faq-section')}
-                className="text-left py-2 px-3 hover:bg-white/10 rounded-xl text-white font-medium flex items-center gap-2 cursor-pointer"
-              >
-                <span>❓ FAQs</span>
+                <span>100% Refund Policy (20–25 Days)</span>
               </button>
             </div>
           )}
@@ -207,7 +194,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               }}
               className="w-full sm:flex-1 py-3 rounded-xl btn-gold-gradient text-sm font-bold text-center flex items-center justify-center gap-2 shadow-lg cursor-pointer"
             >
-              <span>{currentPage === 'landing' ? '🚀 Book Optimization — Rs. 10,000' : '🏠 Back to Home'}</span>
+              <span>{currentPage === 'landing' ? `Book Optimization — ${BUSINESS_INFO.price}` : 'Back to Home'}</span>
             </button>
             <button
               onClick={() => {
