@@ -20,7 +20,6 @@ interface BookingFormProps {
 export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => {
   // Form fields
   const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
   const [niche, setNiche] = useState('');
 
@@ -35,11 +34,6 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
     const newErrors: { [key: string]: string } = {};
 
     if (!fullName.trim()) newErrors.fullName = 'Full Name is required';
-    if (!email.trim()) {
-      newErrors.email = 'Email Address is required';
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = 'Please enter a valid email address';
-    }
 
     if (!whatsapp.trim()) {
       newErrors.whatsapp = 'WhatsApp number is required';
@@ -64,7 +58,6 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
 
     const leadData = {
       fullName,
-      email,
       whatsapp,
       niche,
     };
@@ -84,13 +77,13 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
   // Generate WhatsApp Direct link prefilled with lead details
   const getWhatsAppMessageUrl = () => {
     const text = encodeURIComponent(
-      `👋 Hi Smart SEO Solutions!\n\nI just submitted my details for Fiverr Optimization (Rs. 10,000).\n\n👤 Name: ${fullName}\n📱 WhatsApp: ${whatsapp}\n📧 Email: ${email}\n💼 Niche: ${niche}\n\nPlease review my details and let's get started!`
+      `👋 Hi Smart SEO Solutions!\n\nI just submitted my details for Fiverr Optimization (Rs. 10,000).\n\n👤 Name: ${fullName}\n📱 WhatsApp: ${whatsapp}\n💼 Niche: ${niche}\n\nPlease review my details and let's get started!`
     );
-    return `https://wa.me/923106625091?text=${text}`;
+    return `https://wa.me/923060880466?text=${text}`;
   };
 
   const copyLeadSummary = () => {
-    const summary = `Smart SEO Solutions Intake Summary:\nName: ${fullName}\nEmail: ${email}\nWhatsApp: ${whatsapp}\nNiche: ${niche}`;
+    const summary = `Smart SEO Solutions Intake Summary:\nName: ${fullName}\nWhatsApp: ${whatsapp}\nNiche: ${niche}`;
     navigator.clipboard.writeText(summary);
     setCopiedSummary(true);
     setTimeout(() => setCopiedSummary(false), 2500);
@@ -133,7 +126,6 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
                 <span>Ready for Review</span>
               </div>
               <p><strong>Name:</strong> {submittedLeadData?.fullName}</p>
-              <p><strong>Email:</strong> {submittedLeadData?.email}</p>
               <p><strong>WhatsApp:</strong> {submittedLeadData?.whatsapp}</p>
               <p><strong>Target Niche:</strong> {submittedLeadData?.niche}</p>
             </div>
@@ -195,59 +187,31 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
                 </h3>
               </div>
 
-              {/* Full Name */}
-              <div>
-                <label className="block text-[10px] sm:text-xs uppercase tracking-wider font-bold text-white/50 mb-1.5">
-                  Full Name <span className="text-orange-400">*</span>
-                </label>
-                <div className="relative">
-                  <input
-                    id="form-full-name"
-                    type="text"
-                    required
-                    placeholder="e.g. Hamza Saeed"
-                    value={fullName}
-                    onChange={(e) => {
-                      setFullName(e.target.value);
-                      if (errors.fullName) setErrors({ ...errors, fullName: '' });
-                    }}
-                    className={`w-full px-4 py-3 rounded-xl bg-black/40 border ${
-                      errors.fullName ? 'border-red-500 focus:border-red-400' : 'border-white/10 focus:border-orange-500'
-                    } text-white placeholder-white/30 text-sm focus:outline-none transition-colors`}
-                  />
-                </div>
-                {errors.fullName && (
-                  <p className="text-xs text-red-400 mt-1 flex items-center gap-1">
-                    <AlertCircle className="w-3 h-3" /> {errors.fullName}
-                  </p>
-                )}
-              </div>
-
-              {/* Email & WhatsApp in 2 columns */}
+              {/* Full Name & WhatsApp in 2 columns */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-[10px] sm:text-xs uppercase tracking-wider font-bold text-white/50 mb-1.5">
-                    Email Address <span className="text-orange-400">*</span>
+                    Full Name <span className="text-orange-400">*</span>
                   </label>
                   <div className="relative">
                     <input
-                      id="form-email"
-                      type="email"
+                      id="form-full-name"
+                      type="text"
                       required
-                      placeholder="you@domain.com"
-                      value={email}
+                      placeholder="e.g. Hamza Saeed"
+                      value={fullName}
                       onChange={(e) => {
-                        setEmail(e.target.value);
-                        if (errors.email) setErrors({ ...errors, email: '' });
+                        setFullName(e.target.value);
+                        if (errors.fullName) setErrors({ ...errors, fullName: '' });
                       }}
                       className={`w-full px-4 py-3 rounded-xl bg-black/40 border ${
-                        errors.email ? 'border-red-500 focus:border-red-400' : 'border-white/10 focus:border-orange-500'
+                        errors.fullName ? 'border-red-500 focus:border-red-400' : 'border-white/10 focus:border-orange-500'
                       } text-white placeholder-white/30 text-sm focus:outline-none transition-colors`}
                     />
                   </div>
-                  {errors.email && (
+                  {errors.fullName && (
                     <p className="text-xs text-red-400 mt-1 flex items-center gap-1">
-                      <AlertCircle className="w-3 h-3" /> {errors.email}
+                      <AlertCircle className="w-3 h-3" /> {errors.fullName}
                     </p>
                   )}
                 </div>
@@ -261,7 +225,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
                       id="form-whatsapp"
                       type="tel"
                       required
-                      placeholder="+92 3XX XXXXXXX"
+                      placeholder="+92 306 0880466 or 03XX..."
                       value={whatsapp}
                       onChange={(e) => {
                         setWhatsapp(e.target.value);

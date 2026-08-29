@@ -42,7 +42,7 @@ export async function saveLeadSubmission(lead: Omit<LeadSubmission, 'id' | 'crea
           },
           body: JSON.stringify({
             full_name: newSubmission.fullName,
-            email: newSubmission.email,
+            email: newSubmission.email || null,
             whatsapp: newSubmission.whatsapp,
             fiverr_profile_url: newSubmission.fiverrProfileUrl || null,
             fiverr_gig_url: newSubmission.fiverrGigUrl || null,

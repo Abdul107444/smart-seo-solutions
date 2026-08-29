@@ -129,10 +129,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToThankYou, onNavigate
 
               <div className="text-xs text-white/50 space-y-1 pt-1">
                 <p>
-                  WhatsApp: <strong className="text-white">{BUSINESS_INFO.whatsAppNumber}</strong>
-                </p>
-                <p>
-                  Secondary Line: <span className="text-white/70">{BUSINESS_INFO.whatsAppSecondary}</span>
+                  Direct WhatsApp: <strong className="text-white">{BUSINESS_INFO.whatsAppNumber}</strong>
                 </p>
               </div>
             </div>

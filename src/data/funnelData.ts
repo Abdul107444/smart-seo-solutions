@@ -6,9 +6,9 @@ export const BUSINESS_INFO = {
   price: 'Rs. 10,000',
   priceNumeric: 10000,
   currency: 'PKR',
-  whatsAppNumber: '+92 310 6625091',
+  whatsAppNumber: '+92 306 0880466',
   whatsAppSecondary: '+92 306 0880466',
-  whatsAppLink: 'https://wa.me/923106625091',
+  whatsAppLink: 'https://wa.me/923060880466',
   whatsAppMessageText: 'Hi Smart SEO Solutions! I am interested in your Fiverr Profile & Gig Optimization service (Rs. 10,000). Please share the next steps.',
   tagline: 'Turn your Fiverr presence into a professional sales machine.',
 };

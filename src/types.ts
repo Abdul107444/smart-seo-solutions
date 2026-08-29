@@ -1,7 +1,7 @@
 export interface LeadSubmission {
   id?: string;
   fullName: string;
-  email: string;
+  email?: string;
   whatsapp: string;
   fiverrProfileUrl?: string;
   fiverrGigUrl?: string;
