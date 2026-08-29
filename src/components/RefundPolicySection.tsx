@@ -2,15 +2,10 @@ import React from 'react';
 import { 
   ShieldCheck, 
   RotateCcw, 
-  Clock, 
   CheckCircle2, 
   Sparkles, 
-  ArrowRight, 
-  BadgeCheck,
-  Zap,
-  HelpCircle
+  ArrowRight
 } from 'lucide-react';
-import { WhatsAppIcon } from './WhatsAppIcon';
 import { BUSINESS_INFO } from '../data/funnelData';
 
 interface RefundPolicySectionProps {
@@ -18,27 +13,6 @@ interface RefundPolicySectionProps {
 }
 
 export const RefundPolicySection: React.FC<RefundPolicySectionProps> = ({ onNavigateToThankYou }) => {
-  const guaranteePoints = [
-    {
-      title: 'Full 100% Money-Back Protection',
-      description: 'Zero financial risk. If our optimization fails to generate buyer outreach within 20–25 days, every single rupee is refunded back to you.',
-      icon: <BadgeCheck className="w-5 h-5 text-emerald-400" />,
-      tag: '100% Protected'
-    },
-    {
-      title: '20–25 Days Performance Period',
-      description: 'Fiverr algorithms typically take 14–21 days to re-index keywords and push optimized gigs into relevant buyer search results.',
-      icon: <Clock className="w-5 h-5 text-orange-400" />,
-      tag: 'Algorithmic Window'
-    },
-    {
-      title: 'Hassle-Free WhatsApp Claims',
-      description: 'No complicated dispute forms or delays. Just message our support team on WhatsApp with your profile link for instant resolution.',
-      icon: <WhatsAppIcon className="w-5 h-5 text-emerald-400" />,
-      tag: 'Instant Support'
-    }
-  ];
-
   const steps = [
     {
       step: '01',
@@ -154,33 +128,6 @@ export const RefundPolicySection: React.FC<RefundPolicySectionProps> = ({ onNavi
               </div>
             </div>
           </div>
-        </div>
-
-        {/* 3 Core Trust Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          {guaranteePoints.map((point) => (
-            <div
-              key={point.title}
-              className="p-6 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 transition-all duration-300 flex flex-col justify-between group"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-                    {point.icon}
-                  </div>
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-white/5 border border-white/10 text-white/60">
-                    {point.tag}
-                  </span>
-                </div>
-                <h4 className="text-base font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">
-                  {point.title}
-                </h4>
-                <p className="text-xs sm:text-sm text-white/65 leading-relaxed">
-                  {point.description}
-                </p>
-              </div>
-            </div>
-          ))}
         </div>
 
         {/* Bottom Call to Action Box */}
