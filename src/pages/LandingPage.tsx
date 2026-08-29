@@ -3,7 +3,6 @@ import { HeroSection } from '../components/HeroSection';
 import { ServicesSection } from '../components/ServicesSection';
 import { PreviousWorkSection } from '../components/PreviousWorkSection';
 import { WhyChooseUsSection } from '../components/WhyChooseUsSection';
-import { SocialProofSection } from '../components/SocialProofSection';
 import { PricingSection } from '../components/PricingSection';
 import { FeatureComparisonSection } from '../components/FeatureComparisonSection';
 import { RefundPolicySection } from '../components/RefundPolicySection';
@@ -29,22 +28,19 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThankYou }
       {/* 4. Why Choose Us Section */}
       <WhyChooseUsSection />
 
-      {/* 6. Results / Social Proof Section */}
-      <SocialProofSection />
-
-      {/* 7. Pricing Section */}
+      {/* 5. Pricing Section */}
       <PricingSection onNavigateToThankYou={onNavigateToThankYou} />
 
-      {/* 8. Comparison Table Section */}
+      {/* 6. Comparison Table Section */}
       <FeatureComparisonSection />
 
-      {/* 9. 100% Refund Policy Section */}
+      {/* 7. 100% Refund Policy Section */}
       <RefundPolicySection onNavigateToThankYou={onNavigateToThankYou} />
 
-      {/* 10. FAQ Section */}
+      {/* 8. FAQ Section */}
       <FaqSection />
 
-      {/* 10. CTA Banner Section */}
+      {/* 9. CTA Banner Section */}
       <CtaBannerSection onNavigateToThankYou={onNavigateToThankYou} />
     </main>
   );

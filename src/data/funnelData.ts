@@ -595,7 +595,6 @@ export const COMPARISON_FEATURES = [
   { area: 'FAQ Optimization', included: true, note: 'Buyer-objection handling with naturally integrated keyword density' },
   { area: 'Thumbnail Strategy', included: true, note: 'Actionable visual recommendations, color contrast, and layout benchmarks' },
   { area: 'Competitor Research', included: true, note: 'Benchmarking top ranking gigs in your category for market advantage' },
-  { area: 'Conversion Optimization', included: true, note: 'Holistic buyer journey streamlining to maximize message-to-order rate' },
 ];
 
 export const FAQ_LIST: FAQItem[] = [
@@ -618,11 +617,6 @@ export const FAQ_LIST: FAQItem[] = [
     id: 'faq-4',
     question: 'Can you help with Fiverr SEO?',
     answer: 'Absolutely. Fiverr SEO is at the core of what we do. We identify high-intent buyer search terms, optimize your 5 search tags, craft keyword-aligned titles, and naturally distribute relevant search terms across your descriptions, packages, and FAQs.',
-  },
-  {
-    id: 'faq-5',
-    question: 'Do you create Fiverr thumbnails?',
-    answer: 'We provide a detailed Fiverr thumbnail strategy including layout blueprints, text hierarchy guidelines, color contrast recommendations, and visual benchmarks of what currently attracts clicks in your niche. If you need complete graphic design files created, we guide you on exact dimensions and visual assets.',
   },
   {
     id: 'faq-6',
