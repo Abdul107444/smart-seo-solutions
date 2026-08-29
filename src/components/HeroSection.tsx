@@ -29,18 +29,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigateToThankYou }
 
         {/* Main Headline */}
         <div className="text-center max-w-4xl mx-auto mb-6">
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
-            Get More Visibility & Clients on Fiverr
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.14]">
+            Start Getting Real Clients on Fiverr in 20–25 Days
             <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-500 font-black">
-              Through Professional Optimization
+              With Proven Profile & Gig SEO Optimization
             </span>
           </h1>
         </div>
 
         {/* Subheadline */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <p className="text-base sm:text-lg md:text-xl text-white/70 font-normal leading-relaxed">
-            We optimize your Fiverr profile and gigs to improve search visibility, attract the right buyers, increase clicks, and turn your presence into a sales machine.
+          <p className="text-base sm:text-lg md:text-xl text-white/75 font-normal leading-relaxed">
+            We professionally optimize your Fiverr profile, keywords, and gigs to skyrocket organic impressions, outrank competitors, and start converting high-paying buyers within 20–25 days — backed by our 100% money-back guarantee.
           </p>
         </div>
 
