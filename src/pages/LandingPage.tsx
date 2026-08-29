@@ -6,7 +6,6 @@ import { WhyChooseUsSection } from '../components/WhyChooseUsSection';
 import { PricingSection } from '../components/PricingSection';
 import { RefundPolicySection } from '../components/RefundPolicySection';
 import { FaqSection } from '../components/FaqSection';
-import { CtaBannerSection } from '../components/CtaBannerSection';
 
 interface LandingPageProps {
   onNavigateToThankYou: () => void;
@@ -35,9 +34,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThankYou }
 
       {/* 7. FAQ Section */}
       <FaqSection />
-
-      {/* 8. CTA Banner Section */}
-      <CtaBannerSection onNavigateToThankYou={onNavigateToThankYou} />
     </main>
   );
 };
