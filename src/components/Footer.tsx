@@ -117,21 +117,22 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToThankYou, onNavigate
             </p>
 
             <div className="space-y-2">
-              <a
+              <button
                 id="footer-whatsapp-primary"
-                href={BUSINESS_INFO.whatsAppLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 text-[#25D366] text-sm font-bold transition-all shadow-md group"
+                onClick={onNavigateToThankYou}
+                className="w-full flex items-center justify-center sm:justify-start gap-2.5 px-4 py-3 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 text-[#25D366] text-sm font-bold transition-all shadow-md group cursor-pointer"
               >
                 <WhatsAppIcon className="w-4 h-4 text-[#25D366] group-hover:scale-110 transition-transform" />
                 <span>Chat With Us on WhatsApp</span>
-              </a>
+              </button>
 
               <div className="text-xs text-white/50 space-y-1 pt-1">
-                <p>
-                  Direct WhatsApp: <strong className="text-white">{BUSINESS_INFO.whatsAppNumber}</strong>
-                </p>
+                <button
+                  onClick={onNavigateToThankYou}
+                  className="hover:text-[#25D366] transition-colors cursor-pointer text-left"
+                >
+                  Direct WhatsApp: <strong className="text-white hover:underline">{BUSINESS_INFO.whatsAppNumber}</strong>
+                </button>
               </div>
             </div>
           </div>

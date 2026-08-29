@@ -44,16 +44,14 @@ export const CtaBannerSection: React.FC<CtaBannerSectionProps> = ({ onNavigateTo
               <ArrowRight className="w-4 h-4" />
             </button>
 
-            <a
+            <button
               id="cta-banner-whatsapp-btn"
-              href={BUSINESS_INFO.whatsAppLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto px-6 py-4 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 text-[#25D366] text-sm sm:text-base font-bold flex items-center justify-center gap-2.5 backdrop-blur-md transition-all"
+              onClick={onNavigateToThankYou}
+              className="w-full sm:w-auto px-6 py-4 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 text-[#25D366] text-sm sm:text-base font-bold flex items-center justify-center gap-2.5 backdrop-blur-md transition-all cursor-pointer"
             >
               <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
               <span>WhatsApp Us</span>
-            </a>
+            </button>
           </div>
 
           {/* Trust line */}

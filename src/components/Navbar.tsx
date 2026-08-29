@@ -209,15 +209,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <span>{currentPage === 'landing' ? '🚀 Book Optimization — Rs. 10,000' : '🏠 Back to Home'}</span>
             </button>
-            <a
-              href={BUSINESS_INFO.whatsAppLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto px-5 py-3 rounded-xl bg-[#25D366]/20 border border-[#25D366]/40 text-[#25D366] text-sm font-bold text-center flex items-center justify-center gap-2 hover:bg-[#25D366]/30 transition-colors"
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onNavigateToThankYou();
+              }}
+              className="w-full sm:w-auto px-5 py-3 rounded-xl bg-[#25D366]/20 border border-[#25D366]/40 text-[#25D366] text-sm font-bold text-center flex items-center justify-center gap-2 hover:bg-[#25D366]/30 transition-colors cursor-pointer"
             >
               <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
               <span>WhatsApp Us: {BUSINESS_INFO.whatsAppNumber}</span>
-            </a>
+            </button>
           </div>
         </div>
       )}

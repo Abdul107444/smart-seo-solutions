@@ -206,16 +206,14 @@ export const RefundPolicySection: React.FC<RefundPolicySectionProps> = ({ onNavi
               </button>
             )}
 
-            <a
+            <button
               id="refund-section-whatsapp-link"
-              href={BUSINESS_INFO.whatsAppLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 text-[#25D366] text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-colors"
+              onClick={onNavigateToThankYou}
+              className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 text-[#25D366] text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-colors cursor-pointer"
             >
               <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
               <span>Ask on WhatsApp</span>
-            </a>
+            </button>
           </div>
         </div>
       </div>

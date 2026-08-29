@@ -57,16 +57,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigateToThankYou }
           </button>
 
           {/* Secondary CTA */}
-          <a
+          <button
             id="hero-secondary-whatsapp-cta"
-            href={BUSINESS_INFO.whatsAppLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto px-6 py-4 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 text-[#25D366] text-sm font-bold flex items-center justify-center gap-2.5 backdrop-blur-md transition-all shadow-md"
+            onClick={onNavigateToThankYou}
+            className="w-full sm:w-auto px-6 py-4 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 text-[#25D366] text-sm font-bold flex items-center justify-center gap-2.5 backdrop-blur-md transition-all shadow-md cursor-pointer"
           >
             <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
             <span>Chat on WhatsApp</span>
-          </a>
+          </button>
         </div>
 
         {/* Key value micro-bullets */}
