@@ -1,7 +1,6 @@
 import React from 'react';
 import { BUSINESS_INFO } from '../data/funnelData';
 import { ArrowRight } from 'lucide-react';
-import { WhatsAppIcon } from './WhatsAppIcon';
 import { TrustedPartnersShowcase } from './TrustedPartnersShowcase';
 
 interface HeroSectionProps {
@@ -86,7 +85,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigateToThankYou }
         </div>
 
         {/* Top-Rated Trust Card */}
-        <div className="max-w-2xl mx-auto mb-12 p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-left backdrop-blur-md">
+        <div className="max-w-2xl mx-auto p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-left backdrop-blur-md">
           <div className="flex -space-x-3 flex-shrink-0">
             <div className="w-10 h-10 rounded-full border-2 border-[#1a0b2e] bg-blue-600 flex items-center justify-center text-xs font-bold text-white shadow">
               HA
@@ -115,7 +114,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigateToThankYou }
           </div>
         </div>
 
-        {/* TOP HERO VISUAL: ANIMATED BRAND PARTNERS SHOWCASE */}
+        {/* Animated Brand Partners Showcase Marquee */}
         <div className="relative max-w-5xl mx-auto">
           <TrustedPartnersShowcase />
         </div>
