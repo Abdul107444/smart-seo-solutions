@@ -38,19 +38,10 @@ export const CtaBannerSection: React.FC<CtaBannerSectionProps> = ({ onNavigateTo
             <button
               id="cta-banner-primary-btn"
               onClick={onNavigateToThankYou}
-              className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-orange-500 to-yellow-500 text-black text-sm sm:text-base font-extrabold uppercase tracking-wide flex items-center justify-center gap-3 shadow-xl hover:shadow-orange-500/20 active:scale-95 transition-all cursor-pointer"
+              className="w-full sm:w-auto px-10 py-4.5 rounded-xl bg-gradient-to-r from-orange-500 to-yellow-500 text-black text-sm sm:text-base font-extrabold uppercase tracking-wide flex items-center justify-center gap-3 shadow-xl hover:shadow-orange-500/20 active:scale-95 transition-all cursor-pointer"
             >
               <span>🎯 Get My Fiverr Optimized — {BUSINESS_INFO.price}</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
-
-            <button
-              id="cta-banner-whatsapp-btn"
-              onClick={onNavigateToThankYou}
-              className="w-full sm:w-auto px-6 py-4 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 text-[#25D366] text-sm sm:text-base font-bold flex items-center justify-center gap-2.5 backdrop-blur-md transition-all cursor-pointer"
-            >
-              <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
-              <span>WhatsApp Us</span>
             </button>
           </div>
 

@@ -55,16 +55,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigateToThankYou }
             <span>🚀 Get My Fiverr Optimized — Rs. 10,000</span>
             <ArrowRight className="w-4 h-4" />
           </button>
-
-          {/* Secondary CTA */}
-          <button
-            id="hero-secondary-whatsapp-cta"
-            onClick={onNavigateToThankYou}
-            className="w-full sm:w-auto px-6 py-4 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 text-[#25D366] text-sm font-bold flex items-center justify-center gap-2.5 backdrop-blur-md transition-all shadow-md cursor-pointer"
-          >
-            <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
-            <span>Chat on WhatsApp</span>
-          </button>
         </div>
 
         {/* Key value micro-bullets */}

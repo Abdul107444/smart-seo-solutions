@@ -199,21 +199,12 @@ export const RefundPolicySection: React.FC<RefundPolicySectionProps> = ({ onNavi
               <button
                 id="refund-section-book-btn"
                 onClick={onNavigateToThankYou}
-                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-orange-500 to-yellow-500 text-black text-xs sm:text-sm font-extrabold uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg hover:shadow-orange-500/20 active:scale-95 transition-all cursor-pointer"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-orange-500 to-yellow-500 text-black text-sm sm:text-base font-extrabold uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg hover:shadow-orange-500/20 active:scale-95 transition-all cursor-pointer"
               >
                 <span>Book Optimization ({BUSINESS_INFO.price})</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             )}
-
-            <button
-              id="refund-section-whatsapp-link"
-              onClick={onNavigateToThankYou}
-              className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 text-[#25D366] text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-colors cursor-pointer"
-            >
-              <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
-              <span>Ask on WhatsApp</span>
-            </button>
           </div>
         </div>
       </div>
