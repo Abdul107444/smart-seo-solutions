@@ -497,8 +497,8 @@ export const COMPANY_PARTNERS: CompanyPartner[] = [
     color: '#38BDF8',
   },
   {
-    id: 'gaid-graphix',
-    name: 'GAID GRAPHIX',
+    id: 'zaid-graphix',
+    name: 'ZaidGraphix',
     subtext: 'Creative Design Studio',
     type: 'Design Studio',
     color: '#F43F5E',

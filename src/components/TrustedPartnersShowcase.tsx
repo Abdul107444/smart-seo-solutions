@@ -59,8 +59,8 @@ export const PARTNER_COMPANIES: PartnerCompany[] = [
     )
   },
   {
-    id: 'gaid-graphix',
-    name: 'GAID GRAPHIX',
+    id: 'zaid-graphix',
+    name: 'ZaidGraphix',
     subname: 'Creative Graphic Design Studio',
     tagline: 'Brand Identity & Visual Arts',
     industry: 'Design & Visual Identity',
@@ -69,17 +69,16 @@ export const PARTNER_COMPANIES: PartnerCompany[] = [
     badgeBg: 'bg-rose-500/10 text-rose-400 border-rose-500/20',
     svgLogo: (
       <svg viewBox="0 0 220 80" className="w-full h-full object-contain" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* Dynamic Curved 'G' emblem in Red/Cyan */}
+        {/* Dynamic Curved 'Z' emblem in Red/Cyan */}
         <g>
-          {/* Red Ribbon section */}
-          <path d="M36 20C24 20 16 30 16 42C16 54 26 62 38 62C46 62 52 58 56 52L46 46C44 49 41 51 37 51C30 51 25 46 25 41C25 35 29 30 36 30C41 30 45 33 47 37L58 31C53 24 45 20 36 20Z" fill="#ef4444" />
-          {/* Cyan Overlay Swoosh */}
-          <path d="M26 40L50 20L58 26L34 46H56V54H26V40Z" fill="#0284c7" opacity="0.9" />
-          <circle cx="36" cy="41" r="5" fill="#f87171" />
+          <path d="M18 22H54L28 52H56V60H18L44 30H18V22Z" fill="#ef4444" />
+          <path d="M24 24L48 24L26 50L50 50" stroke="#0284c7" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+          <circle cx="28" cy="24" r="3.5" fill="#38bdf8" />
+          <circle cx="50" cy="50" r="3.5" fill="#f87171" />
         </g>
         {/* Typo */}
-        <text x="68" y="40" fill="#00b4d8" fontFamily="system-ui, sans-serif" fontWeight="900" fontSize="24" letterSpacing="2">GAID</text>
-        <text x="68" y="58" fill="#f43f5e" fontFamily="system-ui, sans-serif" fontWeight="900" fontSize="16" letterSpacing="4">GRAPHIX</text>
+        <text x="68" y="38" fill="#00b4d8" fontFamily="system-ui, sans-serif" fontWeight="900" fontSize="22" letterSpacing="1.5">ZAID</text>
+        <text x="68" y="56" fill="#f43f5e" fontFamily="system-ui, sans-serif" fontWeight="900" fontSize="16" letterSpacing="3.5">GRAPHIX</text>
       </svg>
     )
   },
