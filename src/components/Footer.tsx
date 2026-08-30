@@ -125,15 +125,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToThankYou, onNavigate
                 <WhatsAppIcon className="w-4 h-4 text-[#25D366] group-hover:scale-110 transition-transform" />
                 <span>Chat With Us on WhatsApp</span>
               </button>
-
-              <div className="text-xs text-white/50 space-y-1 pt-1">
-                <button
-                  onClick={onNavigateToThankYou}
-                  className="hover:text-[#25D366] transition-colors cursor-pointer text-left"
-                >
-                  Direct WhatsApp: <strong className="text-white hover:underline">{BUSINESS_INFO.whatsAppNumber}</strong>
-                </button>
-              </div>
             </div>
           </div>
         </div>

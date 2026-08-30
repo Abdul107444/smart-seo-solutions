@@ -73,8 +73,7 @@ export default function App() {
           aria-label="Direct WhatsApp Consultation"
         >
           <WhatsAppIcon className="w-5 h-5 text-[#0d2215]" />
-          <span className="hidden sm:inline">WhatsApp Us: {BUSINESS_INFO.whatsAppNumber}</span>
-          <span className="sm:hidden">WhatsApp</span>
+          <span>Chat on WhatsApp</span>
         </button>
       </div>
 
