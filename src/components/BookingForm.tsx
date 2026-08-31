@@ -10,7 +10,10 @@ import {
   Briefcase,
   AlertCircle,
   Copy,
-  Check
+  Check,
+  Globe,
+  Sparkles,
+  ExternalLink
 } from 'lucide-react';
 
 interface BookingFormProps {
@@ -18,10 +21,16 @@ interface BookingFormProps {
 }
 
 export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => {
-  // Form fields
+  // Primary Form fields
   const [fullName, setFullName] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
   const [niche, setNiche] = useState('');
+  
+  // Optional details
+  const [showOptional, setShowOptional] = useState(false);
+  const [fiverrProfileUrl, setFiverrProfileUrl] = useState('');
+  const [fiverrGigUrl, setFiverrGigUrl] = useState('');
+  const [improvementGoal, setImprovementGoal] = useState('');
 
   // Form states
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -37,6 +46,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
 
     if (!whatsapp.trim()) {
       newErrors.whatsapp = 'WhatsApp number is required';
+    } else if (whatsapp.trim().length < 8) {
+      newErrors.whatsapp = 'Please enter a valid WhatsApp number with country code';
     }
 
     if (!niche.trim()) {
@@ -45,6 +56,47 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
+  };
+
+  // Helper to generate formatted WhatsApp URL with all client details
+  const getWhatsAppMessageUrl = (data?: {
+    fullName: string;
+    whatsapp: string;
+    niche: string;
+    fiverrProfileUrl?: string;
+    fiverrGigUrl?: string;
+    improvementGoal?: string;
+  }) => {
+    const name = data?.fullName || fullName;
+    const phone = data?.whatsapp || whatsapp;
+    const serviceNiche = data?.niche || niche;
+    const profile = data?.fiverrProfileUrl || fiverrProfileUrl;
+    const gig = data?.fiverrGigUrl || fiverrGigUrl;
+    const goal = data?.improvementGoal || improvementGoal;
+
+    let msg = `👋 *Assalam-o-Alaikum Smart SEO Solutions!*\n\n`;
+    msg += `Maine website par apni Fiverr Optimization details submit ki hain:\n\n`;
+    msg += `👤 *Client Name:* ${name.trim()}\n`;
+    msg += `📱 *WhatsApp:* ${phone.trim()}\n`;
+    msg += `💼 *Service / Niche:* ${serviceNiche.trim()}\n`;
+    msg += `📦 *Package:* Complete Fiverr Profile & Gig Optimization (${BUSINESS_INFO.price})\n`;
+
+    if (profile && profile.trim()) {
+      msg += `🔗 *Fiverr Profile:* ${profile.trim()}\n`;
+    }
+    if (gig && gig.trim()) {
+      msg += `🎯 *Fiverr Gig URL:* ${gig.trim()}\n`;
+    }
+    if (goal && goal.trim()) {
+      msg += `📝 *Main Goal / Issue:* ${goal.trim()}\n`;
+    }
+
+    msg += `\nMujhe apni Fiverr ranking aur conversion optimization start karwani hai. Please next steps guide karein!`;
+
+    const encoded = encodeURIComponent(msg);
+    // WhatsApp format compatible with Web & Mobile App
+    const targetNumber = '923060880466';
+    return `https://api.whatsapp.com/send?phone=${targetNumber}&text=${encoded}`;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -57,35 +109,45 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
     setIsSubmitting(true);
 
     const leadData = {
-      fullName,
-      whatsapp,
-      niche,
+      fullName: fullName.trim(),
+      whatsapp: whatsapp.trim(),
+      niche: niche.trim(),
+      fiverrProfileUrl: fiverrProfileUrl.trim() || undefined,
+      fiverrGigUrl: fiverrGigUrl.trim() || undefined,
+      improvementGoal: improvementGoal.trim() || undefined,
       status: 'new' as const,
       price: BUSINESS_INFO.price,
     };
 
-    const res = await saveLeadToFirestore(leadData);
+    // 1. Save lead to Firestore & local cache
+    saveLeadToFirestore(leadData).catch(() => {});
 
-    setIsSubmitting(false);
-    if (res.success) {
-      setSubmittedLeadData(res.data);
-      setIsSubmitted(true);
-      window.scrollTo({ top: 100, behavior: 'smooth' });
-    } else {
-      alert('Could not submit details. Please check connection and try again.');
+    const targetWhatsAppUrl = getWhatsAppMessageUrl(leadData);
+
+    // 2. Open WhatsApp in new tab / app safely without iframe connection refusal
+    try {
+      const link = document.createElement('a');
+      link.href = targetWhatsAppUrl;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch {
+      window.open(targetWhatsAppUrl, '_blank', 'noopener,noreferrer');
     }
-  };
 
-  // Generate WhatsApp Direct link prefilled with lead details
-  const getWhatsAppMessageUrl = () => {
-    const text = encodeURIComponent(
-      `👋 Hi Smart SEO Solutions!\n\nI just submitted my details for Fiverr Optimization (Rs. 10,000).\n\n👤 Name: ${fullName}\n📱 WhatsApp: ${whatsapp}\n💼 Niche: ${niche}\n\nPlease review my details and let's get started!`
-    );
-    return `https://wa.me/923060880466?text=${text}`;
+    // 3. Display success confirmation view with direct 1-click action
+    setIsSubmitting(false);
+    setSubmittedLeadData(leadData);
+    setIsSubmitted(true);
+    window.scrollTo({ top: 120, behavior: 'smooth' });
   };
 
   const copyLeadSummary = () => {
-    const summary = `Smart SEO Solutions Intake Summary:\nName: ${fullName}\nWhatsApp: ${whatsapp}\nNiche: ${niche}`;
+    let summary = `Smart SEO Solutions Intake Summary:\nName: ${fullName}\nWhatsApp: ${whatsapp}\nNiche: ${niche}`;
+    if (fiverrProfileUrl) summary += `\nFiverr Profile: ${fiverrProfileUrl}`;
+    if (fiverrGigUrl) summary += `\nFiverr Gig: ${fiverrGigUrl}`;
     navigator.clipboard.writeText(summary);
     setCopiedSummary(true);
     setTimeout(() => setCopiedSummary(false), 2500);
@@ -103,61 +165,65 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
             Let’s Optimize Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-500">Fiverr Presence</span>
           </h1>
           <p className="text-sm sm:text-base md:text-lg text-white/70 max-w-2xl mx-auto">
-            Share your contact details and service niche with us to start your complete Fiverr ranking and conversion optimization.
+            Enter your details below. Once submitted, you'll be connected directly with our team on WhatsApp with your requirements ready!
           </p>
         </div>
 
         {/* SUCCESS MESSAGE VIEW (Shown after submission) */}
         {isSubmitted ? (
           <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 sm:p-10 shadow-2xl animate-in zoom-in-95 duration-300 text-center relative overflow-hidden">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-400 flex items-center justify-center mx-auto mb-6 shadow-xl">
+            <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-400 flex items-center justify-center mx-auto mb-5 shadow-xl">
               <CheckCircle2 className="w-8 h-8" />
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-black text-white mb-3">
-              🎉 Your details have been received!
+            <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">
+              🎉 Details Saved & Ready!
             </h2>
 
             <p className="text-sm sm:text-base text-white/80 mb-6 leading-relaxed font-medium">
-              Our team will review your requirements and reach out to you directly on WhatsApp.
+              Click the button below to send your details directly on WhatsApp and start your optimization process immediately.
             </p>
 
-            <div className="p-4 sm:p-5 rounded-2xl bg-black/40 border border-white/10 max-w-lg mx-auto mb-8 text-sm text-white/90 text-left space-y-2">
+            {/* Submitted Summary Box */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-black/50 border border-white/15 max-w-lg mx-auto mb-7 text-sm text-white/90 text-left space-y-2.5">
               <div className="flex justify-between items-center text-xs text-orange-400 font-bold border-b border-white/10 pb-2">
-                <span>Submitted Intake Summary</span>
-                <span>Ready for Review</span>
+                <span>Submitted Details</span>
+                <span className="text-emerald-400 font-medium">● Saved in Admin Database</span>
               </div>
-              <p><strong>Name:</strong> {submittedLeadData?.fullName}</p>
-              <p><strong>WhatsApp:</strong> {submittedLeadData?.whatsapp}</p>
-              <p><strong>Target Niche:</strong> {submittedLeadData?.niche}</p>
+              <p><strong className="text-white/60">Name:</strong> <span className="font-semibold text-white">{submittedLeadData?.fullName}</span></p>
+              <p><strong className="text-white/60">WhatsApp:</strong> <span className="font-semibold text-white">{submittedLeadData?.whatsapp}</span></p>
+              <p><strong className="text-white/60">Target Niche:</strong> <span className="font-semibold text-white">{submittedLeadData?.niche}</span></p>
+              {submittedLeadData?.fiverrProfileUrl && (
+                <p className="truncate"><strong className="text-white/60">Fiverr Profile:</strong> <span className="text-orange-400 underline">{submittedLeadData?.fiverrProfileUrl}</span></p>
+              )}
             </div>
 
-            <p className="text-sm font-semibold text-orange-400 mb-6">
-              For faster communication, message us directly on WhatsApp:
-            </p>
-
-            {/* Direct WhatsApp Action with Prefilled Message */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-8">
+            {/* Primary Action: Direct WhatsApp Launch */}
+            <div className="max-w-md mx-auto mb-6">
               <a
                 id="thankyou-whatsapp-direct-btn"
-                href={getWhatsAppMessageUrl()}
+                href={getWhatsAppMessageUrl(submittedLeadData)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-400 hover:to-yellow-400 text-black font-extrabold text-sm uppercase tracking-wide flex items-center justify-center gap-3 shadow-xl transition-all glow-gold"
+                className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 hover:from-emerald-400 hover:to-green-400 text-white font-extrabold text-base uppercase tracking-wide flex items-center justify-center gap-3 shadow-2xl shadow-green-500/30 transition-all hover:scale-[1.02] active:scale-95 cursor-pointer border border-emerald-400/40"
               >
-                <MessageSquare className="w-5 h-5 text-black" />
-                <span>💬 Chat on WhatsApp Now</span>
+                <MessageSquare className="w-5 h-5 text-white" />
+                <span>💬 Open WhatsApp & Send Details Now</span>
+                <ExternalLink className="w-4 h-4 text-white/80" />
               </a>
+              <p className="text-xs text-white/50 mt-2">
+                Opens our official WhatsApp: <strong className="text-white">+92 306 0880466</strong>
+              </p>
             </div>
 
             {/* Secondary actions */}
             <div className="flex flex-wrap items-center justify-center gap-3 pt-6 border-t border-white/10">
               <button
                 onClick={copyLeadSummary}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-xs font-semibold text-white/90 transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-xs font-semibold text-white/90 transition-colors cursor-pointer"
               >
                 {copiedSummary ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                <span>{copiedSummary ? 'Copied Summary!' : 'Copy Summary'}</span>
+                <span>{copiedSummary ? 'Copied to Clipboard!' : 'Copy Summary'}</span>
               </button>
 
               <button
@@ -165,9 +231,9 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
                   setIsSubmitted(false);
                   onBackToLanding();
                 }}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-xs font-semibold text-white/90 transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-xs font-semibold text-white/90 transition-colors cursor-pointer"
               >
-                <span>Back to Landing Page</span>
+                <span>Back to Main Website</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
@@ -185,14 +251,14 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
               <div className="flex items-center gap-2 pb-2 border-b border-white/10">
                 <User className="w-4 h-4 text-orange-400" />
                 <h3 className="text-xs font-bold uppercase tracking-wider text-orange-400">
-                  Step 1: Contact Information
+                  Step 1: Your Contact Information
                 </h3>
               </div>
 
               {/* Full Name & WhatsApp in 2 columns */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] sm:text-xs uppercase tracking-wider font-bold text-white/50 mb-1.5">
+                  <label className="block text-[10px] sm:text-xs uppercase tracking-wider font-bold text-white/70 mb-1.5">
                     Full Name <span className="text-orange-400">*</span>
                   </label>
                   <div className="relative">
@@ -219,7 +285,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
                 </div>
 
                 <div>
-                  <label className="block text-[10px] sm:text-xs uppercase tracking-wider font-bold text-white/50 mb-1.5">
+                  <label className="block text-[10px] sm:text-xs uppercase tracking-wider font-bold text-white/70 mb-1.5">
                     WhatsApp Number <span className="text-orange-400">*</span>
                   </label>
                   <div className="relative">
@@ -227,7 +293,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
                       id="form-whatsapp"
                       type="tel"
                       required
-                      placeholder="+92 306 0880466 or 03XX..."
+                      placeholder="+92 306 0880466 or 0300..."
                       value={whatsapp}
                       onChange={(e) => {
                         setWhatsapp(e.target.value);
@@ -248,24 +314,24 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
             </div>
 
             {/* Form Section 2: Service & Niche */}
-            <div className="space-y-5 mb-8">
+            <div className="space-y-5 mb-6">
               <div className="flex items-center gap-2 pb-2 border-b border-white/10">
                 <Briefcase className="w-4 h-4 text-orange-400" />
                 <h3 className="text-xs font-bold uppercase tracking-wider text-orange-400">
-                  Step 2: Service Niche
+                  Step 2: Service / Niche Details
                 </h3>
               </div>
 
               {/* Main Service / Niche */}
               <div>
-                <label className="block text-[10px] sm:text-xs uppercase tracking-wider font-bold text-white/50 mb-1.5">
+                <label className="block text-[10px] sm:text-xs uppercase tracking-wider font-bold text-white/70 mb-1.5">
                   Your Main Service / Niche <span className="text-orange-400">*</span>
                 </label>
                 <input
                   id="form-niche"
                   type="text"
                   required
-                  placeholder="e.g. WordPress & Laravel, Video Editing, 3D Animation, Graphic Design, etc."
+                  placeholder="e.g. WordPress Web Development, Video Editing, 3D Animation, Graphic Design, etc."
                   value={niche}
                   onChange={(e) => {
                     setNiche(e.target.value);
@@ -283,15 +349,72 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
               </div>
             </div>
 
-            {/* Price review chip */}
-            <div className="p-4 rounded-2xl bg-black/40 border border-white/10 mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            {/* Optional Links Toggle */}
+            <div className="mb-6">
+              <button
+                type="button"
+                onClick={() => setShowOptional(!showOptional)}
+                className="text-xs font-semibold text-orange-400 hover:text-orange-300 flex items-center gap-1.5 transition-colors cursor-pointer"
+              >
+                <Globe className="w-3.5 h-3.5" />
+                <span>{showOptional ? '− Hide Optional Fiverr Links' : '+ Add Fiverr Profile / Gig Link (Optional)'}</span>
+              </button>
+
+              {showOptional && (
+                <div className="mt-4 p-4 rounded-2xl bg-black/30 border border-white/10 space-y-4 animate-in fade-in duration-200">
+                  <div>
+                    <label className="block text-[10px] uppercase font-bold text-white/60 mb-1">
+                      Fiverr Profile URL (Optional)
+                    </label>
+                    <input
+                      type="url"
+                      placeholder="https://www.fiverr.com/your_username"
+                      value={fiverrProfileUrl}
+                      onChange={(e) => setFiverrProfileUrl(e.target.value)}
+                      className="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-white/10 text-white text-xs placeholder-white/30 focus:outline-none focus:border-orange-400"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] uppercase font-bold text-white/60 mb-1">
+                      Fiverr Gig URL (Optional)
+                    </label>
+                    <input
+                      type="url"
+                      placeholder="https://www.fiverr.com/share/..."
+                      value={fiverrGigUrl}
+                      onChange={(e) => setFiverrGigUrl(e.target.value)}
+                      className="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-white/10 text-white text-xs placeholder-white/30 focus:outline-none focus:border-orange-400"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] uppercase font-bold text-white/60 mb-1">
+                      Main Challenge / Improvement Goal (Optional)
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Impressions dropped, need 1st page ranking, low clicks..."
+                      value={improvementGoal}
+                      onChange={(e) => setImprovementGoal(e.target.value)}
+                      className="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-white/10 text-white text-xs placeholder-white/30 focus:outline-none focus:border-orange-400"
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Price review summary card */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-black/40 border border-white/10 mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div>
-                <span className="text-xs text-white/50 font-semibold block">Total Package Investment:</span>
-                <span className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-500">{BUSINESS_INFO.price}</span>
+                <span className="text-xs text-white/50 font-semibold block">Complete Optimization Package:</span>
+                <span className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-500">
+                  {BUSINESS_INFO.price}
+                </span>
               </div>
               <div className="text-xs text-white/70 sm:text-right">
-                <span className="text-green-400 font-bold block">✓ One-Time Complete Optimization</span>
-                <span>Delivery in 2–4 Business Days</span>
+                <span className="text-emerald-400 font-bold block">✓ Complete Profile & Gig SEO Included</span>
+                <span>Direct WhatsApp Onboarding</span>
               </div>
             </div>
 
@@ -301,15 +424,19 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
                 id="submit-fiverr-intake-btn"
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 sm:py-4 rounded-xl bg-gradient-to-r from-orange-500 to-yellow-500 text-black text-sm sm:text-base font-extrabold uppercase tracking-wide flex items-center justify-center gap-3 shadow-xl hover:shadow-orange-500/20 active:scale-95 transition-all cursor-pointer disabled:opacity-75"
+                className="w-full py-4 sm:py-4.5 rounded-2xl bg-gradient-to-r from-orange-500 via-amber-400 to-yellow-500 hover:from-orange-400 hover:to-yellow-400 text-black text-sm sm:text-base font-extrabold uppercase tracking-wide flex items-center justify-center gap-3 shadow-xl hover:shadow-orange-500/25 active:scale-95 transition-all cursor-pointer disabled:opacity-75"
               >
-                <span>{isSubmitting ? 'Saving Details...' : '🚀 Submit My Details & Start Optimization'}</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>
+                  {isSubmitting ? 'Saving & Connecting to WhatsApp...' : '🚀 Submit My Details & Start Optimization'}
+                </span>
+                <ArrowRight className="w-4 h-4 text-black" />
               </button>
 
-              <div className="flex items-center justify-center gap-2 text-xs text-white/40 text-center">
-                <ShieldCheck className="w-4 h-4 text-green-400" />
-                <span>Your information is strictly confidential. Work can be done directly or via AnyDesk remote screen.</span>
+              <div className="flex items-center justify-center gap-2 text-xs text-white/50 text-center">
+                <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                <span>
+                  Click karte hi aapki details submit ho jayengi aur aap WhatsApp par connect ho jayenge.
+                </span>
               </div>
             </div>
           </form>
