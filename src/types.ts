@@ -1,3 +1,5 @@
+export type LeadStatus = 'new' | 'contacted' | 'in_progress' | 'completed' | 'cancelled';
+
 export interface LeadSubmission {
   id?: string;
   fullName: string;
@@ -10,7 +12,11 @@ export interface LeadSubmission {
   activeGigsCount?: string;
   currentOrdersStatus?: string;
   interestedServices?: string[];
+  status?: LeadStatus;
+  notes?: string;
+  price?: string;
   createdAt: string;
+  updatedAt?: string;
 }
 
 export interface PortfolioItem {

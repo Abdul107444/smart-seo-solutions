@@ -1,0 +1,22 @@
+{
+  "entities": {
+    "leads": {
+      "title": "Leads",
+      "description": "Customer lead submissions from the booking intake form",
+      "type": "object",
+      "properties": {
+        "fullName": { "type": "string", "description": "Customer full name" },
+        "whatsapp": { "type": "string", "description": "Customer WhatsApp phone number" },
+        "niche": { "type": "string", "description": "Service niche or category" },
+        "fiverrProfileUrl": { "type": "string", "description": "Optional profile link" },
+        "fiverrGigUrl": { "type": "string", "description": "Optional gig link" },
+        "status": { "type": "string", "enum": ["new", "contacted", "in_progress", "completed", "cancelled"], "description": "Processing status of the lead" },
+        "notes": { "type": "string", "description": "Admin notes for this lead" },
+        "price": { "type": "string", "description": "Package price at time of submission" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["fullName", "whatsapp", "niche", "createdAt"]
+    }
+  }
+}

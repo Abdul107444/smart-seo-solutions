@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { saveLeadSubmission } from '../lib/supabaseClient';
+import { saveLeadToFirestore } from '../lib/leadsService';
 import { BUSINESS_INFO } from '../data/funnelData';
 import { 
   CheckCircle2, 
@@ -60,9 +60,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
       fullName,
       whatsapp,
       niche,
+      status: 'new' as const,
+      price: BUSINESS_INFO.price,
     };
 
-    const res = await saveLeadSubmission(leadData);
+    const res = await saveLeadToFirestore(leadData);
 
     setIsSubmitting(false);
     if (res.success) {

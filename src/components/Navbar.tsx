@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { SmartSeoLogo } from './SmartSeoLogo';
 import { BUSINESS_INFO } from '../data/funnelData';
-import { ArrowRight, Menu, X, Sparkles } from 'lucide-react';
+import { ArrowRight, Menu, X, Sparkles, ShieldCheck } from 'lucide-react';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface NavbarProps {
   onNavigateToThankYou: () => void;
   onNavigateHome: () => void;
-  currentPage: 'landing' | 'thankyou';
+  onNavigateToAdmin?: () => void;
+  currentPage: 'landing' | 'thankyou' | 'admin';
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   onNavigateToThankYou,
   onNavigateHome,
+  onNavigateToAdmin,
   currentPage,
 }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -121,6 +123,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <span>Get Optimized</span>
               <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          ) : currentPage === 'admin' ? (
+            <button
+              id="navbar-back-to-landing-btn"
+              onClick={onNavigateHome}
+              className="flex items-center gap-1.5 h-9 px-3.5 sm:px-4 rounded-xl bg-orange-500/20 border border-orange-500/40 text-orange-300 hover:bg-orange-500/30 text-xs sm:text-sm font-bold transition-all cursor-pointer flex-shrink-0"
+            >
+              <span>View Main Website</span>
             </button>
           ) : (
             <button

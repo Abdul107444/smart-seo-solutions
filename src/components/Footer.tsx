@@ -7,9 +7,10 @@ import { WhatsAppIcon } from './WhatsAppIcon';
 interface FooterProps {
   onNavigateToThankYou: () => void;
   onNavigateHome: () => void;
+  onNavigateToAdmin?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigateToThankYou, onNavigateHome }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigateToThankYou, onNavigateHome, onNavigateToAdmin }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -131,7 +132,19 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToThankYou, onNavigate
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/40">
-          <p>© {new Date().getFullYear()} Smart SEO Solutions. All rights reserved.</p>
+          <p className="flex items-center gap-1.5">
+            <span>© {new Date().getFullYear()} Smart SEO Solutions. All rights reserved.</span>
+            {onNavigateToAdmin && (
+              <button
+                onClick={onNavigateToAdmin}
+                className="opacity-20 hover:opacity-100 hover:text-orange-400 transition-opacity p-0.5 cursor-pointer ml-1"
+                title="Staff Portal"
+                aria-label="Staff Login"
+              >
+                🔒
+              </button>
+            )}
+          </p>
           <div className="flex items-center gap-4">
             <span>Fiverr Profile & Gig Optimization Agency</span>
             <button
