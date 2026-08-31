@@ -424,8 +424,10 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5 text-xs text-white/90">
-                {filteredLeads.map((lead) => (
-                  <tr key={lead.id} className="hover:bg-white/[0.03] transition-colors group">
+                {filteredLeads.map((lead, index) => {
+                  const leadKey = lead.id || `lead-${lead.whatsapp || ''}-${lead.createdAt || ''}-${index}`;
+                  return (
+                  <tr key={leadKey} className="hover:bg-white/[0.03] transition-colors group">
                     {/* Name */}
                     <td className="py-4 px-4 font-bold text-white">
                       <div className="flex items-center gap-2">
@@ -573,7 +575,8 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
                       </div>
                     </td>
                   </tr>
-                ))}
+                  );
+                })}
               </tbody>
             </table>
           </div>

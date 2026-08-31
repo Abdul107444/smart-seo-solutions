@@ -7,24 +7,109 @@ import {
   doc, 
   updateDoc, 
   deleteDoc,
-  serverTimestamp 
+  serverTimestamp,
+  getDocs
 } from 'firebase/firestore';
 import { db } from './firebase';
 import { LeadSubmission, LeadStatus } from '../types';
 
 const LEADS_COLLECTION = 'leads';
-const LOCAL_STORAGE_KEY = 'smart_seo_fiverr_leads';
+const LOCAL_STORAGE_KEY = 'smart_seo_fiverr_leads_v2';
+const SYNC_CHANNEL_NAME = 'smart_seo_leads_channel';
+
+// Helper to get local leads cache safely with backward compatibility
+export function getLocalLeads(): LeadSubmission[] {
+  try {
+    let leads: LeadSubmission[] = [];
+    const rawV2 = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (rawV2) {
+      const parsed = JSON.parse(rawV2);
+      if (Array.isArray(parsed)) leads = parsed;
+    }
+
+    // Check previous storage key for any existing leads
+    const rawOld = localStorage.getItem('smart_seo_fiverr_leads');
+    if (rawOld) {
+      const parsedOld = JSON.parse(rawOld);
+      if (Array.isArray(parsedOld) && parsedOld.length > 0) {
+        leads = mergeLeads(leads, parsedOld);
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(leads));
+      }
+    }
+
+    return leads;
+  } catch (e) {
+    console.warn('Error reading local leads:', e);
+    return [];
+  }
+}
+
+// Helper to save leads cache and notify all tabs
+export function setLocalLeads(leads: LeadSubmission[]) {
+  try {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(leads));
+    // Broadcast change to other open windows/tabs in real-time
+    if (typeof BroadcastChannel !== 'undefined') {
+      try {
+        const channel = new BroadcastChannel(SYNC_CHANNEL_NAME);
+        channel.postMessage({ type: 'LEADS_UPDATED', timestamp: Date.now() });
+        channel.close();
+      } catch {}
+    }
+  } catch (e) {
+    console.warn('Error saving local leads:', e);
+  }
+}
+
+// Deduplicate and merge lists preserving latest status & notes
+function mergeLeads(primary: LeadSubmission[], secondary: LeadSubmission[]): LeadSubmission[] {
+  const map = new Map<string, LeadSubmission>();
+
+  // Helper key generator
+  const getKey = (item: LeadSubmission) => {
+    if (item.id && !item.id.startsWith('local_')) return item.id;
+    return `${item.whatsapp.replace(/\D/g, '')}_${item.createdAt.slice(0, 16)}`;
+  };
+
+  // Add all secondary
+  for (const item of secondary) {
+    map.set(getKey(item), item);
+  }
+
+  // Add all primary (overwriting with primary if newer/present)
+  for (const item of primary) {
+    const key = getKey(item);
+    if (map.has(key)) {
+      const existing = map.get(key)!;
+      map.set(key, {
+        ...existing,
+        ...item,
+        status: item.status || existing.status || 'new',
+        notes: item.notes !== undefined ? item.notes : (existing.notes || ''),
+        updatedAt: item.updatedAt || existing.updatedAt || item.createdAt
+      });
+    } else {
+      map.set(key, item);
+    }
+  }
+
+  return Array.from(map.values()).sort((a, b) => {
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  });
+}
 
 /**
- * Save customer submission to Firebase Firestore with LocalStorage cache fallback.
+ * Save customer submission with instant local guarantee + Firestore cloud persistence
  */
 export async function saveLeadToFirestore(
   lead: Omit<LeadSubmission, 'id' | 'createdAt'>
 ): Promise<{ success: boolean; data?: LeadSubmission; id?: string; error?: string }> {
   const timestamp = new Date().toISOString();
+  const temporaryId = 'lead_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7);
   
   const leadData: LeadSubmission = {
     ...lead,
+    id: temporaryId,
     status: lead.status || 'new',
     notes: lead.notes || '',
     price: lead.price || 'Rs. 10,000',
@@ -32,18 +117,17 @@ export async function saveLeadToFirestore(
     updatedAt: timestamp,
   };
 
+  // 1. Immediately store in persistent local cache so it is NEVER lost
   try {
-    // 1. Always update local storage for instant offline resilience
-    try {
-      const existingRaw = localStorage.getItem(LOCAL_STORAGE_KEY);
-      const existingList: LeadSubmission[] = existingRaw ? JSON.parse(existingRaw) : [];
-      existingList.unshift(leadData);
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(existingList));
-    } catch (e) {
-      console.warn('LocalStorage save error:', e);
-    }
+    const currentLeads = getLocalLeads();
+    const updated = [leadData, ...currentLeads.filter(l => l.id !== leadData.id)];
+    setLocalLeads(updated);
+  } catch (e) {
+    console.warn('LocalStorage save error:', e);
+  }
 
-    // 2. Save directly to Firebase Firestore
+  // 2. Persist to Firebase Firestore
+  try {
     const docRef = await addDoc(collection(db, LEADS_COLLECTION), {
       fullName: leadData.fullName,
       whatsapp: leadData.whatsapp,
@@ -63,179 +147,210 @@ export async function saveLeadToFirestore(
       serverTime: serverTimestamp()
     });
 
-    const savedRecord: LeadSubmission = {
+    const finalRecord: LeadSubmission = {
       ...leadData,
       id: docRef.id
     };
 
+    // Update local cache with real Firestore document ID
+    const currentLeads = getLocalLeads();
+    const replaced = currentLeads.map(l => l.id === temporaryId ? finalRecord : l);
+    setLocalLeads(replaced);
+
     return {
       success: true,
       id: docRef.id,
-      data: savedRecord
+      data: finalRecord
     };
   } catch (error: any) {
-    console.error('Firestore saveLead error:', error);
-    // If Firestore fails, the local storage record already exists as backup
+    console.warn('Firestore cloud save notice (fallback stored locally):', error?.message);
     return {
       success: true,
-      data: {
-        ...leadData,
-        id: 'local_' + Date.now()
-      },
+      data: leadData,
+      id: temporaryId,
       error: error?.message
     };
   }
 }
 
 /**
- * Real-time subscription to leads collection in Firestore
+ * Real-time subscription to leads collection with persistent offline and cross-tab sync
  */
 export function subscribeToLeads(
   onData: (leads: LeadSubmission[]) => void,
   onError?: (err: Error) => void
 ): () => void {
+  // 1. Instantly return locally stored leads so page refresh has ZERO delay or data loss
+  const initialLocal = getLocalLeads();
+  onData(initialLocal);
+
+  let isUnsubscribed = false;
+
+  // 2. Listen to cross-tab updates (when lead is submitted on another tab)
+  const handleStorageChange = (e: StorageEvent) => {
+    if (e.key === LOCAL_STORAGE_KEY && !isUnsubscribed) {
+      onData(getLocalLeads());
+    }
+  };
+  window.addEventListener('storage', handleStorageChange);
+
+  let broadcastChannel: BroadcastChannel | null = null;
+  if (typeof BroadcastChannel !== 'undefined') {
+    try {
+      broadcastChannel = new BroadcastChannel(SYNC_CHANNEL_NAME);
+      broadcastChannel.onmessage = () => {
+        if (!isUnsubscribed) {
+          onData(getLocalLeads());
+        }
+      };
+    } catch {}
+  }
+
+  // 3. Connect to Firestore real-time onSnapshot
   try {
     const q = query(collection(db, LEADS_COLLECTION), orderBy('createdAt', 'desc'));
 
-    const unsubscribe = onSnapshot(
+    const firestoreUnsubscribe = onSnapshot(
       q,
       (snapshot) => {
-        const leads: LeadSubmission[] = [];
+        if (isUnsubscribed) return;
+
+        const firestoreLeads: LeadSubmission[] = [];
         snapshot.forEach((docSnap) => {
           const data = docSnap.data() as Omit<LeadSubmission, 'id'>;
-          leads.push({
+          firestoreLeads.push({
             ...data,
             id: docSnap.id,
           });
         });
 
-        // Also merge any local-only leads if any exist and aren't in Firestore yet
-        try {
-          const localRaw = localStorage.getItem(LOCAL_STORAGE_KEY);
-          if (localRaw) {
-            const localList: LeadSubmission[] = JSON.parse(localRaw);
-            localList.forEach((localItem) => {
-              if (localItem.id?.startsWith('local_') && !leads.some(l => l.whatsapp === localItem.whatsapp && l.createdAt === localItem.createdAt)) {
-                leads.push(localItem);
-              }
-            });
-          }
-        } catch (e) {
-          // ignore local storage parse errors
-        }
-
-        onData(leads);
+        // Merge with existing local storage leads so nothing is ever dropped
+        const currentLocal = getLocalLeads();
+        const merged = mergeLeads(firestoreLeads, currentLocal);
+        
+        // Update local cache
+        setLocalLeads(merged);
+        onData(merged);
       },
       (error) => {
-        // Log clean info notice and seamlessly load cached records
-        try {
-          const localRaw = localStorage.getItem(LOCAL_STORAGE_KEY);
-          if (localRaw) {
-            onData(JSON.parse(localRaw));
-          } else {
-            onData([]);
-          }
-        } catch {}
+        console.warn('Firestore subscription fallback (using local persistent storage):', error?.message);
         if (onError) onError(error);
+        if (!isUnsubscribed) {
+          onData(getLocalLeads());
+        }
       }
     );
 
-    return unsubscribe;
+    return () => {
+      isUnsubscribed = true;
+      window.removeEventListener('storage', handleStorageChange);
+      if (broadcastChannel) broadcastChannel.close();
+      firestoreUnsubscribe();
+    };
   } catch (error: any) {
-    console.error('Error establishing Firestore subscription:', error);
-    if (onError) onError(error);
-    return () => {};
+    console.warn('Error setting up Firestore snapshot, relying on local sync:', error);
+    return () => {
+      isUnsubscribed = true;
+      window.removeEventListener('storage', handleStorageChange);
+      if (broadcastChannel) broadcastChannel.close();
+    };
   }
 }
 
 /**
- * Update lead status in Firestore
+ * Update lead status in both local cache and Firestore
  */
 export async function updateLeadStatusInFirestore(
   leadId: string,
   newStatus: LeadStatus
 ): Promise<boolean> {
-  if (leadId.startsWith('local_')) {
-    updateLocalLead(leadId, { status: newStatus });
-    return true;
+  const timestamp = new Date().toISOString();
+
+  // Update local cache immediately
+  const localLeads = getLocalLeads();
+  const updated = localLeads.map(lead => {
+    if (lead.id === leadId) {
+      return { ...lead, status: newStatus, updatedAt: timestamp };
+    }
+    return lead;
+  });
+  setLocalLeads(updated);
+
+  // Sync to Firestore if not a purely local ID
+  if (!leadId.startsWith('lead_')) {
+    try {
+      const docRef = doc(db, LEADS_COLLECTION, leadId);
+      await updateDoc(docRef, {
+        status: newStatus,
+        updatedAt: timestamp
+      });
+      return true;
+    } catch (error) {
+      console.warn('Error updating Firestore doc status:', error);
+      return false;
+    }
   }
 
-  try {
-    const docRef = doc(db, LEADS_COLLECTION, leadId);
-    await updateDoc(docRef, {
-      status: newStatus,
-      updatedAt: new Date().toISOString()
-    });
-    return true;
-  } catch (error) {
-    console.error('Error updating lead status in Firestore:', error);
-    return false;
-  }
+  return true;
 }
 
 /**
- * Update lead notes in Firestore
+ * Update lead notes in both local cache and Firestore
  */
 export async function updateLeadNotesInFirestore(
   leadId: string,
   notes: string
 ): Promise<boolean> {
-  if (leadId.startsWith('local_')) {
-    updateLocalLead(leadId, { notes });
-    return true;
+  const timestamp = new Date().toISOString();
+
+  // Update local cache immediately
+  const localLeads = getLocalLeads();
+  const updated = localLeads.map(lead => {
+    if (lead.id === leadId) {
+      return { ...lead, notes, updatedAt: timestamp };
+    }
+    return lead;
+  });
+  setLocalLeads(updated);
+
+  // Sync to Firestore
+  if (!leadId.startsWith('lead_')) {
+    try {
+      const docRef = doc(db, LEADS_COLLECTION, leadId);
+      await updateDoc(docRef, {
+        notes,
+        updatedAt: timestamp
+      });
+      return true;
+    } catch (error) {
+      console.warn('Error updating Firestore doc notes:', error);
+      return false;
+    }
   }
 
-  try {
-    const docRef = doc(db, LEADS_COLLECTION, leadId);
-    await updateDoc(docRef, {
-      notes,
-      updatedAt: new Date().toISOString()
-    });
-    return true;
-  } catch (error) {
-    console.error('Error updating lead notes in Firestore:', error);
-    return false;
-  }
+  return true;
 }
 
 /**
- * Delete a lead from Firestore
+ * Delete a lead from both local cache and Firestore
  */
 export async function deleteLeadFromFirestore(leadId: string): Promise<boolean> {
-  if (leadId.startsWith('local_')) {
-    deleteLocalLead(leadId);
-    return true;
-  }
+  // Remove from local cache immediately
+  const localLeads = getLocalLeads();
+  const filtered = localLeads.filter(lead => lead.id !== leadId);
+  setLocalLeads(filtered);
 
-  try {
-    const docRef = doc(db, LEADS_COLLECTION, leadId);
-    await deleteDoc(docRef);
-    return true;
-  } catch (error) {
-    console.error('Error deleting lead from Firestore:', error);
-    return false;
-  }
-}
-
-function updateLocalLead(id: string, updates: Partial<LeadSubmission>) {
-  try {
-    const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (!raw) return;
-    const list: LeadSubmission[] = JSON.parse(raw);
-    const idx = list.findIndex(item => item.id === id);
-    if (idx !== -1) {
-      list[idx] = { ...list[idx], ...updates, updatedAt: new Date().toISOString() };
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(list));
+  // Remove from Firestore
+  if (!leadId.startsWith('lead_')) {
+    try {
+      const docRef = doc(db, LEADS_COLLECTION, leadId);
+      await deleteDoc(docRef);
+      return true;
+    } catch (error) {
+      console.warn('Error deleting Firestore document:', error);
+      return false;
     }
-  } catch {}
-}
+  }
 
-function deleteLocalLead(id: string) {
-  try {
-    const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (!raw) return;
-    const list: LeadSubmission[] = JSON.parse(raw);
-    const filtered = list.filter(item => item.id !== id);
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(filtered));
-  } catch {}
+  return true;
 }
