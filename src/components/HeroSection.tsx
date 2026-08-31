@@ -51,7 +51,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigateToThankYou }
             onClick={onNavigateToThankYou}
             className="w-full sm:w-auto px-8 py-4 rounded-xl btn-gold-gradient text-sm sm:text-base font-extrabold uppercase tracking-wide flex items-center justify-center gap-3 shadow-xl glow-gold cursor-pointer"
           >
-            <span>🚀 Get My Fiverr Optimized — Rs. 10,000</span>
+            <span>🚀 Get My Fiverr Optimized — {BUSINESS_INFO.price}</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>

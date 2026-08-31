@@ -32,7 +32,10 @@ import {
   AlertCircle,
   TrendingUp,
   ShieldCheck,
-  Briefcase
+  Briefcase,
+  CreditCard,
+  Eye,
+  Image as ImageIcon
 } from 'lucide-react';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
 import { AdminLogin } from '../components/admin/AdminLogin';
@@ -52,6 +55,9 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  // Payment Proof Modal Viewer
+  const [selectedScreenshotLead, setSelectedScreenshotLead] = useState<LeadSubmission | null>(null);
 
   // Notes editing state
   const [editingNotesId, setEditingNotesId] = useState<string | null>(null);
@@ -122,7 +128,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
   const newLeadsCount = leads.filter(l => (l.status || 'new') === 'new').length;
   const inProgressCount = leads.filter(l => l.status === 'in_progress' || l.status === 'contacted').length;
   const completedCount = leads.filter(l => l.status === 'completed').length;
-  const estimatedRevenue = totalLeads * 10000;
+  const estimatedRevenue = totalLeads * 8000;
 
   // Actions
   const handleStatusChange = async (leadId: string, newStatus: LeadStatus) => {
@@ -150,7 +156,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
       niche: newLeadNiche || 'General Fiverr Optimization',
       notes: newLeadNotes,
       status: 'new',
-      price: 'Rs. 10,000'
+      price: 'Rs. 8,000'
     });
 
     setIsAdding(false);
@@ -172,14 +178,16 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
   const handleExportCSV = () => {
     if (leads.length === 0) return;
 
-    const headers = ['ID', 'Full Name', 'WhatsApp', 'Niche', 'Status', 'Price', 'Created Date', 'Notes'];
+    const headers = ['ID', 'Full Name', 'WhatsApp', 'Niche', 'Payment Method', 'Transaction ID', 'Status', 'Price', 'Created Date', 'Notes'];
     const rows = leads.map(l => [
       `"${l.id || ''}"`,
       `"${l.fullName.replace(/"/g, '""')}"`,
       `"${l.whatsapp.replace(/"/g, '""')}"`,
       `"${l.niche.replace(/"/g, '""')}"`,
+      `"${l.paymentMethod || 'JazzCash'}"`,
+      `"${(l.transactionId || '').replace(/"/g, '""')}"`,
       `"${l.status || 'new'}"`,
-      `"${l.price || 'Rs. 10,000'}"`,
+      `"${l.price || 'Rs. 8,000'}"`,
       `"${new Date(l.createdAt).toLocaleString()}"`,
       `"${(l.notes || '').replace(/"/g, '""')}"`
     ]);
@@ -417,6 +425,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
                   <th className="py-3.5 px-4">Client Name</th>
                   <th className="py-3.5 px-4">WhatsApp Contact</th>
                   <th className="py-3.5 px-4">Niche / Service</th>
+                  <th className="py-3.5 px-4">Payment Proof</th>
                   <th className="py-3.5 px-4">Status</th>
                   <th className="py-3.5 px-4">Submitted Date</th>
                   <th className="py-3.5 px-4">Admin Notes</th>
@@ -463,6 +472,43 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
                       <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-medium text-white/80">
                         {lead.niche}
                       </span>
+                    </td>
+
+                    {/* Payment Proof */}
+                    <td className="py-4 px-4">
+                      <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-1.5">
+                          <span className={`px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider ${
+                            (lead.paymentMethod || '').toLowerCase().includes('sada')
+                              ? 'bg-teal-500/20 text-teal-400 border border-teal-500/30'
+                              : 'bg-red-500/20 text-red-400 border border-red-500/30'
+                          }`}>
+                            {lead.paymentMethod || 'JazzCash'}
+                          </span>
+                          <span className="text-[10px] font-bold text-emerald-400">
+                            {lead.price || 'Rs. 8,000'}
+                          </span>
+                        </div>
+
+                        {lead.transactionId && (
+                          <div className="text-[10px] font-mono text-white/60 truncate max-w-[120px]">
+                            ID: {lead.transactionId}
+                          </div>
+                        )}
+
+                        {lead.paymentScreenshot ? (
+                          <button
+                            type="button"
+                            onClick={() => setSelectedScreenshotLead(lead)}
+                            className="mt-0.5 inline-flex items-center gap-1 text-[10px] font-bold text-orange-400 hover:text-orange-300 transition-colors cursor-pointer"
+                          >
+                            <Eye className="w-3 h-3" />
+                            <span>View Screenshot</span>
+                          </button>
+                        ) : (
+                          <span className="text-[10px] text-white/30 italic">No receipt attached</span>
+                        )}
+                      </div>
                     </td>
 
                     {/* Status Dropdown */}
@@ -582,6 +628,76 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
           </div>
         )}
       </div>
+
+      {/* Payment Screenshot Viewer Modal */}
+      {selectedScreenshotLead && selectedScreenshotLead.paymentScreenshot && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+          <div className="glass-card rounded-3xl p-5 sm:p-7 max-w-lg w-full border border-white/20 bg-[#170928] shadow-2xl relative">
+            <button
+              onClick={() => setSelectedScreenshotLead(null)}
+              className="absolute top-4 right-4 p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition-colors cursor-pointer"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="flex items-center gap-2 mb-3">
+              <CreditCard className="w-5 h-5 text-emerald-400" />
+              <h3 className="text-lg font-bold text-white">Payment Receipt Verification</h3>
+            </div>
+
+            <div className="p-3 rounded-2xl bg-black/50 border border-white/10 text-xs text-white/80 mb-4 space-y-1">
+              <div className="flex justify-between">
+                <span className="text-white/50">Client:</span>
+                <span className="font-bold text-white">{selectedScreenshotLead.fullName}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-white/50">WhatsApp:</span>
+                <span className="font-mono text-emerald-400">{selectedScreenshotLead.whatsapp}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-white/50">Method:</span>
+                <span className="font-bold text-orange-400">{selectedScreenshotLead.paymentMethod || 'JazzCash'}</span>
+              </div>
+              {selectedScreenshotLead.transactionId && (
+                <div className="flex justify-between">
+                  <span className="text-white/50">Trx ID:</span>
+                  <span className="font-mono text-amber-300 font-bold">{selectedScreenshotLead.transactionId}</span>
+                </div>
+              )}
+            </div>
+
+            {/* Image Preview Container */}
+            <div className="max-h-[60vh] overflow-auto rounded-2xl border border-white/10 bg-black/60 p-2 flex items-center justify-center mb-4">
+              <img 
+                src={selectedScreenshotLead.paymentScreenshot} 
+                alt="Payment proof screenshot"
+                className="max-w-full h-auto max-h-[50vh] object-contain rounded-xl shadow-lg"
+              />
+            </div>
+
+            <div className="flex items-center justify-between gap-3">
+              <a
+                href={selectedScreenshotLead.paymentScreenshot}
+                download={`receipt-${selectedScreenshotLead.fullName.replace(/\s+/g, '_')}.jpg`}
+                className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Download Image</span>
+              </a>
+
+              <a
+                href={getWhatsAppChatUrl(selectedScreenshotLead)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-black text-xs font-extrabold flex items-center gap-1.5 shadow-lg transition-all cursor-pointer"
+              >
+                <WhatsAppIcon className="w-4 h-4" />
+                <span>Confirm on WhatsApp</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Manual Add Lead Modal */}
       {showAddModal && (

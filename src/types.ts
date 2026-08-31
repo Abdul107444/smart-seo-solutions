@@ -12,6 +12,9 @@ export interface LeadSubmission {
   activeGigsCount?: string;
   currentOrdersStatus?: string;
   interestedServices?: string[];
+  paymentMethod?: string;
+  paymentScreenshot?: string;
+  transactionId?: string;
   status?: LeadStatus;
   notes?: string;
   price?: string;

@@ -3,15 +3,34 @@ import { PortfolioItem, CompanyPartner, FAQItem } from '../types';
 export const BUSINESS_INFO = {
   name: 'Smart SEO Solutions',
   serviceName: 'Fiverr Profile & Gig Optimization',
-  price: 'Rs. 10,000',
-  priceNumeric: 10000,
+  price: 'Rs. 8,000',
+  priceNumeric: 8000,
   currency: 'PKR',
   whatsAppNumber: '+92 306 0880466',
   whatsAppSecondary: '+92 306 0880466',
   whatsAppLink: 'https://wa.me/923060880466',
-  whatsAppMessageText: 'Hi Smart SEO Solutions! I am interested in your Fiverr Profile & Gig Optimization service (Rs. 10,000). Please share the next steps.',
+  whatsAppMessageText: 'Hi Smart SEO Solutions! I am interested in your Fiverr Profile & Gig Optimization service (Rs. 8,000). Please share the next steps.',
   tagline: 'Turn your Fiverr presence into a professional sales machine.',
 };
+
+export const PAYMENT_ACCOUNTS = [
+  {
+    id: 'jazzcash',
+    name: 'JazzCash',
+    accountNumber: '03060880466',
+    accountTitle: 'Zeenat yasmin',
+    color: 'from-amber-500 to-red-600',
+    badgeBg: 'bg-red-500/20 text-red-400 border-red-500/30',
+  },
+  {
+    id: 'sadapay',
+    name: 'SadaPay',
+    accountNumber: '03060880466',
+    accountTitle: 'Zeenat yasmin',
+    color: 'from-teal-400 to-cyan-600',
+    badgeBg: 'bg-teal-500/20 text-teal-400 border-teal-500/30',
+  },
+];
 
 export const SERVICES_CHECKLIST = [
   {
@@ -630,7 +649,7 @@ export const FAQ_LIST: FAQItem[] = [
   },
   {
     id: 'faq-8',
-    question: 'Is Rs. 10,000 a one-time payment?',
-    answer: 'Yes, Rs. 10,000 is a transparent, one-time payment for the complete Fiverr Profile & Gig Optimization service. There are no hidden fees or recurring subscriptions.',
+    question: 'Is Rs. 8,000 a one-time payment?',
+    answer: 'Yes, Rs. 8,000 is a transparent, one-time payment for the complete Fiverr Profile & Gig Optimization service. There are no hidden fees or recurring subscriptions.',
   },
 ];

@@ -112,7 +112,7 @@ export async function saveLeadToFirestore(
     id: temporaryId,
     status: lead.status || 'new',
     notes: lead.notes || '',
-    price: lead.price || 'Rs. 10,000',
+    price: lead.price || 'Rs. 8,000',
     createdAt: timestamp,
     updatedAt: timestamp,
   };
