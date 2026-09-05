@@ -4,6 +4,7 @@ import {
   subscribeToLeads, 
   updateLeadStatusInFirestore, 
   updateLeadNotesInFirestore, 
+  updateLeadPaymentInFirestore,
   deleteLeadFromFirestore,
   saveLeadToFirestore
 } from '../lib/leadsService';
@@ -35,7 +36,8 @@ import {
   Briefcase,
   CreditCard,
   Eye,
-  Image as ImageIcon
+  Image as ImageIcon,
+  Upload
 } from 'lucide-react';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
 import { AdminLogin } from '../components/admin/AdminLogin';
@@ -69,10 +71,62 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
   const [newLeadWhatsApp, setNewLeadWhatsApp] = useState('');
   const [newLeadNiche, setNewLeadNiche] = useState('');
   const [newLeadNotes, setNewLeadNotes] = useState('');
+  const [newLeadPaymentMethod, setNewLeadPaymentMethod] = useState<'JazzCash' | 'SadaPay' | 'Bank Transfer' | 'Cash'>('JazzCash');
+  const [newLeadTrxId, setNewLeadTrxId] = useState('');
+  const [newLeadScreenshot, setNewLeadScreenshot] = useState<string>('');
+  const [newLeadScreenshotName, setNewLeadScreenshotName] = useState<string>('');
   const [isAdding, setIsAdding] = useState(false);
+
+  // Quick Inline Screenshot Upload
+  const [uploadingLeadId, setUploadingLeadId] = useState<string | null>(null);
 
   // Delete confirmation
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
+
+  // Image processor helper
+  const processImageFile = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      if (!file.type.startsWith('image/')) {
+        reject(new Error('Please upload an image file (JPG, PNG)'));
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const maxDim = 1200;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > maxDim || height > maxDim) {
+            if (width > height) {
+              height = Math.round((height * maxDim) / width);
+              width = maxDim;
+            } else {
+              width = Math.round((width * maxDim) / height);
+              height = maxDim;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+            ctx.drawImage(img, 0, 0, width, height);
+            resolve(canvas.toDataURL('image/jpeg', 0.82));
+          } else {
+            resolve(event.target?.result as string);
+          }
+        };
+        img.onerror = () => reject(new Error('Failed to read image'));
+        img.src = event.target?.result as string;
+      };
+      reader.onerror = () => reject(new Error('Failed to load file'));
+      reader.readAsDataURL(file);
+    });
+  };
 
   // Subscribe to real-time Firestore updates
   useEffect(() => {
@@ -154,6 +208,9 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
       fullName: newLeadName,
       whatsapp: newLeadWhatsApp,
       niche: newLeadNiche || 'General Fiverr Optimization',
+      paymentMethod: newLeadPaymentMethod,
+      transactionId: newLeadTrxId.trim() || undefined,
+      paymentScreenshot: newLeadScreenshot || undefined,
       notes: newLeadNotes,
       status: 'new',
       price: 'Rs. 8,000'
@@ -165,6 +222,51 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
     setNewLeadWhatsApp('');
     setNewLeadNiche('');
     setNewLeadNotes('');
+    setNewLeadTrxId('');
+    setNewLeadScreenshot('');
+    setNewLeadScreenshotName('');
+  };
+
+  // Quick inline screenshot upload from table row
+  const handleInlineScreenshotUpload = async (leadId: string, file: File) => {
+    try {
+      setUploadingLeadId(leadId);
+      const dataUrl = await processImageFile(file);
+      await updateLeadPaymentInFirestore(leadId, {
+        paymentScreenshot: dataUrl,
+      });
+    } catch (err: any) {
+      alert(err?.message || 'Failed to upload screenshot');
+    } finally {
+      setUploadingLeadId(null);
+    }
+  };
+
+  // Replace screenshot inside modal
+  const handleModalScreenshotReplace = async (file: File) => {
+    if (!selectedScreenshotLead || !selectedScreenshotLead.id) return;
+    try {
+      const dataUrl = await processImageFile(file);
+      await updateLeadPaymentInFirestore(selectedScreenshotLead.id, {
+        paymentScreenshot: dataUrl,
+      });
+      setSelectedScreenshotLead({
+        ...selectedScreenshotLead,
+        paymentScreenshot: dataUrl,
+      });
+    } catch (err: any) {
+      alert(err?.message || 'Failed to replace screenshot');
+    }
+  };
+
+  // Delete screenshot inside modal
+  const handleModalScreenshotDelete = async () => {
+    if (!selectedScreenshotLead || !selectedScreenshotLead.id) return;
+    if (!window.confirm('Are you sure you want to remove this payment receipt screenshot?')) return;
+    await updateLeadPaymentInFirestore(selectedScreenshotLead.id, {
+      paymentScreenshot: '',
+    });
+    setSelectedScreenshotLead(null);
   };
 
   const handleCopyLead = (lead: LeadSubmission) => {
@@ -476,7 +578,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
 
                     {/* Payment Proof */}
                     <td className="py-4 px-4">
-                      <div className="flex flex-col gap-1">
+                      <div className="flex flex-col gap-1.5 min-w-[140px]">
                         <div className="flex items-center gap-1.5">
                           <span className={`px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider ${
                             (lead.paymentMethod || '').toLowerCase().includes('sada')
@@ -491,22 +593,62 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
                         </div>
 
                         {lead.transactionId && (
-                          <div className="text-[10px] font-mono text-white/60 truncate max-w-[120px]">
-                            ID: {lead.transactionId}
+                          <div className="text-[10px] font-mono text-white/70 truncate max-w-[140px] bg-black/40 px-1.5 py-0.5 rounded border border-white/5">
+                            Trx: {lead.transactionId}
                           </div>
                         )}
 
                         {lead.paymentScreenshot ? (
-                          <button
-                            type="button"
-                            onClick={() => setSelectedScreenshotLead(lead)}
-                            className="mt-0.5 inline-flex items-center gap-1 text-[10px] font-bold text-orange-400 hover:text-orange-300 transition-colors cursor-pointer"
-                          >
-                            <Eye className="w-3 h-3" />
-                            <span>View Screenshot</span>
-                          </button>
+                          <div className="flex items-center gap-2 mt-0.5">
+                            <button
+                              type="button"
+                              onClick={() => setSelectedScreenshotLead(lead)}
+                              className="relative group/thumb cursor-pointer"
+                              title="Click to view full screenshot"
+                            >
+                              <img
+                                src={lead.paymentScreenshot}
+                                alt="Receipt Thumbnail"
+                                className="w-9 h-9 object-cover rounded-lg border border-emerald-500/40 group-hover/thumb:border-orange-400 transition-all shadow"
+                              />
+                              <div className="absolute inset-0 bg-black/30 rounded-lg opacity-0 group-hover/thumb:opacity-100 flex items-center justify-center transition-opacity">
+                                <Eye className="w-3.5 h-3.5 text-white" />
+                              </div>
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setSelectedScreenshotLead(lead)}
+                              className="text-[11px] font-bold text-orange-400 hover:text-orange-300 transition-colors cursor-pointer text-left"
+                            >
+                              <span>View Receipt</span>
+                            </button>
+                          </div>
                         ) : (
-                          <span className="text-[10px] text-white/30 italic">No receipt attached</span>
+                          <div className="mt-0.5">
+                            <label
+                              htmlFor={`upload-proof-${leadKey}`}
+                              className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-white/5 hover:bg-white/10 border border-dashed border-white/20 hover:border-orange-400/60 text-[10px] font-medium text-white/70 hover:text-white cursor-pointer transition-colors"
+                            >
+                              {uploadingLeadId === lead.id ? (
+                                <RefreshCw className="w-3 h-3 animate-spin text-orange-400" />
+                              ) : (
+                                <Upload className="w-3 h-3 text-orange-400" />
+                              )}
+                              <span>{uploadingLeadId === lead.id ? 'Uploading...' : '+ Add Receipt'}</span>
+                              <input
+                                id={`upload-proof-${leadKey}`}
+                                type="file"
+                                accept="image/*"
+                                disabled={uploadingLeadId === lead.id}
+                                onChange={(e) => {
+                                  if (e.target.files && e.target.files[0] && lead.id) {
+                                    handleInlineScreenshotUpload(lead.id, e.target.files[0]);
+                                  }
+                                }}
+                                className="hidden"
+                              />
+                            </label>
+                          </div>
                         )}
                       </div>
                     </td>
@@ -630,7 +772,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
       </div>
 
       {/* Payment Screenshot Viewer Modal */}
-      {selectedScreenshotLead && selectedScreenshotLead.paymentScreenshot && (
+      {selectedScreenshotLead && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
           <div className="glass-card rounded-3xl p-5 sm:p-7 max-w-lg w-full border border-white/20 bg-[#170928] shadow-2xl relative">
             <button
@@ -645,7 +787,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
               <h3 className="text-lg font-bold text-white">Payment Receipt Verification</h3>
             </div>
 
-            <div className="p-3 rounded-2xl bg-black/50 border border-white/10 text-xs text-white/80 mb-4 space-y-1">
+            <div className="p-3.5 rounded-2xl bg-black/50 border border-white/10 text-xs text-white/80 mb-4 space-y-1.5">
               <div className="flex justify-between">
                 <span className="text-white/50">Client:</span>
                 <span className="font-bold text-white">{selectedScreenshotLead.fullName}</span>
@@ -655,44 +797,84 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
                 <span className="font-mono text-emerald-400">{selectedScreenshotLead.whatsapp}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-white/50">Method:</span>
+                <span className="text-white/50">Payment Method:</span>
                 <span className="font-bold text-orange-400">{selectedScreenshotLead.paymentMethod || 'JazzCash'}</span>
               </div>
               {selectedScreenshotLead.transactionId && (
                 <div className="flex justify-between">
-                  <span className="text-white/50">Trx ID:</span>
+                  <span className="text-white/50">Trx ID / Ref:</span>
                   <span className="font-mono text-amber-300 font-bold">{selectedScreenshotLead.transactionId}</span>
                 </div>
               )}
             </div>
 
             {/* Image Preview Container */}
-            <div className="max-h-[60vh] overflow-auto rounded-2xl border border-white/10 bg-black/60 p-2 flex items-center justify-center mb-4">
-              <img 
-                src={selectedScreenshotLead.paymentScreenshot} 
-                alt="Payment proof screenshot"
-                className="max-w-full h-auto max-h-[50vh] object-contain rounded-xl shadow-lg"
-              />
-            </div>
+            {selectedScreenshotLead.paymentScreenshot ? (
+              <div className="max-h-[55vh] overflow-auto rounded-2xl border border-white/10 bg-black/60 p-2 flex items-center justify-center mb-4">
+                <img 
+                  src={selectedScreenshotLead.paymentScreenshot} 
+                  alt="Payment proof screenshot"
+                  className="max-w-full h-auto max-h-[45vh] object-contain rounded-xl shadow-lg"
+                />
+              </div>
+            ) : (
+              <div className="py-10 text-center rounded-2xl border border-dashed border-white/15 bg-black/40 mb-4">
+                <ImageIcon className="w-10 h-10 text-white/30 mx-auto mb-2" />
+                <p className="text-xs text-white/60">No screenshot currently attached for this lead.</p>
+              </div>
+            )}
 
-            <div className="flex items-center justify-between gap-3">
-              <a
-                href={selectedScreenshotLead.paymentScreenshot}
-                download={`receipt-${selectedScreenshotLead.fullName.replace(/\s+/g, '_')}.jpg`}
-                className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
-              >
-                <Download className="w-3.5 h-3.5" />
-                <span>Download Image</span>
-              </a>
+            {/* Action Bar */}
+            <div className="flex flex-wrap items-center justify-between gap-2.5 pt-2 border-t border-white/10">
+              <div className="flex items-center gap-2">
+                {/* Upload or Replace button */}
+                <label className="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer">
+                  <Upload className="w-3.5 h-3.5 text-orange-400" />
+                  <span>{selectedScreenshotLead.paymentScreenshot ? 'Replace' : 'Upload Receipt'}</span>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      if (e.target.files && e.target.files[0]) {
+                        handleModalScreenshotReplace(e.target.files[0]);
+                      }
+                    }}
+                    className="hidden"
+                  />
+                </label>
+
+                {/* Delete Screenshot */}
+                {selectedScreenshotLead.paymentScreenshot && (
+                  <button
+                    onClick={handleModalScreenshotDelete}
+                    className="p-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 transition-colors cursor-pointer"
+                    title="Delete screenshot"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                )}
+
+                {/* Download Button */}
+                {selectedScreenshotLead.paymentScreenshot && (
+                  <a
+                    href={selectedScreenshotLead.paymentScreenshot}
+                    download={`receipt-${selectedScreenshotLead.fullName.replace(/\s+/g, '_')}.jpg`}
+                    className="p-2 rounded-xl bg-white/10 hover:bg-white/15 text-white/80 hover:text-white transition-colors cursor-pointer"
+                    title="Download receipt image"
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                  </a>
+                )}
+              </div>
 
               <a
                 href={getWhatsAppChatUrl(selectedScreenshotLead)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-black text-xs font-extrabold flex items-center gap-1.5 shadow-lg transition-all cursor-pointer"
+                className="px-4 py-2 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-black text-xs font-extrabold flex items-center gap-1.5 shadow-lg transition-all cursor-pointer"
               >
                 <WhatsAppIcon className="w-4 h-4" />
-                <span>Confirm on WhatsApp</span>
+                <span>Confirm WhatsApp</span>
               </a>
             </div>
           </div>
@@ -702,7 +884,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
       {/* Manual Add Lead Modal */}
       {showAddModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="glass-card rounded-3xl p-6 sm:p-8 max-w-md w-full border border-white/20 bg-[#170928] shadow-2xl relative">
+          <div className="glass-card rounded-3xl p-6 sm:p-8 max-w-lg w-full border border-white/20 bg-[#170928] shadow-2xl relative max-h-[90vh] overflow-y-auto">
             <button
               onClick={() => setShowAddModal(false)}
               className="absolute top-5 right-5 text-white/50 hover:text-white cursor-pointer"
@@ -710,32 +892,34 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
               <X className="w-5 h-5" />
             </button>
 
-            <h3 className="text-xl font-bold text-white mb-1">Add Lead Manually</h3>
-            <p className="text-xs text-white/60 mb-5">Record a custom inquiry into your Firestore database.</p>
+            <h3 className="text-xl font-bold text-white mb-1">Add Lead & Payment Manually</h3>
+            <p className="text-xs text-white/60 mb-5">Record customer details and payment screenshot into your Firestore database.</p>
 
             <form onSubmit={handleManualAdd} className="space-y-3.5">
-              <div>
-                <label className="block text-xs font-bold text-white/80 mb-1">Client Full Name *</label>
-                <input
-                  type="text"
-                  value={newLeadName}
-                  onChange={(e) => setNewLeadName(e.target.value)}
-                  placeholder="e.g. Ali Khan"
-                  required
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-xs focus:outline-none focus:border-orange-400"
-                />
-              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-bold text-white/80 mb-1">Client Full Name *</label>
+                  <input
+                    type="text"
+                    value={newLeadName}
+                    onChange={(e) => setNewLeadName(e.target.value)}
+                    placeholder="e.g. Ali Khan"
+                    required
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-xs focus:outline-none focus:border-orange-400"
+                  />
+                </div>
 
-              <div>
-                <label className="block text-xs font-bold text-white/80 mb-1">WhatsApp Number *</label>
-                <input
-                  type="text"
-                  value={newLeadWhatsApp}
-                  onChange={(e) => setNewLeadWhatsApp(e.target.value)}
-                  placeholder="e.g. 03001234567 or +92..."
-                  required
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-xs focus:outline-none focus:border-orange-400"
-                />
+                <div>
+                  <label className="block text-xs font-bold text-white/80 mb-1">WhatsApp Number *</label>
+                  <input
+                    type="text"
+                    value={newLeadWhatsApp}
+                    onChange={(e) => setNewLeadWhatsApp(e.target.value)}
+                    placeholder="e.g. 03001234567 or +92..."
+                    required
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-xs focus:outline-none focus:border-orange-400"
+                  />
+                </div>
               </div>
 
               <div>
@@ -749,12 +933,88 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
                 />
               </div>
 
+              {/* Payment Info Selection in Add Lead Modal */}
+              <div className="p-3.5 rounded-2xl bg-black/40 border border-white/10 space-y-3">
+                <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-400">
+                  <CreditCard className="w-3.5 h-3.5" />
+                  <span>Payment Information (Rs. 8,000)</span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-[11px] font-bold text-white/70 mb-1">Payment Method</label>
+                    <select
+                      value={newLeadPaymentMethod}
+                      onChange={(e) => setNewLeadPaymentMethod(e.target.value as any)}
+                      className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-white text-xs focus:outline-none focus:border-orange-400"
+                    >
+                      <option value="JazzCash" className="bg-[#170928]">JazzCash (03060880466)</option>
+                      <option value="SadaPay" className="bg-[#170928]">SadaPay (03060880466)</option>
+                      <option value="Bank Transfer" className="bg-[#170928]">Bank Transfer</option>
+                      <option value="Cash" className="bg-[#170928]">Cash / Direct</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold text-white/70 mb-1">Trx ID / Ref (Optional)</label>
+                    <input
+                      type="text"
+                      value={newLeadTrxId}
+                      onChange={(e) => setNewLeadTrxId(e.target.value)}
+                      placeholder="e.g. TID-9823471"
+                      className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-white text-xs focus:outline-none focus:border-orange-400"
+                    />
+                  </div>
+                </div>
+
+                {/* Screenshot upload inside Add Lead Modal */}
+                <div>
+                  <label className="block text-[11px] font-bold text-white/70 mb-1">Payment Screenshot (Receipt)</label>
+                  {newLeadScreenshot ? (
+                    <div className="p-2 rounded-xl bg-white/5 border border-emerald-500/40 flex items-center justify-between">
+                      <div className="flex items-center gap-2 overflow-hidden">
+                        <img src={newLeadScreenshot} alt="Preview" className="w-8 h-8 object-cover rounded-md border border-white/20" />
+                        <span className="text-xs text-emerald-400 truncate">{newLeadScreenshotName || 'Screenshot attached'}</span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setNewLeadScreenshot('');
+                          setNewLeadScreenshotName('');
+                        }}
+                        className="p-1 rounded text-white/50 hover:text-red-400"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  ) : (
+                    <label className="w-full py-2.5 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-dashed border-white/20 hover:border-orange-400/60 text-white/70 hover:text-white flex items-center justify-center gap-2 text-xs font-semibold cursor-pointer transition-colors">
+                      <Upload className="w-3.5 h-3.5 text-orange-400" />
+                      <span>Upload Receipt Image</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={async (e) => {
+                          if (e.target.files && e.target.files[0]) {
+                            const file = e.target.files[0];
+                            setNewLeadScreenshotName(file.name);
+                            const dataUrl = await processImageFile(file);
+                            setNewLeadScreenshot(dataUrl);
+                          }
+                        }}
+                        className="hidden"
+                      />
+                    </label>
+                  )}
+                </div>
+              </div>
+
               <div>
                 <label className="block text-xs font-bold text-white/80 mb-1">Notes / Remarks</label>
                 <textarea
                   value={newLeadNotes}
                   onChange={(e) => setNewLeadNotes(e.target.value)}
-                  placeholder="e.g. Interested in 5 Gigs optimization..."
+                  placeholder="e.g. Paid in full, starting gig audit..."
                   rows={2}
                   className="w-full px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 text-white text-xs focus:outline-none focus:border-orange-400 resize-none"
                 />
@@ -771,7 +1031,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
                 <button
                   type="submit"
                   disabled={isAdding}
-                  className="px-5 py-2 rounded-xl bg-gradient-to-r from-orange-500 to-amber-400 text-black text-xs font-bold flex items-center gap-1.5 shadow-lg cursor-pointer"
+                  className="px-5 py-2 rounded-xl bg-gradient-to-r from-orange-500 to-amber-400 text-black text-xs font-bold flex items-center gap-1.5 shadow-lg cursor-pointer disabled:opacity-50"
                 >
                   {isAdding ? 'Saving...' : 'Save to Firestore'}
                 </button>

@@ -635,16 +635,29 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
             </div>
 
             {/* Price review summary card */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-black/40 border border-white/10 mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-              <div>
-                <span className="text-xs text-white/50 font-semibold block">Total Package Investment:</span>
-                <span className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-500">
-                  {BUSINESS_INFO.price}
-                </span>
+            <div className="p-4 sm:p-5 rounded-2xl bg-black/40 border border-white/10 mb-8 space-y-3">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-white/10">
+                <div>
+                  <span className="text-xs text-white/50 font-semibold block">Total Package Investment:</span>
+                  <span className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-500">
+                    {BUSINESS_INFO.price}
+                  </span>
+                </div>
+                <div className="text-xs text-white/70 sm:text-right">
+                  <span className="text-emerald-400 font-bold block">✓ Full Profile & Gig SEO Included</span>
+                  <span>Direct WhatsApp Confirmation</span>
+                </div>
               </div>
-              <div className="text-xs text-white/70 sm:text-right">
-                <span className="text-emerald-400 font-bold block">✓ Full Profile & Gig SEO Included</span>
-                <span>Direct WhatsApp Confirmation</span>
+
+              {/* Flexible payment option note in English */}
+              <div className="p-3 rounded-xl bg-orange-500/10 border border-orange-400/20 text-xs leading-relaxed text-white/90 flex items-start gap-2.5">
+                <span className="text-base flex-shrink-0">💡</span>
+                <div>
+                  <strong className="text-orange-400 font-bold block mb-0.5">Flexible Payment Option:</strong>
+                  <span>
+                    If you cannot pay the full amount upfront, you can pay <strong className="text-white font-semibold">70% in advance</strong> (Rs. 5,600) to start, and the remaining <strong className="text-emerald-400 font-semibold">30% after the work is done</strong> (Rs. 2,400).
+                  </span>
+                </div>
               </div>
             </div>
 

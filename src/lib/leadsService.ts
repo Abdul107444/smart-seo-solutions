@@ -139,6 +139,9 @@ export async function saveLeadToFirestore(
       activeGigsCount: leadData.activeGigsCount || '',
       currentOrdersStatus: leadData.currentOrdersStatus || '',
       interestedServices: leadData.interestedServices || [],
+      paymentMethod: leadData.paymentMethod || '',
+      paymentScreenshot: leadData.paymentScreenshot || '',
+      transactionId: leadData.transactionId || '',
       status: leadData.status,
       notes: leadData.notes,
       price: leadData.price,
@@ -324,6 +327,52 @@ export async function updateLeadNotesInFirestore(
       return true;
     } catch (error) {
       console.warn('Error updating Firestore doc notes:', error);
+      return false;
+    }
+  }
+
+  return true;
+}
+
+/**
+ * Update lead payment info and screenshot in both local cache and Firestore
+ */
+export async function updateLeadPaymentInFirestore(
+  leadId: string,
+  paymentData: {
+    paymentMethod?: string;
+    transactionId?: string;
+    paymentScreenshot?: string;
+    price?: string;
+  }
+): Promise<boolean> {
+  const timestamp = new Date().toISOString();
+
+  // Update local cache immediately
+  const localLeads = getLocalLeads();
+  const updated = localLeads.map((lead) => {
+    if (lead.id === leadId) {
+      return {
+        ...lead,
+        ...paymentData,
+        updatedAt: timestamp,
+      };
+    }
+    return lead;
+  });
+  setLocalLeads(updated);
+
+  // Sync to Firestore
+  if (!leadId.startsWith('lead_')) {
+    try {
+      const docRef = doc(db, LEADS_COLLECTION, leadId);
+      await updateDoc(docRef, {
+        ...paymentData,
+        updatedAt: timestamp,
+      });
+      return true;
+    } catch (error) {
+      console.warn('Error updating Firestore doc payment:', error);
       return false;
     }
   }
