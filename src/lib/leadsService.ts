@@ -4,6 +4,7 @@ import {
   onSnapshot, 
   query, 
   orderBy, 
+  where,
   doc, 
   updateDoc, 
   deleteDoc,
@@ -142,6 +143,8 @@ export async function saveLeadToFirestore(
       paymentMethod: leadData.paymentMethod || '',
       paymentScreenshot: leadData.paymentScreenshot || '',
       transactionId: leadData.transactionId || '',
+      isPaymentVerified: leadData.isPaymentVerified ?? false,
+      verificationNote: leadData.verificationNote || '',
       status: leadData.status,
       notes: leadData.notes,
       price: leadData.price,
@@ -402,4 +405,42 @@ export async function deleteLeadFromFirestore(leadId: string): Promise<boolean> 
   }
 
   return true;
+}
+
+/**
+ * Check if a Transaction ID (TID) has already been submitted to prevent duplicate/fraud submissions
+ */
+export async function checkIfTransactionIdExists(trxId: string, excludeLeadId?: string): Promise<{ exists: boolean; matchedLead?: LeadSubmission }> {
+  const cleanTrx = trxId.trim().toLowerCase();
+  if (!cleanTrx || cleanTrx.length < 5) return { exists: false };
+
+  // 1. Check local leads first
+  const localLeads = getLocalLeads();
+  const localMatch = localLeads.find(l => 
+    l.id !== excludeLeadId && 
+    l.transactionId && 
+    l.transactionId.trim().toLowerCase() === cleanTrx
+  );
+
+  if (localMatch) {
+    return { exists: true, matchedLead: localMatch };
+  }
+
+  // 2. Query Firestore for existing transactionId
+  try {
+    const leadsRef = collection(db, LEADS_COLLECTION);
+    const q = query(leadsRef, where('transactionId', '==', trxId.trim()));
+    const snap = await getDocs(q);
+
+    if (!snap.empty) {
+      const matchDoc = snap.docs.find(d => d.id !== excludeLeadId);
+      if (matchDoc) {
+        return { exists: true, matchedLead: matchDoc.data() as LeadSubmission };
+      }
+    }
+  } catch (error) {
+    console.warn('Firestore transaction query check failed, relying on local cache:', error);
+  }
+
+  return { exists: false };
 }

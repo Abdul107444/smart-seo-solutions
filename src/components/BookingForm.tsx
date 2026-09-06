@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { saveLeadToFirestore } from '../lib/leadsService';
+import { saveLeadToFirestore, checkIfTransactionIdExists } from '../lib/leadsService';
+import { verifyPaymentScreenshot, VerificationResult } from '../lib/paymentVerifier';
 import { BUSINESS_INFO, PAYMENT_ACCOUNTS } from '../data/funnelData';
 import { 
   CheckCircle2, 
@@ -15,7 +16,12 @@ import {
   X,
   Copy,
   Check,
-  ShieldCheck
+  ShieldCheck,
+  ShieldAlert,
+  Loader2,
+  ScanLine,
+  RefreshCw,
+  Lock
 } from 'lucide-react';
 
 interface BookingFormProps {
@@ -41,6 +47,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
   const [screenshotFileName, setScreenshotFileName] = useState<string>('');
   const [copiedAccount, setCopiedAccount] = useState<string | null>(null);
 
+  // Instant Verification States
+  const [isVerifyingScreenshot, setIsVerifyingScreenshot] = useState(false);
+  const [verificationProgress, setVerificationProgress] = useState('');
+  const [verificationResult, setVerificationResult] = useState<VerificationResult | null>(null);
+
   // Form Submission States
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -50,6 +61,63 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
     navigator.clipboard.writeText(text);
     setCopiedAccount(id);
     setTimeout(() => setCopiedAccount(null), 2000);
+  };
+
+  const runVerification = async (imgData: string) => {
+    setIsVerifyingScreenshot(true);
+    setVerificationProgress('Initiating instant verification scanner...');
+    setVerificationResult(null);
+
+    try {
+      const result = await verifyPaymentScreenshot(imgData, (progress) => {
+        setVerificationProgress(progress);
+      });
+
+      setVerificationResult(result);
+
+      if (result.isValid) {
+        // Clear screenshot errors
+        setErrors((prev) => {
+          const next = { ...prev };
+          delete next.paymentScreenshot;
+          return next;
+        });
+
+        // Auto-fill transaction ID if found and not yet filled
+        if (result.detectedDetails.transactionId && !transactionId) {
+          setTransactionId(result.detectedDetails.transactionId);
+        }
+
+        // Auto-match provider
+        if (result.detectedDetails.provider === 'SadaPay') {
+          setPaymentMethod('SadaPay');
+        } else if (result.detectedDetails.provider === 'JazzCash') {
+          setPaymentMethod('JazzCash');
+        }
+      } else {
+        setErrors((prev) => ({
+          ...prev,
+          paymentScreenshot: result.reason || 'Screenshot verification failed. Payment must be sent to Zeenat yasmin (03060880466).',
+        }));
+      }
+    } catch (err: any) {
+      console.error('Verification error:', err);
+      setVerificationResult({
+        isValid: false,
+        status: 'error',
+        confidence: 0,
+        title: 'Verification Scan Error',
+        reason: 'Could not complete the receipt scan. Please ensure the receipt is clear and readable.',
+        detectedDetails: {
+          recipientMatched: false,
+          numberMatched: false,
+          amountMatched: false,
+        },
+      });
+    } finally {
+      setIsVerifyingScreenshot(false);
+      setVerificationProgress('');
+    }
   };
 
   const handleImageUpload = (file: File) => {
@@ -93,20 +161,24 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
         canvas.width = width;
         canvas.height = height;
         const ctx = canvas.getContext('2d');
+        let finalDataUrl = '';
         if (ctx) {
           ctx.drawImage(img, 0, 0, width, height);
-          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
-          setPaymentScreenshot(compressedDataUrl);
+          finalDataUrl = canvas.toDataURL('image/jpeg', 0.85);
         } else {
-          setPaymentScreenshot(event.target?.result as string);
+          finalDataUrl = event.target?.result as string;
         }
+
+        setPaymentScreenshot(finalDataUrl);
+        // Trigger instant AI verification
+        runVerification(finalDataUrl);
       };
       img.src = event.target?.result as string;
     };
     reader.readAsDataURL(file);
   };
 
-  const validateForm = () => {
+  const validateForm = async () => {
     const newErrors: { [key: string]: string } = {};
 
     if (!fullName.trim()) newErrors.fullName = 'Full Name is required';
@@ -119,6 +191,23 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
 
     if (!niche.trim()) {
       newErrors.niche = 'Your service / niche is required';
+    }
+
+    // Strict payment verification checks: Prevent fake or missing screenshot
+    if (!paymentScreenshot) {
+      newErrors.paymentScreenshot = 'Payment screenshot is required. Please upload your JazzCash or SadaPay receipt.';
+    } else if (verificationResult && !verificationResult.isValid) {
+      newErrors.paymentScreenshot = verificationResult.reason || 'Screenshot rejected. Please upload a genuine payment receipt.';
+    }
+
+    // Check duplicate transaction ID in Firestore database
+    if (transactionId.trim()) {
+      try {
+        const dup = await checkIfTransactionIdExists(transactionId.trim());
+        if (dup.exists) {
+          newErrors.transactionId = 'This Transaction ID has already been registered in our system. Reused receipts are not allowed.';
+        }
+      } catch {}
     }
 
     setErrors(newErrors);
@@ -160,7 +249,10 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
       msg += `🔢 *Trx ID / Ref:* ${trx.trim()}\n`;
     }
     if (hasProof) {
-      msg += `📸 *Payment Screenshot:* Uploaded on website / attaching in this chat\n`;
+      msg += `📸 *Payment Screenshot:* Attached with verified receipt\n`;
+    }
+    if (verificationResult?.isValid) {
+      msg += `🛡️ *Payment Verification:* ✅ Genuine Receipt Verified (${verificationResult.detectedDetails?.provider || selectedMethod} to Zeenat yasmin)\n`;
     }
 
     if (profile && profile.trim()) {
@@ -182,12 +274,23 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateForm()) {
-      window.scrollTo({ top: 200, behavior: 'smooth' });
+
+    if (isVerifyingScreenshot) {
+      return;
+    }
+
+    const isValid = await validateForm();
+    if (!isValid) {
+      window.scrollTo({ top: 350, behavior: 'smooth' });
       return;
     }
 
     setIsSubmitting(true);
+
+    const isVerified = verificationResult?.isValid ?? false;
+    const verifyNote = isVerified 
+      ? `Verified ${verificationResult?.detectedDetails?.provider || paymentMethod} transfer to Zeenat yasmin (TID: ${transactionId || 'In image'})`
+      : undefined;
 
     const leadData = {
       fullName: fullName.trim(),
@@ -196,6 +299,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
       paymentMethod,
       transactionId: transactionId.trim() || undefined,
       paymentScreenshot: paymentScreenshot || undefined,
+      isPaymentVerified: isVerified,
+      verificationNote: verifyNote,
       fiverrProfileUrl: fiverrProfileUrl.trim() || undefined,
       fiverrGigUrl: fiverrGigUrl.trim() || undefined,
       improvementGoal: improvementGoal.trim() || undefined,
@@ -572,45 +677,167 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
                   </p>
                 </div>
 
-                <div>
-                  <label className="block text-[10px] sm:text-xs uppercase tracking-wider font-bold text-white/70 mb-1.5">
-                    Upload Payment Screenshot <span className="text-orange-400">*</span>
-                  </label>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <label className="block text-[10px] sm:text-xs uppercase tracking-wider font-bold text-white/70">
+                      Upload Payment Screenshot <span className="text-orange-400">*</span>
+                    </label>
+                    <span className="text-[10px] text-emerald-400 font-semibold flex items-center gap-1">
+                      <ShieldCheck className="w-3 h-3" /> Auto-Verified
+                    </span>
+                  </div>
 
-                  {paymentScreenshot ? (
-                    <div className="p-2.5 rounded-xl bg-black/40 border border-emerald-500/40 flex items-center justify-between gap-3">
-                      <div className="flex items-center gap-2.5 overflow-hidden">
+                  {/* 1. Loading Scanner State */}
+                  {isVerifyingScreenshot && (
+                    <div className="p-4 rounded-xl bg-orange-500/10 border border-orange-500/40 text-left space-y-2.5 relative overflow-hidden">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2 text-orange-400 font-bold text-xs">
+                          <Loader2 className="w-4 h-4 animate-spin text-orange-400" />
+                          <span>Scanning & Verifying Screenshot...</span>
+                        </div>
+                        <span className="text-[10px] px-2 py-0.5 rounded bg-orange-500/20 text-orange-300 font-bold">
+                          AI OCR
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-white/90 font-medium">
+                        {verificationProgress || 'Analyzing receipt text, recipient & amount...'}
+                      </p>
+                      <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-orange-400 via-amber-300 to-emerald-400 animate-pulse w-full rounded-full" />
+                      </div>
+                      <p className="text-[10px] text-white/50">
+                        Checking recipient (Zeenat yasmin - 03060880466) & checking duplicate receipts database.
+                      </p>
+                    </div>
+                  )}
+
+                  {/* 2. Success: Verified Genuine Receipt */}
+                  {!isVerifyingScreenshot && paymentScreenshot && verificationResult?.isValid && (
+                    <div className="p-3.5 rounded-xl bg-emerald-950/40 border border-emerald-500/60 text-left space-y-2.5 shadow-lg shadow-emerald-950/50">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                          <div className="w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center">
+                            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                          </div>
+                          <span className="text-xs font-black text-emerald-400 uppercase tracking-wide">
+                            Authentic Payment Receipt Verified
+                          </span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setPaymentScreenshot('');
+                            setScreenshotFileName('');
+                            setVerificationResult(null);
+                          }}
+                          className="p-1 rounded bg-white/10 hover:bg-red-500/20 hover:text-red-400 text-white/60 transition-colors cursor-pointer"
+                          title="Remove screenshot"
+                        >
+                          <X className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+
+                      <div className="flex items-center gap-3">
                         <img 
                           src={paymentScreenshot} 
-                          alt="Payment Screenshot Preview" 
-                          className="w-10 h-10 object-cover rounded-lg border border-white/20 flex-shrink-0" 
+                          alt="Verified Payment Receipt" 
+                          className="w-12 h-12 object-cover rounded-lg border border-emerald-500/40 flex-shrink-0" 
                         />
-                        <div className="truncate text-left">
-                          <p className="text-xs font-semibold text-emerald-400 truncate">
-                            {screenshotFileName || 'Screenshot attached'}
-                          </p>
-                          <span className="text-[10px] text-white/50">Ready to send</span>
+                        <div className="text-[11px] space-y-0.5 min-w-0">
+                          <div className="text-white font-medium flex items-center gap-1">
+                            <span className="text-white/60">Recipient:</span>
+                            <span className="font-bold text-emerald-300">Zeenat yasmin (03060880466)</span>
+                          </div>
+                          <div className="text-white/70 flex items-center gap-2">
+                            <span>Method: <strong className="text-white">{verificationResult.detectedDetails.provider || paymentMethod}</strong></span>
+                            {verificationResult.detectedDetails.detectedAmount && (
+                              <span>• Amount: <strong className="text-emerald-400">{verificationResult.detectedDetails.detectedAmount}</strong></span>
+                            )}
+                          </div>
+                          {verificationResult.detectedDetails.transactionId && (
+                            <div className="font-mono text-[10px] text-white/60 truncate">
+                              Trx ID: {verificationResult.detectedDetails.transactionId}
+                            </div>
+                          )}
                         </div>
                       </div>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setPaymentScreenshot('');
-                          setScreenshotFileName('');
-                        }}
-                        className="p-1.5 rounded-lg bg-white/10 hover:bg-red-500/20 hover:text-red-400 text-white/70 transition-colors cursor-pointer"
-                        title="Remove screenshot"
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
                     </div>
-                  ) : (
+                  )}
+
+                  {/* 3. Rejection: Fake or Invalid Screenshot */}
+                  {!isVerifyingScreenshot && paymentScreenshot && verificationResult && !verificationResult.isValid && (
+                    <div className="p-3.5 rounded-xl bg-red-950/40 border border-red-500/60 text-left space-y-2.5 shadow-lg shadow-red-950/50">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                          <div className="w-6 h-6 rounded-full bg-red-500/20 border border-red-500/50 flex items-center justify-center">
+                            <ShieldAlert className="w-3.5 h-3.5 text-red-400" />
+                          </div>
+                          <span className="text-xs font-black text-red-400 uppercase tracking-wide">
+                            {verificationResult.title || 'Fake or Unverified Receipt Rejected'}
+                          </span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setPaymentScreenshot('');
+                            setScreenshotFileName('');
+                            setVerificationResult(null);
+                            setErrors((prev) => {
+                              const next = { ...prev };
+                              delete next.paymentScreenshot;
+                              return next;
+                            });
+                          }}
+                          className="p-1 rounded bg-white/10 hover:bg-red-500/20 hover:text-red-400 text-white/60 transition-colors cursor-pointer"
+                          title="Remove & re-upload"
+                        >
+                          <X className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+
+                      <div className="flex items-start gap-3">
+                        <img 
+                          src={paymentScreenshot} 
+                          alt="Rejected Screenshot" 
+                          className="w-12 h-12 object-cover rounded-lg border border-red-500/40 flex-shrink-0 opacity-60" 
+                        />
+                        <div className="text-[11px] text-red-200/90 leading-relaxed">
+                          <p className="font-semibold text-red-400 mb-1">{verificationResult.reason}</p>
+                          <p className="text-[10px] text-white/60">
+                            Fake receipts, unrelated screenshots, or transfers to other accounts are strictly blocked. Payment must be sent to <strong>Zeenat yasmin (03060880466)</strong>.
+                          </p>
+                        </div>
+                      </div>
+
+                      <label 
+                        htmlFor="payment-screenshot-input-reupload"
+                        className="w-full py-2.5 px-3 rounded-xl bg-red-500/20 hover:bg-red-500/30 border border-red-500/40 text-red-300 flex items-center justify-center gap-1.5 text-xs font-bold cursor-pointer transition-colors"
+                      >
+                        <RefreshCw className="w-3.5 h-3.5" />
+                        <span>Upload Genuine Payment Receipt</span>
+                        <input
+                          id="payment-screenshot-input-reupload"
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => {
+                            if (e.target.files && e.target.files[0]) {
+                              handleImageUpload(e.target.files[0]);
+                            }
+                          }}
+                          className="hidden"
+                        />
+                      </label>
+                    </div>
+                  )}
+
+                  {/* 4. Empty: Upload Prompt */}
+                  {!isVerifyingScreenshot && !paymentScreenshot && (
                     <label 
                       htmlFor="payment-screenshot-input"
                       className="w-full py-3 px-4 rounded-xl bg-black/40 border border-dashed border-white/20 hover:border-orange-400/60 text-white/70 hover:text-white flex items-center justify-center gap-2 text-xs font-semibold cursor-pointer transition-all hover:bg-white/5"
                     >
                       <Upload className="w-4 h-4 text-orange-400" />
-                      <span>Choose Payment Screenshot</span>
+                      <span>Upload Payment Screenshot (Instant Verification)</span>
                       <input
                         id="payment-screenshot-input"
                         type="file"
@@ -663,22 +890,44 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
 
             {/* Submit Button */}
             <div className="space-y-4">
-              <button
-                id="submit-fiverr-intake-btn"
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-4 sm:py-4.5 rounded-2xl bg-gradient-to-r from-orange-500 via-amber-400 to-yellow-500 hover:from-orange-400 hover:to-yellow-400 text-black text-sm sm:text-base font-extrabold uppercase tracking-wide flex items-center justify-center gap-3 shadow-xl hover:shadow-orange-500/25 active:scale-95 transition-all cursor-pointer disabled:opacity-75"
-              >
-                <span>
-                  {isSubmitting ? 'Saving & Opening WhatsApp...' : '🚀 Submit Details & Contact on WhatsApp'}
-                </span>
-                <ArrowRight className="w-4 h-4 text-black" />
-              </button>
+              {isVerifyingScreenshot ? (
+                <button
+                  id="submit-fiverr-intake-btn"
+                  type="button"
+                  disabled={true}
+                  className="w-full py-4 sm:py-4.5 rounded-2xl bg-amber-500/20 border border-amber-500/40 text-amber-300 text-sm sm:text-base font-extrabold uppercase tracking-wide flex items-center justify-center gap-3 cursor-wait"
+                >
+                  <Loader2 className="w-4 h-4 animate-spin text-amber-400" />
+                  <span>Verifying Payment Screenshot...</span>
+                </button>
+              ) : verificationResult && !verificationResult.isValid ? (
+                <button
+                  id="submit-fiverr-intake-btn"
+                  type="button"
+                  disabled={true}
+                  className="w-full py-4 sm:py-4.5 rounded-2xl bg-red-950/40 border border-red-500/50 text-red-300 text-sm sm:text-base font-extrabold uppercase tracking-wide flex items-center justify-center gap-3 cursor-not-allowed opacity-80"
+                >
+                  <Lock className="w-4 h-4 text-red-400" />
+                  <span>Valid Payment Receipt Required To Proceed</span>
+                </button>
+              ) : (
+                <button
+                  id="submit-fiverr-intake-btn"
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-4 sm:py-4.5 rounded-2xl bg-gradient-to-r from-orange-500 via-amber-400 to-yellow-500 hover:from-orange-400 hover:to-yellow-400 text-black text-sm sm:text-base font-extrabold uppercase tracking-wide flex items-center justify-center gap-3 shadow-xl hover:shadow-orange-500/25 active:scale-95 transition-all cursor-pointer disabled:opacity-75"
+                >
+                  <span>
+                    {isSubmitting ? 'Saving & Opening WhatsApp...' : '🚀 Submit Details & Contact on WhatsApp'}
+                  </span>
+                  <ArrowRight className="w-4 h-4 text-black" />
+                </button>
+              )}
 
               <div className="flex items-center justify-center gap-2 text-xs text-white/50 text-center">
                 <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
                 <span>
-                  Submit karte hi saari details aur payment record ke sath WhatsApp khul jayega.
+                  Automated anti-fraud protection active. Only genuine JazzCash / SadaPay transfers to Zeenat yasmin are accepted.
                 </span>
               </div>
             </div>

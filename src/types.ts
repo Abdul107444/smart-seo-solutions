@@ -15,6 +15,8 @@ export interface LeadSubmission {
   paymentMethod?: string;
   paymentScreenshot?: string;
   transactionId?: string;
+  isPaymentVerified?: boolean;
+  verificationNote?: string;
   status?: LeadStatus;
   notes?: string;
   price?: string;

@@ -579,7 +579,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
                     {/* Payment Proof */}
                     <td className="py-4 px-4">
                       <div className="flex flex-col gap-1.5 min-w-[140px]">
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex items-center gap-1.5 flex-wrap">
                           <span className={`px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider ${
                             (lead.paymentMethod || '').toLowerCase().includes('sada')
                               ? 'bg-teal-500/20 text-teal-400 border border-teal-500/30'
@@ -590,6 +590,15 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
                           <span className="text-[10px] font-bold text-emerald-400">
                             {lead.price || 'Rs. 8,000'}
                           </span>
+                          {lead.isPaymentVerified ? (
+                            <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[9px] font-extrabold flex items-center gap-0.5">
+                              ✓ Verified
+                            </span>
+                          ) : lead.paymentScreenshot ? (
+                            <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[9px] font-bold">
+                              Unverified
+                            </span>
+                          ) : null}
                         </div>
 
                         {lead.transactionId && (
@@ -800,10 +809,27 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
                 <span className="text-white/50">Payment Method:</span>
                 <span className="font-bold text-orange-400">{selectedScreenshotLead.paymentMethod || 'JazzCash'}</span>
               </div>
+              <div className="flex justify-between items-center">
+                <span className="text-white/50">Verification Status:</span>
+                {selectedScreenshotLead.isPaymentVerified ? (
+                  <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[10px] font-bold">
+                    ✓ AI Verified Authentic
+                  </span>
+                ) : (
+                  <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px] font-bold">
+                    Manual Review Required
+                  </span>
+                )}
+              </div>
               {selectedScreenshotLead.transactionId && (
                 <div className="flex justify-between">
                   <span className="text-white/50">Trx ID / Ref:</span>
                   <span className="font-mono text-amber-300 font-bold">{selectedScreenshotLead.transactionId}</span>
+                </div>
+              )}
+              {selectedScreenshotLead.verificationNote && (
+                <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-[11px] text-emerald-300 mt-1">
+                  🛡️ {selectedScreenshotLead.verificationNote}
                 </div>
               )}
             </div>
