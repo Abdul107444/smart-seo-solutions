@@ -41,7 +41,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
   const [improvementGoal, setImprovementGoal] = useState('');
 
   // Step 3: Payment Details
-  const [paymentMethod, setPaymentMethod] = useState<'JazzCash' | 'SadaPay'>('JazzCash');
+  const [paymentMethod, setPaymentMethod] = useState<string>('Meezan Bank');
   const [transactionId, setTransactionId] = useState('');
   const [paymentScreenshot, setPaymentScreenshot] = useState<string>('');
   const [screenshotFileName, setScreenshotFileName] = useState<string>('');
@@ -89,15 +89,15 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
         }
 
         // Auto-match provider
-        if (result.detectedDetails.provider === 'SadaPay') {
-          setPaymentMethod('SadaPay');
-        } else if (result.detectedDetails.provider === 'JazzCash') {
-          setPaymentMethod('JazzCash');
+        if (result.detectedDetails.provider === 'Meezan Bank') {
+          setPaymentMethod('Meezan Bank');
+        } else if (result.detectedDetails.provider) {
+          setPaymentMethod(result.detectedDetails.provider);
         }
       } else {
         setErrors((prev) => ({
           ...prev,
-          paymentScreenshot: result.reason || 'Screenshot verification failed. Payment must be sent to Zeenat yasmin (03060880466).',
+          paymentScreenshot: result.reason || 'Screenshot verification failed. Payment must be sent to Zeenat yasmin (Meezan Bank: PK20MEZN0000300114121316).',
         }));
       }
     } catch (err: any) {
@@ -195,7 +195,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
 
     // Strict payment verification checks: Prevent fake or missing screenshot
     if (!paymentScreenshot) {
-      newErrors.paymentScreenshot = 'Payment screenshot is required. Please upload your JazzCash or SadaPay receipt.';
+      newErrors.paymentScreenshot = 'Payment screenshot is required. Please upload your Meezan Bank transfer receipt.';
     } else if (verificationResult && !verificationResult.isValid) {
       newErrors.paymentScreenshot = verificationResult.reason || 'Screenshot rejected. Please upload a genuine payment receipt.';
     }
@@ -243,7 +243,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
     msg += `💼 *Service / Niche:* ${serviceNiche.trim()}\n`;
     msg += `📦 *Package:* Complete Profile & Gig SEO (${BUSINESS_INFO.price})\n\n`;
 
-    msg += `💳 *Payment Method:* ${selectedMethod} (Zeenat yasmin - 03060880466)\n`;
+    msg += `💳 *Payment Method:* ${selectedMethod} (Meezan Bank - PK20MEZN0000300114121316)\n`;
+    msg += `👤 *Account Title:* Zeenat yasmin\n`;
     msg += `💰 *Amount:* ${BUSINESS_INFO.price}\n`;
     if (trx.trim()) {
       msg += `🔢 *Trx ID / Ref:* ${trx.trim()}\n`;
@@ -252,7 +253,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
       msg += `📸 *Payment Screenshot:* Attached with verified receipt\n`;
     }
     if (verificationResult?.isValid) {
-      msg += `🛡️ *Payment Verification:* ✅ Genuine Receipt Verified (${verificationResult.detectedDetails?.provider || selectedMethod} to Zeenat yasmin)\n`;
+      msg += `🛡️ *Payment Verification:* ✅ Genuine Receipt Verified (${verificationResult.detectedDetails?.provider || selectedMethod} to Zeenat yasmin - Meezan Bank)\n`;
     }
 
     if (profile && profile.trim()) {
@@ -604,53 +605,59 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
               </div>
 
               {/* Payment Account Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div className="grid grid-cols-1 gap-3.5">
                 {PAYMENT_ACCOUNTS.map((acc) => {
                   const isSelected = paymentMethod === acc.name;
                   return (
                     <div
                       key={acc.id}
-                      onClick={() => setPaymentMethod(acc.name as 'JazzCash' | 'SadaPay')}
-                      className={`p-4 rounded-2xl border transition-all cursor-pointer relative overflow-hidden ${
+                      onClick={() => setPaymentMethod(acc.name)}
+                      className={`p-5 rounded-2xl border transition-all cursor-pointer relative overflow-hidden ${
                         isSelected 
-                          ? 'bg-white/10 border-orange-400/80 shadow-lg shadow-orange-500/10 ring-1 ring-orange-400/50' 
+                          ? 'bg-blue-950/30 border-blue-400/80 shadow-lg shadow-blue-500/10 ring-1 ring-blue-400/50' 
                           : 'bg-black/40 border-white/10 hover:border-white/20'
                       }`}
                     >
-                      <div className="flex items-center justify-between mb-2">
-                        <span className={`text-xs font-black uppercase px-2.5 py-0.5 rounded-md ${acc.badgeBg}`}>
-                          {acc.name}
-                        </span>
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center gap-2">
+                          <span className={`text-xs font-black uppercase px-2.5 py-0.5 rounded-md ${acc.badgeBg}`}>
+                            {acc.name}
+                          </span>
+                          <span className="text-[10px] text-white/50">Official Direct Payment Method</span>
+                        </div>
                         <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
-                          isSelected ? 'border-orange-400 bg-orange-400' : 'border-white/30'
+                          isSelected ? 'border-blue-400 bg-blue-500' : 'border-white/30'
                         }`}>
-                          {isSelected && <Check className="w-3 h-3 text-black stroke-[3]" />}
+                          {isSelected && <Check className="w-3 h-3 text-white stroke-[3]" />}
                         </div>
                       </div>
 
-                      <div className="space-y-1 mt-2">
-                        <div className="flex items-center justify-between text-xs">
-                          <span className="text-white/60">Account Number:</span>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
+                        <div className="bg-black/30 p-3 rounded-xl border border-white/5">
+                          <span className="text-[11px] text-white/60 block mb-0.5">Account Title:</span>
+                          <span className="font-bold text-white text-sm">{acc.accountTitle}</span>
+                          <span className="text-[10px] text-emerald-400 block mt-0.5">✓ Verified Bank Account</span>
+                        </div>
+
+                        <div className="bg-black/30 p-3 rounded-xl border border-white/5">
+                          <span className="text-[11px] text-white/60 block mb-0.5">Meezan IBAN / Account Number:</span>
                           <button
                             type="button"
                             onClick={(e) => {
                               e.stopPropagation();
                               copyToClipboard(acc.accountNumber, `${acc.id}-num`);
                             }}
-                            className="font-mono font-bold text-white hover:text-orange-400 flex items-center gap-1.5 transition-colors cursor-pointer"
+                            className="w-full font-mono font-bold text-blue-300 hover:text-white flex items-center justify-between gap-1.5 transition-colors cursor-pointer bg-blue-500/10 hover:bg-blue-500/20 px-2.5 py-1 rounded-lg border border-blue-500/20 text-xs mt-1"
                           >
-                            <span>{acc.accountNumber}</span>
+                            <span className="truncate">{acc.accountNumber}</span>
                             {copiedAccount === `${acc.id}-num` ? (
-                              <Check className="w-3 h-3 text-emerald-400" />
+                              <span className="text-[10px] text-emerald-400 font-sans flex items-center gap-0.5 shrink-0">
+                                <Check className="w-3 h-3 text-emerald-400" /> Copied
+                              </span>
                             ) : (
-                              <Copy className="w-3 h-3 text-white/50" />
+                              <Copy className="w-3.5 h-3.5 text-blue-300 shrink-0" />
                             )}
                           </button>
-                        </div>
-
-                        <div className="flex items-center justify-between text-xs">
-                          <span className="text-white/60">Account Title:</span>
-                          <span className="font-bold text-white">{acc.accountTitle}</span>
                         </div>
                       </div>
                     </div>
@@ -673,7 +680,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
                     className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-white/30 text-sm focus:outline-none focus:border-orange-500 transition-colors"
                   />
                   <p className="text-[10px] text-white/40 mt-1">
-                    JazzCash / SadaPay Transaction ID for quick verification.
+                    Meezan Bank / Raast / IBFT Transaction ID for quick verification.
                   </p>
                 </div>
 
@@ -706,7 +713,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
                         <div className="h-full bg-gradient-to-r from-orange-400 via-amber-300 to-emerald-400 animate-pulse w-full rounded-full" />
                       </div>
                       <p className="text-[10px] text-white/50">
-                        Checking recipient (Zeenat yasmin - 03060880466) & checking duplicate receipts database.
+                        Checking recipient (Zeenat yasmin - Meezan Bank PK20MEZN0000300114121316) & duplicate receipts database.
                       </p>
                     </div>
                   )}
@@ -746,7 +753,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
                         <div className="text-[11px] space-y-0.5 min-w-0">
                           <div className="text-white font-medium flex items-center gap-1">
                             <span className="text-white/60">Recipient:</span>
-                            <span className="font-bold text-emerald-300">Zeenat yasmin (03060880466)</span>
+                            <span className="font-bold text-emerald-300">Zeenat yasmin (Meezan Bank)</span>
                           </div>
                           <div className="text-white/70 flex items-center gap-2">
                             <span>Method: <strong className="text-white">{verificationResult.detectedDetails.provider || paymentMethod}</strong></span>
@@ -804,7 +811,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
                         <div className="text-[11px] text-red-200/90 leading-relaxed">
                           <p className="font-semibold text-red-400 mb-1">{verificationResult.reason}</p>
                           <p className="text-[10px] text-white/60">
-                            Fake receipts, unrelated screenshots, or transfers to other accounts are strictly blocked. Payment must be sent to <strong>Zeenat yasmin (03060880466)</strong>.
+                            Fake receipts, unrelated screenshots, or transfers to other accounts are strictly blocked. Payment must be sent to <strong>Zeenat yasmin (Meezan Bank: PK20MEZN0000300114121316)</strong>.
                           </p>
                         </div>
                       </div>
@@ -927,7 +934,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
               <div className="flex items-center justify-center gap-2 text-xs text-white/50 text-center">
                 <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
                 <span>
-                  Automated anti-fraud protection active. Only genuine JazzCash / SadaPay transfers to Zeenat yasmin are accepted.
+                  Automated anti-fraud protection active. Only genuine Meezan Bank transfers to Zeenat yasmin are accepted.
                 </span>
               </div>
             </div>

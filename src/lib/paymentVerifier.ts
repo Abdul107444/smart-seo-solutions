@@ -11,8 +11,8 @@ export interface VerificationResult {
     recipientMatched: boolean;
     recipientName?: string;
     numberMatched: boolean;
-    detectedPhone?: string;
-    provider?: 'JazzCash' | 'SadaPay' | 'Bank Transfer' | 'Unknown';
+    detectedAccount?: string;
+    provider?: 'Meezan Bank' | 'Bank Transfer' | 'JazzCash' | 'SadaPay' | 'Unknown';
     amountMatched: boolean;
     detectedAmount?: string;
     transactionId?: string;
@@ -114,7 +114,7 @@ export async function verifyPaymentScreenshot(
         status: 'rejected',
         confidence: 0,
         title: 'Image Too Small or Invalid',
-        reason: 'The uploaded file is too small to be a genuine mobile transaction receipt. Please upload a full screenshot from your JazzCash or SadaPay app.',
+        reason: 'The uploaded file is too small to be a genuine mobile transaction receipt. Please upload a full screenshot of your Meezan Bank transfer.',
         detectedDetails: {
           recipientMatched: false,
           numberMatched: false,
@@ -145,19 +145,22 @@ export async function verifyPaymentScreenshot(
 
     const cleanRawText = ocrText;
     const norm = normalizeText(cleanRawText);
-    const compactClean = norm.replace(/\s+/g, '');
+    const compactClean = norm.replace(/[^a-z0-9]/g, '');
 
-    // Target constants
-    const targetPhoneDigits = '03060880466';
-    const targetPhoneShort = '3060880466';
+    // Target constants for Meezan Bank
+    const targetIban = 'pk20mezn0000300114121316';
+    const targetIbanShort = '300114121316';
+    const targetAccountEnd = '14121316';
 
     // 3. Provider detection
-    let detectedProvider: 'JazzCash' | 'SadaPay' | 'Bank Transfer' | 'Unknown' = 'Unknown';
-    if (norm.includes('jazzcash') || norm.includes('jazz cash') || norm.includes('mobilink') || norm.includes('jazz')) {
-      detectedProvider = 'JazzCash';
+    let detectedProvider: 'Meezan Bank' | 'Bank Transfer' | 'JazzCash' | 'SadaPay' | 'Unknown' = 'Unknown';
+    if (norm.includes('meezan') || compactClean.includes('mezn') || norm.includes('mbl')) {
+      detectedProvider = 'Meezan Bank';
     } else if (norm.includes('sadapay') || norm.includes('sada pay') || norm.includes('sada')) {
       detectedProvider = 'SadaPay';
-    } else if (norm.includes('bank') || norm.includes('nayapay') || norm.includes('alflah') || norm.includes('meezan') || norm.includes('hbl') || norm.includes('ubl') || norm.includes('raast')) {
+    } else if (norm.includes('jazzcash') || norm.includes('jazz cash')) {
+      detectedProvider = 'JazzCash';
+    } else if (norm.includes('bank') || norm.includes('nayapay') || norm.includes('alflah') || norm.includes('hbl') || norm.includes('ubl') || norm.includes('raast')) {
       detectedProvider = 'Bank Transfer';
     }
 
@@ -165,7 +168,7 @@ export async function verifyPaymentScreenshot(
     const paymentKeywords = [
       'successful', 'transaction', 'transfer', 'sent', 'paid', 'payment', 
       'money sent', 'receipt', 'tid', 'trx', 'ref', 'fee', 'rs', 'pkr', 
-      'jazzcash', 'sadapay', 'balance', 'debited', 'confirmed'
+      'meezan', 'balance', 'debited', 'confirmed', 'ibft', 'raast', 'beneficiary'
     ];
     const matchedKeywords = paymentKeywords.filter(k => norm.includes(k));
     const isPaymentReceipt = matchedKeywords.length >= 2;
@@ -177,7 +180,7 @@ export async function verifyPaymentScreenshot(
         status: 'rejected',
         confidence: 10,
         title: 'Fake or Unreadable Receipt',
-        reason: 'No payment receipt or transaction details were found in this screenshot. Please upload a clear receipt from JazzCash or SadaPay.',
+        reason: 'No payment receipt or transaction details were found in this screenshot. Please upload a clear receipt of payment to Meezan Bank.',
         detectedDetails: {
           recipientMatched: false,
           numberMatched: false,
@@ -200,16 +203,14 @@ export async function verifyPaymentScreenshot(
       ? 'Yasmin (Verified)' 
       : undefined;
 
-    // 6. Recipient Phone Verification
-    // Target: 03060880466
-    const numberMatched = compactClean.includes(targetPhoneDigits) || 
-                          compactClean.includes(targetPhoneShort) ||
-                          norm.includes('0306 0880466') ||
-                          norm.includes('0306-0880466') ||
-                          norm.includes('+923060880466') ||
-                          norm.includes('923060880466');
-
-    const detectedPhone = numberMatched ? '03060880466' : undefined;
+    // 6. Recipient Account / IBAN / Bank Verification
+    // Target: PK20MEZN0000300114121316 or Meezan Bank
+    const hasIban = compactClean.includes(targetIban) || compactClean.includes('pk20mezn');
+    const hasAccountNum = compactClean.includes(targetIbanShort) || compactClean.includes(targetAccountEnd) || compactClean.includes('0000300114121316');
+    const hasMeezanBank = norm.includes('meezan') || compactClean.includes('mezn');
+    
+    const accountMatched = hasIban || hasAccountNum || (hasMeezanBank && (recipientMatched || isPaymentReceipt));
+    const detectedAccount = hasIban ? 'PK20MEZN0000300114121316' : (hasMeezanBank ? 'Meezan Bank' : undefined);
 
     // 7. Amount Verification
     // Target: Rs. 8,000 (Full) or Rs. 5,600 (70% Advance) or Rs. 2,400 (30% Remaining)
@@ -226,13 +227,13 @@ export async function verifyPaymentScreenshot(
     // 8. Transaction ID (TID) extraction
     let detectedTid: string | undefined;
     // Common TID patterns: TID: 123456789, Transaction ID: 12345678, Trx ID: ABC1234, or 10-12 digit sequence
-    const tidMatch = cleanRawText.match(/(?:TID|Trx\s*ID|Transaction\s*ID|Ref(?:erence)?\s*(?:ID|No)?|ID)[:\s#]*([A-Za-z0-9\-_]{6,20})/i);
+    const tidMatch = cleanRawText.match(/(?:TID|Trx\s*ID|Transaction\s*ID|Ref(?:erence)?\s*(?:ID|No)?|Stan|FT\s*No|ID)[:\s#]*([A-Za-z0-9\-_]{6,25})/i);
     if (tidMatch && tidMatch[1]) {
       detectedTid = tidMatch[1].trim();
     } else {
-      // Look for isolated 10 to 12 digit number (typical JazzCash TID)
-      const digitsMatch = cleanRawText.match(/\b(0\d{9,11}|\d{10,12})\b/);
-      if (digitsMatch && digitsMatch[1] && digitsMatch[1] !== targetPhoneDigits) {
+      // Look for isolated 10 to 14 digit reference number
+      const digitsMatch = cleanRawText.match(/\b(\d{10,14})\b/);
+      if (digitsMatch && digitsMatch[1] && !digitsMatch[1].includes(targetIbanShort)) {
         detectedTid = digitsMatch[1];
       }
     }
@@ -253,8 +254,8 @@ export async function verifyPaymentScreenshot(
           detectedDetails: {
             recipientMatched,
             recipientName,
-            numberMatched,
-            detectedPhone,
+            numberMatched: accountMatched,
+            detectedAccount,
             provider: detectedProvider,
             amountMatched,
             detectedAmount,
@@ -266,18 +267,16 @@ export async function verifyPaymentScreenshot(
     }
 
     // 10. Final Decision Logic
-    // Must match either Recipient Name ("Zeenat yasmin") OR Recipient Phone ("03060880466")
-    const isAuthenticAccount = recipientMatched || numberMatched;
+    // Must match either Recipient Name ("Zeenat yasmin") OR Account / Bank details ("PK20MEZN0000300114121316" / "Meezan Bank")
+    const isAuthenticAccount = recipientMatched || accountMatched;
 
     if (!isAuthenticAccount) {
-      // Check if it's sent to someone else entirely
-      const hasOtherName = norm.includes('to:') || norm.includes('sent to') || norm.includes('receiver');
       return {
         isValid: false,
         status: 'rejected',
         confidence: 90,
         title: 'Account Recipient Does Not Match',
-        reason: 'This receipt was not sent to our verified account. Payment MUST be transferred to Zeenat yasmin (03060880466). Fake or third-party screenshots cannot be accepted.',
+        reason: 'This receipt was not sent to our verified account. Payment MUST be transferred to Zeenat yasmin (Meezan Bank IBAN: PK20MEZN0000300114121316). Fake or third-party screenshots cannot be accepted.',
         detectedDetails: {
           recipientMatched: false,
           numberMatched: false,
@@ -292,22 +291,22 @@ export async function verifyPaymentScreenshot(
 
     // High confidence match!
     const confidence = (recipientMatched ? 40 : 0) + 
-                       (numberMatched ? 40 : 0) + 
+                       (accountMatched ? 40 : 0) + 
                        (amountMatched ? 15 : 5) + 
-                       (detectedProvider !== 'Unknown' ? 5 : 0);
+                       (detectedProvider === 'Meezan Bank' ? 10 : 5);
 
     return {
       isValid: true,
       status: 'verified',
       confidence: Math.min(confidence, 100),
       title: 'Payment Receipt Verified Successfully',
-      reason: `Verified ${detectedProvider !== 'Unknown' ? detectedProvider : 'payment'} transfer to Zeenat yasmin (03060880466).`,
+      reason: `Verified payment transfer to Zeenat yasmin (Meezan Bank - PK20MEZN0000300114121316).`,
       detectedDetails: {
         recipientMatched: true,
         recipientName: recipientName || 'Zeenat yasmin',
         numberMatched: true,
-        detectedPhone: '03060880466',
-        provider: detectedProvider,
+        detectedAccount: 'PK20MEZN0000300114121316',
+        provider: detectedProvider !== 'Unknown' ? detectedProvider : 'Meezan Bank',
         amountMatched,
         detectedAmount,
         transactionId: detectedTid,

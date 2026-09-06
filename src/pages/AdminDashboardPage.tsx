@@ -71,7 +71,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
   const [newLeadWhatsApp, setNewLeadWhatsApp] = useState('');
   const [newLeadNiche, setNewLeadNiche] = useState('');
   const [newLeadNotes, setNewLeadNotes] = useState('');
-  const [newLeadPaymentMethod, setNewLeadPaymentMethod] = useState<'JazzCash' | 'SadaPay' | 'Bank Transfer' | 'Cash'>('JazzCash');
+  const [newLeadPaymentMethod, setNewLeadPaymentMethod] = useState<'Meezan Bank' | 'Bank Transfer' | 'Cash'>('Meezan Bank');
   const [newLeadTrxId, setNewLeadTrxId] = useState('');
   const [newLeadScreenshot, setNewLeadScreenshot] = useState<string>('');
   const [newLeadScreenshotName, setNewLeadScreenshotName] = useState<string>('');
@@ -286,7 +286,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
       `"${l.fullName.replace(/"/g, '""')}"`,
       `"${l.whatsapp.replace(/"/g, '""')}"`,
       `"${l.niche.replace(/"/g, '""')}"`,
-      `"${l.paymentMethod || 'JazzCash'}"`,
+      `"${l.paymentMethod || 'Meezan Bank'}"`,
       `"${(l.transactionId || '').replace(/"/g, '""')}"`,
       `"${l.status || 'new'}"`,
       `"${l.price || 'Rs. 8,000'}"`,
@@ -581,11 +581,15 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
                       <div className="flex flex-col gap-1.5 min-w-[140px]">
                         <div className="flex items-center gap-1.5 flex-wrap">
                           <span className={`px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider ${
-                            (lead.paymentMethod || '').toLowerCase().includes('sada')
+                            (lead.paymentMethod || '').toLowerCase().includes('meezan')
+                              ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30'
+                              : (lead.paymentMethod || '').toLowerCase().includes('sada')
                               ? 'bg-teal-500/20 text-teal-400 border border-teal-500/30'
-                              : 'bg-red-500/20 text-red-400 border border-red-500/30'
+                              : (lead.paymentMethod || '').toLowerCase().includes('jazz')
+                              ? 'bg-red-500/20 text-red-400 border border-red-500/30'
+                              : 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30'
                           }`}>
-                            {lead.paymentMethod || 'JazzCash'}
+                            {lead.paymentMethod || 'Meezan Bank'}
                           </span>
                           <span className="text-[10px] font-bold text-emerald-400">
                             {lead.price || 'Rs. 8,000'}
@@ -807,7 +811,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
               </div>
               <div className="flex justify-between">
                 <span className="text-white/50">Payment Method:</span>
-                <span className="font-bold text-orange-400">{selectedScreenshotLead.paymentMethod || 'JazzCash'}</span>
+                <span className="font-bold text-orange-400">{selectedScreenshotLead.paymentMethod || 'Meezan Bank'}</span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-white/50">Verification Status:</span>
@@ -974,9 +978,8 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
                       onChange={(e) => setNewLeadPaymentMethod(e.target.value as any)}
                       className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-white text-xs focus:outline-none focus:border-orange-400"
                     >
-                      <option value="JazzCash" className="bg-[#170928]">JazzCash (03060880466)</option>
-                      <option value="SadaPay" className="bg-[#170928]">SadaPay (03060880466)</option>
-                      <option value="Bank Transfer" className="bg-[#170928]">Bank Transfer</option>
+                      <option value="Meezan Bank" className="bg-[#170928]">Meezan Bank (PK20MEZN0000300114121316)</option>
+                      <option value="Bank Transfer" className="bg-[#170928]">Other Bank Transfer (IBFT / Raast)</option>
                       <option value="Cash" className="bg-[#170928]">Cash / Direct</option>
                     </select>
                   </div>

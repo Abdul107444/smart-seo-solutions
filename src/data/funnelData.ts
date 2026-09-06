@@ -15,20 +15,14 @@ export const BUSINESS_INFO = {
 
 export const PAYMENT_ACCOUNTS = [
   {
-    id: 'jazzcash',
-    name: 'JazzCash',
-    accountNumber: '03060880466',
+    id: 'meezan',
+    name: 'Meezan Bank',
+    accountNumber: 'PK20MEZN0000300114121316',
     accountTitle: 'Zeenat yasmin',
-    color: 'from-amber-500 to-red-600',
-    badgeBg: 'bg-red-500/20 text-red-400 border-red-500/30',
-  },
-  {
-    id: 'sadapay',
-    name: 'SadaPay',
-    accountNumber: '03060880466',
-    accountTitle: 'Zeenat yasmin',
-    color: 'from-teal-400 to-cyan-600',
-    badgeBg: 'bg-teal-500/20 text-teal-400 border-teal-500/30',
+    bankName: 'Meezan Bank',
+    iban: 'PK20MEZN0000300114121316',
+    color: 'from-blue-600 to-indigo-800',
+    badgeBg: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
   },
 ];
 
