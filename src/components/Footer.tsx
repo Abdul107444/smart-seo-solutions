@@ -8,9 +8,15 @@ interface FooterProps {
   onNavigateToThankYou: () => void;
   onNavigateHome: () => void;
   onNavigateToAdmin?: () => void;
+  onNavigateToGigMethod?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigateToThankYou, onNavigateHome, onNavigateToAdmin }) => {
+export const Footer: React.FC<FooterProps> = ({ 
+  onNavigateToThankYou, 
+  onNavigateHome, 
+  onNavigateToAdmin,
+  onNavigateToGigMethod 
+}) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -97,6 +103,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToThankYou, onNavigate
                   Frequently Asked Questions
                 </button>
               </li>
+              {onNavigateToGigMethod && (
+                <li>
+                  <button
+                    onClick={onNavigateToGigMethod}
+                    className="text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1 cursor-pointer"
+                  >
+                    <span>⚡ 24-Hour Gig Rank Method (599 PKR PDF)</span>
+                  </button>
+                </li>
+              )}
               <li>
                 <button
                   onClick={onNavigateToThankYou}

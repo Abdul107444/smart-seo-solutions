@@ -4,13 +4,14 @@ import { Footer } from './components/Footer';
 import { LandingPage } from './pages/LandingPage';
 import { ThankYouPage } from './pages/ThankYouPage';
 import { AdminDashboardPage } from './pages/AdminDashboardPage';
+import { GigRankingMethodPage } from './pages/GigRankingMethodPage';
 import { AuthProvider } from './lib/authContext';
 import { BUSINESS_INFO } from './data/funnelData';
 import { WhatsAppIcon } from './components/WhatsAppIcon';
 
 export default function App() {
   // Determine initial path from URL, query parameter, or hash
-  const getInitialPath = (): 'landing' | 'thankyou' | 'admin' => {
+  const getInitialPath = (): 'landing' | 'gig-method' | 'thankyou' | 'admin' => {
     const pathname = window.location.pathname.toLowerCase();
     const hash = window.location.hash.toLowerCase();
     const search = window.location.search.toLowerCase();
@@ -25,6 +26,20 @@ export default function App() {
       return 'admin';
     }
     if (
+      pathname.includes('gig-rank') ||
+      pathname.includes('gig-method') ||
+      pathname.includes('ranking-method') ||
+      hash.includes('gig-rank') ||
+      hash.includes('gig-method') ||
+      hash.includes('gig-ranking') ||
+      search.includes('gig-rank') ||
+      search.includes('gig-method') ||
+      search.includes('page=gig-ranking-method') ||
+      search.includes('page=gig-rank')
+    ) {
+      return 'gig-method';
+    }
+    if (
       pathname.includes('thank-you') || 
       pathname.includes('thankyou') || 
       hash.includes('thank-you') ||
@@ -37,7 +52,7 @@ export default function App() {
     return 'landing';
   };
 
-  const [currentPage, setCurrentPage] = useState<'landing' | 'thankyou' | 'admin'>(getInitialPath);
+  const [currentPage, setCurrentPage] = useState<'landing' | 'gig-method' | 'thankyou' | 'admin'>(getInitialPath);
 
   // Sync state with browser URL & secret keyboard shortcut (Ctrl + Shift + A)
   useEffect(() => {
@@ -53,6 +68,19 @@ export default function App() {
         search.includes('portal')
       ) {
         setCurrentPage('admin');
+      } else if (
+        pathname.includes('gig-rank') ||
+        pathname.includes('gig-method') ||
+        pathname.includes('ranking-method') ||
+        hash.includes('gig-rank') ||
+        hash.includes('gig-method') ||
+        hash.includes('gig-ranking') ||
+        search.includes('gig-rank') ||
+        search.includes('gig-method') ||
+        search.includes('page=gig-ranking-method') ||
+        search.includes('page=gig-rank')
+      ) {
+        setCurrentPage('gig-method');
       } else if (
         pathname.includes('thank-you') || 
         pathname.includes('thankyou') || 
@@ -94,6 +122,12 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const navigateToGigMethod = () => {
+    window.history.pushState({}, '', '/gig-ranking-method');
+    setCurrentPage('gig-method');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const navigateToAdmin = () => {
     window.history.pushState({}, '', '/admin');
     setCurrentPage('admin');
@@ -115,12 +149,20 @@ export default function App() {
           onNavigateToThankYou={navigateToThankYou}
           onNavigateHome={navigateHome}
           onNavigateToAdmin={navigateToAdmin}
+          onNavigateToGigMethod={navigateToGigMethod}
         />
 
         {/* Main Routed Content */}
         <div className="flex-grow pt-16 sm:pt-20">
           {currentPage === 'landing' ? (
-            <LandingPage onNavigateToThankYou={navigateToThankYou} />
+            <LandingPage 
+              onNavigateToThankYou={navigateToThankYou} 
+              onNavigateToGigMethod={navigateToGigMethod}
+            />
+          ) : currentPage === 'gig-method' ? (
+            <GigRankingMethodPage 
+              onNavigateToMain={navigateHome}
+            />
           ) : currentPage === 'admin' ? (
             <AdminDashboardPage onNavigateHome={navigateHome} />
           ) : (
@@ -133,7 +175,15 @@ export default function App() {
           <div className="fixed bottom-6 right-6 z-40">
             <button
               id="floating-whatsapp-btn"
-              onClick={navigateToThankYou}
+              onClick={() => {
+                if (currentPage === 'gig-method') {
+                  const el = document.getElementById('order-method-section');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  else navigateToGigMethod();
+                } else {
+                  navigateToThankYou();
+                }
+              }}
               className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-[#0d2215] font-black text-xs md:text-sm shadow-2xl hover:scale-105 transition-all duration-200 border border-white/20 shadow-emerald-950/60 cursor-pointer"
               aria-label="Direct WhatsApp Consultation"
             >
@@ -148,8 +198,10 @@ export default function App() {
           onNavigateToThankYou={navigateToThankYou}
           onNavigateHome={navigateHome}
           onNavigateToAdmin={navigateToAdmin}
+          onNavigateToGigMethod={navigateToGigMethod}
         />
       </div>
     </AuthProvider>
   );
 }
+

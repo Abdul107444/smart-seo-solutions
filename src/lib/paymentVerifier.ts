@@ -213,15 +213,17 @@ export async function verifyPaymentScreenshot(
     const detectedAccount = hasIban ? 'PK20MEZN0000300114121316' : (hasMeezanBank ? 'Meezan Bank' : undefined);
 
     // 7. Amount Verification
-    // Target: Rs. 8,000 (Full) or Rs. 5,600 (70% Advance) or Rs. 2,400 (30% Remaining)
+    // Target: Rs. 8,000 (Full), Rs. 5,600 (70% Advance), 599 PKR (Gig Rank Method PDF), or Rs. 2,400 (30% Final)
     const hasFullAmount = norm.includes('8000') || norm.includes('8,000') || norm.includes('8 000');
     const hasAdvanceAmount = norm.includes('5600') || norm.includes('5,600') || norm.includes('5 600');
+    const hasMethodAmount = norm.includes('599') || norm.includes('600') || norm.includes('3000') || norm.includes('3,000') || norm.includes('500');
     const hasRemainingAmount = norm.includes('2400') || norm.includes('2,400') || norm.includes('2 400');
-    const amountMatched = hasFullAmount || hasAdvanceAmount || hasRemainingAmount;
+    const amountMatched = hasFullAmount || hasAdvanceAmount || hasMethodAmount || hasRemainingAmount;
     
     let detectedAmount = 'Unspecified';
     if (hasFullAmount) detectedAmount = 'Rs. 8,000 (Full Package)';
     else if (hasAdvanceAmount) detectedAmount = 'Rs. 5,600 (70% Advance)';
+    else if (hasMethodAmount) detectedAmount = '599 PKR (Gig Ranking Method PDF)';
     else if (hasRemainingAmount) detectedAmount = 'Rs. 2,400 (30% Final)';
 
     // 8. Transaction ID (TID) extraction

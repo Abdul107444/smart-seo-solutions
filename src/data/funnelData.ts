@@ -647,3 +647,55 @@ export const FAQ_LIST: FAQItem[] = [
     answer: 'Yes, Rs. 8,000 is a transparent, one-time payment for the complete Fiverr Profile & Gig Optimization service. There are no hidden fees or recurring subscriptions.',
   },
 ];
+
+export const GIG_RANK_METHOD_INFO = {
+  name: 'Fiverr 24-Hour Gig Ranking Method',
+  mainHeading: 'Gig rank on 1st page of fiverr within 24 hours Guranteded 100%',
+  subHeading: 'Get our confidential step-by-step PDF blueprint revealing the exact algorithm keyword placement formula to rank any new or stalled gig on Fiverr’s 1st page within 24 hours. Follow the confidential blueprint and watch your gig rank on page 1.',
+  price: '599 PKR',
+  originalPrice: '2,999 PKR',
+  discount: '80% OFF (Limited Time Special)',
+  priceNumeric: 599,
+  whatsAppNumber: '+92 306 0880466',
+  whatsAppLink: 'https://wa.me/923060880466',
+  whatsAppMessageText: 'Hi Smart SEO Solutions! I just purchased the Fiverr 24-Hour Gig Ranking Method PDF (599 PKR) and completed my Meezan Bank payment.',
+};
+
+export const GIG_METHOD_FAQS: FAQItem[] = [
+  {
+    id: 'gm-faq-1',
+    question: 'Does this method really rank a gig on Fiverr’s 1st page within 24 hours?',
+    answer: 'Yes, 100%! Fiverr’s indexing algorithm evaluates specific keyword relevance signals across key on-page locations. When you align your long-tail keyword following the exact placement formula revealed in our PDF, Fiverr’s automated search re-indexing crawler ranks the gig on the 1st page within 24 hours.',
+  },
+  {
+    id: 'gm-faq-2',
+    question: 'Does this formula work for both brand new and existing gigs?',
+    answer: 'Yes, it works on both new and existing gigs. If you are creating a new gig, simply follow the blueprint before publishing. If you have an existing gig that is de-ranked or getting zero impressions, apply the confidential placement formula and re-publish — your gig will be indexed and ranked on page 1 within 24 hours.',
+  },
+  {
+    id: 'gm-faq-3',
+    question: 'What is a long-tail keyword and why is it essential for 24-hour ranking?',
+    answer: 'A long-tail keyword is a targeted, high-intent 3-to-4 word search phrase (for example: "perfect squarespace expert"). These keywords have direct buyer intent and lower saturation, allowing the algorithm to give your gig immediate 1st-page priority.',
+  },
+  {
+    id: 'gm-faq-4',
+    question: 'How and when will I receive the PDF guide after paying 599 PKR?',
+    answer: 'Immediately! Once you transfer 599 PKR to our official Meezan Bank account and submit the receipt, our automated system instantly unlocks your "Download PDF Blueprint" button right inside the thank-you screen. You can download the PDF to your device right away.',
+  },
+  {
+    id: 'gm-faq-5',
+    question: 'Is this method 100% safe and compliant with Fiverr’s Terms of Service?',
+    answer: 'Absolutely. This blueprint utilizes 100% white-hat, on-page algorithmic optimization. It does not use any automated bots, fake reviews, or forbidden tricks. It strictly aligns your gig metadata with how Fiverr’s search engine ranks relevance.',
+  },
+  {
+    id: 'gm-faq-6',
+    question: 'Which payment methods are accepted for 599 PKR?',
+    answer: 'We accept payments through our official Meezan Bank account (Title: Zeenat yasmin, IBAN: PK20MEZN0000300114121316). You can transfer from any banking app in Pakistan (Meezan, HBL, UBL, Nayapay, SadaPay, JazzCash, Easypaisa, etc.) using direct IBFT or Raast.',
+  },
+  {
+    id: 'gm-faq-7',
+    question: 'Do I get support if I have questions while applying the method?',
+    answer: 'Yes! Our dedicated customer support line on WhatsApp (+92 306 0880466) is available to assist you. If you need help picking high-intent keywords or verifying your gig setup, we are here to support you.',
+  },
+];
+
