@@ -652,13 +652,13 @@ export const GIG_RANK_METHOD_INFO = {
   name: 'Fiverr 24-Hour Gig Ranking Method',
   mainHeading: 'Gig rank on 1st page of fiverr within 24 hours Guranteded 100%',
   subHeading: 'Get our confidential step-by-step PDF blueprint revealing the exact algorithm keyword placement formula to rank any new or stalled gig on Fiverr’s 1st page within 24 hours. Follow the confidential blueprint and watch your gig rank on page 1.',
-  price: '599 PKR',
+  price: '575 PKR',
   originalPrice: '2,999 PKR',
   discount: '80% OFF (Limited Time Special)',
-  priceNumeric: 599,
+  priceNumeric: 575,
   whatsAppNumber: '+92 306 0880466',
   whatsAppLink: 'https://wa.me/923060880466',
-  whatsAppMessageText: 'Hi Smart SEO Solutions! I just purchased the Fiverr 24-Hour Gig Ranking Method PDF (599 PKR) and completed my Meezan Bank payment.',
+  whatsAppMessageText: 'Hi Smart SEO Solutions! I just purchased the Fiverr 24-Hour Gig Ranking Method PDF (575 PKR) and completed my Meezan Bank payment.',
 };
 
 export const GIG_METHOD_FAQS: FAQItem[] = [
@@ -679,8 +679,8 @@ export const GIG_METHOD_FAQS: FAQItem[] = [
   },
   {
     id: 'gm-faq-4',
-    question: 'How and when will I receive the PDF guide after paying 599 PKR?',
-    answer: 'Immediately! Once you transfer 599 PKR to our official Meezan Bank account and submit the receipt, our automated system instantly unlocks your "Download PDF Blueprint" button right inside the thank-you screen. You can download the PDF to your device right away.',
+    question: 'How and when will I receive the PDF guide after paying 575 PKR?',
+    answer: 'Immediately! Once you transfer 575 PKR to our official Meezan Bank account and submit the receipt, our automated system instantly unlocks your "Download PDF Blueprint" button right inside the thank-you screen. You can download the PDF to your device right away.',
   },
   {
     id: 'gm-faq-5',
@@ -689,7 +689,7 @@ export const GIG_METHOD_FAQS: FAQItem[] = [
   },
   {
     id: 'gm-faq-6',
-    question: 'Which payment methods are accepted for 599 PKR?',
+    question: 'Which payment methods are accepted for 575 PKR?',
     answer: 'We accept payments through our official Meezan Bank account (Title: Zeenat yasmin, IBAN: PK20MEZN0000300114121316). You can transfer from any banking app in Pakistan (Meezan, HBL, UBL, Nayapay, SadaPay, JazzCash, Easypaisa, etc.) using direct IBFT or Raast.',
   },
   {

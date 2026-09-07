@@ -159,7 +159,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Price Tag (Large Desktops) */}
           {currentPage === 'gig-method' ? (
             <div className="hidden xl:flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-500/15 border border-orange-500/30 text-xs font-semibold text-orange-300">
-              <span>PDF Method: <strong className="text-amber-400">599 PKR</strong></span>
+              <span>PDF Method: <strong className="text-amber-400">575 PKR</strong></span>
             </div>
           ) : (
             <div className="hidden xl:flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-white/90">
@@ -329,7 +329,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {currentPage === 'landing'
                   ? `Book Optimization — ${BUSINESS_INFO.price}`
                   : currentPage === 'gig-method'
-                  ? 'Download Method PDF — 599 PKR'
+                  ? 'Download Method PDF — 575 PKR'
                   : 'Back to Home'}
               </span>
             </button>

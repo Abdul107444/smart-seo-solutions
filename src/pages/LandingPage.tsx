@@ -43,7 +43,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThankYou, 
               onClick={onNavigateToGigMethod}
               className="px-5 py-2.5 rounded-xl btn-gold-gradient text-black font-black text-xs uppercase tracking-wide flex-shrink-0 flex items-center gap-1.5 shadow-md hover:scale-105 transition-transform cursor-pointer"
             >
-              <span>Get Blueprint (599 PKR)</span>
+              <span>Get Blueprint (575 PKR)</span>
               <span>→</span>
             </button>
           </div>

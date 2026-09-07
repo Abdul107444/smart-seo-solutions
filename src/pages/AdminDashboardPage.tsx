@@ -170,6 +170,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
     const isGigMethod = 
       (lead.niche || '').includes('[Gig Ranking Method PDF]') || 
       (lead.notes || '').toLowerCase().includes('gig ranking method') || 
+      (lead.price || '').includes('575') ||
       (lead.price || '').includes('599');
 
     const matchesType = 
@@ -195,13 +196,14 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
   const gigMethodCount = leads.filter(l => 
     (l.niche || '').includes('[Gig Ranking Method PDF]') || 
     (l.notes || '').toLowerCase().includes('gig ranking method') || 
+    (l.price || '').includes('575') ||
     (l.price || '').includes('599')
   ).length;
   const seoLeadsCount = totalLeads - gigMethodCount;
   const newLeadsCount = leads.filter(l => (l.status || 'new') === 'new').length;
   const inProgressCount = leads.filter(l => l.status === 'in_progress' || l.status === 'contacted').length;
   const completedCount = leads.filter(l => l.status === 'completed').length;
-  const estimatedRevenue = (seoLeadsCount * 8000) + (gigMethodCount * 599);
+  const estimatedRevenue = (seoLeadsCount * 8000) + (gigMethodCount * 575);
 
   // Actions
   const handleStatusChange = async (leadId: string, newStatus: LeadStatus) => {
@@ -336,12 +338,13 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
     const isGigMethod = 
       (lead.niche || '').includes('[Gig Ranking Method PDF]') || 
       (lead.notes || '').toLowerCase().includes('gig ranking method') || 
+      (lead.price || '').includes('575') ||
       (lead.price || '').includes('599');
 
     let messageText = '';
     if (isGigMethod) {
       const cleanNiche = lead.niche.replace('[Gig Ranking Method PDF]', '').trim() || 'Fiverr';
-      messageText = `👋 Assalam-o-Alaikum ${lead.fullName}!\n\nThis is Smart SEO Solutions regarding your order for the *24-Hour Fiverr Gig 1st Page Ranking Method (Confidential PDF Blueprint)*.\n\nWe received your payment verification (${lead.price || '599 PKR'}, TID: ${lead.transactionId || 'Verified'}).\n\nTarget Niche: *${cleanNiche}*\n\nPlease let us know if you need any guidance applying the 4 ranking points to your gig to rank on 1st page!`;
+      messageText = `👋 Assalam-o-Alaikum ${lead.fullName}!\n\nThis is Smart SEO Solutions regarding your order for the *24-Hour Fiverr Gig 1st Page Ranking Method (Confidential PDF Blueprint)*.\n\nWe received your payment verification (${lead.price || '575 PKR'}, TID: ${lead.transactionId || 'Verified'}).\n\nTarget Niche: *${cleanNiche}*\n\nPlease let us know if you need any guidance applying the 4 ranking points to your gig to rank on 1st page!`;
     } else {
       messageText = `👋 Assalam-o-Alaikum ${lead.fullName}!\n\nThis is Smart SEO Solutions regarding your Fiverr Profile & Gig Optimization intake for ${lead.niche}.\n\nWe have received your details and are ready to review your profile. Please share your Fiverr profile link so we can begin!`;
     }
@@ -446,7 +449,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
             </div>
           </div>
           <div className="text-2xl sm:text-3xl font-black text-amber-400">{gigMethodCount}</div>
-          <div className="text-[11px] text-amber-400/70 mt-1">599 PKR Method Purchases</div>
+          <div className="text-[11px] text-amber-400/70 mt-1">575 PKR Method Purchases</div>
         </div>
 
         <div className="p-5 rounded-2xl bg-white/[0.04] border border-purple-500/20 backdrop-blur-md">

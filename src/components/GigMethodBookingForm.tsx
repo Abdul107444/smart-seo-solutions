@@ -48,7 +48,7 @@ export const GigMethodBookingForm: React.FC = () => {
     name: 'Meezan Bank',
     accountTitle: 'Zeenat yasmin',
     accountNumber: 'PK20MEZN0000300114121316',
-    instruction: 'Transfer 599 PKR via Raast or IBFT and upload the payment receipt.',
+    instruction: 'Transfer 575 PKR via Raast or IBFT and upload the payment receipt.',
   };
 
   const copyToClipboard = (text: string, fieldId: string) => {

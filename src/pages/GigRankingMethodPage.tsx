@@ -4,14 +4,13 @@ import { GigMethodPointsOverview } from '../components/GigMethodPointsOverview';
 import { PreviousWorkSection } from '../components/PreviousWorkSection';
 import { GigMethodFaqSection } from '../components/GigMethodFaqSection';
 import { GigMethodBookingForm } from '../components/GigMethodBookingForm';
-import { ShieldCheck, CheckCircle2, Zap, ArrowRight, FileText } from 'lucide-react';
-import { GIG_RANK_METHOD_INFO } from '../data/funnelData';
+import { ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 interface GigRankingMethodPageProps {
   onNavigateToMain?: () => void;
 }
 
-export const GigRankingMethodPage: React.FC<GigRankingMethodPageProps> = ({ onNavigateToMain }) => {
+export const GigRankingMethodPage: React.FC<GigRankingMethodPageProps> = () => {
   const orderSectionRef = useRef<HTMLDivElement>(null);
 
   const scrollToOrder = () => {
@@ -23,30 +22,6 @@ export const GigRankingMethodPage: React.FC<GigRankingMethodPageProps> = ({ onNa
 
   return (
     <div className="min-h-screen bg-[#0d0517] text-white">
-      {/* Quick top bar to navigate between Full Optimization and 24h Method */}
-      <div className="bg-gradient-to-r from-orange-600/30 via-purple-900/40 to-amber-600/30 border-b border-orange-500/20 py-2.5 px-4">
-        <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs">
-          <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 rounded bg-orange-500 text-black font-black uppercase text-[10px]">
-              Confidential PDF
-            </span>
-            <span className="text-white/80 font-medium">
-              24-Hour Fiverr 1st Page Ranking Blueprint (PDF Guide) — Special Price: <strong>{GIG_RANK_METHOD_INFO.price}</strong>
-            </span>
-          </div>
-
-          {onNavigateToMain && (
-            <button
-              onClick={onNavigateToMain}
-              className="text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1 cursor-pointer transition-colors underline decoration-amber-400/50"
-            >
-              <span>Switch to Full Done-For-You Profile & Gig Service (Rs. 8,000)</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          )}
-        </div>
-      </div>
-
       {/* Hero Section */}
       <GigMethodHeroSection onScrollToOrder={scrollToOrder} />
 
