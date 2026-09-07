@@ -35,7 +35,7 @@ export const GigMethodHeroSection: React.FC<GigMethodHeroSectionProps> = ({ onSc
         <div className="text-center max-w-4xl mx-auto mb-6">
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-[1.15]">
             Gig rank on 1st page of fiverr within 24 hours{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-orange-400 to-yellow-500 underline decoration-orange-500/60 decoration-wavy decoration-2">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-orange-400 to-yellow-500">
               Guranteded 100%
             </span>
           </h1>

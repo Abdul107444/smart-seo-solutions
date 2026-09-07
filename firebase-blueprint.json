@@ -2,21 +2,35 @@
   "entities": {
     "leads": {
       "title": "Leads",
-      "description": "Customer lead submissions from the booking intake form",
+      "description": "Customer lead submissions from the booking intake form and 24-hour gig rank method checkout",
       "type": "object",
       "properties": {
         "fullName": { "type": "string", "description": "Customer full name" },
         "whatsapp": { "type": "string", "description": "Customer WhatsApp phone number" },
+        "email": { "type": "string", "description": "Customer email address" },
         "niche": { "type": "string", "description": "Service niche or category" },
         "fiverrProfileUrl": { "type": "string", "description": "Optional profile link" },
         "fiverrGigUrl": { "type": "string", "description": "Optional gig link" },
+        "paymentMethod": { "type": "string", "description": "Selected payment method (e.g. Meezan Bank)" },
+        "paymentScreenshot": { "type": "string", "description": "Base64 data URL of payment proof receipt" },
+        "transactionId": { "type": "string", "description": "Bank transaction reference ID" },
+        "isPaymentVerified": { "type": "boolean", "description": "Whether receipt is verified" },
+        "verificationNote": { "type": "string", "description": "Automated verification note" },
         "status": { "type": "string", "enum": ["new", "contacted", "in_progress", "completed", "cancelled"], "description": "Processing status of the lead" },
         "notes": { "type": "string", "description": "Admin notes for this lead" },
         "price": { "type": "string", "description": "Package price at time of submission" },
+        "improvementGoal": { "type": "string", "description": "Customer goal" },
+        "interestedServices": { "type": "array", "description": "Services interested in" },
         "createdAt": { "type": "string", "format": "date-time" },
         "updatedAt": { "type": "string", "format": "date-time" }
       },
       "required": ["fullName", "whatsapp", "niche", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/leads/{leadId}": {
+      "schema": "leads",
+      "description": "Collection of all customer lead submissions and method purchases"
     }
   }
 }

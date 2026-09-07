@@ -56,6 +56,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
   // Filters & Search
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
+  const [leadTypeFilter, setLeadTypeFilter] = useState<'all' | 'gig_method' | 'seo_package'>('all');
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   // Payment Proof Modal Viewer
@@ -166,23 +167,41 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
 
   // Filtered Leads
   const filteredLeads = leads.filter((lead) => {
+    const isGigMethod = 
+      (lead.niche || '').includes('[Gig Ranking Method PDF]') || 
+      (lead.notes || '').toLowerCase().includes('gig ranking method') || 
+      (lead.price || '').includes('599');
+
+    const matchesType = 
+      leadTypeFilter === 'all' ||
+      (leadTypeFilter === 'gig_method' && isGigMethod) ||
+      (leadTypeFilter === 'seo_package' && !isGigMethod);
+
     const matchesSearch = 
       lead.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       lead.whatsapp.toLowerCase().includes(searchTerm.toLowerCase()) ||
       lead.niche.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (lead.email && lead.email.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (lead.transactionId && lead.transactionId.toLowerCase().includes(searchTerm.toLowerCase())) ||
       (lead.notes && lead.notes.toLowerCase().includes(searchTerm.toLowerCase()));
 
     const matchesStatus = statusFilter === 'all' || (lead.status || 'new') === statusFilter;
 
-    return matchesSearch && matchesStatus;
+    return matchesType && matchesSearch && matchesStatus;
   });
 
   // KPI Calculations
   const totalLeads = leads.length;
+  const gigMethodCount = leads.filter(l => 
+    (l.niche || '').includes('[Gig Ranking Method PDF]') || 
+    (l.notes || '').toLowerCase().includes('gig ranking method') || 
+    (l.price || '').includes('599')
+  ).length;
+  const seoLeadsCount = totalLeads - gigMethodCount;
   const newLeadsCount = leads.filter(l => (l.status || 'new') === 'new').length;
   const inProgressCount = leads.filter(l => l.status === 'in_progress' || l.status === 'contacted').length;
   const completedCount = leads.filter(l => l.status === 'completed').length;
-  const estimatedRevenue = totalLeads * 8000;
+  const estimatedRevenue = (seoLeadsCount * 8000) + (gigMethodCount * 599);
 
   // Actions
   const handleStatusChange = async (leadId: string, newStatus: LeadStatus) => {
@@ -314,9 +333,20 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
       cleanPhone = '92' + cleanPhone;
     }
 
-    const message = encodeURIComponent(
-      `👋 Assalam-o-Alaikum ${lead.fullName}!\n\nThis is Smart SEO Solutions regarding your Fiverr Profile & Gig Optimization intake for ${lead.niche}.\n\nWe have received your details and are ready to review your profile. Please share your Fiverr profile link so we can begin!`
-    );
+    const isGigMethod = 
+      (lead.niche || '').includes('[Gig Ranking Method PDF]') || 
+      (lead.notes || '').toLowerCase().includes('gig ranking method') || 
+      (lead.price || '').includes('599');
+
+    let messageText = '';
+    if (isGigMethod) {
+      const cleanNiche = lead.niche.replace('[Gig Ranking Method PDF]', '').trim() || 'Fiverr';
+      messageText = `👋 Assalam-o-Alaikum ${lead.fullName}!\n\nThis is Smart SEO Solutions regarding your order for the *24-Hour Fiverr Gig 1st Page Ranking Method (Confidential PDF Blueprint)*.\n\nWe received your payment verification (${lead.price || '599 PKR'}, TID: ${lead.transactionId || 'Verified'}).\n\nTarget Niche: *${cleanNiche}*\n\nPlease let us know if you need any guidance applying the 4 ranking points to your gig to rank on 1st page!`;
+    } else {
+      messageText = `👋 Assalam-o-Alaikum ${lead.fullName}!\n\nThis is Smart SEO Solutions regarding your Fiverr Profile & Gig Optimization intake for ${lead.niche}.\n\nWe have received your details and are ready to review your profile. Please share your Fiverr profile link so we can begin!`;
+    }
+
+    const message = encodeURIComponent(messageText);
 
     return `https://wa.me/${cleanPhone}?text=${message}`;
   };
@@ -408,68 +438,94 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
           <div className="text-[11px] text-white/50 mt-1">Direct from funnel intake</div>
         </div>
 
-        <div className="p-5 rounded-2xl bg-white/[0.04] border border-amber-500/20 backdrop-blur-md">
+        <div className="p-5 rounded-2xl bg-white/[0.04] border border-amber-500/30 backdrop-blur-md">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-semibold text-amber-300 uppercase tracking-wider">New (Uncontacted)</span>
+            <span className="text-xs font-semibold text-amber-300 uppercase tracking-wider">⚡ Gig Rank PDF</span>
             <div className="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center">
-              <Clock className="w-4 h-4" />
+              <Sparkles className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl sm:text-3xl font-black text-amber-300">{newLeadsCount}</div>
-          <div className="text-[11px] text-amber-400/70 mt-1">Requires follow-up</div>
+          <div className="text-2xl sm:text-3xl font-black text-amber-400">{gigMethodCount}</div>
+          <div className="text-[11px] text-amber-400/70 mt-1">599 PKR Method Purchases</div>
         </div>
 
         <div className="p-5 rounded-2xl bg-white/[0.04] border border-purple-500/20 backdrop-blur-md">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-semibold text-purple-300 uppercase tracking-wider">In Discussion</span>
+            <span className="text-xs font-semibold text-purple-300 uppercase tracking-wider">💼 Profile SEO</span>
             <div className="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center">
-              <MessageSquare className="w-4 h-4" />
+              <Briefcase className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl sm:text-3xl font-black text-purple-300">{inProgressCount}</div>
-          <div className="text-[11px] text-purple-400/70 mt-1">Chatting on WhatsApp</div>
+          <div className="text-2xl sm:text-3xl font-black text-purple-300">{seoLeadsCount}</div>
+          <div className="text-[11px] text-purple-400/70 mt-1">8,000 PKR Custom SEO Leads</div>
         </div>
 
         <div className="p-5 rounded-2xl bg-white/[0.04] border border-emerald-500/20 backdrop-blur-md">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-semibold text-emerald-300 uppercase tracking-wider">Completed / Closed</span>
+            <span className="text-xs font-semibold text-emerald-300 uppercase tracking-wider">New (Uncontacted)</span>
             <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
-              <CheckCircle2 className="w-4 h-4" />
+              <Clock className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl sm:text-3xl font-black text-emerald-300">{completedCount}</div>
-          <div className="text-[11px] text-emerald-400/70 mt-1">Delivered optimization</div>
+          <div className="text-2xl sm:text-3xl font-black text-emerald-300">{newLeadsCount}</div>
+          <div className="text-[11px] text-emerald-400/70 mt-1">Pending Follow-up</div>
         </div>
       </div>
 
       {/* Search & Status Filter Controls */}
-      <div className="glass-card rounded-2xl p-4 mb-6 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-black/30">
-        {/* Search Bar */}
-        <div className="relative w-full sm:w-80">
-          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-white/40">
-            <Search className="w-4 h-4" />
+      <div className="glass-card rounded-2xl p-4 mb-6 border border-white/10 flex flex-col gap-4 bg-black/30">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          {/* Search Bar */}
+          <div className="relative w-full sm:w-80">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-white/40">
+              <Search className="w-4 h-4" />
+            </div>
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search name, phone, niche, Trx ID, notes..."
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-xs sm:text-sm focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400"
+            />
+            {searchTerm && (
+              <button
+                onClick={() => setSearchTerm('')}
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-white/40 hover:text-white"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
           </div>
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search name, phone, niche, notes..."
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-xs sm:text-sm focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400"
-          />
-          {searchTerm && (
-            <button
-              onClick={() => setSearchTerm('')}
-              className="absolute inset-y-0 right-0 pr-3 flex items-center text-white/40 hover:text-white"
-            >
-              <X className="w-3.5 h-3.5" />
-            </button>
-          )}
+
+          {/* Product Category Filter */}
+          <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
+            <span className="text-xs text-white/50 font-medium mr-1 flex items-center gap-1 whitespace-nowrap">
+              Product:
+            </span>
+            {[
+              { key: 'all', label: `All (${totalLeads})` },
+              { key: 'gig_method', label: `⚡ Gig Rank PDF (${gigMethodCount})` },
+              { key: 'seo_package', label: `💼 SEO Leads (${seoLeadsCount})` },
+            ].map((prod) => (
+              <button
+                key={prod.key}
+                onClick={() => setLeadTypeFilter(prod.key as any)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ${
+                  leadTypeFilter === prod.key
+                    ? 'bg-amber-400 text-black font-extrabold shadow-md'
+                    : 'bg-white/5 text-white/70 hover:bg-white/10 hover:text-white'
+                }`}
+              >
+                {prod.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Status Filter Chips */}
-        <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
+        <div className="flex items-center gap-1.5 overflow-x-auto w-full pb-1 sm:pb-0 pt-2 border-t border-white/5">
           <span className="text-xs text-white/50 font-medium mr-1 flex items-center gap-1">
-            <Filter className="w-3.5 h-3.5" /> Filter:
+            <Filter className="w-3.5 h-3.5" /> Status:
           </span>
           {[
             { key: 'all', label: 'All' },
@@ -571,9 +627,20 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
 
                     {/* Niche */}
                     <td className="py-4 px-4">
-                      <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-medium text-white/80">
-                        {lead.niche}
-                      </span>
+                      {lead.niche.includes('[Gig Ranking Method PDF]') ? (
+                        <div className="flex flex-col gap-1 items-start">
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px] font-black uppercase tracking-wider">
+                            ⚡ Gig Rank Method
+                          </span>
+                          <span className="text-white/90 font-medium text-xs">
+                            {lead.niche.replace('[Gig Ranking Method PDF]', '').trim() || 'Fiverr Gig'}
+                          </span>
+                        </div>
+                      ) : (
+                        <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-medium text-white/80">
+                          {lead.niche}
+                        </span>
+                      )}
                     </td>
 
                     {/* Payment Proof */}

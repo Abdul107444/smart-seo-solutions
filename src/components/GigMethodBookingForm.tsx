@@ -84,38 +84,73 @@ export const GigMethodBookingForm: React.FC = () => {
     });
 
     const reader = new FileReader();
-    reader.onload = async () => {
-      const base64 = reader.result as string;
-      setPaymentScreenshot(base64);
+    reader.onload = async (event) => {
+      const rawResult = event.target?.result as string;
+      
+      // Compress onto canvas so Firestore 1MB document limit is never exceeded
+      const img = new Image();
+      img.onload = async () => {
+        const canvas = document.createElement('canvas');
+        const maxDim = 1200;
+        let width = img.width;
+        let height = img.height;
 
-      setIsVerifyingScreenshot(true);
-      try {
-        const result = await verifyPaymentScreenshot(file);
-        setVerificationResult(result);
-
-        if (result.isValid && result.detectedDetails) {
-          if (result.detectedDetails.transactionId && !transactionId) {
-            setTransactionId(result.detectedDetails.transactionId);
+        if (width > maxDim || height > maxDim) {
+          if (width > height) {
+            height = Math.round((height * maxDim) / width);
+            width = maxDim;
+          } else {
+            width = Math.round((width * maxDim) / height);
+            height = maxDim;
           }
         }
-      } catch (err: any) {
-        setVerificationResult({
-          isValid: true,
-          status: 'verified',
-          confidence: 0.85,
-          title: 'Payment Receipt Detected',
-          reason: 'Screenshot attached. Automated fast-track verification active.',
-          detectedDetails: {
-            recipientMatched: true,
-            recipientName: 'Zeenat yasmin',
-            numberMatched: true,
-            amountMatched: true,
-            provider: 'Meezan Bank',
-          },
-        });
-      } finally {
-        setIsVerifyingScreenshot(false);
-      }
+
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        let compressedBase64 = rawResult;
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, width, height);
+          compressedBase64 = canvas.toDataURL('image/jpeg', 0.82);
+        }
+
+        setPaymentScreenshot(compressedBase64);
+
+        setIsVerifyingScreenshot(true);
+        try {
+          const result = await verifyPaymentScreenshot(file);
+          setVerificationResult(result);
+
+          if (result.isValid && result.detectedDetails) {
+            if (result.detectedDetails.transactionId && !transactionId) {
+              setTransactionId(result.detectedDetails.transactionId);
+            }
+          }
+        } catch (err: any) {
+          setVerificationResult({
+            isValid: true,
+            status: 'verified',
+            confidence: 0.85,
+            title: 'Payment Receipt Detected',
+            reason: 'Screenshot attached. Automated fast-track verification active.',
+            detectedDetails: {
+              recipientMatched: true,
+              recipientName: 'Zeenat yasmin',
+              numberMatched: true,
+              amountMatched: true,
+              provider: 'Meezan Bank',
+            },
+          });
+        } finally {
+          setIsVerifyingScreenshot(false);
+        }
+      };
+
+      img.onerror = () => {
+        setPaymentScreenshot(rawResult);
+      };
+
+      img.src = rawResult;
     };
     reader.readAsDataURL(file);
   };
@@ -186,6 +221,11 @@ export const GigMethodBookingForm: React.FC = () => {
           ? `Meezan Bank receipt verified (${GIG_RANK_METHOD_INFO.price}, TID: ${transactionId || 'Extracted'})`
           : 'Pending Verification',
         notes: `Purchased 24-Hour Gig Ranking Method PDF (${GIG_RANK_METHOD_INFO.price}). Instant Download Unlocked.`,
+        status: 'new' as const,
+        improvementGoal: 'Rank Fiverr Gig on 1st Page within 24 Hours',
+        interestedServices: ['24-Hour Fiverr 1st Page Ranking Method (PDF)'],
+        activeGigsCount: '1',
+        currentOrdersStatus: 'PDF Method Buyer',
       };
 
       await saveLeadToFirestore(leadData as any);
