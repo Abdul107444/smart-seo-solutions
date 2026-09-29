@@ -103,16 +103,7 @@ export const Footer: React.FC<FooterProps> = ({
                   Frequently Asked Questions
                 </button>
               </li>
-              {onNavigateToGigMethod && (
-                <li>
-                  <button
-                    onClick={onNavigateToGigMethod}
-                    className="text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1 cursor-pointer"
-                  >
-                    <span>⚡ 24-Hour Gig Rank Method (575 PKR PDF)</span>
-                  </button>
-                </li>
-              )}
+
               <li>
                 <button
                   onClick={onNavigateToThankYou}

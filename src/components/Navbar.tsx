@@ -105,16 +105,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <span>Refund Policy</span>
             </button>
-            {onNavigateToGigMethod && (
-              <button
-                id="nav-link-gig-method"
-                onClick={onNavigateToGigMethod}
-                className="px-3 py-1 rounded-full bg-orange-500/20 hover:bg-orange-500/30 border border-orange-500/40 text-orange-300 font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer shadow-sm hover:scale-105"
-              >
-                <span className="text-yellow-400 animate-pulse">⚡</span>
-                <span>Gig Rank Method (24h)</span>
-              </button>
-            )}
+
           </nav>
         ) : currentPage === 'gig-method' ? (
           <nav className="hidden lg:flex items-center gap-4 xl:gap-6 text-xs xl:text-sm font-medium text-white/75">
@@ -255,20 +246,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               >
                 <span>100% Refund Policy (20–25 Days)</span>
               </button>
-              {onNavigateToGigMethod && (
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onNavigateToGigMethod();
-                  }}
-                  className="text-left py-2.5 px-3 bg-orange-500/20 hover:bg-orange-500/30 rounded-xl text-orange-300 font-bold cursor-pointer border border-orange-500/40 sm:col-span-2 flex items-center justify-between"
-                >
-                  <span className="flex items-center gap-1.5">
-                    <span>⚡ Gig Rank Method (24h)</span>
-                  </span>
-                  <span className="text-xs bg-orange-500 text-black px-2 py-0.5 rounded font-black">Rs. 3,000 PDF</span>
-                </button>
-              )}
+
             </div>
           ) : currentPage === 'gig-method' ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-white/85 pb-3 border-b border-white/10">

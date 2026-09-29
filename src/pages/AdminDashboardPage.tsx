@@ -167,16 +167,6 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
 
   // Filtered Leads
   const filteredLeads = leads.filter((lead) => {
-    const isGigMethod = 
-      (lead.niche || '').includes('[Gig Ranking Method PDF]') || 
-      (lead.notes || '').toLowerCase().includes('gig ranking method') || 
-      (lead.price || '').includes('575') ||
-      (lead.price || '').includes('599');
-
-    const matchesType = 
-      leadTypeFilter === 'all' ||
-      (leadTypeFilter === 'gig_method' && isGigMethod) ||
-      (leadTypeFilter === 'seo_package' && !isGigMethod);
 
     const matchesSearch = 
       lead.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -188,22 +178,15 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
 
     const matchesStatus = statusFilter === 'all' || (lead.status || 'new') === statusFilter;
 
-    return matchesType && matchesSearch && matchesStatus;
+    return matchesSearch && matchesStatus;
   });
 
   // KPI Calculations
   const totalLeads = leads.length;
-  const gigMethodCount = leads.filter(l => 
-    (l.niche || '').includes('[Gig Ranking Method PDF]') || 
-    (l.notes || '').toLowerCase().includes('gig ranking method') || 
-    (l.price || '').includes('575') ||
-    (l.price || '').includes('599')
-  ).length;
-  const seoLeadsCount = totalLeads - gigMethodCount;
-  const newLeadsCount = leads.filter(l => (l.status || 'new') === 'new').length;
   const inProgressCount = leads.filter(l => l.status === 'in_progress' || l.status === 'contacted').length;
   const completedCount = leads.filter(l => l.status === 'completed').length;
-  const estimatedRevenue = (seoLeadsCount * 8000) + (gigMethodCount * 575);
+  const newLeadsCount = leads.filter(l => (l.status || 'new') === 'new').length;
+  const estimatedRevenue = totalLeads * 8000;
 
   // Actions
   const handleStatusChange = async (leadId: string, newStatus: LeadStatus) => {
@@ -335,19 +318,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
       cleanPhone = '92' + cleanPhone;
     }
 
-    const isGigMethod = 
-      (lead.niche || '').includes('[Gig Ranking Method PDF]') || 
-      (lead.notes || '').toLowerCase().includes('gig ranking method') || 
-      (lead.price || '').includes('575') ||
-      (lead.price || '').includes('599');
-
-    let messageText = '';
-    if (isGigMethod) {
-      const cleanNiche = lead.niche.replace('[Gig Ranking Method PDF]', '').trim() || 'Fiverr';
-      messageText = `👋 Assalam-o-Alaikum ${lead.fullName}!\n\nThis is Smart SEO Solutions regarding your order for the *24-Hour Fiverr Gig 1st Page Ranking Method (Confidential PDF Blueprint)*.\n\nWe received your payment verification (${lead.price || '575 PKR'}, TID: ${lead.transactionId || 'Verified'}).\n\nTarget Niche: *${cleanNiche}*\n\nPlease let us know if you need any guidance applying the 4 ranking points to your gig to rank on 1st page!`;
-    } else {
-      messageText = `👋 Assalam-o-Alaikum ${lead.fullName}!\n\nThis is Smart SEO Solutions regarding your Fiverr Profile & Gig Optimization intake for ${lead.niche}.\n\nWe have received your details and are ready to review your profile. Please share your Fiverr profile link so we can begin!`;
-    }
+    const messageText = `👋 Assalam-o-Alaikum ${lead.fullName}!\n\nThis is Smart SEO Solutions regarding your Fiverr Profile & Gig Optimization intake (Rs. 8,000 DFY Package).\n\nWe received your details and payment verification (${lead.price || 'Rs. 8,000'}, TID: ${lead.transactionId || 'Verified'}).\n\nTarget Niche: *${lead.niche || 'Fiverr Profile'}*\n\nPlease share your Fiverr profile link and target gig URLs so our team can start your manual keyword audit!`;
 
     const message = encodeURIComponent(messageText);
 
@@ -441,26 +412,26 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
           <div className="text-[11px] text-white/50 mt-1">Direct from funnel intake</div>
         </div>
 
-        <div className="p-5 rounded-2xl bg-white/[0.04] border border-amber-500/30 backdrop-blur-md">
+        <div className="p-5 rounded-2xl bg-white/[0.04] border border-[#2b62ef]/30 backdrop-blur-md">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-semibold text-amber-300 uppercase tracking-wider">⚡ Gig Rank PDF</span>
-            <div className="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center">
-              <Sparkles className="w-4 h-4" />
+            <span className="text-xs font-semibold text-blue-300 uppercase tracking-wider">💼 In Progress</span>
+            <div className="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center">
+              <Briefcase className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl sm:text-3xl font-black text-amber-400">{gigMethodCount}</div>
-          <div className="text-[11px] text-amber-400/70 mt-1">575 PKR Method Purchases</div>
+          <div className="text-2xl sm:text-3xl font-black text-blue-400">{inProgressCount}</div>
+          <div className="text-[11px] text-blue-400/70 mt-1">Active Optimization Audits</div>
         </div>
 
         <div className="p-5 rounded-2xl bg-white/[0.04] border border-purple-500/20 backdrop-blur-md">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-semibold text-purple-300 uppercase tracking-wider">💼 Profile SEO</span>
+            <span className="text-xs font-semibold text-purple-300 uppercase tracking-wider">✅ Completed</span>
             <div className="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center">
-              <Briefcase className="w-4 h-4" />
+              <CheckCircle2 className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl sm:text-3xl font-black text-purple-300">{seoLeadsCount}</div>
-          <div className="text-[11px] text-purple-400/70 mt-1">8,000 PKR Custom SEO Leads</div>
+          <div className="text-2xl sm:text-3xl font-black text-purple-300">{completedCount}</div>
+          <div className="text-[11px] text-purple-400/70 mt-1">Ranked & Delivered</div>
         </div>
 
         <div className="p-5 rounded-2xl bg-white/[0.04] border border-emerald-500/20 backdrop-blur-md">
@@ -500,28 +471,12 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
             )}
           </div>
 
-          {/* Product Category Filter */}
+          {/* Service Info Badge */}
           <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
-            <span className="text-xs text-white/50 font-medium mr-1 flex items-center gap-1 whitespace-nowrap">
-              Product:
+            <span className="px-3.5 py-1.5 rounded-lg bg-blue-500/15 border border-blue-500/30 text-xs text-blue-300 font-semibold whitespace-nowrap flex items-center gap-1.5">
+              <Briefcase className="w-3.5 h-3.5" />
+              <span>Fiverr Profile & Gig Optimization (Rs. 8,000)</span>
             </span>
-            {[
-              { key: 'all', label: `All (${totalLeads})` },
-              { key: 'gig_method', label: `⚡ Gig Rank PDF (${gigMethodCount})` },
-              { key: 'seo_package', label: `💼 SEO Leads (${seoLeadsCount})` },
-            ].map((prod) => (
-              <button
-                key={prod.key}
-                onClick={() => setLeadTypeFilter(prod.key as any)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ${
-                  leadTypeFilter === prod.key
-                    ? 'bg-amber-400 text-black font-extrabold shadow-md'
-                    : 'bg-white/5 text-white/70 hover:bg-white/10 hover:text-white'
-                }`}
-              >
-                {prod.label}
-              </button>
-            ))}
           </div>
         </div>
 

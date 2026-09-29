@@ -1,4 +1,4 @@
-export type LeadStatus = 'new' | 'contacted' | 'in_progress' | 'completed' | 'cancelled';
+export type LeadStatus = 'new' | 'contacted' | 'in_progress' | 'completed' | 'cancelled' | 'pending_payment';
 
 export interface LeadSubmission {
   id?: string;
@@ -7,13 +7,15 @@ export interface LeadSubmission {
   whatsapp: string;
   fiverrProfileUrl?: string;
   fiverrGigUrl?: string;
-  niche: string;
+  profileUrl?: string;
+  niche?: string;
   improvementGoal?: string;
   activeGigsCount?: string;
   currentOrdersStatus?: string;
   interestedServices?: string[];
   paymentMethod?: string;
   paymentScreenshot?: string;
+  receiptUrl?: string;
   transactionId?: string;
   isPaymentVerified?: boolean;
   verificationNote?: string;
