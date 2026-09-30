@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, ShieldCheck, CheckCircle2, Zap } from 'lucide-react';
 import { TECHPULSE_CONFIG } from '../data/techpulseData';
+import { AiOptimizationVideoPlayer } from './AiOptimizationVideoPlayer';
 
 interface HeroProps {
   onEnroll: () => void;
@@ -40,21 +41,13 @@ export function TechPulseHero({ onEnroll, onSeeModules, onSeeDeliverables }: Her
         <div className="mt-5 sm:mt-7 flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold text-[#0c172f] px-2">
           <span className="animate-bounce shrink-0">👇</span>
           <span className="line-clamp-2 sm:line-clamp-none">
-            Watch video: How Full Fiverr Optimization Gets You Your 1st Client Fast
+            Watch AI Explainer Video: How Full Optimization Gets You Your 1st Client in 20–25 Days
           </span>
         </div>
 
-        {/* Embedded YouTube Video with mobile-optimized aspect ratio & shadow */}
-        <div className="mx-auto mt-3 sm:mt-4 max-w-3xl overflow-hidden rounded-xl sm:rounded-2xl border-2 border-[#2b62ef]/30 bg-[#0c172f] shadow-xl sm:shadow-2xl shadow-blue-500/20">
-          <div className="relative aspect-video w-full">
-            <iframe
-              className="absolute inset-0 h-full w-full"
-              src={TECHPULSE_CONFIG.videoUrl}
-              title="How Full Fiverr Optimization Gets You Your 1st Client Fast"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-              allowFullScreen
-            />
-          </div>
+        {/* AI Video Explainer Player Component */}
+        <div className="mt-3 sm:mt-4">
+          <AiOptimizationVideoPlayer onEnroll={onEnroll} />
         </div>
 
         {/* --- URGENCY 'LIMITED TIME SLOTS' COUNTER & SPOTS REMAINING BADGE --- */}
