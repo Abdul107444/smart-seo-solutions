@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ArrowRight,
   ShieldCheck,
@@ -12,7 +12,8 @@ import {
 } from 'lucide-react';
 import { TECHPULSE_CONFIG } from '../data/techpulseData';
 
-const TOP_RATED_IMAGE = '/src/assets/images/top_rated_profile_1790796871179.jpg';
+const PRIMARY_TOP_RATED_IMAGE = '/techpulse-assets/top-rated-seller-profile.jpg';
+const FALLBACK_TOP_RATED_IMAGE = '/techpulse-assets/fiverr-top-rated-seller.svg';
 
 interface HeroProps {
   onEnroll: () => void;
@@ -27,6 +28,7 @@ export function TechPulseHero({
   onSeeDeliverables,
   onOpenImage
 }: HeroProps) {
+  const [currentImg, setCurrentImg] = useState<string>(PRIMARY_TOP_RATED_IMAGE);
   const handleScroll = onSeeDeliverables || onSeeModules;
   const percentFilled = Math.round(
     (TECHPULSE_CONFIG.slotsFilled / TECHPULSE_CONFIG.slotsTotal) * 100
@@ -34,7 +36,7 @@ export function TechPulseHero({
 
   const handleImageClick = () => {
     if (onOpenImage) {
-      onOpenImage(TOP_RATED_IMAGE, 'Fiverr Top Rated Seller Profile — Smart SEO Solutions Optimization Proof');
+      onOpenImage(currentImg, 'Fiverr Top Rated Seller Profile — Smart SEO Solutions Optimization Proof');
     }
   };
 
@@ -121,10 +123,15 @@ export function TechPulseHero({
               className="group relative mt-2.5 sm:mt-3 overflow-hidden rounded-xl bg-black border border-white/10 cursor-pointer"
             >
               <img
-                src={TOP_RATED_IMAGE}
+                src={currentImg}
                 alt="Fiverr Top Rated Seller Profile optimized by Smart SEO Solutions"
                 className="w-full aspect-[16/9] object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                 referrerPolicy="no-referrer"
+                onError={() => {
+                  if (currentImg !== FALLBACK_TOP_RATED_IMAGE) {
+                    setCurrentImg(FALLBACK_TOP_RATED_IMAGE);
+                  }
+                }}
               />
 
               {/* Hover overlay hint */}

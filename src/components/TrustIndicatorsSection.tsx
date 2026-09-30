@@ -8,18 +8,15 @@ import {
   Clock,
   Sparkles,
   Zap,
-  ArrowRight,
-  MessageSquare
+  ArrowRight
 } from 'lucide-react';
 import { TECHPULSE_CONFIG } from '../data/techpulseData';
-import { openLiveChatWidget } from './LiveChatWidget';
 
 interface TrustIndicatorsProps {
   onEnroll?: () => void;
-  onOpenLiveChat?: () => void;
 }
 
-export function TrustIndicatorsSection({ onEnroll, onOpenLiveChat }: TrustIndicatorsProps) {
+export function TrustIndicatorsSection({ onEnroll }: TrustIndicatorsProps) {
   const phone = TECHPULSE_CONFIG.whatsappNumber.replace(/[^0-9]/g, '');
 
   return (
@@ -154,34 +151,16 @@ export function TrustIndicatorsSection({ onEnroll, onOpenLiveChat }: TrustIndica
               </div>
             </div>
 
-            <div className="mt-5 space-y-2 pt-1 border-t border-[#dfe5ed]/60">
-              <button
-                type="button"
-                onClick={() => {
-                  if (onOpenLiveChat) {
-                    onOpenLiveChat();
-                  } else {
-                    openLiveChatWidget();
-                  }
-                }}
-                className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#2b62ef] hover:bg-[#1d4ed8] active:scale-95 px-3.5 py-2.5 text-xs font-bold text-white shadow-xs transition-all cursor-pointer"
+            <div className="mt-5 flex items-center justify-between pt-1 border-t border-[#dfe5ed]/60">
+              <a
+                href={`https://wa.me/${phone}?text=${encodeURIComponent('Assalam-o-Alaikum! Mujhe Fiverr Optimization support chahiye.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#109655] hover:underline"
               >
-                <MessageSquare className="h-4 w-4" />
-                <span>Start Instant Live Chat (Replies in &lt; 1 min)</span>
-              </button>
-
-              <div className="flex items-center justify-between text-xs pt-0.5">
-                <span className="text-[#535f6f]">Or message on WhatsApp:</span>
-                <a
-                  href={`https://wa.me/${phone}?text=${encodeURIComponent('Assalam-o-Alaikum! Mujhe Fiverr Optimization support chahiye.')}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-bold text-[#109655] hover:underline"
-                >
-                  <span>{TECHPULSE_CONFIG.whatsappNumber}</span>
-                  <ArrowRight className="h-3 w-3" />
-                </a>
-              </div>
+                <span>Chat on WhatsApp ({TECHPULSE_CONFIG.whatsappNumber})</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </a>
             </div>
           </div>
         </div>

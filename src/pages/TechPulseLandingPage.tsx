@@ -10,7 +10,6 @@ import { FaqSection } from '../components/FaqSection';
 import { TechPulseFooter } from '../components/TechPulseFooter';
 import { SocialProofToast } from '../components/SocialProofToast';
 import { TechPulseWhatsAppFloat } from '../components/TechPulseWhatsAppFloat';
-import { LiveChatWidget } from '../components/LiveChatWidget';
 import { ScreenshotLightbox } from '../components/ScreenshotLightbox';
 
 interface LandingPageProps {
@@ -27,7 +26,6 @@ export function TechPulseLandingPage({ onNavigate }: LandingPageProps) {
     src: null,
     alt: ''
   });
-  const [isLiveChatOpen, setIsLiveChatOpen] = useState<boolean>(false);
 
   const handleOpenImage = (src: string, alt: string) => {
     setLightboxState({
@@ -68,10 +66,7 @@ export function TechPulseLandingPage({ onNavigate }: LandingPageProps) {
         />
 
         {/* 2. Trust Indicators: Secure Payment, 20-25 Days Money-Back Guarantee & 24/7 Support */}
-        <TrustIndicatorsSection
-          onEnroll={handleEnroll}
-          onOpenLiveChat={() => setIsLiveChatOpen(true)}
-        />
+        <TrustIndicatorsSection onEnroll={handleEnroll} />
 
         {/* 3. Real Verified Results: Authentic Fiverr Buyer Chat, $450 Orders & Search Surge */}
         <SuccessProofSection onOpenImage={handleOpenImage} />
@@ -94,13 +89,6 @@ export function TechPulseLandingPage({ onNavigate }: LandingPageProps) {
 
       {/* Interactive Social Proof Live Toast */}
       <SocialProofToast />
-
-      {/* Floating 24/7 Live Chat Button & Mock Instant Support Interface */}
-      <LiveChatWidget
-        isOpen={isLiveChatOpen}
-        onOpenChange={setIsLiveChatOpen}
-        onEnroll={handleEnroll}
-      />
 
       {/* Floating 24/7 WhatsApp Button */}
       <TechPulseWhatsAppFloat />
