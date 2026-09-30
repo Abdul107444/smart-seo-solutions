@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TechPulseNavbar } from '../components/TechPulseNavbar';
 import { TechPulseHero } from '../components/TechPulseHero';
+import { TrustIndicatorsSection } from '../components/TrustIndicatorsSection';
 import { SuccessProofSection } from '../components/SuccessProofSection';
 import { CurriculumSection } from '../components/CurriculumSection';
 import { ReviewsWallSection } from '../components/ReviewsWallSection';
@@ -9,6 +10,7 @@ import { FaqSection } from '../components/FaqSection';
 import { TechPulseFooter } from '../components/TechPulseFooter';
 import { SocialProofToast } from '../components/SocialProofToast';
 import { TechPulseWhatsAppFloat } from '../components/TechPulseWhatsAppFloat';
+import { LiveChatWidget } from '../components/LiveChatWidget';
 import { ScreenshotLightbox } from '../components/ScreenshotLightbox';
 
 interface LandingPageProps {
@@ -25,6 +27,7 @@ export function TechPulseLandingPage({ onNavigate }: LandingPageProps) {
     src: null,
     alt: ''
   });
+  const [isLiveChatOpen, setIsLiveChatOpen] = useState<boolean>(false);
 
   const handleOpenImage = (src: string, alt: string) => {
     setLightboxState({
@@ -56,14 +59,21 @@ export function TechPulseLandingPage({ onNavigate }: LandingPageProps) {
 
       {/* Main High-Impact Sections Only */}
       <main>
-        {/* 1. Hero Section: Headline, Video, Limited Time Slots counter & Spots Remaining Badge */}
+        {/* 1. Hero Section: Headline, Top Rated Seller Profile Showcase, Limited Time Slots counter */}
         <TechPulseHero
           onEnroll={handleEnroll}
           onSeeDeliverables={scrollToDeliverables}
           onSeeModules={scrollToDeliverables}
+          onOpenImage={handleOpenImage}
         />
 
-        {/* 2. Real Verified Results: Authentic Fiverr Buyer Chat, $450 Orders & Search Surge */}
+        {/* 2. Trust Indicators: Secure Payment, 20-25 Days Money-Back Guarantee & 24/7 Support */}
+        <TrustIndicatorsSection
+          onEnroll={handleEnroll}
+          onOpenLiveChat={() => setIsLiveChatOpen(true)}
+        />
+
+        {/* 3. Real Verified Results: Authentic Fiverr Buyer Chat, $450 Orders & Search Surge */}
         <SuccessProofSection onOpenImage={handleOpenImage} />
 
         {/* 3. 10-Point Done-For-You Deliverables Scope */}
@@ -84,6 +94,13 @@ export function TechPulseLandingPage({ onNavigate }: LandingPageProps) {
 
       {/* Interactive Social Proof Live Toast */}
       <SocialProofToast />
+
+      {/* Floating 24/7 Live Chat Button & Mock Instant Support Interface */}
+      <LiveChatWidget
+        isOpen={isLiveChatOpen}
+        onOpenChange={setIsLiveChatOpen}
+        onEnroll={handleEnroll}
+      />
 
       {/* Floating 24/7 WhatsApp Button */}
       <TechPulseWhatsAppFloat />
