@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 680" width="420" height="680">
+  <defs>
+    <filter id="sh-call" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0c1317"/>
+  <rect width="100%" height="100%" fill="#111b21" opacity="0.95"/>
+
+  <!-- Top Header -->
+  <rect width="100%" height="70" fill="#202c33"/>
+  <path d="M22 38 L34 26 M22 38 L34 50" stroke="#aebac1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="42" y="44" fill="#aebac1" font-size="16" font-family="sans-serif" font-weight="600">5</text>
+
+  <circle cx="95" cy="38" r="18" fill="#3b82f6"/>
+  <text x="95" y="44" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold" text-anchor="middle">TA</text>
+
+  <text x="124" y="36" fill="#e9edef" font-size="15" font-family="sans-serif" font-weight="bold">Tariq Abbas (Consultant)</text>
+  <text x="124" y="52" fill="#8696a0" font-size="12" font-family="sans-serif">online</text>
+
+  <!-- Attached Screenshot Card: Fiverr Consultation Booking -->
+  <rect x="24" y="90" width="372" height="470" rx="14" fill="#ffffff" filter="url(#sh-call)"/>
+
+  <!-- Header -->
+  <rect x="24" y="90" width="372" height="44" fill="#f8fafc"/>
+  <circle cx="48" cy="112" r="11" fill="#1dbf73"/>
+  <text x="48" y="116" fill="#ffffff" font-size="11" font-family="sans-serif" font-weight="900" text-anchor="middle">fi</text>
+  <text x="68" y="116" fill="#0f172a" font-size="13" font-family="sans-serif" font-weight="bold">Fiverr 1-on-1 Consultation Booked</text>
+
+  <!-- Consultation Rate Box -->
+  <rect x="38" y="146" width="344" height="95" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="50" y="172" fill="#1e40af" font-size="11" font-family="sans-serif" font-weight="bold">HOURLY RATE CONFIGURED ON PROFILE:</text>
+  <text x="50" y="208" fill="#0f172a" font-size="28" font-family="sans-serif" font-weight="900">$35.00 / 60 Min</text>
+  <text x="250" y="208" fill="#2563eb" font-size="12" font-family="sans-serif" font-weight="bold">(PKR 7,290/hr)</text>
+  <text x="50" y="230" fill="#64748b" font-size="10.5" font-family="sans-serif">Service: Strategic Technical Consulting &amp; Code Review</text>
+
+  <!-- Booking Confirmation Details -->
+  <rect x="38" y="252" width="344" height="185" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="50" y="274" fill="#15803d" font-size="12" font-family="sans-serif" font-weight="bold">✓ 60-Minute Video Call Confirmed &amp; Paid:</text>
+
+  <text x="50" y="300" fill="#64748b" font-size="11" font-family="sans-serif">Client:</text>
+  <text x="368" y="300" fill="#0f172a" font-size="11" font-family="sans-serif" font-weight="bold" text-anchor="end">Brandon Cole 🇺🇸 (Fintech VP)</text>
+  <line x1="50" y1="310" x2="368" y2="310" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="50" y="330" fill="#64748b" font-size="11" font-family="sans-serif">Scheduled Time:</text>
+  <text x="368" y="330" fill="#0f172a" font-size="11" font-family="sans-serif" font-weight="bold" text-anchor="end">Thursday, 3:00 PM EST (Zoom)</text>
+  <line x1="50" y1="340" x2="368" y2="340" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="50" y="360" fill="#64748b" font-size="11" font-family="sans-serif">Order Status:</text>
+  <text x="368" y="360" fill="#15803d" font-size="11.5" font-family="sans-serif" font-weight="bold" text-anchor="end">Paid in Advance ($35.00)</text>
+  <line x1="50" y1="370" x2="368" y2="370" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="50" y="392" fill="#0f172a" font-size="11" font-family="sans-serif" font-weight="bold">Post-Call Outcome:</text>
+  <text x="50" y="410" fill="#15803d" font-size="11" font-family="sans-serif">Client hired for full project: $650 custom contract signed</text>
+  <text x="50" y="426" fill="#64748b" font-size="10" font-family="sans-serif">Consultation converts into 10X custom order</text>
+
+  <!-- Authority Note -->
+  <rect x="38" y="448" width="344" height="92" rx="8" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="50" y="472" fill="#166534" font-size="11.5" font-family="sans-serif" font-weight="bold">POSITIONING FROM DOER TO CONSULTANT:</text>
+  <text x="50" y="490" fill="#15803d" font-size="11" font-family="sans-serif">Fiverr buyers see the consultation feature and assume</text>
+  <text x="50" y="508" fill="#15803d" font-size="11" font-family="sans-serif">high domain authority, driving high-ticket sales automatically.</text>
+  <text x="50" y="528" fill="#16a34a" font-size="10" font-family="sans-serif font-weight-bold">Delivered in Smart SEO Solutions Service</text>
+
+  <!-- WhatsApp Speech Bubble from Tariq -->
+  <rect x="24" y="575" width="372" height="75" rx="10" fill="#202c33"/>
+  <path d="M24 582 L16 576 L24 590 Z" fill="#202c33"/>
+  <text x="40" y="598" fill="#e9edef" font-size="12" font-family="sans-serif" font-weight="600">
+    "Profile bio me hourly consultation lagwayi thi. Kal US client ne
+  </text>
+  <text x="40" y="616" fill="#e9edef" font-size="12" font-family="sans-serif">
+    1 ghante ki call book ki aur call ke baad $650 ka project de diya!
+  </text>
+  <text x="40" y="634" fill="#3b82f6" font-size="11" font-family="sans-serif" font-weight="bold">
+    Ye authority framing strategy zabardast kam karti hai."
+  </text>
+  <text x="385" y="642" fill="#8696a0" font-size="9" font-family="sans-serif" text-anchor="end">4:25 PM ✓✓</text>
+</svg>

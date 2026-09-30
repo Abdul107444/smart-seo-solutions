@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 680" width="420" height="680">
+  <defs>
+    <filter id="sh-won" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0c1317"/>
+  <rect width="100%" height="100%" fill="#111b21" opacity="0.95"/>
+
+  <!-- Top Header -->
+  <rect width="100%" height="70" fill="#202c33"/>
+  <path d="M22 38 L34 26 M22 38 L34 50" stroke="#aebac1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="42" y="44" fill="#aebac1" font-size="16" font-family="sans-serif" font-weight="600">2</text>
+
+  <circle cx="95" cy="38" r="18" fill="#10b981"/>
+  <text x="95" y="44" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold" text-anchor="middle">WK</text>
+
+  <text x="124" y="36" fill="#e9edef" font-size="15" font-family="sans-serif" font-weight="bold">Waqas Khan (Mobile Dev)</text>
+  <text x="124" y="52" fill="#8696a0" font-size="12" font-family="sans-serif">online</text>
+
+  <!-- Attached Screenshot Card: From 0 to 1st Client Success -->
+  <rect x="24" y="90" width="372" height="470" rx="14" fill="#ffffff" filter="url(#sh-won)"/>
+
+  <!-- Header -->
+  <rect x="24" y="90" width="372" height="44" fill="#f8fafc"/>
+  <circle cx="48" cy="112" r="11" fill="#1dbf73"/>
+  <text x="48" y="116" fill="#ffffff" font-size="11" font-family="sans-serif" font-weight="900" text-anchor="middle">fi</text>
+  <text x="68" y="116" fill="#0f172a" font-size="13" font-family="sans-serif" font-weight="bold">Fiverr 1st Client Order Milestone</text>
+
+  <!-- Before vs After Banner -->
+  <rect x="38" y="146" width="344" height="85" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="50" y="168" fill="#ef4444" font-size="11" font-family="sans-serif" font-weight="bold">BEFORE OPTIMIZATION (DEAD GIG):</text>
+  <text x="50" y="186" fill="#64748b" font-size="10.5" font-family="sans-serif">3 Months active · 0 orders · 14 total impressions · Ghosted</text>
+
+  <line x1="50" y1="196" x2="368" y2="196" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="50" y="214" fill="#15803d" font-size="11" font-family="sans-serif" font-weight="bold">AFTER FULL OPTIMIZATION BY SMART SEO:</text>
+  <text x="50" y="228" fill="#166534" font-size="10.5" font-family="sans-serif">Day 5: 1st Inbound Inquiry · Day 7: $280 Order Completed!</text>
+
+  <!-- Order Receipt Snapshot -->
+  <rect x="38" y="242" width="344" height="195" rx="8" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="50" y="266" fill="#166534" font-size="13" font-family="sans-serif" font-weight="900">ORDER COMPLETED: $280.00 USD</text>
+  <text x="50" y="284" fill="#15803d" font-size="11" font-family="sans-serif">Flutter App Bug Fix &amp; Firebase Push Notification Setup</text>
+  
+  <text x="50" y="310" fill="#64748b" font-size="11" font-family="sans-serif">Buyer:</text>
+  <text x="368" y="310" fill="#0f172a" font-size="11" font-family="sans-serif" font-weight="bold" text-anchor="end">Daniel Scott (Tech Founder 🇺🇸)</text>
+
+  <text x="50" y="332" fill="#64748b" font-size="11" font-family="sans-serif">Rating Received:</text>
+  <text x="368" y="332" fill="#eab308" font-size="13" font-family="sans-serif" text-anchor="end">★★★★★ 5.0</text>
+
+  <text x="50" y="354" fill="#64748b" font-size="11" font-family="sans-serif">Client Feedback:</text>
+  <text x="50" y="374" fill="#334155" font-size="10.5" font-family="sans-serif" font-style="italic">
+    "Excellent engineer! Delivered ahead of schedule. Highly recommended."
+  </text>
+
+  <line x1="50" y1="388" x2="368" y2="388" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="50" y="408" fill="#166534" font-size="11" font-family="sans-serif" font-weight="bold">Monthly Pipeline Now Active:</text>
+  <text x="50" y="426" fill="#15803d" font-size="10.5" font-family="sans-serif">Same buyer booked ongoing maintenance retainer ($200/mo)</text>
+
+  <!-- Summary Box -->
+  <rect x="38" y="450" width="344" height="90" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="50" y="474" fill="#1e40af" font-size="11.5" font-family="sans-serif" font-weight="bold">GOAL ACHIEVED: 1ST CLIENT SECURED</text>
+  <text x="50" y="492" fill="#1e3a8a" font-size="11" font-family="sans-serif">Full Fiverr Optimization is specifically designed to take</text>
+  <text x="50" y="510" fill="#1e3a8a" font-size="11" font-family="sans-serif">stalled accounts and win that critical first 5-star order.</text>
+  <text x="50" y="528" fill="#2563eb" font-size="10" font-family="sans-serif font-weight-bold">100% Guaranteed Results by Smart SEO Solutions</text>
+
+  <!-- WhatsApp Speech Bubble from Waqas -->
+  <rect x="24" y="575" width="372" height="75" rx="10" fill="#202c33"/>
+  <path d="M24 582 L16 576 L24 590 Z" fill="#202c33"/>
+  <text x="40" y="598" fill="#e9edef" font-size="12" font-family="sans-serif" font-weight="600">
+    "Bhai meri dead gig par 1st client aa gaya $280 ka!
+  </text>
+  <text x="40" y="616" fill="#e9edef" font-size="12" font-family="sans-serif">
+    3 mahine se 0 orders the, aapki optimization ke 7 din baad
+  </text>
+  <text x="40" y="634" fill="#10b981" font-size="11" font-family="sans-serif" font-weight="bold">
+    client ne 5-star review bhi de diya. JazakAllah khair!"
+  </text>
+  <text x="385" y="642" fill="#8696a0" font-size="9" font-family="sans-serif" text-anchor="end">12:35 PM ✓✓</text>
+</svg>

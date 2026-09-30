@@ -105,7 +105,7 @@ export function FaqSection() {
         </div>
 
         {/* Category Filter Tabs */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+        <div className="mt-8 flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 sm:flex-wrap sm:justify-center">
           {CATEGORIES.map((cat) => {
             const isActive = selectedCategory === cat.id;
             return (

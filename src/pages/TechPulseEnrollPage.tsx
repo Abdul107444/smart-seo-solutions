@@ -209,7 +209,7 @@ Email: ${leadInfo.email}`;
               <span className="h-2.5 w-2.5 rounded-full bg-[#00bad2]" />
             </div>
             <div className="font-bold text-[#535f6f]">
-              Enroll · Step {isSuccess ? '3' : step} of 3
+              Book Optimization · Step {isSuccess ? '3' : step} of 3
             </div>
             <div className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-[#2b62ef]">
               <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -319,7 +319,7 @@ Email: ${leadInfo.email}`;
                     className="w-full rounded-xl border border-[#dfe5ed] bg-[#f7fbfd] px-4 py-2.5 text-sm text-[#0c172f] outline-none transition focus:border-[#2b62ef] focus:bg-white"
                   />
                   <p className="mt-1 text-[11px] text-[#535f6f]">
-                    For direct mentor audit updates and instant support.
+                    For direct SEO team audit updates and onboarding support.
                   </p>
                 </div>
 

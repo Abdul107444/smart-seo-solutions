@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 680" width="420" height="680">
+  <defs>
+    <filter id="sh-decoy" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0c1317"/>
+  <rect width="100%" height="100%" fill="#111b21" opacity="0.95"/>
+
+  <!-- Top Header -->
+  <rect width="100%" height="70" fill="#202c33"/>
+  <path d="M22 38 L34 26 M22 38 L34 50" stroke="#aebac1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="42" y="44" fill="#aebac1" font-size="16" font-family="sans-serif" font-weight="600">4</text>
+
+  <circle cx="95" cy="38" r="18" fill="#f59e0b"/>
+  <text x="95" y="44" fill="#0f172a" font-size="13" font-family="sans-serif" font-weight="bold" text-anchor="middle">MA</text>
+
+  <text x="124" y="36" fill="#e9edef" font-size="15" font-family="sans-serif" font-weight="bold">Moiz Ahmed (WordPress)</text>
+  <text x="124" y="52" fill="#8696a0" font-size="12" font-family="sans-serif">online</text>
+
+  <!-- Attached Screenshot Card: 3-Tier Decoy Pricing -->
+  <rect x="24" y="90" width="372" height="470" rx="14" fill="#ffffff" filter="url(#sh-decoy)"/>
+
+  <!-- Header -->
+  <rect x="24" y="90" width="372" height="44" fill="#f8fafc"/>
+  <circle cx="48" cy="112" r="11" fill="#1dbf73"/>
+  <text x="48" y="116" fill="#ffffff" font-size="11" font-family="sans-serif" font-weight="900" text-anchor="middle">fi</text>
+  <text x="68" y="116" fill="#0f172a" font-size="13" font-family="sans-serif" font-weight="bold">Fiverr 3-Tier Decoy Pricing Table</text>
+
+  <!-- Title -->
+  <rect x="38" y="146" width="344" height="44" rx="8" fill="#f1f5f9"/>
+  <text x="50" y="165" fill="#0f172a" font-size="11.5" font-family="sans-serif" font-weight="bold">Pricing Setup Implemented by Smart SEO:</text>
+  <text x="50" y="181" fill="#64748b" font-size="10.5" font-family="sans-serif">Decoy pricing makes Premium package the obvious high-value choice</text>
+
+  <!-- 3 Columns -->
+  <!-- Basic -->
+  <rect x="38" y="200" width="108" height="150" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="92" y="222" fill="#64748b" font-size="11" font-family="sans-serif" font-weight="bold" text-anchor="middle">BASIC</text>
+  <text x="92" y="250" fill="#0f172a" font-size="18" font-family="sans-serif" font-weight="900" text-anchor="middle">$35</text>
+  <text x="92" y="272" fill="#64748b" font-size="9" font-family="sans-serif" text-anchor="middle">1 Bug Fix</text>
+  <text x="92" y="288" fill="#64748b" font-size="9" font-family="sans-serif" text-anchor="middle">2 Days Deliv.</text>
+  <text x="92" y="335" fill="#94a3b8" font-size="8.5" font-family="sans-serif" text-anchor="middle">12% orders</text>
+
+  <!-- Standard -->
+  <rect x="156" y="200" width="108" height="150" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="210" y="222" fill="#64748b" font-size="11" font-family="sans-serif" font-weight="bold" text-anchor="middle">STANDARD</text>
+  <text x="210" y="250" fill="#0f172a" font-size="18" font-family="sans-serif" font-weight="900" text-anchor="middle">$95</text>
+  <text x="210" y="272" fill="#64748b" font-size="9" font-family="sans-serif" text-anchor="middle">Speed + 3 Bugs</text>
+  <text x="210" y="288" fill="#64748b" font-size="9" font-family="sans-serif" text-anchor="middle">3 Days Deliv.</text>
+  <text x="210" y="335" fill="#0284c7" font-size="8.5" font-family="sans-serif" font-weight="bold" text-anchor="middle">42% orders</text>
+
+  <!-- Premium (Featured) -->
+  <rect x="274" y="196" width="108" height="158" rx="8" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+  <rect x="274" y="196" width="108" height="20" rx="6" fill="#15803d"/>
+  <text x="328" y="210" fill="#ffffff" font-size="9" font-family="sans-serif" font-weight="bold" text-anchor="middle">MOST POPULAR</text>
+  <text x="328" y="244" fill="#15803d" font-size="11" font-family="sans-serif" font-weight="bold" text-anchor="middle">PREMIUM</text>
+  <text x="328" y="272" fill="#0f172a" font-size="20" font-family="sans-serif" font-weight="900" text-anchor="middle">$220</text>
+  <text x="328" y="294" fill="#166534" font-size="9" font-family="sans-serif" text-anchor="middle">Full WP Fix + SEO</text>
+  <text x="328" y="310" fill="#166534" font-size="9" font-family="sans-serif" text-anchor="middle">5 Days Deliv.</text>
+  <text x="328" y="340" fill="#15803d" font-size="9" font-family="sans-serif" font-weight="bold" text-anchor="middle">46% orders</text>
+
+  <!-- Impact banner -->
+  <rect x="38" y="366" width="344" height="74" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="50" y="390" fill="#1e40af" font-size="12" font-family="sans-serif" font-weight="bold">AVERAGE ORDER VALUE JUMPED +180%:</text>
+  <text x="50" y="410" fill="#1e3a8a" font-size="11" font-family="sans-serif">Average order rose from $25 to $145 per client!</text>
+  <text x="50" y="428" fill="#2563eb" font-size="10.5" font-family="sans-serif font-weight-bold">Fiverr Buyer Psychology Strategy Tested</text>
+
+  <!-- Buyer Order Highlight -->
+  <rect x="38" y="450" width="344" height="90" rx="8" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="50" y="474" fill="#166534" font-size="11.5" font-family="sans-serif" font-weight="bold">LATEST COMPLETED ORDER: $220.00 USD</text>
+  <text x="50" y="494" fill="#15803d" font-size="11" font-family="sans-serif">Buyer selected Premium package directly from gig page</text>
+  <text x="50" y="514" fill="#15803d" font-size="11" font-family="sans-serif">Net Cleared: $176.00 (PKR 49,200) · 5-Star Feedback ★★★★★</text>
+  <text x="50" y="532" fill="#64748b" font-size="9.5" font-family="sans-serif">Client: US E-Commerce Store Director</text>
+
+  <!-- WhatsApp Speech Bubble from Moiz -->
+  <rect x="24" y="575" width="372" height="75" rx="10" fill="#202c33"/>
+  <path d="M24 582 L16 576 L24 590 Z" fill="#202c33"/>
+  <text x="40" y="598" fill="#e9edef" font-size="12" font-family="sans-serif" font-weight="600">
+    "Decoy pricing set karne ke baad koi basic package nahi le raha!
+  </text>
+  <text x="40" y="616" fill="#e9edef" font-size="12" font-family="sans-serif">
+    Sab Standard ya direct $220 Premium order karte hain. Har order
+  </text>
+  <text x="40" y="634" fill="#f59e0b" font-size="11" font-family="sans-serif" font-weight="bold">
+    me double/triple earning ho rahi hai. Shukriya sir!"
+  </text>
+  <text x="385" y="642" fill="#8696a0" font-size="9" font-family="sans-serif" text-anchor="end">2:18 PM ✓✓</text>
+</svg>

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 680" width="420" height="680">
+  <defs>
+    <filter id="sh-q" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0c1317"/>
+  <rect width="100%" height="100%" fill="#111b21" opacity="0.95"/>
+
+  <!-- Top Header -->
+  <rect width="100%" height="70" fill="#202c33"/>
+  <path d="M22 38 L34 26 M22 38 L34 50" stroke="#aebac1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="42" y="44" fill="#aebac1" font-size="16" font-family="sans-serif" font-weight="600">12</text>
+
+  <circle cx="95" cy="38" r="18" fill="#6366f1"/>
+  <text x="95" y="44" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold" text-anchor="middle">FA</text>
+
+  <text x="124" y="36" fill="#e9edef" font-size="15" font-family="sans-serif" font-weight="bold">Farhan Ali (Shopify Dev)</text>
+  <text x="124" y="52" fill="#8696a0" font-size="12" font-family="sans-serif">online</text>
+
+  <!-- Attached Screenshot Card: 4 Orders in Queue -->
+  <rect x="24" y="90" width="372" height="470" rx="14" fill="#ffffff" filter="url(#sh-q)"/>
+
+  <!-- Header -->
+  <rect x="24" y="90" width="372" height="44" fill="#f8fafc"/>
+  <circle cx="48" cy="112" r="11" fill="#1dbf73"/>
+  <text x="48" y="116" fill="#ffffff" font-size="11" font-family="sans-serif" font-weight="900" text-anchor="middle">fi</text>
+  <text x="68" y="116" fill="#0f172a" font-size="13" font-family="sans-serif" font-weight="bold">Fiverr Manage Orders · Active Queue</text>
+
+  <!-- Big Queue Stat Box -->
+  <rect x="38" y="146" width="344" height="68" rx="8" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="50" y="172" fill="#166534" font-size="15" font-family="sans-serif" font-weight="900">4 Active Orders in Queue</text>
+  <text x="50" y="196" fill="#15803d" font-size="13" font-family="sans-serif" font-weight="bold">Total Active Queue Value: $720.00 USD</text>
+
+  <!-- 4 Orders List -->
+  <rect x="38" y="224" width="344" height="215" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+  
+  <!-- Order 1 -->
+  <text x="50" y="248" fill="#0f172a" font-size="11.5" font-family="sans-serif" font-weight="bold">#FO381920 · Custom Store Setup</text>
+  <text x="368" y="248" fill="#15803d" font-size="12" font-family="sans-serif" font-weight="bold" text-anchor="end">$280.00</text>
+  <text x="50" y="264" fill="#64748b" font-size="10.5" font-family="sans-serif">Due in 2 days 14 hours · 🇺🇸 United States</text>
+  <line x1="50" y1="272" x2="368" y2="272" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Order 2 -->
+  <text x="50" y="294" fill="#0f172a" font-size="11.5" font-family="sans-serif" font-weight="bold">#FO381921 · Liquid Bug Fixes &amp; Code</text>
+  <text x="368" y="294" fill="#15803d" font-size="12" font-family="sans-serif" font-weight="bold" text-anchor="end">$150.00</text>
+  <text x="50" y="310" fill="#64748b" font-size="10.5" font-family="sans-serif">Due in 3 days 06 hours · 🇨🇦 Canada</text>
+  <line x1="50" y1="318" x2="368" y2="318" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Order 3 -->
+  <text x="50" y="340" fill="#0f172a" font-size="11.5" font-family="sans-serif" font-weight="bold">#FO381922 · Dropship Store Optimization</text>
+  <text x="368" y="340" fill="#15803d" font-size="12" font-family="sans-serif" font-weight="bold" text-anchor="end">$190.00</text>
+  <text x="50" y="356" fill="#64748b" font-size="10.5" font-family="sans-serif">Due in 4 days 18 hours · 🇦🇺 Australia</text>
+  <line x1="50" y1="364" x2="368" y2="364" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Order 4 -->
+  <text x="50" y="386" fill="#0f172a" font-size="11.5" font-family="sans-serif" font-weight="bold">#FO381923 · Speed Audit &amp; Conversion</text>
+  <text x="368" y="386" fill="#15803d" font-size="12" font-family="sans-serif" font-weight="bold" text-anchor="end">$100.00</text>
+  <text x="50" y="402" fill="#64748b" font-size="10.5" font-family="sans-serif">Due in 5 days 10 hours · 🇬🇧 United Kingdom</text>
+
+  <!-- Summary box -->
+  <rect x="38" y="450" width="344" height="90" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="50" y="474" fill="#1e40af" font-size="11" font-family="sans-serif" font-weight="bold">FULL OPTIMIZATION IMPACT:</text>
+  <text x="50" y="492" fill="#1e3a8a" font-size="11" font-family="sans-serif">From 0 orders to consistent weekly pipeline ($720 in queue)</text>
+  <text x="50" y="510" fill="#1e3a8a" font-size="11" font-family="sans-serif">High response rate (100%) and 100% on-time delivery maintained</text>
+  <text x="50" y="528" fill="#2563eb" font-size="10" font-family="sans-serif font-weight-bold">Optimized by Smart SEO Solutions Agency</text>
+
+  <!-- WhatsApp Speech Bubble from Farhan -->
+  <rect x="24" y="575" width="372" height="75" rx="10" fill="#202c33"/>
+  <path d="M24 582 L16 576 L24 590 Z" fill="#202c33"/>
+  <text x="40" y="598" fill="#e9edef" font-size="12" font-family="sans-serif" font-weight="600">
+    "Pehle hafton intezar hota tha aik order ke liye. Ab queue me
+  </text>
+  <text x="40" y="616" fill="#e9edef" font-size="12" font-family="sans-serif">
+    har waqt 3-4 orders chal rahe hote hain! Optimization ne
+  </text>
+  <text x="40" y="634" fill="#1dbf73" font-size="11" font-family="sans-serif" font-weight="bold">
+    meri gig ko stable monthly earning source bana diya hai."
+  </text>
+  <text x="385" y="642" fill="#8696a0" font-size="9" font-family="sans-serif" text-anchor="end">7:40 PM ✓✓</text>
+</svg>

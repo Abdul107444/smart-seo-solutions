@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import { TechPulseNavbar } from '../components/TechPulseNavbar';
 import { TechPulseHero } from '../components/TechPulseHero';
-import { CommunityTicker } from '../components/CommunityTicker';
-import { LaunchOfferBox } from '../components/LaunchOfferBox';
 import { SuccessProofSection } from '../components/SuccessProofSection';
 import { CurriculumSection } from '../components/CurriculumSection';
 import { ReviewsWallSection } from '../components/ReviewsWallSection';
-import { StudentCarouselSection } from '../components/StudentCarouselSection';
-import { OutcomesRoadmapSection } from '../components/OutcomesRoadmapSection';
+import { LaunchOfferBox } from '../components/LaunchOfferBox';
 import { FaqSection } from '../components/FaqSection';
-import { UrgentCtaBanners } from '../components/UrgentCtaBanners';
 import { TechPulseFooter } from '../components/TechPulseFooter';
 import { SocialProofToast } from '../components/SocialProofToast';
 import { TechPulseWhatsAppFloat } from '../components/TechPulseWhatsAppFloat';
@@ -42,8 +38,8 @@ export function TechPulseLandingPage({ onNavigate }: LandingPageProps) {
     setLightboxState((prev) => ({ ...prev, isOpen: false }));
   };
 
-  const scrollToModules = () => {
-    const el = document.getElementById('modules');
+  const scrollToDeliverables = () => {
+    const el = document.getElementById('services') || document.getElementById('modules');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
@@ -58,37 +54,29 @@ export function TechPulseLandingPage({ onNavigate }: LandingPageProps) {
       {/* Sticky Header Navbar */}
       <TechPulseNavbar onNavigate={onNavigate} currentPage="landing" />
 
-      {/* Main Content Sections */}
+      {/* Main High-Impact Sections Only */}
       <main>
-        {/* 1. Hero Section with Pakistan badge and embedded video */}
-        <TechPulseHero onEnroll={handleEnroll} onSeeModules={scrollToModules} />
+        {/* 1. Hero Section: Headline, Video, Limited Time Slots counter & Spots Remaining Badge */}
+        <TechPulseHero
+          onEnroll={handleEnroll}
+          onSeeDeliverables={scrollToDeliverables}
+          onSeeModules={scrollToDeliverables}
+        />
 
-        {/* 2. Community 954 members proof and running ticker */}
-        <CommunityTicker onEnroll={handleEnroll} onOpenImage={handleOpenImage} />
-
-        {/* 3. Launch Offer pricing card */}
-        <LaunchOfferBox onEnroll={handleEnroll} />
-
-        {/* 4. Real Visual Proofs: $194 Facebook Bonus + 2.8M Viral Views */}
+        {/* 2. Real Verified Results: Authentic Fiverr Buyer Chat, $450 Orders & Search Surge */}
         <SuccessProofSection onOpenImage={handleOpenImage} />
 
-        {/* 5. 10 Services Complete Done-For-You Scope */}
+        {/* 3. 10-Point Done-For-You Deliverables Scope */}
         <CurriculumSection onEnroll={handleEnroll} />
 
-        {/* 6. Wall of 19 Student Screenshot Reviews */}
+        {/* 4. Real Fiverr Seller Reviews & Proof Screenshots */}
         <ReviewsWallSection onEnroll={handleEnroll} onOpenImage={handleOpenImage} />
 
-        {/* 7. 18 Students Real Money Testimonials Carousel */}
-        <StudentCarouselSection />
+        {/* 5. Pricing Box (Rs. 8,000) with Urgency Slots Counter, Bank Details & 20-25 Days Guarantee */}
+        <LaunchOfferBox onEnroll={handleEnroll} />
 
-        {/* 8. Skills Outcomes, Income Potential, 14-Day Roadmap & Personas */}
-        <OutcomesRoadmapSection />
-
-        {/* 9. FAQs */}
+        {/* 6. Concise Fiverr Seller Knowledge Base FAQs */}
         <FaqSection />
-
-        {/* 10. Urgent Dark Navy Banner & Final Call to Action */}
-        <UrgentCtaBanners onEnroll={handleEnroll} />
       </main>
 
       {/* Footer */}

@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 680" width="420" height="680">
+  <defs>
+    <filter id="sh-inbox" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0c1317"/>
+  <rect width="100%" height="100%" fill="#111b21" opacity="0.95"/>
+
+  <!-- Top Header -->
+  <rect width="100%" height="70" fill="#202c33"/>
+  <path d="M22 38 L34 26 M22 38 L34 50" stroke="#aebac1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="42" y="44" fill="#aebac1" font-size="16" font-family="sans-serif" font-weight="600">8</text>
+
+  <circle cx="95" cy="38" r="18" fill="#8b5cf6"/>
+  <text x="95" y="44" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold" text-anchor="middle">JH</text>
+
+  <text x="124" y="36" fill="#e9edef" font-size="15" font-family="sans-serif" font-weight="bold">Jaffer Hussain (Content Pro)</text>
+  <text x="124" y="52" fill="#8696a0" font-size="12" font-family="sans-serif">online</text>
+
+  <!-- Attached Screenshot Card: Fiverr Buyer Inbox Conversation -->
+  <rect x="24" y="90" width="372" height="470" rx="14" fill="#ffffff" filter="url(#sh-inbox)"/>
+
+  <!-- Header -->
+  <rect x="24" y="90" width="372" height="44" fill="#f8fafc"/>
+  <rect x="24" y="90" width="372" height="3" rx="1.5" fill="#1dbf73"/>
+  <circle cx="48" cy="112" r="11" fill="#1dbf73"/>
+  <text x="48" y="116" fill="#ffffff" font-size="11" font-family="sans-serif" font-weight="900" text-anchor="middle">fi</text>
+  <text x="68" y="116" fill="#0f172a" font-size="13" font-family="sans-serif" font-weight="bold">Fiverr Buyer Inbox Message</text>
+
+  <!-- Buyer Details Row -->
+  <rect x="38" y="146" width="344" height="48" rx="8" fill="#f1f5f9"/>
+  <circle cx="62" cy="170" r="14" fill="#0284c7"/>
+  <text x="62" y="174" fill="#ffffff" font-size="11" font-family="sans-serif" font-weight="bold" text-anchor="middle">MR</text>
+  <text x="86" y="164" fill="#0f172a" font-size="12" font-family="sans-serif" font-weight="bold">Marcus Reynolds (CMO)</text>
+  <text x="86" y="180" fill="#64748b" font-size="10.5" font-family="sans-serif">🇺🇸 Austin, Texas · $12K+ Spent on Fiverr · Online</text>
+
+  <!-- Message Bubble from US Buyer -->
+  <rect x="38" y="204" width="344" height="126" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="52" y="226" fill="#0f172a" font-size="12" font-family="sans-serif" font-weight="bold">Marcus (Buyer):</text>
+  <text x="52" y="248" fill="#334155" font-size="11.5" font-family="sans-serif">
+    "Hello Jaffer, I found your gig directly through search.
+  </text>
+  <text x="52" y="268" fill="#334155" font-size="11.5" font-family="sans-serif">
+    Your profile positioning and service breakdown are exactly
+  </text>
+  <text x="52" y="288" fill="#334155" font-size="11.5" font-family="sans-serif">
+    what our agency needs. Can we set up a 1-month retainer?
+  </text>
+  <text x="52" y="308" fill="#0369a1" font-size="11" font-family="sans-serif" font-weight="bold">
+    Starting with a $350 initial pilot project today."
+  </text>
+
+  <!-- Seller Response -->
+  <rect x="76" y="340" width="306" height="58" rx="10" fill="#1dbf73"/>
+  <text x="90" y="362" fill="#ffffff" font-size="11.5" font-family="sans-serif" font-weight="bold">Jaffer (Seller Reply):</text>
+  <text x="90" y="380" fill="#ffffff" font-size="11" font-family="sans-serif">
+    "Hi Marcus! Thank you for reaching out. Yes absolutely,
+    sending custom offer right now."
+  </text>
+
+  <!-- Custom Offer Accepted Box -->
+  <rect x="38" y="410" width="344" height="66" rx="8" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="50" y="432" fill="#166534" font-size="12" font-family="sans-serif" font-weight="bold">✓ Custom Offer Accepted: $350.00 USD</text>
+  <text x="50" y="450" fill="#15803d" font-size="10.5" font-family="sans-serif">Delivery: 5 Days · Fiverr Fee Deducted · Net: $280.00</text>
+  <text x="50" y="468" fill="#166534" font-size="10.5" font-family="sans-serif">Order Status: In Progress (Milestone 1)</text>
+
+  <!-- Agency Note -->
+  <rect x="38" y="488" width="344" height="60" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="50" y="508" fill="#1e40af" font-size="10.5" font-family="sans-serif" font-weight="bold">OPTIMIZATION RESULT:</text>
+  <text x="50" y="524" fill="#1e3a8a" font-size="10.5" font-family="sans-serif">Profile upgraded from generic writer to B2B Consultant</text>
+  <text x="50" y="540" fill="#1d4ed8" font-size="10.5" font-family="sans-serif">High-ticket US clients hiring without cheap negotiations</text>
+
+  <!-- WhatsApp Speech Bubble from Jaffer -->
+  <rect x="24" y="575" width="372" height="75" rx="10" fill="#202c33"/>
+  <path d="M24 582 L16 576 L24 590 Z" fill="#202c33"/>
+  <text x="40" y="598" fill="#e9edef" font-size="12" font-family="sans-serif" font-weight="600">
+    "Profile bio aur positioning change hote hi buyers ka behavior
+  </text>
+  <text x="40" y="616" fill="#e9edef" font-size="12" font-family="sans-serif">
+    badal gaya! Ab $5-$10 wale nahi aate, direct $350 ke professional
+  </text>
+  <text x="40" y="634" fill="#1dbf73" font-size="11" font-family="sans-serif" font-weight="bold">
+    clients approach karte hain. Real professional agency work!"
+  </text>
+  <text x="385" y="642" fill="#8696a0" font-size="9" font-family="sans-serif" text-anchor="end">6:05 PM ✓✓</text>
+</svg>

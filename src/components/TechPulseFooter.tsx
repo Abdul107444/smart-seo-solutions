@@ -45,10 +45,10 @@ export function TechPulseFooter({ onNavigate }: FooterProps) {
           </button>
           <button
             type="button"
-            onClick={() => scrollTo('modules')}
+            onClick={() => scrollTo('services')}
             className="hover:text-white transition-colors"
           >
-            10 Services
+            10 Deliverables
           </button>
           <button
             type="button"

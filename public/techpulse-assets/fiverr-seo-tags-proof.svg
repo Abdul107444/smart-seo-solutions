@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 680" width="420" height="680">
+  <defs>
+    <filter id="sh-tags" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0c1317"/>
+  <rect width="100%" height="100%" fill="#111b21" opacity="0.95"/>
+
+  <!-- Top Header -->
+  <rect width="100%" height="70" fill="#202c33"/>
+  <path d="M22 38 L34 26 M22 38 L34 50" stroke="#aebac1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="42" y="44" fill="#aebac1" font-size="16" font-family="sans-serif" font-weight="600">9</text>
+
+  <circle cx="95" cy="38" r="18" fill="#2563eb"/>
+  <text x="95" y="44" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold" text-anchor="middle">BZ</text>
+
+  <text x="124" y="36" fill="#e9edef" font-size="15" font-family="sans-serif" font-weight="bold">Babar Zafar (Full Stack)</text>
+  <text x="124" y="52" fill="#8696a0" font-size="12" font-family="sans-serif">online</text>
+
+  <!-- Attached Screenshot Card: Fiverr Search Tags & Indexing -->
+  <rect x="24" y="90" width="372" height="470" rx="14" fill="#182229" stroke="#2a3942" stroke-width="1.2" filter="url(#sh-tags)"/>
+  
+  <!-- Fiverr Gig SEO Header -->
+  <rect x="24" y="90" width="372" height="44" rx="14" fill="#202c33"/>
+  <circle cx="48" cy="112" r="11" fill="#1dbf73"/>
+  <text x="48" y="116" fill="#ffffff" font-size="11" font-family="sans-serif" font-weight="900" text-anchor="middle">fi</text>
+  <text x="68" y="116" fill="#e9edef" font-size="13" font-family="sans-serif" font-weight="bold">Fiverr Gig Metadata &amp; Search Tags</text>
+
+  <!-- Gig URL Permalink Status -->
+  <rect x="38" y="148" width="344" height="52" rx="8" fill="#111b21"/>
+  <text x="50" y="167" fill="#38bdf8" font-size="10" font-family="sans-serif" font-weight="bold">PERMANENT GIG URL PERMALINK LOCKED:</text>
+  <text x="50" y="186" fill="#a5f3fc" font-size="11" font-family="monospace">fiverr.com/s/expert-react-node-bug-fixing</text>
+
+  <!-- 5 Buyer Tags Section -->
+  <rect x="38" y="212" width="344" height="150" rx="10" fill="#202c33" stroke="#2a3942"/>
+  <text x="50" y="234" fill="#e2e8f0" font-size="12" font-family="sans-serif" font-weight="bold">5 Low-Competition Buyer Search Tags (Saved):</text>
+
+  <!-- Tag Badges -->
+  <rect x="50" y="248" width="138" height="26" rx="6" fill="#064e3b" stroke="#10b981"/>
+  <text x="58" y="265" fill="#a7f3d0" font-size="11" font-family="sans-serif" font-weight="bold">✓ full stack developer</text>
+
+  <rect x="198" y="248" width="125" height="26" rx="6" fill="#064e3b" stroke="#10b981"/>
+  <text x="206" y="265" fill="#a7f3d0" font-size="11" font-family="sans-serif" font-weight="bold">✓ react bug fixing</text>
+
+  <rect x="50" y="284" width="128" height="26" rx="6" fill="#064e3b" stroke="#10b981"/>
+  <text x="58" y="301" fill="#a7f3d0" font-size="11" font-family="sans-serif" font-weight="bold">✓ nodejs api debug</text>
+
+  <rect x="188" y="284" width="145" height="26" rx="6" fill="#064e3b" stroke="#10b981"/>
+  <text x="196" y="301" fill="#a7f3d0" font-size="11" font-family="sans-serif" font-weight="bold">✓ web app developer</text>
+
+  <rect x="50" y="320" width="145" height="26" rx="6" fill="#064e3b" stroke="#10b981"/>
+  <text x="58" y="337" fill="#a7f3d0" font-size="11" font-family="sans-serif" font-weight="bold">✓ express rest api</text>
+
+  <!-- Algorithm Status Box -->
+  <rect x="38" y="374" width="344" height="74" rx="8" fill="#14532d" stroke="#22c55e"/>
+  <text x="52" y="398" fill="#bbf7d0" font-size="12" font-family="sans-serif" font-weight="bold">Fiverr Search Algorithm Indexing: ACTIVE</text>
+  <text x="52" y="416" fill="#dcfce7" font-size="11" font-family="sans-serif">Re-indexing completed in 24 hours. Search presence: Live</text>
+  <text x="52" y="434" fill="#86efac" font-size="10.5" font-family="sans-serif">Click-Through Rate (CTR): +192% Increase</text>
+
+  <!-- Metric Graph Preview -->
+  <rect x="38" y="460" width="344" height="85" rx="8" fill="#111b21"/>
+  <text x="50" y="482" fill="#94a3b8" font-size="11" font-family="sans-serif">Daily Organic Buyer Clicks:</text>
+  <text x="50" y="506" fill="#22c55e" font-size="19" font-family="sans-serif" font-weight="900">46 clicks/day</text>
+  <text x="190" y="506" fill="#64748b" font-size="12" font-family="sans-serif">(Pehle sirf 1-2 clicks the)</text>
+  <path d="M50 532 Q 130 528, 200 515 T 360 488" stroke="#22c55e" stroke-width="2.5" fill="none"/>
+
+  <!-- WhatsApp Speech Bubble from Babar -->
+  <rect x="24" y="575" width="372" height="75" rx="10" fill="#202c33"/>
+  <path d="M24 582 L16 576 L24 590 Z" fill="#202c33"/>
+  <text x="40" y="598" fill="#e9edef" font-size="12" font-family="sans-serif" font-weight="600">
+    "Smart SEO Solutions ki tags placement strategy zabardast hai!
+  </text>
+  <text x="40" y="616" fill="#e9edef" font-size="12" font-family="sans-serif">
+    24 ghante ke andar gig re-index hui aur search me active clicks
+  </text>
+  <text x="40" y="634" fill="#22c55e" font-size="11" font-family="sans-serif" font-weight="bold">
+    aana shuru ho gaye! Best investment for new/stalled gigs."
+  </text>
+  <text x="385" y="642" fill="#8696a0" font-size="9" font-family="sans-serif" text-anchor="end">4:15 PM ✓✓</text>
+</svg>

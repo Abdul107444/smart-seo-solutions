@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 680" width="420" height="680">
+  <defs>
+    <filter id="sh-180" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0c1317"/>
+  <rect width="100%" height="100%" fill="#111b21" opacity="0.95"/>
+
+  <!-- Top Header -->
+  <rect width="100%" height="70" fill="#202c33"/>
+  <path d="M22 38 L34 26 M22 38 L34 50" stroke="#aebac1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="42" y="44" fill="#aebac1" font-size="16" font-family="sans-serif" font-weight="600">5</text>
+
+  <circle cx="95" cy="38" r="18" fill="#ec4899"/>
+  <text x="95" y="44" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold" text-anchor="middle">ZA</text>
+
+  <text x="124" y="36" fill="#e9edef" font-size="15" font-family="sans-serif" font-weight="bold">Zainab Ali (Graphic Designer)</text>
+  <text x="124" y="52" fill="#8696a0" font-size="12" font-family="sans-serif">online</text>
+
+  <!-- Attached Screenshot Card: Custom Offer $180 -->
+  <rect x="24" y="90" width="372" height="470" rx="14" fill="#ffffff" filter="url(#sh-180)"/>
+
+  <!-- Header -->
+  <rect x="24" y="90" width="372" height="44" fill="#f8fafc"/>
+  <rect x="24" y="90" width="372" height="3" rx="1.5" fill="#1dbf73"/>
+  <circle cx="48" cy="112" r="11" fill="#1dbf73"/>
+  <text x="48" y="116" fill="#ffffff" font-size="11" font-family="sans-serif" font-weight="900" text-anchor="middle">fi</text>
+  <text x="68" y="116" fill="#0f172a" font-size="13" font-family="sans-serif" font-weight="bold">Fiverr Custom Offer Accepted</text>
+
+  <!-- Success Banner -->
+  <rect x="38" y="146" width="344" height="60" rx="8" fill="#dcfce7" stroke="#86efac"/>
+  <text x="50" y="170" fill="#166534" font-size="12" font-family="sans-serif" font-weight="bold">🎉 Custom Offer Accepted by Buyer!</text>
+  <text x="50" y="190" fill="#15803d" font-size="11" font-family="sans-serif">Order #FO88192301 has started automatically</text>
+
+  <!-- Order Details Box -->
+  <rect x="38" y="218" width="344" height="225" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+  
+  <text x="52" y="244" fill="#64748b" font-size="11" font-family="sans-serif">BUYER:</text>
+  <text x="52" y="262" fill="#0f172a" font-size="13" font-family="sans-serif" font-weight="bold">Sarah Miller (Brand Studio)</text>
+  <text x="52" y="278" fill="#64748b" font-size="10.5" font-family="sans-serif">🇺🇸 California, United States</text>
+
+  <line x1="52" y1="292" x2="368" y2="292" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="52" y="312" fill="#64748b" font-size="11" font-family="sans-serif">OFFER DESCRIPTION:</text>
+  <text x="52" y="330" fill="#0f172a" font-size="11.5" font-family="sans-serif" font-weight="600">Complete Brand Identity &amp; Social Media Kit</text>
+  <text x="52" y="348" fill="#475569" font-size="11" font-family="sans-serif">Delivery Time: 4 Days · 3 Revisions included</text>
+
+  <line x1="52" y1="362" x2="368" y2="362" stroke="#e2e8f0" stroke-width="1"/>
+
+  <div class="flex justify-between">
+    <text x="52" y="388" fill="#0f172a" font-size="12" font-family="sans-serif" font-weight="bold">TOTAL ORDER AMOUNT:</text>
+    <text x="368" y="388" fill="#15803d" font-size="18" font-family="sans-serif" font-weight="900" text-anchor="end">$180.00 USD</text>
+  </div>
+  <text x="52" y="412" fill="#64748b" font-size="10.5" font-family="sans-serif">Net Earnings after clearance: $144.00 (PKR 40,300)</text>
+  <text x="52" y="430" fill="#16a34a" font-size="10.5" font-family="sans-serif" font-weight="bold">✓ 5X ROI on Rs. 8,000 Optimization Fee on First Job</text>
+
+  <!-- Optimization Note -->
+  <rect x="38" y="455" width="344" height="92" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="50" y="478" fill="#1e40af" font-size="11" font-family="sans-serif" font-weight="bold">ALGORITHM &amp; CONVERSION BREAKTHROUGH:</text>
+  <text x="50" y="496" fill="#1e3a8a" font-size="11" font-family="sans-serif">Buyer directly searched low-competition tag "minimal luxury brand"</text>
+  <text x="50" y="514" fill="#1e3a8a" font-size="11" font-family="sans-serif">Inquired in inbox and accepted $180 offer without bargain</text>
+  <text x="50" y="534" fill="#2563eb" font-size="10.5" font-family="sans-serif font-weight-bold">Optimized by Smart SEO Solutions</text>
+
+  <!-- WhatsApp Speech Bubble from Zainab -->
+  <rect x="24" y="575" width="372" height="75" rx="10" fill="#202c33"/>
+  <path d="M24 582 L16 576 L24 590 Z" fill="#202c33"/>
+  <text x="40" y="598" fill="#e9edef" font-size="12" font-family="sans-serif" font-weight="600">
+    "Profile overhaul ke baad pehle US client ne direct approach
+  </text>
+  <text x="40" y="616" fill="#e9edef" font-size="12" font-family="sans-serif">
+    kiya aur $180 custom offer bina negotiation ke accept kar li!
+  </text>
+  <text x="40" y="634" fill="#ec4899" font-size="11" font-family="sans-serif" font-weight="bold">
+    Alhamdulillah service ne pehle hi week me orders start kara diye."
+  </text>
+  <text x="385" y="642" fill="#8696a0" font-size="9" font-family="sans-serif" text-anchor="end">3:50 PM ✓✓</text>
+</svg>

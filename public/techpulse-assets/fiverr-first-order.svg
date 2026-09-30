@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 680" width="420" height="680">
+  <defs>
+    <filter id="shadow-ord" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- WhatsApp Dark Background -->
+  <rect width="100%" height="100%" fill="#0c1317"/>
+  <rect width="100%" height="100%" fill="#111b21" opacity="0.95"/>
+
+  <!-- Top Header -->
+  <rect width="100%" height="70" fill="#202c33"/>
+  <path d="M22 38 L34 26 M22 38 L34 50" stroke="#aebac1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="42" y="44" fill="#aebac1" font-size="16" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="600">14</text>
+
+  <circle cx="95" cy="38" r="18" fill="#1dbf73"/>
+  <text x="95" y="44" fill="#ffffff" font-size="13" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="bold" text-anchor="middle">BB</text>
+
+  <text x="124" y="36" fill="#e9edef" font-size="15" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="bold">Bushra (UI/UX Seller)</text>
+  <text x="124" y="52" fill="#8696a0" font-size="12" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">online</text>
+
+  <!-- Attached Screenshot Card: Fiverr Order Details -->
+  <rect x="24" y="90" width="372" height="470" rx="14" fill="#ffffff" filter="url(#shadow-ord)"/>
+  <rect x="24" y="90" width="372" height="4" rx="2" fill="#1dbf73"/>
+
+  <!-- Fiverr Order Header -->
+  <rect x="24" y="94" width="372" height="48" fill="#f8fafc"/>
+  <circle cx="48" cy="118" r="12" fill="#1dbf73"/>
+  <text x="48" y="122" fill="#ffffff" font-size="11" font-family="sans-serif" font-weight="900" text-anchor="middle">fi</text>
+  <text x="70" y="117" fill="#0f172a" font-size="14" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="bold">Order #FO92817401</text>
+  <text x="70" y="132" fill="#15803d" font-size="11" font-family="sans-serif" font-weight="bold">✓ Completed &amp; Cleared</text>
+
+  <!-- Price Badge -->
+  <rect x="300" y="106" width="82" height="26" rx="13" fill="#dcfce7"/>
+  <text x="341" y="123" fill="#15803d" font-size="13" font-family="sans-serif" font-weight="800" text-anchor="middle">$250.00</text>
+
+  <!-- Gig Title -->
+  <text x="40" y="165" fill="#64748b" font-size="11" font-family="sans-serif" font-weight="600">OPTIMIZED GIG ORDERED:</text>
+  <text x="40" y="183" fill="#0f172a" font-size="13" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="700">Figma Mobile App UI UX Design &amp; Prototype</text>
+
+  <!-- Buyer Information -->
+  <rect x="38" y="200" width="344" height="64" rx="10" fill="#f1f5f9"/>
+  <circle cx="62" cy="232" r="14" fill="#3b82f6"/>
+  <text x="62" y="236" fill="#ffffff" font-size="11" font-family="sans-serif" font-weight="bold" text-anchor="middle">UK</text>
+  <text x="86" y="226" fill="#0f172a" font-size="12" font-family="sans-serif" font-weight="bold">Oliver_Fintech Ltd.</text>
+  <text x="86" y="242" fill="#64748b" font-size="11" font-family="sans-serif">🇬🇧 United Kingdom · Repeat Buyer</text>
+
+  <!-- Buyer Review & 5 Stars -->
+  <rect x="38" y="275" width="344" height="120" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="52" y="298" fill="#eab308" font-size="15" font-family="sans-serif">★★★★★</text>
+  <text x="130" y="297" fill="#0f172a" font-size="12" font-family="sans-serif" font-weight="bold">5.0 Star Feedback</text>
+
+  <text x="52" y="322" fill="#334155" font-size="11.5" font-family="sans-serif" font-weight="500">
+    "Found this gig through search. Outstanding work, super
+  </text>
+  <text x="52" y="340" fill="#334155" font-size="11.5" font-family="sans-serif" font-weight="500">
+    responsive and delivered pixel-perfect Figma components!
+  </text>
+  <text x="52" y="358" fill="#334155" font-size="11.5" font-family="sans-serif" font-weight="500">
+    Will hire for all our upcoming sprints."
+  </text>
+
+  <!-- Optimization Note -->
+  <rect x="38" y="408" width="344" height="42" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="50" y="426" fill="#1e40af" font-size="10.5" font-family="sans-serif" font-weight="bold">🎯 SMART SEO SOLUTIONS AUDIT IMPACT:</text>
+  <text x="50" y="440" fill="#1e3a8a" font-size="10.5" font-family="sans-serif">Gig optimized on Monday — 1st client closed on Friday ($250)</text>
+
+  <rect x="38" y="460" width="344" height="85" rx="8" fill="#f0fdf4" stroke="#bbf7d0"/>
+  <text x="50" y="482" fill="#166534" font-size="11" font-family="sans-serif" font-weight="bold">Net Income Cleared: $200.00 USD (PKR 56,000)</text>
+  <text x="50" y="500" fill="#15803d" font-size="10" font-family="sans-serif">Optimization Fee (Rs. 8,000) 7X recovered in 1st order</text>
+  <text x="50" y="525" fill="#64748b" font-size="9.5" font-family="sans-serif">Fiverr Search Algorithm: High-Intent Keyword Match</text>
+
+  <!-- WhatsApp Speech Bubble from Seller -->
+  <rect x="24" y="575" width="372" height="75" rx="10" fill="#202c33"/>
+  <path d="M24 582 L16 576 L24 590 Z" fill="#202c33"/>
+  <text x="40" y="598" fill="#e9edef" font-size="12" font-family="sans-serif" font-weight="600">
+    "Alhamdulillah sir! Pehla order hi $250 ka close hua hai!
+  </text>
+  <text x="40" y="616" fill="#e9edef" font-size="12" font-family="sans-serif">
+    UK client ne direct search se hire kiya bina negotiation ke.
+  </text>
+  <text x="40" y="634" fill="#1dbf73" font-size="11" font-family="sans-serif" font-weight="bold">
+    Smart SEO Solutions ki tags strategy 100% work kar gayi!"
+  </text>
+  <text x="385" y="642" fill="#8696a0" font-size="9" font-family="sans-serif" text-anchor="end">11:42 AM ✓✓</text>
+</svg>

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 680" width="420" height="680">
+  <defs>
+    <filter id="sh-roi" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0c1317"/>
+  <rect width="100%" height="100%" fill="#111b21" opacity="0.95"/>
+
+  <!-- Top Header -->
+  <rect width="100%" height="70" fill="#202c33"/>
+  <path d="M22 38 L34 26 M22 38 L34 50" stroke="#aebac1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="42" y="44" fill="#aebac1" font-size="16" font-family="sans-serif" font-weight="600">16</text>
+
+  <circle cx="95" cy="38" r="18" fill="#16a34a"/>
+  <text x="95" y="44" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold" text-anchor="middle">UK</text>
+
+  <text x="124" y="36" fill="#e9edef" font-size="15" font-family="sans-serif" font-weight="bold">Usman Khan (Video Editor)</text>
+  <text x="124" y="52" fill="#8696a0" font-size="12" font-family="sans-serif">online</text>
+
+  <!-- Attached Screenshot Card: Fiverr Earnings Cleared & Withdrawn -->
+  <rect x="24" y="90" width="372" height="470" rx="14" fill="#ffffff" filter="url(#sh-roi)"/>
+
+  <!-- Header -->
+  <rect x="24" y="90" width="372" height="44" fill="#f8fafc"/>
+  <circle cx="48" cy="112" r="11" fill="#1dbf73"/>
+  <text x="48" y="116" fill="#ffffff" font-size="11" font-family="sans-serif" font-weight="900" text-anchor="middle">fi</text>
+  <text x="68" y="116" fill="#0f172a" font-size="13" font-family="sans-serif" font-weight="bold">Fiverr Payout &amp; Earnings Cleared</text>
+
+  <!-- Big Withdrawn Amount Box -->
+  <rect x="38" y="146" width="344" height="95" rx="8" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="50" y="172" fill="#15803d" font-size="11.5" font-family="sans-serif" font-weight="bold">NET REVENUE CLEARED &amp; TRANSFERRED:</text>
+  <text x="50" y="210" fill="#0f172a" font-size="32" font-family="sans-serif" font-weight="900">$850.00 USD</text>
+  <text x="240" y="210" fill="#15803d" font-size="13" font-family="sans-serif" font-weight="bold">(PKR 238,000)</text>
+  <text x="50" y="230" fill="#64748b" font-size="10.5" font-family="sans-serif">Transferred to Bank Account via Payoneer / Local Transfer</text>
+
+  <!-- Comparison breakdown -->
+  <rect x="38" y="252" width="344" height="185" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="50" y="274" fill="#0f172a" font-size="12" font-family="sans-serif" font-weight="bold">Return on Investment (ROI) Calculation:</text>
+  
+  <text x="50" y="300" fill="#64748b" font-size="11" font-family="sans-serif">Initial Optimization Fee Paid:</text>
+  <text x="368" y="300" fill="#0f172a" font-size="11" font-family="sans-serif" font-weight="bold" text-anchor="end">Rs. 8,000 PKR</text>
+  <line x1="50" y1="310" x2="368" y2="310" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="50" y="330" fill="#64748b" font-size="11" font-family="sans-serif">Total Orders Cleared (Month 1):</text>
+  <text x="368" y="330" fill="#15803d" font-size="11" font-family="sans-serif" font-weight="bold" text-anchor="end">$850 (PKR 238,000)</text>
+  <line x1="50" y1="340" x2="368" y2="340" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="50" y="360" fill="#64748b" font-size="11" font-family="sans-serif">Net Multiple Achieved:</text>
+  <text x="368" y="360" fill="#16a34a" font-size="13" font-family="sans-serif" font-weight="900" text-anchor="end">29.7X Direct ROI</text>
+  <line x1="50" y1="370" x2="368" y2="370" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="50" y="392" fill="#0f172a" font-size="11" font-family="sans-serif" font-weight="bold">Recurring Clients Acquired:</text>
+  <text x="50" y="410" fill="#15803d" font-size="11" font-family="sans-serif">2 USA YouTube Channels on $300/mo retainer contracts</text>
+  <text x="50" y="426" fill="#64748b" font-size="10" font-family="sans-serif">Acquired solely through optimized search keywords</text>
+
+  <!-- Summary box -->
+  <rect x="38" y="448" width="344" height="92" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="50" y="472" fill="#1e40af" font-size="11.5" font-family="sans-serif" font-weight="bold">BEST FREELANCE BUSINESS INVESTMENT:</text>
+  <text x="50" y="490" fill="#1e3a8a" font-size="11" font-family="sans-serif">"Instead of wasting months with zero clicks, Rs. 8,000 fee</text>
+  <text x="50" y="508" fill="#1e3a8a" font-size="11" font-family="sans-serif">paid for itself inside the very first week."</text>
+  <text x="50" y="528" fill="#2563eb" font-size="10" font-family="sans-serif font-weight-bold">Smart SEO Solutions Agency Results</text>
+
+  <!-- WhatsApp Speech Bubble from Usman -->
+  <rect x="24" y="575" width="372" height="75" rx="10" fill="#202c33"/>
+  <path d="M24 582 L16 576 L24 590 Z" fill="#202c33"/>
+  <text x="40" y="598" fill="#e9edef" font-size="12" font-family="sans-serif" font-weight="600">
+    "Rs. 8,000 laga kar pehle hi mahine me 2 lakh se zyada
+  </text>
+  <text x="40" y="616" fill="#e9edef" font-size="12" font-family="sans-serif">
+    payout nikala hai. 2 international monthly retainers bhi pakke
+  </text>
+  <text x="40" y="634" fill="#15803d" font-size="11" font-family="sans-serif" font-weight="bold">
+    ho gaye hain. Ye meri life ki sabse best investment thi!"
+  </text>
+  <text x="385" y="642" fill="#8696a0" font-size="9" font-family="sans-serif" text-anchor="end">9:05 PM ✓✓</text>
+</svg>

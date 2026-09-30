@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 680" width="420" height="680">
+  <defs>
+    <filter id="sh-comp" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0c1317"/>
+  <rect width="100%" height="100%" fill="#111b21" opacity="0.95"/>
+
+  <!-- Top Header -->
+  <rect width="100%" height="70" fill="#202c33"/>
+  <path d="M22 38 L34 26 M22 38 L34 50" stroke="#aebac1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="42" y="44" fill="#aebac1" font-size="16" font-family="sans-serif" font-weight="600">7</text>
+
+  <circle cx="95" cy="38" r="18" fill="#d97706"/>
+  <text x="95" y="44" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold" text-anchor="middle">NK</text>
+
+  <text x="124" y="36" fill="#e9edef" font-size="15" font-family="sans-serif" font-weight="bold">Nabeel Khan (App UI/UX)</text>
+  <text x="124" y="52" fill="#8696a0" font-size="12" font-family="sans-serif">online</text>
+
+  <!-- Attached Screenshot Card: Competitor Gap Analysis -->
+  <rect x="24" y="90" width="372" height="470" rx="14" fill="#ffffff" filter="url(#sh-comp)"/>
+
+  <!-- Header -->
+  <rect x="24" y="90" width="372" height="44" fill="#f8fafc"/>
+  <circle cx="48" cy="112" r="11" fill="#1dbf73"/>
+  <text x="48" y="116" fill="#ffffff" font-size="11" font-family="sans-serif" font-weight="900" text-anchor="middle">fi</text>
+  <text x="68" y="116" fill="#0f172a" font-size="13" font-family="sans-serif" font-weight="bold">Fiverr Competitor Gap Analysis</text>
+
+  <!-- Title Banner -->
+  <rect x="38" y="146" width="344" height="48" rx="8" fill="#fffbeb" stroke="#fde68a"/>
+  <text x="50" y="166" fill="#92400e" font-size="11.5" font-family="sans-serif" font-weight="bold">TOP US/UK COMPETITOR GIGS BENCHMARKING:</text>
+  <text x="50" y="184" fill="#b45309" font-size="10.5" font-family="sans-serif">Analysis of 5 Top-Ranked Gigs in Mobile App UI Niche</text>
+
+  <!-- Analysis Grid -->
+  <rect x="38" y="204" width="344" height="235" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+  
+  <text x="50" y="226" fill="#64748b" font-size="10" font-family="sans-serif" font-weight="bold">COMPETITOR WEAKNESS IDENTIFIED</text>
+  <text x="368" y="226" fill="#64748b" font-size="10" font-family="sans-serif" font-weight="bold" text-anchor="end">OUR WINNING ANGLE</text>
+  <line x1="50" y1="234" x2="368" y2="234" stroke="#cbd5e1" stroke-width="1"/>
+
+  <!-- Row 1 -->
+  <text x="50" y="254" fill="#dc2626" font-size="10.5" font-family="sans-serif">❌ Weak delivery times (10-14 days)</text>
+  <text x="368" y="254" fill="#15803d" font-size="10.5" font-family="sans-serif" font-weight="bold" text-anchor="end">✓ 4-Day Sprint Prototype</text>
+
+  <!-- Row 2 -->
+  <text x="50" y="280" fill="#dc2626" font-size="10.5" font-family="sans-serif">❌ No Figma design tokens included</text>
+  <text x="368" y="280" fill="#15803d" font-size="10.5" font-family="sans-serif" font-weight="bold" text-anchor="end">✓ Full Design System bonus</text>
+
+  <!-- Row 3 -->
+  <text x="50" y="306" fill="#dc2626" font-size="10.5" font-family="sans-serif">❌ Generic titles ("I will do UI")</text>
+  <text x="368" y="306" fill="#15803d" font-size="10.5" font-family="sans-serif" font-weight="bold" text-anchor="end">✓ Niche-Specific SaaS Focus</text>
+
+  <!-- Row 4 -->
+  <text x="50" y="332" fill="#dc2626" font-size="10.5" font-family="sans-serif">❌ Cluttered, illegible thumbnails</text>
+  <text x="368" y="332" fill="#15803d" font-size="10.5" font-family="sans-serif" font-weight="bold" text-anchor="end">✓ High-CTR Clean 3-Point Card</text>
+
+  <!-- Row 5 -->
+  <text x="50" y="358" fill="#dc2626" font-size="10.5" font-family="sans-serif">❌ Only 1-tier flat pricing ($100)</text>
+  <text x="368" y="358" fill="#15803d" font-size="10.5" font-family="sans-serif" font-weight="bold" text-anchor="end">✓ Decoy Packages ($65/$160/$380)</text>
+
+  <line x1="50" y1="372" x2="368" y2="372" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="50" y="394" fill="#15803d" font-size="11" font-family="sans-serif" font-weight="bold">Result: Conversion Rate Outperformed Competitors</text>
+  <text x="50" y="412" fill="#64748b" font-size="10" font-family="sans-serif">Organic click conversion jumped from 1.2% to 5.4%</text>
+  <text x="50" y="428" fill="#d97706" font-size="10" font-family="sans-serif font-weight-bold">Delivered by Smart SEO Solutions Agency</text>
+
+  <!-- Summary Box -->
+  <rect x="38" y="450" width="344" height="90" rx="8" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="50" y="474" fill="#166534" font-size="11.5" font-family="sans-serif" font-weight="bold">1ST ORDER SECURED: $380 PREMIUM TIER</text>
+  <text x="50" y="492" fill="#15803d" font-size="11" font-family="sans-serif">Client chose our Premium package because competitor offers</text>
+  <text x="50" y="510" fill="#15803d" font-size="11" font-family="sans-serif">lacked design tokens and sprint delivery.</text>
+  <text x="50" y="528" fill="#16a34a" font-size="10" font-family="sans-serif font-weight-bold">Competitor Research Delivers Real High-Ticket Wins</text>
+
+  <!-- WhatsApp Speech Bubble from Nabeel -->
+  <rect x="24" y="575" width="372" height="75" rx="10" fill="#202c33"/>
+  <path d="M24 582 L16 576 L24 590 Z" fill="#202c33"/>
+  <text x="40" y="598" fill="#e9edef" font-size="12" font-family="sans-serif" font-weight="600">
+    "Competitor gaps ka jo analysis aapne kiya uski wajah se
+  </text>
+  <text x="40" y="616" fill="#e9edef" font-size="12" font-family="sans-serif">
+    client ne bina kisi sawal ke $380 ka order place kar diya.
+  </text>
+  <text x="40" y="634" fill="#d97706" font-size="11" font-family="sans-serif" font-weight="bold">
+    Ye real buyer psychology optimization hai. Superb service!"
+  </text>
+  <text x="385" y="642" fill="#8696a0" font-size="9" font-family="sans-serif" text-anchor="end">7:10 PM ✓✓</text>
+</svg>

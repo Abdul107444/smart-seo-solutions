@@ -21,7 +21,7 @@ export function CurriculumSection({ onEnroll }: CurriculumProps) {
   };
 
   return (
-    <section id="modules" className="bg-[#ecf3f8]/50 px-4 py-16 sm:px-6 sm:py-24 border-t border-[#dfe5ed]">
+    <section id="services" className="bg-[#ecf3f8]/50 px-4 py-16 sm:px-6 sm:py-24 border-t border-[#dfe5ed]">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="text-center">
@@ -31,8 +31,8 @@ export function CurriculumSection({ onEnroll }: CurriculumProps) {
           <h2 className="mt-3 font-display text-3xl font-extrabold text-[#0c172f] sm:text-5xl">
             10-Point Complete Optimization Process
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-sm sm:text-base text-[#535f6f]">
-            Zero guesswork. We manually audit, research, write, and configure every single element of your Fiverr profile and gigs to beat competitors and rank on Page 1.
+          <p className="mx-auto mt-3 max-w-2xl text-xs sm:text-base text-[#535f6f] px-2 sm:px-0">
+            Zero guesswork. We manually audit, research, write, and configure every single element of your Fiverr profile and gigs to attract high-intent buyers and get your 1st paying client fast.
           </p>
         </div>
 

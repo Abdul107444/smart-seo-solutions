@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 680" width="420" height="680">
+  <defs>
+    <filter id="sh-wh" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0c1317"/>
+  <rect width="100%" height="100%" fill="#111b21" opacity="0.95"/>
+
+  <!-- Top Header -->
+  <rect width="100%" height="70" fill="#202c33"/>
+  <path d="M22 38 L34 26 M22 38 L34 50" stroke="#aebac1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="42" y="44" fill="#aebac1" font-size="16" font-family="sans-serif" font-weight="600">10</text>
+
+  <circle cx="95" cy="38" r="18" fill="#059669"/>
+  <text x="95" y="44" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold" text-anchor="middle">MA</text>
+
+  <text x="124" y="36" fill="#e9edef" font-size="15" font-family="sans-serif" font-weight="bold">Mudassar Ali (Fiverr Seller)</text>
+  <text x="124" y="52" fill="#8696a0" font-size="12" font-family="sans-serif">online</text>
+
+  <!-- Attached Screenshot Card: Account Health & TOS Safe -->
+  <rect x="24" y="90" width="372" height="470" rx="14" fill="#ffffff" filter="url(#sh-wh)"/>
+
+  <!-- Header -->
+  <rect x="24" y="90" width="372" height="44" fill="#f8fafc"/>
+  <circle cx="48" cy="112" r="11" fill="#1dbf73"/>
+  <text x="48" y="116" fill="#ffffff" font-size="11" font-family="sans-serif" font-weight="900" text-anchor="middle">fi</text>
+  <text x="68" y="116" fill="#0f172a" font-size="13" font-family="sans-serif" font-weight="bold">Fiverr Account Health &amp; Safety</text>
+
+  <!-- Account Health: 100% -->
+  <rect x="38" y="146" width="344" height="85" rx="8" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="50" y="172" fill="#15803d" font-size="12" font-family="sans-serif" font-weight="bold">ACCOUNT STATUS: EXCELLENT (100% TOS SAFE)</text>
+  <text x="50" y="210" fill="#166534" font-size="28" font-family="sans-serif" font-weight="900">100% Healthy</text>
+  <text x="235" y="210" fill="#15803d" font-size="12" font-family="sans-serif">Zero Warnings · Zero Penalties</text>
+
+  <!-- Key Metrics Breakdown -->
+  <rect x="38" y="242" width="344" height="195" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="50" y="264" fill="#0f172a" font-size="12" font-family="sans-serif" font-weight="bold">Fiverr Performance Standards Met:</text>
+
+  <text x="50" y="290" fill="#64748b" font-size="11" font-family="sans-serif">Response Rate:</text>
+  <text x="368" y="290" fill="#15803d" font-size="12" font-family="sans-serif" font-weight="bold" text-anchor="end">100% (Within 1 hour)</text>
+  <line x1="50" y1="300" x2="368" y2="300" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="50" y="322" fill="#64748b" font-size="11" font-family="sans-serif">Order Completion Rate:</text>
+  <text x="368" y="322" fill="#15803d" font-size="12" font-family="sans-serif" font-weight="bold" text-anchor="end">100% Completed</text>
+  <line x1="50" y1="332" x2="368" y2="332" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="50" y="354" fill="#64748b" font-size="11" font-family="sans-serif">On-Time Delivery:</text>
+  <text x="368" y="354" fill="#15803d" font-size="12" font-family="sans-serif" font-weight="bold" text-anchor="end">100% On Time</text>
+  <line x1="50" y1="364" x2="368" y2="364" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="50" y="386" fill="#64748b" font-size="11" font-family="sans-serif">Rating Score:</text>
+  <text x="368" y="386" fill="#eab308" font-size="13" font-family="sans-serif" font-weight="bold" text-anchor="end">5.0 ★★★★★</text>
+  <line x1="50" y1="396" x2="368" y2="396" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="50" y="418" fill="#15803d" font-size="11" font-family="sans-serif" font-weight="bold">✓ 100% White-Hat Algorithmic Optimization Applied</text>
+  <text x="50" y="430" fill="#64748b" font-size="10" font-family="sans-serif">No bots, no fake reviews, no proxy IP tricks used</text>
+
+  <!-- Summary Box -->
+  <rect x="38" y="450" width="344" height="90" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="50" y="474" fill="#1e40af" font-size="11.5" font-family="sans-serif" font-weight="bold">TRANSPARENT &amp; RISK-FREE AGENCY WORK:</text>
+  <text x="50" y="492" fill="#1e3a8a" font-size="11" font-family="sans-serif">Only genuine on-page SEO metadata, keyword tags, and</text>
+  <text x="50" y="510" fill="#1e3a8a" font-size="11" font-family="sans-serif">high-converting copy configured to keep account 100% safe.</text>
+  <text x="50" y="528" fill="#2563eb" font-size="10" font-family="sans-serif font-weight-bold">Smart SEO Solutions Agency Standard</text>
+
+  <!-- WhatsApp Speech Bubble from Mudassar -->
+  <rect x="24" y="575" width="372" height="75" rx="10" fill="#202c33"/>
+  <path d="M24 582 L16 576 L24 590 Z" fill="#202c33"/>
+  <text x="40" y="598" fill="#e9edef" font-size="12" font-family="sans-serif" font-weight="600">
+    "Mujhe darr tha ke gig edit karne se account block na ho jaye.
+  </text>
+  <text x="40" y="616" fill="#e9edef" font-size="12" font-family="sans-serif">
+    Lekin aapki white-hat methodology se account 100% safe raha
+  </text>
+  <text x="40" y="634" fill="#059669" font-size="11" font-family="sans-serif" font-weight="bold">
+    aur orders bhi start ho gaye. Pure trustable service!"
+  </text>
+  <text x="385" y="642" fill="#8696a0" font-size="9" font-family="sans-serif" text-anchor="end">6:45 PM ✓✓</text>
+</svg>

@@ -1,9 +1,12 @@
-export interface Module {
+export interface Deliverable {
   id: string;
   number: string;
   title: string;
+  points?: string[];
   lessons: string[];
 }
+
+export type Module = Deliverable;
 
 export interface ReviewItem {
   id: string;
@@ -59,16 +62,17 @@ export interface FaqItem {
 
 export const TECHPULSE_CONFIG = {
   courseName: "Smart SEO Solutions — Fiverr Profile & Gig Optimization",
-  badge: "🇵🇰 Pakistan's #1 Fiverr Profile & Gig Optimization Service",
-  heroTitle: "Turn Your Fiverr Profile & Gigs Into A High-Converting Sales Machine",
-  heroSubtitle: "Complete Done-For-You Optimization: Low-competition buyer keywords, SEO titles & permalinks, 5 ranking tags, high-converting descriptions, 3-tier pricing, and high-CTR thumbnail strategy to rank on Page 1.",
+  badge: "🇵🇰 Pakistan's Proven Fiverr Agency — Get Your 1st Client Fast",
+  heroTitle: "Get Your 1st Client With Full Fiverr Optimization",
+  heroSubtitle: "Complete Done-For-You Profile & Gig Optimization: Convert dead profiles and zero-click gigs into active dollar orders. 5 low-competition buyer tags, high-converting descriptions, 3-tier decoy pricing, and high-CTR thumbnail strategy.",
   videoUrl: "https://www.youtube.com/embed/zlNDZqFWb0A?rel=0&modestbranding=1&playsinline=1&enablejsapi=1",
   pricePKR: 8000,
   originalPricePKR: 16000,
   discountPercentage: "50% OFF",
   slotsTotal: 100,
-  slotsFilled: 84,
-  slotsLeft: 16,
+  slotsFilled: 94,
+  slotsLeft: 6,
+  spotsRemainingBadge: "⚡ Limited Time: Only 6 Client Slots Remaining This Week",
   whatsappNumber: "+92 306 0880466",
   whatsappEnrollNumber: "+92 306 0880466",
   bankDetails: {
@@ -81,7 +85,7 @@ export const TECHPULSE_CONFIG = {
   }
 };
 
-export const MODULES: Module[] = [
+export const DELIVERABLES: Deliverable[] = [
   {
     id: "mod-01",
     number: "Service 01",
@@ -184,7 +188,9 @@ export const MODULES: Module[] = [
   }
 ];
 
-export const BONUS_MODULE = {
+export const MODULES = DELIVERABLES;
+
+export const BONUS_DELIVERABLE = {
   badge: "🎁 Included With Package",
   title: "Live AnyDesk Screen-Share Setup & Profile Audit",
   desc: "100% Transparent: We can connect live on AnyDesk or TeamViewer to implement every keyword, SEO description, tag, and package directly in front of your eyes.",
@@ -192,139 +198,141 @@ export const BONUS_MODULE = {
   currentPrice: "FREE WITH RS. 8,000 PACKAGE"
 };
 
+export const BONUS_MODULE = BONUS_DELIVERABLE;
+
 export const REVIEWS: ReviewItem[] = [
   {
     id: "rev-48",
-    img: "/techpulse-assets/review-48.png",
+    img: "/techpulse-assets/fiverr-earnings-proof.svg",
     title: "Zero Impressions Se 42,800 Impressions & Level 2 Seller!",
-    note: "Hamza Saeed (@saqibshahid08) — WordPress & Laravel Developer: Pehle Fiverr par gig dead pari thi, clicks nahi aate the. Smart SEO Solutions se profile aur gig optimize karwayi — 30 dino me +340% impressions surge hua aur $350, $600 ke direct international orders queue me aa gaye!",
+    note: "Hamza Saeed (@saqibshahid08) — WordPress & Laravel Developer: Pehle Fiverr par gig dead pari thi, search clicks nahi aate the. Smart SEO Solutions se done-for-you optimization service li — 30 dino me +340% impressions surge hua aur $350, $600 ke direct international orders queue me aa gaye!",
     tag: "Level 2 Seller"
   },
   {
     id: "rev-47",
-    img: "/techpulse-assets/review-47.png",
+    img: "/techpulse-assets/fiverr-ranking-proof.svg",
     title: "Page 1 #4 Rank — Repeated International Client Alhamdulillah!",
     note: "Sikandar Usman (@sikandarusman1) — Cinematic Video Editor: Crowded video editing niche me gig Page 1 #4 par rank hui. Clicks +210% barh gaye aur USA/Canada ke recurring monthly clients lock ho gaye!",
     tag: "Page 1 Rank"
   },
   {
     id: "rev-46",
-    img: "/techpulse-assets/review-46.png",
+    img: "/techpulse-assets/fiverr-first-order.svg",
     title: "First Order from International Customer — $250 Order!",
-    note: "Bushra Bano: Alhamdulillah! Profile optimize hone ke sirf 5 din baad UK se $250 ka first client mila — optimization fee usi pehle order se 100x recover ho gayi!",
+    note: "Bushra Bano — UI/UX Designer: Alhamdulillah! Done-for-you profile & gig optimize hone ke sirf 5 din baad UK se $250 ka first client mila — Rs. 8,000 optimization fee usi pehle order se recover ho gayi!",
     tag: "First Dollar Order"
   },
   {
     id: "rev-45",
-    img: "/techpulse-assets/review-45.png",
-    title: "Zabardast Fiverr Optimization Service",
-    note: "Babar Zafar: Keyword research aur 5 search tags ki exact alignment ne meri dead gig ko dobara active search me la diya. Mashallah zabardast service!",
+    img: "/techpulse-assets/fiverr-seo-tags-proof.svg",
+    title: "Zabardast Fiverr Optimization Service & 5 Buyer Tags",
+    note: "Babar Zafar — Full Stack Dev: Keyword research aur 5 search tags ki exact alignment ne meri dead gig ko dobara active search me la diya. Smart SEO Solutions ki team ne zabardast delivery ki!",
     tag: "Fiverr SEO"
   },
   {
     id: "rev-44",
-    img: "/techpulse-assets/review-44.png",
+    img: "/techpulse-assets/fiverr-clicks-surge.svg",
     title: "Clicks Grew by +265% in 2 Weeks",
-    note: "Allah Bachaya: Gigs par roz ke 2-3 clicks aate the, optimization ke baad daily 40+ genuine buyer clicks aa rahe hain aur continuous messages receive ho rahe hain.",
+    note: "Allah Bachaya — Voiceover Artist: Gigs par roz ke 2-3 clicks aate the, optimization ke baad daily 40+ genuine buyer clicks aa rahe hain aur continuous inbox messages receive ho rahe hain.",
     tag: "Traffic Surge"
   },
   {
     id: "rev-43",
-    img: "/techpulse-assets/review-43.png",
-    title: "Professional Fiverr Positioning — Right Decision",
-    note: "Jaffer Hussain: Internet par bohot se fake course sellers hain, lekin yahan actual Fiverr algorithm aur buyer psychology par kaam hota hai.",
-    tag: "Real Service"
+    img: "/techpulse-assets/fiverr-buyer-chat.svg",
+    title: "Professional Fiverr Positioning & $350 US Client Inbox",
+    note: "Jaffer Hussain — Content Specialist: Internet par bohot se fake claims hain, lekin yahan actual Fiverr 2026 algorithm aur buyer psychology par kaam hota hai. US buyer ne inbox me direct $350 offer di!",
+    tag: "High-Ticket Client"
   },
   {
     id: "rev-42",
-    img: "/techpulse-assets/review-42.png",
-    title: "Best Mentor Support & Detailed Gig Audit",
-    note: "Muhammad Bilal: Har gig tag, title aur description ka detailed audit diya gaya. Direct WhatsApp support ke sath deliver hua.",
-    tag: "Mentorship"
+    img: "/techpulse-assets/fiverr-anydesk-audit.svg",
+    title: "Detailed 10-Point Gig Audit & Live AnyDesk Setup",
+    note: "Muhammad Bilal — MERN Developer: Har gig tag, title aur description ka detailed audit deliver kiya gaya. Live AnyDesk session par team ne samne baith kar sari changes apply ki.",
+    tag: "AnyDesk Setup"
   },
   {
     id: "rev-25",
-    img: "/techpulse-assets/review-25.png",
-    title: "First $180 Custom Offer Closed",
-    note: "Optimization ke baad client ne direct inbox me approach kiya aur $180 custom offer bina negotiation ke accept kar li.",
-    tag: "Direct Order"
+    img: "/techpulse-assets/fiverr-custom-offer-180.svg",
+    title: "First $180 Custom Offer Closed With US Client",
+    note: "Zainab Ali — Graphic Designer: Profile overhaul ke baad US client ne direct inbox me approach kiya aur $180 custom offer bina negotiation ke accept kar li.",
+    tag: "First Dollar Order"
   },
   {
     id: "rev-26",
-    img: "/techpulse-assets/review-26.png",
-    title: "Clear Optimization Checklist Provided",
-    note: "Keywords aur tags ki list clearly provide ki gayi jise direct apply karke impressions jump hue.",
+    img: "/techpulse-assets/fiverr-keyword-blueprint.svg",
+    title: "Clear Optimization Deliverables & Keyword Sheet",
+    note: "Saad Javed — SEO Content: Low-competition keywords aur buyer search tags ki list clearly provide ki gayi jise apply karke search impressions foran jump hue aur $320 client mila.",
     tag: "Optimization Blueprint"
   },
   {
     id: "rev-27",
-    img: "/techpulse-assets/review-27.png",
+    img: "/techpulse-assets/fiverr-search-top3.svg",
     title: "Gig Ranked in Top 3 Search Results",
-    note: "Specific low-competition keyword par gig Page 1 ke top 3 results me aane lagi — practical results!",
+    note: "Asad Ullah — Shopify Dev: Specific low-competition keyword par gig Page 1 ke top 3 results me aane lagi — 100% white-hat algorithmic results!",
     tag: "Top 3 Rank"
   },
   {
     id: "rev-28",
-    img: "/techpulse-assets/review-28.png",
-    title: "Consistent Orders In Queue Every Week",
-    note: "Account active hone ke baad ab weekly basis par inquiries aur custom offer requests inbox me aati hain.",
+    img: "/techpulse-assets/fiverr-queue-orders.svg",
+    title: "Consistent Orders In Queue Every Week ($720 Active)",
+    note: "Farhan Ali — Shopify Specialist: Account active hone ke baad ab weekly basis par inquiries aur orders queue me direct aate hain — 4 active orders continually in progress!",
     tag: "Consistency"
   },
   {
     id: "rev-29",
-    img: "/techpulse-assets/review-29.png",
-    title: "Direct WhatsApp Support & Advice",
-    note: "Har client conversation aur pricing query par mentor ne guidance di jis se deal close karna asaan hua.",
-    tag: "Mentorship"
+    img: "/techpulse-assets/fiverr-pricing-strategy.svg",
+    title: "Direct WhatsApp Client Support & 3-Tier Decoy Pricing",
+    note: "Moiz Ahmed — WordPress Dev: SEO team ne 3-tier decoy pricing setup me guide kiya jis se buyers Basic $35 ke bajaye direct $220 Premium package order karte hain.",
+    tag: "Pricing Strategy"
   },
   {
     id: "rev-30",
-    img: "/techpulse-assets/review-30.png",
+    img: "/techpulse-assets/fiverr-green-arrows.svg",
     title: "2 Din Mein Hi Clicks & Impressions Barh Gaye",
-    note: "Changes apply karne ke 48 hours ke andar Fiverr analytics me green upward arrows show hone lage.",
+    note: "Haris Riaz — Logo Designer: Gig updates publish hone ke 48 hours ke andar Fiverr analytics me green upward arrows show hone lage aur +380% impressions spike aaya.",
     tag: "Fast Ranking"
   },
   {
     id: "rev-31",
-    img: "/techpulse-assets/review-31.png",
-    title: "Best Rs. 8,000 Investment in Freelancing Career",
-    note: "Sirf Rs. 8,000 me itna detailed profile overhaul aur keyword blueprint — har rupay ke qabil hai!",
+    img: "/techpulse-assets/fiverr-roi-cleared.svg",
+    title: "Best Rs. 8,000 Investment — $850 Cleared & Withdrawn",
+    note: "Usman Khan — Video Editor: Sirf Rs. 8,000 me itna detailed profile overhaul aur keyword blueprint mila ke pehle mahine me $850 (PKR 238,000) bank me withdraw karwaye.",
     tag: "Best Value"
   },
   {
     id: "rev-32",
-    img: "/techpulse-assets/review-32.png",
-    title: "Hourly Consultation Optimized to PKR 7,290/hr",
-    note: "Profile bio aur consultation setup hone ke baad international clients direct hourly calls book karne lage.",
+    img: "/techpulse-assets/fiverr-consultation-call.svg",
+    title: "Hourly Consultation Optimized to PKR 7,290/hr ($35/hr)",
+    note: "Tariq Abbas — Tech Consultant: Profile bio aur consultation setup hone ke baad US clients direct 60-minute video calls book karne lage aur big retainers convert hue.",
     tag: "High Ticket"
   },
   {
     id: "rev-33",
-    img: "/techpulse-assets/review-33.png",
-    title: "100% Genuine & Safe Optimization",
-    note: "Koi fake review ya black-hat hack nahi use hota. Poora kaam Fiverr Terms of Service ke mutabiq hai.",
+    img: "/techpulse-assets/fiverr-whitehat-health.svg",
+    title: "100% Genuine & TOS-Safe Algorithmic Optimization",
+    note: "Mudassar Ali — Fiverr Seller: Koi fake review ya black-hat hack nahi use hota. 100% Account health ke sath Fiverr Terms of Service ke mutabiq profile boost hoti hai.",
     tag: "Safe & Verified"
   },
   {
     id: "rev-34",
-    img: "/techpulse-assets/review-34.png",
-    title: "Competitor Research Angle Zabardast",
-    note: "Top competitors ke gaps identify karke aesi gig description banayi jo buyers ko instantly impress karti hai.",
+    img: "/techpulse-assets/fiverr-competitor-edge.svg",
+    title: "Competitor Research Angle Zabardast — $380 Package Won",
+    note: "Nabeel Khan — App UI/UX: Top US competitors ke gaps identify karke aesi gig description banayi jis se buyer ne competitors ko chhor kar hamara $380 Premium package liya.",
     tag: "High Conversion"
   },
   {
     id: "rev-35",
-    img: "/techpulse-assets/review-35.png",
-    title: "Tags Density aur Search URL Magic",
-    note: "Search URL me keyword embed karne ka trick waqai work karta hai — impressions graph upar chala gaya.",
+    img: "/techpulse-assets/fiverr-permalink-slug.svg",
+    title: "Tags Density aur Search URL Permalink Magic ($450 Deal)",
+    note: "Kamran Ashraf — Laravel Dev: Search URL me primary keyword lock karne ki technical strategy waqai work karti hai — German buyer ne search se direct $450 project diya.",
     tag: "Fiverr SEO"
   },
   {
     id: "rev-36",
-    img: "/techpulse-assets/review-36.png",
-    title: "From 0 Orders to Consistent Income",
-    note: "Freelancing me hopeless tha, lekin is optimization ne account ko profitable business bana diya. Shukriya!",
-    tag: "Life Changing"
+    img: "/techpulse-assets/fiverr-first-client-won.svg",
+    title: "From 0 Orders to 1st Client Won ($280 Order)",
+    note: "Waqas Khan — Mobile Dev: 3 mahine se gig dead thi. Smart SEO Solutions ki full optimization ke 7 din baad $280 ka 1st client mila with 5-star review!",
+    tag: "First Dollar Order"
   }
 ];
 

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 680" width="420" height="680">
+  <defs>
+    <filter id="sh-desk" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0c1317"/>
+  <rect width="100%" height="100%" fill="#111b21" opacity="0.95"/>
+
+  <!-- Top Header -->
+  <rect width="100%" height="70" fill="#202c33"/>
+  <path d="M22 38 L34 26 M22 38 L34 50" stroke="#aebac1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="42" y="44" fill="#aebac1" font-size="16" font-family="sans-serif" font-weight="600">11</text>
+
+  <circle cx="95" cy="38" r="18" fill="#10b981"/>
+  <text x="95" y="44" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold" text-anchor="middle">MB</text>
+
+  <text x="124" y="36" fill="#e9edef" font-size="15" font-family="sans-serif" font-weight="bold">Muhammad Bilal (MERN Dev)</text>
+  <text x="124" y="52" fill="#8696a0" font-size="12" font-family="sans-serif">online</text>
+
+  <!-- Attached Screenshot Card: Live AnyDesk Screen-Share & 10-Point Audit -->
+  <rect x="24" y="90" width="372" height="470" rx="14" fill="#1e293b" stroke="#334155" stroke-width="1.2" filter="url(#sh-desk)"/>
+
+  <!-- Header -->
+  <rect x="24" y="90" width="372" height="44" rx="14" fill="#0f172a"/>
+  <!-- AnyDesk icon circle -->
+  <circle cx="48" cy="112" r="11" fill="#ef4444"/>
+  <text x="48" y="116" fill="#ffffff" font-size="9" font-family="sans-serif" font-weight="900" text-anchor="middle">AD</text>
+  <text x="68" y="116" fill="#e2e8f0" font-size="13" font-family="sans-serif" font-weight="bold">AnyDesk Live Gig Optimization Session</text>
+
+  <!-- Status Bar -->
+  <rect x="38" y="146" width="344" height="40" rx="6" fill="#0f172a" stroke="#334155"/>
+  <circle cx="54" cy="166" r="4" fill="#22c55e"/>
+  <text x="66" y="170" fill="#22c55e" font-size="11" font-family="sans-serif" font-weight="bold">Live Connected</text>
+  <text x="170" y="170" fill="#94a3b8" font-size="11" font-family="sans-serif">Session: Smart SEO Agency Specialist</text>
+
+  <!-- 10-Point Checklist Card -->
+  <rect x="38" y="196" width="344" height="255" rx="8" fill="#0f172a" stroke="#1e293b"/>
+  <text x="50" y="218" fill="#f8fafc" font-size="11.5" font-family="sans-serif" font-weight="bold">10-Point Optimization Deliverables Applied Live:</text>
+
+  <text x="50" y="240" fill="#4ade80" font-size="11" font-family="sans-serif">✓ 01. Profile Authority Bio &amp; Positioning Locked</text>
+  <text x="50" y="260" fill="#4ade80" font-size="11" font-family="sans-serif">✓ 02. Low-Competition Buyer Search Tags Injected (5/5)</text>
+  <text x="50" y="280" fill="#4ade80" font-size="11" font-family="sans-serif">✓ 03. Permalink Primary Keyword URL Protected</text>
+  <text x="50" y="300" fill="#4ade80" font-size="11" font-family="sans-serif">✓ 04. 1,200-Char High-Converting AIDA Gig Description</text>
+  <text x="50" y="320" fill="#4ade80" font-size="11" font-family="sans-serif">✓ 05. 3-Tier Decoy Pricing Packages Configured</text>
+  <text x="50" y="340" fill="#4ade80" font-size="11" font-family="sans-serif">✓ 06. 10 Objection-Busting Buyer FAQs Injected</text>
+  <text x="50" y="360" fill="#4ade80" font-size="11" font-family="sans-serif">✓ 07. High-CTR Clean Thumbnail Hierarchy Setup</text>
+  <text x="50" y="380" fill="#4ade80" font-size="11" font-family="sans-serif">✓ 08. Custom Intake Requirements Questions Saved</text>
+  <text x="50" y="400" fill="#4ade80" font-size="11" font-family="sans-serif">✓ 09. Hourly Consultation Setup ($35/hr activated)</text>
+  <text x="50" y="420" fill="#4ade80" font-size="11" font-family="sans-serif">✓ 10. Algorithm Re-Indexing Verification: PASSED</text>
+
+  <!-- Client Verification Badge -->
+  <rect x="38" y="462" width="344" height="85" rx="8" fill="#14532d" stroke="#22c55e"/>
+  <text x="50" y="484" fill="#bbf7d0" font-size="11" font-family="sans-serif" font-weight="bold">CLIENT VERIFICATION SIGN-OFF:</text>
+  <text x="50" y="502" fill="#dcfce7" font-size="11" font-family="sans-serif">"All changes applied 100% transparently on my own laptop.</text>
+  <text x="50" y="520" fill="#dcfce7" font-size="11" font-family="sans-serif">No passwords shared. Zero safety risk. Best service!"</text>
+  <text x="50" y="538" fill="#86efac" font-size="10" font-family="sans-serif font-weight-bold">Fiverr Account Status: 100% Verified Safe &amp; Active</text>
+
+  <!-- WhatsApp Speech Bubble from Bilal -->
+  <rect x="24" y="575" width="372" height="75" rx="10" fill="#202c33"/>
+  <path d="M24 582 L16 576 L24 590 Z" fill="#202c33"/>
+  <text x="40" y="598" fill="#e9edef" font-size="12" font-family="sans-serif" font-weight="600">
+    "Team ne AnyDesk par samne baith kar ek ek point optimize
+  </text>
+  <text x="40" y="616" fill="#e9edef" font-size="12" font-family="sans-serif">
+    karwaya. Itni transparency aur real algorithmic depth pehle
+  </text>
+  <text x="40" y="634" fill="#10b981" font-size="11" font-family="sans-serif" font-weight="bold">
+    kisi agency me nahi dekhi. Zabardast support bhai!"
+  </text>
+  <text x="385" y="642" fill="#8696a0" font-size="9" font-family="sans-serif" text-anchor="end">8:30 PM ✓✓</text>
+</svg>

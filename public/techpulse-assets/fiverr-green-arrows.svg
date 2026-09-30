@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 680" width="420" height="680">
+  <defs>
+    <filter id="sh-arrows" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0c1317"/>
+  <rect width="100%" height="100%" fill="#111b21" opacity="0.95"/>
+
+  <!-- Top Header -->
+  <rect width="100%" height="70" fill="#202c33"/>
+  <path d="M22 38 L34 26 M22 38 L34 50" stroke="#aebac1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="42" y="44" fill="#aebac1" font-size="16" font-family="sans-serif" font-weight="600">3</text>
+
+  <circle cx="95" cy="38" r="18" fill="#14b8a6"/>
+  <text x="95" y="44" fill="#0f172a" font-size="13" font-family="sans-serif" font-weight="bold" text-anchor="middle">HR</text>
+
+  <text x="124" y="36" fill="#e9edef" font-size="15" font-family="sans-serif" font-weight="bold">Haris Riaz (Logo Designer)</text>
+  <text x="124" y="52" fill="#8696a0" font-size="12" font-family="sans-serif">online</text>
+
+  <!-- Attached Screenshot Card: 48H Green Arrows Analytics Spike -->
+  <rect x="24" y="90" width="372" height="470" rx="14" fill="#182229" stroke="#2a3942" stroke-width="1.2" filter="url(#sh-arrows)"/>
+
+  <!-- Header -->
+  <rect x="24" y="90" width="372" height="44" rx="14" fill="#202c33"/>
+  <circle cx="48" cy="112" r="11" fill="#1dbf73"/>
+  <text x="48" y="116" fill="#ffffff" font-size="11" font-family="sans-serif" font-weight="900" text-anchor="middle">fi</text>
+  <text x="68" y="116" fill="#e9edef" font-size="13" font-family="sans-serif" font-weight="bold">Fiverr 48-Hour Live Gig Analytics</text>
+
+  <!-- Fast Re-indexing Notice -->
+  <rect x="38" y="146" width="344" height="46" rx="8" fill="#111b21"/>
+  <text x="50" y="165" fill="#2dd4bf" font-size="10" font-family="sans-serif" font-weight="bold">48 HOURS POST-OPTIMIZATION RESULTS:</text>
+  <text x="50" y="182" fill="#e2e8f0" font-size="11" font-family="sans-serif">Re-indexing completed. Search bots crawled all 5 tags.</text>
+
+  <!-- Green Arrow Stat Boxes -->
+  <rect x="38" y="202" width="166" height="105" rx="8" fill="#202c33" stroke="#22c55e"/>
+  <text x="50" y="224" fill="#94a3b8" font-size="11" font-family="sans-serif">SEARCH IMPRESSIONS</text>
+  <text x="50" y="258" fill="#ffffff" font-size="24" font-family="sans-serif" font-weight="900">8,940</text>
+  <text x="50" y="286" fill="#22c55e" font-size="13" font-family="sans-serif" font-weight="bold">▲ +380% Increase</text>
+
+  <rect x="216" y="202" width="166" height="105" rx="8" fill="#202c33" stroke="#22c55e"/>
+  <text x="228" y="224" fill="#94a3b8" font-size="11" font-family="sans-serif">PROFILE CLICKS</text>
+  <text x="228" y="258" fill="#ffffff" font-size="24" font-family="sans-serif" font-weight="900">312</text>
+  <text x="228" y="286" fill="#22c55e" font-size="13" font-family="sans-serif" font-weight="bold">▲ +210% Increase</text>
+
+  <!-- Algorithm Signal Metrics -->
+  <rect x="38" y="318" width="344" height="120" rx="8" fill="#111b21" stroke="#2a3942"/>
+  <text x="50" y="340" fill="#f8fafc" font-size="11.5" font-family="sans-serif" font-weight="bold">ALGORITHM RE-INDEXING HEALTH REPORT:</text>
+  <text x="50" y="362" fill="#4ade80" font-size="11" font-family="sans-serif">✓ Keyword Relevance Match: 98% (High)</text>
+  <text x="50" y="382" fill="#4ade80" font-size="11" font-family="sans-serif">✓ Search Impressions Trend: Exponential Upward Spike</text>
+  <text x="50" y="402" fill="#4ade80" font-size="11" font-family="sans-serif">✓ Click-Through Rate (CTR): 3.5% (Top 10% in Category)</text>
+  <text x="50" y="422" fill="#38bdf8" font-size="11" font-family="sans-serif">✓ 1st US Client Inquiry: Received at 36 Hours Mark</text>
+
+  <!-- Agency Note -->
+  <rect x="38" y="448" width="344" height="92" rx="8" fill="#202c33"/>
+  <text x="50" y="472" fill="#2dd4bf" font-size="11.5" font-family="sans-serif" font-weight="bold">NO DE-RANKING OR SEARCH GHOSTING:</text>
+  <text x="50" y="490" fill="#e2e8f0" font-size="11" font-family="sans-serif">Proves that editing gig with correct algorithmic rules NEVER</text>
+  <text x="50" y="508" fill="#e2e8f0" font-size="11" font-family="sans-serif">de-ranks your gig. It instantly triggers search crawl boosts!</text>
+  <text x="50" y="528" fill="#86efac" font-size="10" font-family="sans-serif font-weight-bold">Smart SEO Solutions 100% White-Hat Guarantee</text>
+
+  <!-- WhatsApp Speech Bubble from Haris -->
+  <rect x="24" y="575" width="372" height="75" rx="10" fill="#202c33"/>
+  <path d="M24 582 L16 576 L24 590 Z" fill="#202c33"/>
+  <text x="40" y="598" fill="#e9edef" font-size="12" font-family="sans-serif" font-weight="600">
+    "Sir sirf 2 din hue hain optimization lagaye ko aur analytics me
+  </text>
+  <text x="40" y="616" fill="#e9edef" font-size="12" font-family="sans-serif">
+    sab green arrows show hona shuru ho gaye hain! Pehla buyer
+  </text>
+  <text x="40" y="634" fill="#2dd4bf" font-size="11" font-family="sans-serif" font-weight="bold">
+    message bhi aa gaya. Kamal ki speed hai aapki team ki!"
+  </text>
+  <text x="385" y="642" fill="#8696a0" font-size="9" font-family="sans-serif" text-anchor="end">10:14 AM ✓✓</text>
+</svg>

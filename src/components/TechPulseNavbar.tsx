@@ -47,7 +47,7 @@ export function TechPulseNavbar({ onNavigate, currentPage }: NavbarProps) {
               Smart SEO Solutions
             </div>
             <div className="text-[11px] font-medium text-[#535f6f] hidden xs:block">
-              Pakistan's #1 Fiverr Ranking System
+              Get 1st Client — Full Fiverr Optimization
             </div>
           </div>
         </button>
@@ -56,10 +56,17 @@ export function TechPulseNavbar({ onNavigate, currentPage }: NavbarProps) {
         <nav className="hidden md:flex items-center gap-7 text-sm font-semibold text-[#535f6f]">
           <button
             type="button"
-            onClick={() => handleNavClick('modules')}
+            onClick={() => handleNavClick('proofs')}
             className="transition-colors hover:text-[#2b62ef]"
           >
-            10 Services
+            Real Results
+          </button>
+          <button
+            type="button"
+            onClick={() => handleNavClick('services')}
+            className="transition-colors hover:text-[#2b62ef]"
+          >
+            10 Deliverables
           </button>
           <button
             type="button"
@@ -70,19 +77,10 @@ export function TechPulseNavbar({ onNavigate, currentPage }: NavbarProps) {
           </button>
           <button
             type="button"
-            onClick={() => handleNavClick('proofs')}
+            onClick={() => handleNavClick('pricing')}
             className="transition-colors hover:text-[#2b62ef]"
           >
-            Rankings & Earnings
-          </button>
-          <button
-            type="button"
-            onClick={() => onNavigate('training')}
-            className={`transition-colors hover:text-[#2b62ef] ${
-              currentPage === 'training' ? 'text-[#2b62ef]' : ''
-            }`}
-          >
-            Service Scope
+            Pricing (Rs. 8,000)
           </button>
           <button
             type="button"
@@ -94,14 +92,15 @@ export function TechPulseNavbar({ onNavigate, currentPage }: NavbarProps) {
         </nav>
 
         {/* CTA */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <button
             type="button"
             onClick={() => onNavigate('enroll')}
-            className="gradient-brand inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-xs sm:text-sm font-bold text-white shadow-glow transition-all hover:scale-[1.03] active:scale-95"
+            className="gradient-brand inline-flex items-center gap-1.5 sm:gap-2 rounded-full px-3.5 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-bold text-white shadow-glow transition-all hover:scale-[1.03] active:scale-95 cursor-pointer"
           >
-            <span>Book Optimization — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
-            <ArrowRight className="h-4 w-4" />
+            <span className="hidden sm:inline">Book Optimization — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
+            <span className="sm:hidden">Book — Rs. 8k</span>
+            <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
           </button>
 
           {/* Mobile hamburger */}
@@ -122,34 +121,31 @@ export function TechPulseNavbar({ onNavigate, currentPage }: NavbarProps) {
           <div className="flex flex-col gap-3 font-semibold text-sm text-[#0c172f]">
             <button
               type="button"
-              onClick={() => handleNavClick('modules')}
+              onClick={() => handleNavClick('proofs')}
               className="rounded-lg px-3 py-2 text-left hover:bg-[#ecf3f8]"
             >
-              10-Point Optimization Services
+              Real Verified Results
+            </button>
+            <button
+              type="button"
+              onClick={() => handleNavClick('services')}
+              className="rounded-lg px-3 py-2 text-left hover:bg-[#ecf3f8]"
+            >
+              10-Point Optimization Deliverables
             </button>
             <button
               type="button"
               onClick={() => handleNavClick('reviews')}
               className="rounded-lg px-3 py-2 text-left hover:bg-[#ecf3f8]"
             >
-              Seller Reviews (19 Proofs)
+              Seller Reviews & Proofs
             </button>
             <button
               type="button"
-              onClick={() => handleNavClick('proofs')}
+              onClick={() => handleNavClick('pricing')}
               className="rounded-lg px-3 py-2 text-left hover:bg-[#ecf3f8]"
             >
-              Rankings & Earnings Proofs
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onNavigate('training');
-              }}
-              className="rounded-lg px-3 py-2 text-left hover:bg-[#ecf3f8]"
-            >
-              Full Service Scope & Details
+              Pricing & Bank Details (Rs. 8,000)
             </button>
             <button
               type="button"
