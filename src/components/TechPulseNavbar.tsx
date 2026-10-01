@@ -56,24 +56,17 @@ export function TechPulseNavbar({ onNavigate, currentPage }: NavbarProps) {
         <nav className="hidden md:flex items-center gap-7 text-sm font-semibold text-[#535f6f]">
           <button
             type="button"
-            onClick={() => handleNavClick('proofs')}
+            onClick={() => handleNavClick('trust')}
             className="transition-colors hover:text-[#2b62ef]"
           >
-            Real Results
-          </button>
-          <button
-            type="button"
-            onClick={() => handleNavClick('services')}
-            className="transition-colors hover:text-[#2b62ef]"
-          >
-            10 Deliverables
+            Guarantee &amp; Safety
           </button>
           <button
             type="button"
             onClick={() => handleNavClick('reviews')}
             className="transition-colors hover:text-[#2b62ef]"
           >
-            Seller Proofs
+            Seller Proofs &amp; Reviews
           </button>
           <button
             type="button"
@@ -121,31 +114,24 @@ export function TechPulseNavbar({ onNavigate, currentPage }: NavbarProps) {
           <div className="flex flex-col gap-3 font-semibold text-sm text-[#0c172f]">
             <button
               type="button"
-              onClick={() => handleNavClick('proofs')}
+              onClick={() => handleNavClick('trust')}
               className="rounded-lg px-3 py-2 text-left hover:bg-[#ecf3f8]"
             >
-              Real Verified Results
-            </button>
-            <button
-              type="button"
-              onClick={() => handleNavClick('services')}
-              className="rounded-lg px-3 py-2 text-left hover:bg-[#ecf3f8]"
-            >
-              10-Point Optimization Deliverables
+              Guarantee &amp; Safety
             </button>
             <button
               type="button"
               onClick={() => handleNavClick('reviews')}
               className="rounded-lg px-3 py-2 text-left hover:bg-[#ecf3f8]"
             >
-              Seller Reviews & Proofs
+              Seller Reviews &amp; Proofs
             </button>
             <button
               type="button"
               onClick={() => handleNavClick('pricing')}
               className="rounded-lg px-3 py-2 text-left hover:bg-[#ecf3f8]"
             >
-              Pricing & Bank Details (Rs. 8,000)
+              Pricing &amp; Bank Details (Rs. 8,000)
             </button>
             <button
               type="button"

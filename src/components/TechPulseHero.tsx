@@ -17,6 +17,7 @@ const FALLBACK_TOP_RATED_IMAGE = '/techpulse-assets/fiverr-top-rated-seller.svg'
 
 interface HeroProps {
   onEnroll: () => void;
+  onSeeReviews?: () => void;
   onSeeModules?: () => void;
   onSeeDeliverables?: () => void;
   onOpenImage?: (src: string, alt: string) => void;
@@ -24,12 +25,13 @@ interface HeroProps {
 
 export function TechPulseHero({
   onEnroll,
+  onSeeReviews,
   onSeeModules,
   onSeeDeliverables,
   onOpenImage
 }: HeroProps) {
   const [currentImg, setCurrentImg] = useState<string>(PRIMARY_TOP_RATED_IMAGE);
-  const handleScroll = onSeeDeliverables || onSeeModules;
+  const handleScroll = onSeeReviews || onSeeDeliverables || onSeeModules;
   const percentFilled = Math.round(
     (TECHPULSE_CONFIG.slotsFilled / TECHPULSE_CONFIG.slotsTotal) * 100
   );
@@ -226,7 +228,7 @@ export function TechPulseHero({
               onClick={handleScroll}
               className="inline-flex items-center justify-center gap-2 rounded-full border border-[#dfe5ed] bg-white px-5 py-3 sm:px-7 sm:py-4 text-xs sm:text-base font-bold text-[#0c172f] shadow-xs transition-all hover:bg-[#ecf3f8] hover:border-[#2b62ef]/40 active:scale-95 w-full sm:w-auto cursor-pointer"
             >
-              View 10 Deliverables
+              See Client Proofs &amp; Reviews
             </button>
           )}
         </div>

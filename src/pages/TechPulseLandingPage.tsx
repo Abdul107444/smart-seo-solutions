@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { TechPulseNavbar } from '../components/TechPulseNavbar';
 import { TechPulseHero } from '../components/TechPulseHero';
 import { TrustIndicatorsSection } from '../components/TrustIndicatorsSection';
-import { SuccessProofSection } from '../components/SuccessProofSection';
-import { CurriculumSection } from '../components/CurriculumSection';
 import { ReviewsWallSection } from '../components/ReviewsWallSection';
 import { LaunchOfferBox } from '../components/LaunchOfferBox';
 import { FaqSection } from '../components/FaqSection';
@@ -39,8 +37,8 @@ export function TechPulseLandingPage({ onNavigate }: LandingPageProps) {
     setLightboxState((prev) => ({ ...prev, isOpen: false }));
   };
 
-  const scrollToDeliverables = () => {
-    const el = document.getElementById('services') || document.getElementById('modules');
+  const scrollToReviews = () => {
+    const el = document.getElementById('reviews');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
@@ -55,32 +53,25 @@ export function TechPulseLandingPage({ onNavigate }: LandingPageProps) {
       {/* Sticky Header Navbar */}
       <TechPulseNavbar onNavigate={onNavigate} currentPage="landing" />
 
-      {/* Main High-Impact Sections Only */}
+      {/* Main High-Impact Sections */}
       <main>
         {/* 1. Hero Section: Headline, Top Rated Seller Profile Showcase, Limited Time Slots counter */}
         <TechPulseHero
           onEnroll={handleEnroll}
-          onSeeDeliverables={scrollToDeliverables}
-          onSeeModules={scrollToDeliverables}
+          onSeeReviews={scrollToReviews}
           onOpenImage={handleOpenImage}
         />
 
         {/* 2. Trust Indicators: Secure Payment, 20-25 Days Money-Back Guarantee & 24/7 Support */}
         <TrustIndicatorsSection onEnroll={handleEnroll} />
 
-        {/* 3. Real Verified Results: Authentic Fiverr Buyer Chat, $450 Orders & Search Surge */}
-        <SuccessProofSection onOpenImage={handleOpenImage} />
-
-        {/* 3. 10-Point Done-For-You Deliverables Scope */}
-        <CurriculumSection onEnroll={handleEnroll} />
-
-        {/* 4. Real Fiverr Seller Reviews & Proof Screenshots */}
+        {/* 3. Real Fiverr Seller Reviews & Proof Screenshots */}
         <ReviewsWallSection onEnroll={handleEnroll} onOpenImage={handleOpenImage} />
 
-        {/* 5. Pricing Box (Rs. 8,000) with Urgency Slots Counter, Bank Details & 20-25 Days Guarantee */}
+        {/* 4. Pricing Box (Rs. 8,000) with Urgency Slots Counter, Bank Details & 20-25 Days Guarantee */}
         <LaunchOfferBox onEnroll={handleEnroll} />
 
-        {/* 6. Concise Fiverr Seller Knowledge Base FAQs */}
+        {/* 5. Concise Fiverr Seller Knowledge Base FAQs */}
         <FaqSection />
       </main>
 
