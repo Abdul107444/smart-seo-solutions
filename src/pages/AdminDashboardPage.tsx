@@ -318,7 +318,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
       cleanPhone = '92' + cleanPhone;
     }
 
-    const messageText = `👋 Assalam-o-Alaikum ${lead.fullName}!\n\nThis is Smart SEO Solutions regarding your Fiverr Profile & Gig Optimization intake (Rs. 8,000 DFY Package).\n\nWe received your details and payment verification (${lead.price || 'Rs. 8,000'}, TID: ${lead.transactionId || 'Verified'}).\n\nTarget Niche: *${lead.niche || 'Fiverr Profile'}*\n\nPlease share your Fiverr profile link and target gig URLs so our team can start your manual keyword audit!`;
+    const messageText = `👋 Hello ${lead.fullName}!\n\nThis is Smart SEO Solutions regarding your Fiverr Profile & Gig Optimization intake (Rs. 8,000 DFY Package).\n\nWe received your details and payment verification (${lead.price || 'Rs. 8,000'}, TID: ${lead.transactionId || 'Verified'}).\n\nTarget Niche: *${lead.niche || 'Fiverr Profile'}*\n\nPlease share your Fiverr profile link and target gig URLs so our team can start your manual keyword audit!`;
 
     const message = encodeURIComponent(messageText);
 

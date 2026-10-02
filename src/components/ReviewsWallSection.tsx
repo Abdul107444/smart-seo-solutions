@@ -22,9 +22,9 @@ const FEATURED_PROOFS = [
   {
     id: 'proof-01',
     img: '/techpulse-assets/fiverr-earnings-proof.svg',
-    title: 'Zero Impressions Se 42,800 Impressions & Level 2 Seller!',
+    title: 'From Zero Impressions to 42,800 Impressions & Level 2 Seller!',
     seller: 'Hamza Saeed (@saqibshahid08) — WordPress & Laravel Developer',
-    note: 'Pehle Fiverr par gig dead thi aur search clicks nahi aate the. Smart SEO Solutions se full optimization karwayi — 30 dino me +340% impressions surge hua aur direct international orders queue me aa gaye!',
+    note: 'My Fiverr gig had been completely dormant with zero search clicks. Smart SEO Solutions executed full profile and gig optimization — within 30 days, impressions surged by +340% and direct international orders started lining up in queue!',
     tag: 'Level 2 Seller',
     tagColor: 'bg-emerald-50 text-emerald-800 border-emerald-200',
     result: '$1,450+ Cleared Earnings & Level 2 Status'
@@ -32,9 +32,9 @@ const FEATURED_PROOFS = [
   {
     id: 'proof-02',
     img: '/techpulse-assets/fiverr-first-order.svg',
-    title: 'First International Customer — $250 Order Closed!',
-    seller: 'Bushra Bano — UI/UX Designer',
-    note: 'Alhamdulillah! Done-for-you gig optimize hone ke sirf 5 din baad UK se $250 ka first paying client mila — Rs. 8,000 optimization fee usi pehle order se foran recover ho gayi!',
+    title: 'First International Client — $250 Order Closed in 5 Days!',
+    seller: 'Bushra Bano — UI/UX & Mobile App Designer',
+    note: 'Just 5 days after having my profile and gig optimized, I secured my first paying client from the United Kingdom for $250. The Rs. 8,000 optimization fee was completely recovered from that very first order!',
     tag: 'First Client Won',
     tagColor: 'bg-blue-50 text-blue-800 border-blue-200',
     result: '$250 Order Closed in 5 Days'
@@ -42,9 +42,9 @@ const FEATURED_PROOFS = [
   {
     id: 'proof-03',
     img: '/techpulse-assets/fiverr-ranking-proof.svg',
-    title: 'Page 1 #4 Rank — Repeated International Clients Alhamdulillah!',
-    seller: 'Sikandar Usman (@sikandarusman1) — Video Editor',
-    note: 'Competitive niche me gig Page 1 #4 par rank hui. Clicks +210% barh gaye aur USA/Canada ke recurring monthly clients lock ho gaye. Real algorithmic ranking strategy!',
+    title: 'Page 1 #4 Rank — Consistent International Retainers!',
+    seller: 'Sikandar Usman (@sikandarusman1) — Cinematic Video Editor',
+    note: 'In a crowded niche, my gig ranked on Page 1, Spot #4. Search clicks climbed by +210%, and I locked in recurring monthly clients from the US and Canada. A truly legitimate algorithmic ranking strategy!',
     tag: 'Page 1 Ranking',
     tagColor: 'bg-purple-50 text-purple-800 border-purple-200',
     result: 'Page 1 #4 Rank & +210% Clicks'
@@ -53,9 +53,9 @@ const FEATURED_PROOFS = [
     id: 'proof-04',
     img: '/techpulse-assets/fiverr-clicks-surge.svg',
     title: 'Clicks Grew by +265% in 2 Weeks — 40+ Daily Buyer Clicks',
-    seller: 'Allah Bachaya — Voiceover Artist',
-    note: 'Gigs par roz ke sirf 1-2 clicks aate the, optimization ke baad daily 40+ genuine international buyer clicks aa rahe hain aur continuous inbox inquiries receive ho rahi hain.',
-    tag: 'Impressions Surge',
+    seller: 'Allah Bachaya — Professional Voiceover Artist',
+    note: 'My gigs used to get barely 1 to 2 clicks per day. Following optimization, I now receive over 40 genuine international buyer clicks daily along with continuous inbox inquiries from potential clients.',
+    tag: 'Traffic Surge',
     tagColor: 'bg-amber-50 text-amber-800 border-amber-200',
     result: '40+ Daily Buyer Clicks & +265% Surge'
   }

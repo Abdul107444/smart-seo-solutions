@@ -236,8 +236,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
     const goal = data?.improvementGoal || improvementGoal;
     const hasProof = data?.hasScreenshot || !!paymentScreenshot;
 
-    let msg = `👋 *Assalam-o-Alaikum Smart SEO Solutions!*\n\n`;
-    msg += `Maine Fiverr Optimization ke liye details submit ki hain:\n\n`;
+    let msg = `👋 *Hello Smart SEO Solutions!*\n\n`;
+    msg += `I have submitted my details for Fiverr Profile & Gig Optimization:\n\n`;
     msg += `👤 *Client Name:* ${name.trim()}\n`;
     msg += `📱 *WhatsApp:* ${phone.trim()}\n`;
     msg += `💼 *Service / Niche:* ${serviceNiche.trim()}\n`;
@@ -266,7 +266,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
       msg += `\n📝 *Goal:* ${goal.trim()}`;
     }
 
-    msg += `\n\nMaine payment & details verify karwane ke liye message kiya hai. Please next steps guide karein!`;
+    msg += `\n\nI have messaged to verify my payment and details. Please guide me through the next onboarding steps!`;
 
     const encoded = encodeURIComponent(msg);
     const targetNumber = '923060880466';

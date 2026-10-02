@@ -162,8 +162,8 @@ export function TechPulseEnrollPage({ onBack }: EnrollPageProps) {
   const getWhatsAppVerificationUrl = () => {
     const phone = TECHPULSE_CONFIG.whatsappEnrollNumber.replace(/[^0-9]/g, '');
     const accountName = senderAccountName.trim() || leadInfo.name || 'Client';
-    const text = `Assalam-o-Alaikum! Mene Rs. 8,000 Fiverr Profile & Gig Optimization ki payment bhej di hai, screenshot attach hai.
-Payment verification kar ke mere Fiverr account optimization ki onboarding start karein.
+    const text = `Hello! I have sent the Rs. 8,000 payment for Fiverr Profile & Gig Optimization, and attached the screenshot.
+Please verify my payment and begin onboarding for my Fiverr account optimization.
 Client Name: ${accountName}
 Email: ${leadInfo.email}`;
     return `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(text)}`;
@@ -512,7 +512,7 @@ Email: ${leadInfo.email}`;
 
               {/* Instructions */}
               <div className="rounded-xl border border-amber-200 bg-amber-50/70 p-3 text-xs leading-relaxed text-amber-900">
-                <span className="font-bold">Instructions:</span> Apni banking app (UBL, Meezan, Easypaisa, JazzCash ya kisi bhi bank) se Rs. {TECHPULSE_CONFIG.pricePKR} transfer karein aur successful payment ka screenshot save kar lein.
+                <span className="font-bold">Instructions:</span> Transfer Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()} via your banking app (Meezan Bank, UBL, Easypaisa, JazzCash, or any Pakistani bank) and save a screenshot of the successful transaction.
               </div>
 
               {/* Controls */}
@@ -674,7 +674,7 @@ Email: ${leadInfo.email}`;
               </h1>
 
               <p className="text-sm font-semibold text-[#0c172f] max-w-md mx-auto">
-                Shukriya <span className="text-[#2b62ef]">{leadInfo.name}</span>! Aapki payment proof submission receive ho chuki hai.
+                Thank you <span className="text-[#2b62ef]">{leadInfo.name}</span>! Your payment proof submission has been received.
               </p>
 
               <div className="rounded-2xl border border-emerald-200 bg-emerald-50/80 p-5 text-left text-xs sm:text-sm space-y-2">
@@ -683,9 +683,9 @@ Email: ${leadInfo.email}`;
                   What Happens Next:
                 </div>
                 <ul className="list-disc list-inside space-y-1 text-emerald-800 text-xs">
-                  <li>Hum aapki payment verify kar rahe hain.</li>
-                  <li>Aapke WhatsApp aur email <strong className="text-emerald-950 font-bold">{leadInfo.email}</strong> par onboarding message aur details confirmation bhaiji ja rahi hai.</li>
-                  <li>Direct audit onboarding ke liye neche diye gaye WhatsApp button par apna payment screenshot bhej dein.</li>
+                  <li>Our team is currently verifying your payment.</li>
+                  <li>An onboarding confirmation message and details are being sent to your WhatsApp and email: <strong className="text-emerald-950 font-bold">{leadInfo.email}</strong>.</li>
+                  <li>To begin your profile audit immediately, please tap the green WhatsApp button below to share your transaction receipt with our SEO specialist.</li>
                 </ul>
               </div>
 

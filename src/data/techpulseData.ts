@@ -81,7 +81,7 @@ export const TECHPULSE_CONFIG = {
     accountNumber: "PK20MEZN0000300114121316",
     iban: "PK20MEZN0000300114121316",
     feeAmount: 8000,
-    instructions: "Transfer Rs. 8,000 via Meezan Bank, Easypaisa, JazzCash, SadaPay, NayaPay ya kisi bhi Pakistani banking app."
+    instructions: "Transfer Rs. 8,000 via Meezan Bank, Easypaisa, JazzCash, SadaPay, NayaPay, or any Pakistani banking app."
   }
 };
 
@@ -91,9 +91,9 @@ export const DELIVERABLES: Deliverable[] = [
     number: "Service 01",
     title: "Deep Fiverr Profile & Bio Optimization",
     lessons: [
-      "Professional Profile Picture & Authority Bio Copywriting",
-      "Tagline & Description Framing: Task Doer Se Expert Consultant Positioning",
-      "Hourly Consultation Rate Setting (PKR 5,000–7,000+/hr) Jo High-End Buyers Attract Karta Hai"
+      "Professional Profile Photo & Authority Bio Copywriting",
+      "Tagline & Description Framing: Positioning from Task Worker to Authority Consultant",
+      "Strategic Hourly Consultation Rate (PKR 5,000–7,000+/hr) to Attract Premium High-End Buyers"
     ]
   },
   {
@@ -101,9 +101,9 @@ export const DELIVERABLES: Deliverable[] = [
     number: "Service 02",
     title: "High-Intent Buyer Keyword Research",
     lessons: [
-      "Low Competition + High Purchasing Intent Wale Tags Filter Out Karna",
-      "Competitor Analysis: Top-Ranking US/UK Gigs Ke Hidden Search Terms Extract Karna",
-      "Negative Keywords & Generic Buzzwords Ko Remove Karna Jo Impressions Zaya Karte Hain"
+      "Filtering Low Competition + High Purchasing Intent Search Tags",
+      "Competitor Intelligence: Extracting Hidden Keywords from Top-Ranking US/UK Gigs",
+      "Eliminating Negative Keywords & Generic Buzzwords That Drain Impressions"
     ]
   },
   {
@@ -111,9 +111,9 @@ export const DELIVERABLES: Deliverable[] = [
     number: "Service 03",
     title: "SEO-Friendly Gig Title & Permanent URL Setup",
     lessons: [
-      "Permanent Gig URL Permalinks Mein Primary Ranking Keyword Lock Karna",
-      "Clean, Keyword-Loaded Title Jo Algorithm Catch Kare Aur Human Buyer Click Kare",
-      "Search Snippet Optimization Jo Organic Search CTR Barhata Hai"
+      "Locking Primary High-Volume Keywords into Permanent Gig URL Permalinks",
+      "Clean, Keyword-Rich Titles Engineered for Search Algorithms and Human Clicks",
+      "Search Snippet Optimization to Maximize Organic Search CTR"
     ]
   },
   {
@@ -121,9 +121,9 @@ export const DELIVERABLES: Deliverable[] = [
     number: "Service 04",
     title: "5 Secret Search Tags & Keyword Placement",
     lessons: [
-      "5 Primary Search Tags Ki Exact Alignment Without Algorithmic Stuffing",
-      "Natural Keyword Distribution: Description Ki Top 3 Lines Mein Keyword Infiltration",
-      "Fiverr Algorithm 2026 Quality Score Rules Ke Mutabiq Tagging"
+      "Exact Alignment of 5 Primary Search Tags Without Algorithmic Stuffing",
+      "Natural Keyword Infiltration in the First 3 Lines of Gig Descriptions",
+      "Tagging Compliant with Fiverr Algorithm 2026 Quality Score Guidelines"
     ]
   },
   {
@@ -131,9 +131,9 @@ export const DELIVERABLES: Deliverable[] = [
     number: "Service 05",
     title: "High-Converting Gig Description (AIDA Copywriting)",
     lessons: [
-      "Attention Grabbing Hook: Buyer Ki Problem Ko First Line Mein Target Karna",
-      "Clear Scope, Bullet Deliverables, Aur Free Add-on Bonuses List Karna",
-      "Psychological Call-To-Action Jo Direct 'Contact Seller' Ya 'Order Now' Trigger Kare"
+      "Attention-Grabbing Hook: Directly Addressing Buyer Pain Points in Line 1",
+      "Clear Project Scope, Bulleted Deliverables, and Value-Add Bonus Inclusions",
+      "Psychological Call-To-Action Triggering Immediate Inquiries and Orders"
     ]
   },
   {
@@ -141,9 +141,9 @@ export const DELIVERABLES: Deliverable[] = [
     number: "Service 06",
     title: "3-Tier Decoy Pricing & Package Strategy",
     lessons: [
-      "Basic ($25–$50), Standard ($150–$250) Aur Premium ($400–$600+) Package Framing",
-      "Decoy Pricing Psychology: Buyers Ko Highest Margin Package Par Shift Karna",
-      "Gig Extras, Commercial Rights, Aur Fast Delivery Add-on Options Setup"
+      "Strategic Basic ($25–$50), Standard ($150–$250) & Premium ($400–$600+) Package Framing",
+      "Decoy Pricing Psychology: Guiding Inbound Buyers to Highest-Margin Tiers",
+      "Gig Extras, Commercial Rights, and Fast-Track Delivery Add-on Configuration"
     ]
   },
   {
@@ -151,9 +151,9 @@ export const DELIVERABLES: Deliverable[] = [
     number: "Service 07",
     title: "FAQ Optimization with Embedded Search Terms",
     lessons: [
-      "Top 6 Buyer Objections (Revisions, Timelines, Files) Ko Resolve Karna",
-      "FAQs Ke Answers Mein LSI Keywords Naturally Embed Karna Jo Search Visibility Double Kare",
-      "Pre-order Requirements Ko Crystal Clear Banana Taake Dispute Ka Chance 0 Ho"
+      "Preemptively Resolving Top 6 Buyer Objections (Revisions, Timelines, Source Files)",
+      "Naturally Embedding LSI Keywords in FAQ Answers to Double Search Visibility",
+      "Crystal-Clear Pre-Order Requirements to Eliminate Misunderstandings and Cancellations"
     ]
   },
   {
@@ -161,9 +161,9 @@ export const DELIVERABLES: Deliverable[] = [
     number: "Service 08",
     title: "CTR Exploding Thumbnail Strategy & Visual Hierarchy",
     lessons: [
-      "Fiverr Mobile App & Desktop Viewports Ke Mutabiq High-Contrast Thumbnail Design Guide",
-      "Real Proof Badges, Before/After Showcase, Aur Legible Bold Typography",
-      "PDF Portfolio Documents Embed Karna Jo Gig Gallery Ko Expand Karta Hai"
+      "High-Contrast Thumbnail Visual Architecture for Mobile App & Desktop Viewports",
+      "Authentic Proof Badges, Before/After Showcases, and High-Readability Typography",
+      "Embedding PDF Portfolio Documents to Expand Gig Gallery Engagement"
     ]
   },
   {
@@ -171,9 +171,9 @@ export const DELIVERABLES: Deliverable[] = [
     number: "Service 09",
     title: "Algorithmic Momentum & First 3 Orders Push",
     lessons: [
-      "Gig Publish/Update Hone Ke Baad Initial Algorithmic Kickstart",
-      "Inbox Response Cadence Aur Conversion Velocity Maintain Rakhna",
-      "5-Star Private Reviews & Success Score Safety Protocols"
+      "Initial Algorithmic Kickstart Protocols Post Gig Launch or Update",
+      "Maintaining Inbox Response Cadence and Rapid Conversion Velocity",
+      "5-Star Private Review Strategy & Success Score Account Safety Protocols"
     ]
   },
   {
@@ -181,9 +181,9 @@ export const DELIVERABLES: Deliverable[] = [
     number: "Service 10",
     title: "Monthly Retainer Conversion & Dollar Payouts",
     lessons: [
-      "One-Time Project Buyer Ko $500–$2,000 Monthly Retainer Client Banana",
-      "Level 1 Aur Level 2 Badges Ka Fast-Track Criteria Fulfill Karna",
-      "Payoneer to Pakistani Local Banks (Meezan/Easypaisa) Zero-Hassle Direct Withdrawal"
+      "Converting One-Time Project Buyers into $500–$2,000 Recurring Monthly Retainers",
+      "Fulfilling Fast-Track Eligibility Criteria for Level 1 and Level 2 Seller Badges",
+      "Direct Zero-Hassle USD Withdrawals from Payoneer to Pakistani Local Banks (Meezan/Easypaisa)"
     ]
   }
 ];
@@ -204,157 +204,157 @@ export const REVIEWS: ReviewItem[] = [
   {
     id: "rev-48",
     img: "/techpulse-assets/fiverr-earnings-proof.svg",
-    title: "Zero Impressions Se 42,800 Impressions & Level 2 Seller!",
-    note: "Hamza Saeed (@saqibshahid08) — WordPress & Laravel Developer: Pehle Fiverr par gig dead pari thi, search clicks nahi aate the. Smart SEO Solutions se done-for-you optimization service li — 30 dino me +340% impressions surge hua aur $350, $600 ke direct international orders queue me aa gaye!",
+    title: "From Zero Impressions to 42,800 Impressions & Level 2 Seller!",
+    note: "Hamza Saeed (@saqibshahid08) — WordPress & Laravel Developer: My Fiverr gig was completely dormant with zero search clicks. I booked the done-for-you optimization service from Smart SEO Solutions — within 30 days, impressions surged by +340% and direct $350 and $600 international orders lined up in queue!",
     tag: "Level 2 Seller"
   },
   {
     id: "rev-47",
     img: "/techpulse-assets/fiverr-ranking-proof.svg",
-    title: "Page 1 #4 Rank — Repeated International Client Alhamdulillah!",
-    note: "Sikandar Usman (@sikandarusman1) — Cinematic Video Editor: Crowded video editing niche me gig Page 1 #4 par rank hui. Clicks +210% barh gaye aur USA/Canada ke recurring monthly clients lock ho gaye!",
+    title: "Page 1 #4 Rank — Recurring International Retainers!",
+    note: "Sikandar Usman (@sikandarusman1) — Cinematic Video Editor: In a crowded video editing niche, my gig ranked on Page 1, Spot #4. Search clicks grew by +210%, and I secured recurring monthly clients from the US and Canada!",
     tag: "Page 1 Rank"
   },
   {
     id: "rev-46",
     img: "/techpulse-assets/fiverr-first-order.svg",
     title: "First Order from International Customer — $250 Order!",
-    note: "Bushra Bano — UI/UX Designer: Alhamdulillah! Done-for-you profile & gig optimize hone ke sirf 5 din baad UK se $250 ka first client mila — Rs. 8,000 optimization fee usi pehle order se recover ho gayi!",
+    note: "Bushra Bano — UI/UX Designer: Just 5 days after having my profile & gig optimized, I won my first client from the UK for $250 — the Rs. 8,000 optimization fee was completely recovered from that very first order!",
     tag: "First Dollar Order"
   },
   {
     id: "rev-45",
     img: "/techpulse-assets/fiverr-seo-tags-proof.svg",
-    title: "Zabardast Fiverr Optimization Service & 5 Buyer Tags",
-    note: "Babar Zafar — Full Stack Dev: Keyword research aur 5 search tags ki exact alignment ne meri dead gig ko dobara active search me la diya. Smart SEO Solutions ki team ne zabardast delivery ki!",
+    title: "Outstanding Fiverr Optimization Service & 5 Buyer Tags",
+    note: "Babar Zafar — Full Stack Dev: In-depth keyword research and the exact alignment of 5 buyer search tags brought my dormant gig back into active search results. The Smart SEO Solutions team delivered exceptional work!",
     tag: "Fiverr SEO"
   },
   {
     id: "rev-44",
     img: "/techpulse-assets/fiverr-clicks-surge.svg",
     title: "Clicks Grew by +265% in 2 Weeks",
-    note: "Allah Bachaya — Voiceover Artist: Gigs par roz ke 2-3 clicks aate the, optimization ke baad daily 40+ genuine buyer clicks aa rahe hain aur continuous inbox messages receive ho rahe hain.",
+    note: "Allah Bachaya — Voiceover Artist: My gigs used to get 2-3 clicks per day. Following optimization, I receive 40+ genuine buyer clicks daily and continuous inbox inquiries from potential clients.",
     tag: "Traffic Surge"
   },
   {
     id: "rev-43",
     img: "/techpulse-assets/fiverr-buyer-chat.svg",
     title: "Professional Fiverr Positioning & $350 US Client Inbox",
-    note: "Jaffer Hussain — Content Specialist: Internet par bohot se fake claims hain, lekin yahan actual Fiverr 2026 algorithm aur buyer psychology par kaam hota hai. US buyer ne inbox me direct $350 offer di!",
+    note: "Jaffer Hussain — Content Specialist: There are many false claims online, but here they work on real 2026 Fiverr algorithm rules and buyer psychology. A US buyer reached out directly with a $350 project offer!",
     tag: "High-Ticket Client"
   },
   {
     id: "rev-42",
     img: "/techpulse-assets/fiverr-anydesk-audit.svg",
     title: "Detailed 10-Point Gig Audit & Live AnyDesk Setup",
-    note: "Muhammad Bilal — MERN Developer: Har gig tag, title aur description ka detailed audit deliver kiya gaya. Live AnyDesk session par team ne samne baith kar sari changes apply ki.",
+    note: "Muhammad Bilal — MERN Developer: A detailed audit was delivered for every gig tag, title, and description. During the live AnyDesk session, the specialist applied every change right in front of my eyes.",
     tag: "AnyDesk Setup"
   },
   {
     id: "rev-25",
     img: "/techpulse-assets/fiverr-custom-offer-180.svg",
     title: "First $180 Custom Offer Closed With US Client",
-    note: "Zainab Ali — Graphic Designer: Profile overhaul ke baad US client ne direct inbox me approach kiya aur $180 custom offer bina negotiation ke accept kar li.",
+    note: "Zainab Ali — Graphic Designer: After the profile overhaul, a US client approached me directly in inbox and accepted my $180 custom offer without any price negotiations.",
     tag: "First Dollar Order"
   },
   {
     id: "rev-26",
     img: "/techpulse-assets/fiverr-keyword-blueprint.svg",
     title: "Clear Optimization Deliverables & Keyword Sheet",
-    note: "Saad Javed — SEO Content: Low-competition keywords aur buyer search tags ki list clearly provide ki gayi jise apply karke search impressions foran jump hue aur $320 client mila.",
+    note: "Saad Javed — SEO Content: A clear spreadsheet of low-competition keywords and buyer tags was provided. Once applied, search impressions climbed immediately and I closed a $320 client.",
     tag: "Optimization Blueprint"
   },
   {
     id: "rev-27",
     img: "/techpulse-assets/fiverr-search-top3.svg",
     title: "Gig Ranked in Top 3 Search Results",
-    note: "Asad Ullah — Shopify Dev: Specific low-competition keyword par gig Page 1 ke top 3 results me aane lagi — 100% white-hat algorithmic results!",
+    note: "Asad Ullah — Shopify Dev: For my targeted low-competition search phrase, my gig started appearing in Page 1 top 3 results — 100% white-hat algorithmic results!",
     tag: "Top 3 Rank"
   },
   {
     id: "rev-28",
     img: "/techpulse-assets/fiverr-queue-orders.svg",
     title: "Consistent Orders In Queue Every Week ($720 Active)",
-    note: "Farhan Ali — Shopify Specialist: Account active hone ke baad ab weekly basis par inquiries aur orders queue me direct aate hain — 4 active orders continually in progress!",
+    note: "Farhan Ali — Shopify Specialist: Since the optimization went live, inquiries and orders come in weekly — I now maintain 4 active client orders in progress at all times!",
     tag: "Consistency"
   },
   {
     id: "rev-29",
     img: "/techpulse-assets/fiverr-pricing-strategy.svg",
     title: "Direct WhatsApp Client Support & 3-Tier Decoy Pricing",
-    note: "Moiz Ahmed — WordPress Dev: SEO team ne 3-tier decoy pricing setup me guide kiya jis se buyers Basic $35 ke bajaye direct $220 Premium package order karte hain.",
+    note: "Moiz Ahmed — WordPress Dev: The SEO team structured my 3-tier decoy pricing so buyers bypass the Basic $35 package and order the $220 Premium package directly.",
     tag: "Pricing Strategy"
   },
   {
     id: "rev-30",
     img: "/techpulse-assets/fiverr-green-arrows.svg",
-    title: "2 Din Mein Hi Clicks & Impressions Barh Gaye",
-    note: "Haris Riaz — Logo Designer: Gig updates publish hone ke 48 hours ke andar Fiverr analytics me green upward arrows show hone lage aur +380% impressions spike aaya.",
+    title: "Clicks & Impressions Surged Within 48 Hours",
+    note: "Haris Riaz — Logo Designer: Within 48 hours of publishing updates, Fiverr analytics showed green upward trend indicators with a +380% impressions spike.",
     tag: "Fast Ranking"
   },
   {
     id: "rev-31",
     img: "/techpulse-assets/fiverr-roi-cleared.svg",
     title: "Best Rs. 8,000 Investment — $850 Cleared & Withdrawn",
-    note: "Usman Khan — Video Editor: Sirf Rs. 8,000 me itna detailed profile overhaul aur keyword blueprint mila ke pehle mahine me $850 (PKR 238,000) bank me withdraw karwaye.",
+    note: "Usman Khan — Video Editor: For just Rs. 8,000, I received such a comprehensive profile overhaul and keyword blueprint that in my first month I withdrew $850 directly to my bank.",
     tag: "Best Value"
   },
   {
     id: "rev-32",
     img: "/techpulse-assets/fiverr-consultation-call.svg",
     title: "Hourly Consultation Optimized to PKR 7,290/hr ($35/hr)",
-    note: "Tariq Abbas — Tech Consultant: Profile bio aur consultation setup hone ke baad US clients direct 60-minute video calls book karne lage aur big retainers convert hue.",
+    note: "Tariq Abbas — Tech Consultant: After optimizing my profile bio and consultation pricing, US clients started booking 60-minute video sessions which converted into major retainers.",
     tag: "High Ticket"
   },
   {
     id: "rev-33",
     img: "/techpulse-assets/fiverr-whitehat-health.svg",
     title: "100% Genuine & TOS-Safe Algorithmic Optimization",
-    note: "Mudassar Ali — Fiverr Seller: Koi fake review ya black-hat hack nahi use hota. 100% Account health ke sath Fiverr Terms of Service ke mutabiq profile boost hoti hai.",
+    note: "Mudassar Ali — Fiverr Seller: No fake reviews or black-hat hacks are used. My account health is 100% protected and fully compliant with Fiverr Terms of Service.",
     tag: "Safe & Verified"
   },
   {
     id: "rev-34",
     img: "/techpulse-assets/fiverr-competitor-edge.svg",
-    title: "Competitor Research Angle Zabardast — $380 Package Won",
-    note: "Nabeel Khan — App UI/UX: Top US competitors ke gaps identify karke aesi gig description banayi jis se buyer ne competitors ko chhor kar hamara $380 Premium package liya.",
+    title: "Competitor Research Angle — $380 Package Won",
+    note: "Nabeel Khan — App UI/UX: By finding gaps in top US competitor listings, we built a description so compelling that a buyer skipped competitors to buy our $380 Premium package.",
     tag: "High Conversion"
   },
   {
     id: "rev-35",
     img: "/techpulse-assets/fiverr-permalink-slug.svg",
-    title: "Tags Density aur Search URL Permalink Magic ($450 Deal)",
-    note: "Kamran Ashraf — Laravel Dev: Search URL me primary keyword lock karne ki technical strategy waqai work karti hai — German buyer ne search se direct $450 project diya.",
+    title: "Tag Density and Search URL Permalink Setup ($450 Deal)",
+    note: "Kamran Ashraf — Laravel Dev: Locking the primary search keyword into the URL permalink really works — a German buyer found me via search and awarded a $450 project.",
     tag: "Fiverr SEO"
   },
   {
     id: "rev-36",
     img: "/techpulse-assets/fiverr-first-client-won.svg",
     title: "From 0 Orders to 1st Client Won ($280 Order)",
-    note: "Waqas Khan — Mobile Dev: 3 mahine se gig dead thi. Smart SEO Solutions ki full optimization ke 7 din baad $280 ka 1st client mila with 5-star review!",
+    note: "Waqas Khan — Mobile Dev: My gig had been dormant for 3 months. Just 7 days after the Smart SEO Solutions optimization, I won my 1st client for $280 with a 5-star review!",
     tag: "First Dollar Order"
   }
 ];
 
 export const TESTIMONIALS_18: TestimonialStudent[] = [
-  { n: "Hamza Saeed", c: "Karachi", r: "Full Stack Developer", q: "Gig dead thi. Optimization ke baad 30 dino me +340% impressions aur $350 & $600 ke active orders mil gaye.", money: "$1.15K" },
-  { n: "Sikandar Usman", c: "Lahore", r: "Video Editor", q: "Page 1 #4 rank achieve kiya. Canada aur USA se recurring monthly video editing retainers lock ho gaye.", money: "$850" },
-  { n: "Bilal Ahmed", c: "Islamabad", r: "WordPress Developer", q: "Hourly rate PKR 7,200/hr position kiya. US buyers direct inbox me custom offers mangte hain.", money: "$1.4K" },
-  { n: "Fatima Sheikh", c: "Lahore", r: "Graphic Designer", q: "Thumbnail visual contrast change kiya aur pehle 10 dino me 2 direct orders close hue!", money: "Rs. 32K" },
-  { n: "Hassan Ali", c: "Faisalabad", r: "New Freelancer", q: "Zero impressions se start kiya tha. Low-competition tags ki madad se pehla order 1st week me deliver kiya.", money: "Rs. 45K" },
-  { n: "Maria Tariq", c: "Multan", r: "Content Writer", q: "Monthly retainer client mil gaya jo regular $600 monthly pay kar raha hai. Best service!", money: "$600/mo" },
-  { n: "Usman Javed", c: "Rawalpindi", r: "SEO Specialist", q: "Technical gig audit aur keyword placement 100% white-hat hai. Highly recommended!", money: "Rs. 58K" },
-  { n: "Zainab Iqbal", c: "Lahore", r: "Social Media Manager", q: "3-tier pricing strategy se client ne $50 ke bajaye direct $250 Premium package choose kiya.", money: "$750" },
-  { n: "Sana Khan", c: "Karachi", r: "Voiceover Artist", q: "Search tags theek karte hi search rankings jump kar ke 1st page par aa gayi.", money: "Rs. 28K" },
-  { n: "Talha Mehmood", c: "Peshawar", r: "Shopify Expert", q: "Competitor research trick se low competition tags mile jahan competition almost zero tha.", money: "$900" },
-  { n: "Rabia Aslam", c: "Sialkot", r: "Virtual Assistant", q: "WhatsApp support bohot active hai. Profile bio draft instantly review kiya gaya.", money: "Rs. 24K" },
-  { n: "Imran Qureshi", c: "Karachi", r: "Dollar Earner", q: "Level 2 Seller ban gaya hu Alhamdulillah. Daily impressions 2,000+ cross kar rahe hain.", money: "$2.2K/mo" },
-  { n: "Hira Yousuf", c: "Lahore", r: "Student Freelancer", q: "Evening me 1-2 ghante de kar pocket money se zyada kama rahi hu. Very grateful!", money: "Rs. 38K" },
-  { n: "Saad Anwar", c: "Karachi", r: "Web Designer", q: "Pehle buyer request dhoondta tha, ab direct orders queue me aate hain.", money: "$1.6K" },
-  { n: "Nimra Hassan", c: "Islamabad", r: "UI/UX Designer", q: "Thumbnail typography change ki aur clicks agle din double ho gaye.", money: "Rs. 72K" },
-  { n: "Hamza Tariq", c: "Lahore", r: "Beginner", q: "Roman Urdu me instructions aur blueprint samajhna bohot asaan hai.", money: "Rs. 21K" },
-  { n: "Aisha Noor", c: "Karachi", r: "Virtual Assistant", q: "Payoneer to Meezan Bank setup guide bohot smooth thi. Dollars direct bank me aate hain.", money: "$850" },
-  { n: "Faisal Mehboob", c: "Multan", r: "Digital Marketer", q: "Pakistan ka sab se behtareen aur practical Fiverr ranking system hai.", money: "Level 2" }
+  { n: "Hamza Saeed", c: "Karachi", r: "Full Stack Developer", q: "My gig was dead. After optimization, within 30 days impressions climbed +340% and I received active orders of $350 and $600.", money: "$1.15K" },
+  { n: "Sikandar Usman", c: "Lahore", r: "Video Editor", q: "Achieved Page 1, Spot #4. Secured recurring monthly video editing retainers from clients in Canada and the USA.", money: "$850" },
+  { n: "Bilal Ahmed", c: "Islamabad", r: "WordPress Developer", q: "Positioned my hourly consultation at PKR 7,200/hr. US buyers now reach out directly asking for custom offers.", money: "$1.4K" },
+  { n: "Fatima Sheikh", c: "Lahore", r: "Graphic Designer", q: "Upgraded thumbnail visual contrast and closed 2 direct client orders within my first 10 days!", money: "Rs. 32K" },
+  { n: "Hassan Ali", c: "Faisalabad", r: "New Freelancer", q: "Started from zero impressions. With low-competition search tags, delivered my first order in week one.", money: "Rs. 45K" },
+  { n: "Maria Tariq", c: "Multan", r: "Content Writer", q: "Signed a monthly retainer client paying $600 each month on a recurring basis. Outstanding service!", money: "$600/mo" },
+  { n: "Usman Javed", c: "Rawalpindi", r: "SEO Specialist", q: "Technical gig audit and keyword placement are 100% white-hat and algorithm-safe. Highly recommended!", money: "Rs. 58K" },
+  { n: "Zainab Iqbal", c: "Lahore", r: "Social Media Manager", q: "With the 3-tier pricing strategy, clients skip the $50 basic tier and choose my $250 Premium package directly.", money: "$750" },
+  { n: "Sana Khan", c: "Karachi", r: "Voiceover Artist", q: "Correcting search tags immediately propelled my gig rankings onto the first page of search results.", money: "Rs. 28K" },
+  { n: "Talha Mehmood", c: "Peshawar", r: "Shopify Expert", q: "The competitor research strategy revealed high-volume tags where direct competition was minimal.", money: "$900" },
+  { n: "Rabia Aslam", c: "Sialkot", r: "Virtual Assistant", q: "WhatsApp support is extremely responsive. My profile bio draft was reviewed and finalized promptly.", money: "Rs. 24K" },
+  { n: "Imran Qureshi", c: "Karachi", r: "Dollar Earner", q: "Became a Level 2 Seller on Fiverr. Daily impressions now comfortably exceed 2,000+ views.", money: "$2.2K/mo" },
+  { n: "Hira Yousuf", c: "Lahore", r: "Student Freelancer", q: "Working 1-2 hours in the evening and earning reliable income in dollars. Very grateful!", money: "Rs. 38K" },
+  { n: "Saad Anwar", c: "Karachi", r: "Web Designer", q: "Instead of searching for work, high-value international client orders now come straight into my queue.", money: "$1.6K" },
+  { n: "Nimra Hassan", c: "Islamabad", r: "UI/UX Designer", q: "Re-designed thumbnail typography and clicks doubled the very next day.", money: "Rs. 72K" },
+  { n: "Hamza Tariq", c: "Lahore", r: "Beginner", q: "Clear deliverables and transparent AnyDesk screen-sharing made the entire setup effortless.", money: "Rs. 21K" },
+  { n: "Aisha Noor", c: "Karachi", r: "Virtual Assistant", q: "Payoneer to Pakistani local bank withdrawal guidance was completely seamless. USD deposits straight to bank.", money: "$850" },
+  { n: "Faisal Mehboob", c: "Multan", r: "Digital Marketer", q: "The most authentic, practical, and effective Fiverr ranking system in Pakistan.", money: "Level 2" }
 ];
 
 export const OUTCOMES: OutcomeItem[] = [
@@ -454,8 +454,8 @@ export const PERSONAS: PersonaItem[] = [
 export const FAQS: FaqItem[] = [
   {
     id: "faq-01",
-    q: "Meri gig par 0 impressions hain ya impressions freeze ho gaye — kya optimization se gig revive ho sakti hai?",
-    a: "Jee haan, 100%! Fiverr search algorithm dead ya 0-impression gigs ko is liye ignore karta hai kyunki unme outdated generic high-competition tags, low keyword density, ya mismatched category attributes hote hain. Optimization me hum aapki gig ko low-to-medium competition buyer search terms aur algorithmic tags se re-index karte hain. Jab metadata fresh buyer intent se match hota hai, toh Fiverr algorithm gig ko fresh impressions test stream me push karna shuru kar deta hai.",
+    q: "My Fiverr gig has 0 impressions or seems frozen — can optimization revive it?",
+    a: "Yes, 100%! The Fiverr search algorithm deprioritizes gigs with outdated generic tags, low keyword relevance, or mismatched category metadata. During optimization, we re-index your gig using low-to-medium competition buyer search terms and algorithmic tags. Once your metadata matches active buyer search intent, the algorithm pushes your gig into fresh search streams to capture real impressions.",
     category: "ranking",
     categoryLabel: "Gig Ranking & Impressions",
     tags: ["impressions", "zero impressions", "dead gig", "revive", "freeze", "views"],
@@ -463,8 +463,8 @@ export const FAQS: FaqItem[] = [
   },
   {
     id: "faq-02",
-    q: "Agar main apni existing gig ko edit karoon toh kya Fiverr use de-rank ya search se gayab kar dega?",
-    a: "Ye freelancers ka sabse bara myth aur fear hai! Agar aapki gig pehle se hi de-ranked hai ya 0 orders de rahi hai, toh use bina changes ke chhorna mazeed waqt zaya karna hai. Jab aap Fiverr algorithm rules ke mutabiq title, description, aur tags update karte hain, toh Fiverr system temporarily 24–48 hours ke liye re-indexing review mode me jata hai. Jaise hi crawler naye relevant keywords verify karta hai, gig search results me naye aur behtar positions par show hona shuru ho jati hai. Hum permanent URL slug ko bilkul disturb nahi karte taake aapki gig authority 100% safe rahe.",
+    q: "If I edit my existing gig, will Fiverr de-rank it or remove it from search?",
+    a: "This is the single biggest myth and fear among freelancers! If your gig is already receiving zero orders, leaving it untouched only wastes valuable time. When we update your title, description, and tags according to official Fiverr algorithm rules, the system enters a temporary 24–48 hour re-indexing mode. As soon as the crawler verifies the new relevant keywords, your gig appears in higher, more relevant search positions. We never alter your permanent URL permalink, ensuring your account authority stays completely protected.",
     category: "editing",
     categoryLabel: "Editing Fears & De-ranking",
     tags: ["edit", "derank", "de-ranking", "safe", "existing gig", "lost ranking"],
@@ -472,8 +472,8 @@ export const FAQS: FaqItem[] = [
   },
   {
     id: "faq-03",
-    q: "Optimization ke baad Fiverr search results aur Page 1 par rank hone me kitna waqt lagta hai?",
-    a: "Fiverr ka search indexing crawler changes ko 24 se 72 hours me process karta hai. Micro-niches aur long-tail buyer keywords par aksar gigs 24–48 hours ke andar Page 1 par position hold kar leti hain. Broad categories me impressions 3 se 7 dino me climb karte hain, aur sustainable organic buyer messages aane me 7 se 14 din lagte hain. Is liye hum 20–25 days ka structured algorithm evaluation period dete hain.",
+    q: "How long does it take after optimization to rank on Fiverr Page 1?",
+    a: "Fiverr search crawlers process changes within 24 to 72 hours. In micro-niches and long-tail buyer queries, optimized gigs often secure Page 1 visibility within 24–48 hours. In broader categories, impressions steadily climb over 3 to 7 days, with sustainable organic buyer messages arriving in 7 to 14 days. This is why we provide a structured 20–25 days evaluation window with a money-back guarantee.",
     category: "ranking",
     categoryLabel: "Gig Ranking & Impressions",
     tags: ["time", "timeline", "page 1", "how long", "24 hours", "ranking", "index"],
@@ -481,8 +481,8 @@ export const FAQS: FaqItem[] = [
   },
   {
     id: "faq-04",
-    q: "Kya ye optimization 100% Fiverr Terms of Service (TOS) ke mutabiq safe hai? Account warning ka koi risk hai?",
-    a: "Hargiz koi risk nahi! Hum strictly 100% White-Hat Fiverr SEO aur ethical copywriting use karte hain. Hum kisi bhi qism ke fake reviews, bots, automated proxies, ya fake clicks use nahi karte jo Fiverr TOS ke khilaf hon. Har optimization natural search engine compliance, buyer conversion psychology, aur Fiverr ki official seller guidelines ke mutabiq ki jati hai.",
+    q: "Is this optimization 100% compliant with Fiverr Terms of Service (TOS)?",
+    a: "Absolutely! We strictly use 100% White-Hat Fiverr SEO and ethical copywriting. We do not use fake reviews, bots, automated proxies, or artificial clicks that violate Fiverr TOS. Every optimization is built on natural search engine compliance, buyer conversion psychology, and official Fiverr seller guidelines.",
     category: "safety",
     categoryLabel: "Fiverr TOS & Account Safety",
     tags: ["tos", "safety", "warning", "ban", "safe", "white-hat", "policy", "terms"],
@@ -490,8 +490,8 @@ export const FAQS: FaqItem[] = [
   },
   {
     id: "faq-05",
-    q: "Main bilkul fresh seller hoon aur meri profile par 0 reviews hain — kya buyers mujhe order denge?",
-    a: "Bilkul! Top-rated sellers broad keywords (maslan 'Logo Designer' ya 'Wordpress Developer') par baithe hote hain jahan 50,000+ gigs hoti hain. Hamari strategy 'Micro-Niche Penetration' hai — hum aisi specific search queries target karte hain jahan competition sirf 200–700 gigs ka hota hai lekin US/UK buyers daily search karte hain. Sath hi clear 3-tier pricing aur professional portfolio presentation buyer ka trust jeet kar review ke baghair bhi pehla order close karwati hai.",
+    q: "I am a brand new seller with 0 reviews — will international buyers still order?",
+    a: "Definitely! Top-rated sellers dominate broad keywords (such as 'Logo Designer' or 'WordPress Developer') where there are 50,000+ competing gigs. Our strategy is 'Micro-Niche Penetration' — we target high-intent search queries where competition is only 200–700 gigs, but US/UK buyers search daily. Combined with psychological 3-tier pricing and a compelling portfolio, buyers trust and order without hesitation.",
     category: "new_seller",
     categoryLabel: "New Sellers & 0 Reviews",
     tags: ["new seller", "zero reviews", "first order", "beginner", "no reviews", "fresh account"],
@@ -499,8 +499,8 @@ export const FAQS: FaqItem[] = [
   },
   {
     id: "faq-06",
-    q: "Gig aur Profile optimization me exactly kya kya deliver kiya jata hai?",
-    a: "Hamari service complete 360-degree overhaul provide karti hai: (1) Niche-specific buyer keyword research (2) High-CTR SEO title aur permalink setup (3) 5 Strategic high-volume search tags (4) 1200-characters persuasive description with ideal keyword density (5) Psychological 3-tier package pricing (Basic, Standard, Premium) (6) Buyer objection-killing FAQs with keywords (7) High-contrast thumbnail visual guide (8) Complete profile bio, authority tagline, aur skills matrix revamp.",
+    q: "What is specifically delivered in the profile and gig optimization package?",
+    a: "Our done-for-you service delivers a complete 360-degree overhaul: (1) Niche-specific buyer keyword research (2) High-CTR SEO title and permalink setup (3) 5 Strategic high-volume search tags (4) 1,200-character persuasive description with ideal keyword density (5) Psychological 3-tier package pricing (Basic, Standard, Premium) (6) Objection-handling FAQs with embedded keywords (7) High-contrast thumbnail visual guide (8) Complete profile bio, authority tagline, and skills revamp.",
     category: "conversion",
     categoryLabel: "Conversions & Inquiries",
     tags: ["scope", "deliverables", "services", "what included", "tags", "title", "description", "packages"],
@@ -508,8 +508,8 @@ export const FAQS: FaqItem[] = [
   },
   {
     id: "faq-07",
-    q: "Mujhe gig par impressions aur clicks toh milte hain lekin orders ya messages nahi aate — issue kahan hai?",
-    a: "Ye common conversion rate (CVR) problem hai. Impressions aur clicks ka matlab hai ke thumbnail aur title theek hain, lekin jaise hi buyer gig page par aata hai, weak description copywriting, unclear deliverables, confusing package pricing, ya buyer fears usay bounce kar dete hain. Optimization me hum description ke hooks ko tighten karte hain aur 3-tier packages ko structured value proposition me badal dete hain taake buyer bina hesitate kiye order place kare.",
+    q: "I receive impressions and clicks but no inquiries or orders — where is the problem?",
+    a: "This is a classic conversion rate (CVR) problem. Having impressions and clicks means your thumbnail and title are working, but once a buyer arrives on the gig page, weak copywriting, unclear deliverables, confusing pricing, or buyer hesitation causes them to bounce. Optimization tightens the copy hooks and transforms your packages into clear, compelling value propositions that trigger action.",
     category: "conversion",
     categoryLabel: "Conversions & Inquiries",
     tags: ["clicks but no orders", "conversion", "no messages", "inquiries", "bounce rate", "cvr"],
@@ -517,8 +517,8 @@ export const FAQS: FaqItem[] = [
   },
   {
     id: "faq-08",
-    q: "Graphic Design, Video Editing, ya Web Development jaise high-competition niches me kaise rank karein?",
-    a: "Generic keywords (maslan sirf 'Video Editor') par new ya level-1 sellers kabhi rank nahi kar sakte. Hum 'Long-Tail Keyword Stacking' technique use karte hain — maslan 'Real Estate Drone Video Editing' ya 'SaaS Explainer Video Editing'. Is tarah direct high-budget international buyers target hote hain aur 24–48 hours ke andar top rows me rank mil jati hai.",
+    q: "How do you rank in competitive niches like Graphic Design, Video Editing, or Web Development?",
+    a: "New or Level 1 sellers struggle to rank for broad keywords (like 'Video Editor'). We utilize a 'Long-Tail Keyword Stacking' technique — for example, 'Real Estate Drone Video Editing' or 'SaaS Explainer Video Editing'. This attracts targeted, high-budget international buyers and achieves top-row placement within 24–48 hours.",
     category: "ranking",
     categoryLabel: "Gig Ranking & Impressions",
     tags: ["high competition", "graphic design", "video editing", "web development", "long-tail", "niche"],
@@ -526,8 +526,8 @@ export const FAQS: FaqItem[] = [
   },
   {
     id: "faq-09",
-    q: "Kya gig image/thumbnail aur image metadata ka ranking me koi role hota hai?",
-    a: "Bohat bara role hota hai! Fiverr algorithm Click-Through Rate (CTR) ko sabse zyada weightage deta hai. Agar aapki gig search me aati hai lekin thumbnail dull hai aur buyer click nahi karta, toh Fiverr gig ko lower pages par phenk deta hai. Hum bold contrast, 3-second readability hierarchy, aur image SEO metadata (alt tags & descriptive filenames) ensure karte hain jo CTR ko 3x barha deta hai.",
+    q: "What role do gig thumbnails and image metadata play in Fiverr ranking?",
+    a: "A huge role! The Fiverr algorithm places immense weight on Click-Through Rate (CTR). If your gig appears in search results but the thumbnail is dull and buyers skip past it, the algorithm demotes your gig to lower pages. We provide high-contrast guidelines, 3-second readability hierarchies, and image SEO metadata recommendations that can triple your CTR.",
     category: "conversion",
     categoryLabel: "Conversions & Inquiries",
     tags: ["thumbnail", "ctr", "image seo", "visuals", "clicks", "design", "photo"],
@@ -535,8 +535,8 @@ export const FAQS: FaqItem[] = [
   },
   {
     id: "faq-10",
-    q: "Optimization ke liye account access kaise li jati hai? Kya AnyDesk ya TeamViewer se ho sakta hai?",
-    a: "Aapki complete security aur privacy 100% guaranteed hai. Aap direct login provide kar sakte hain, ya agar aap login share nahi karna chahte toh hum AnyDesk ya TeamViewer ke zariye live screen-share session par aapki ankhon ke samne complete optimization apply kar dete hain. Choice 100% aapki hai!",
+    q: "How is account access handled for optimization? Can it be done via AnyDesk?",
+    a: "Your security and privacy are 100% guaranteed. You can either provide direct credentials for a hands-free experience, or connect with our team on a live AnyDesk or TeamViewer screen-share session where every change is applied directly in front of your eyes. The choice is completely yours!",
     category: "safety",
     categoryLabel: "Fiverr TOS & Account Safety",
     tags: ["anydesk", "teamviewer", "login", "account access", "security", "privacy", "credentials"],
@@ -544,8 +544,8 @@ export const FAQS: FaqItem[] = [
   },
   {
     id: "faq-11",
-    q: "Fiverr ke naye Success Score system aur algorithmic updates se gig optimization ka kya taluq hai?",
-    a: "Fiverr ka naya Success Score private buyer reviews, effective communication, aur cancellation rate par depend karta hai. Jab gig description me deliverables 100% transparent hon aur pricing tiers realistic hon, toh buyers ko exact expectations milti hain. Is se order cancellations zero ho jati hain aur private 5-star ratings increase hoti hain jo gig ko algorithm me permanently stabilize rakhti hain.",
+    q: "How does gig optimization support Fiverr's Success Score system?",
+    a: "Fiverr's Success Score depends heavily on private buyer reviews, effective communication, and low cancellation rates. By making deliverables 100% transparent and setting realistic pricing tiers in the description, client expectations align perfectly. This minimizes order disputes and boosts private 5-star feedback, stabilizing your gig in search algorithms long-term.",
     category: "safety",
     categoryLabel: "Fiverr TOS & Account Safety",
     tags: ["success score", "algorithm 2026", "cancellation", "private reviews", "fiverr update", "metric"],
@@ -553,8 +553,8 @@ export const FAQS: FaqItem[] = [
   },
   {
     id: "faq-12",
-    q: "Fiverr se dollar earnings Pakistan me kaise aayengi aur service fee kaise pay karein?",
-    a: "Hamari service fee (Rs. 8,000 package) aap Meezan Bank, Easypaisa, JazzCash, SadaPay, NayaPay ya kisi bhi Pakistani banking app se 1-click IBFT/Raast ke zariye pay kar sakte hain. Fiverr par jab aapke orders complete honge, toh dollars Payoneer ke zariye direct Meezan Bank, JazzCash, ya kisi bhi Pakistani bank me live interbank rate par withdraw ho jate hain.",
+    q: "How do I withdraw dollar earnings to Pakistan and how do I pay the service fee?",
+    a: "Our service fee (Rs. 8,000 package) can be paid in 1-click via Meezan Bank, Easypaisa, JazzCash, SadaPay, NayaPay, or any Pakistani commercial bank via IBFT/Raast. Once you earn on Fiverr, your USD earnings can be transferred via Payoneer directly into Meezan Bank, JazzCash, or any Pakistani bank account at live interbank rates.",
     category: "payment",
     categoryLabel: "Payments, AnyDesk & Guarantee",
     tags: ["easypaisa", "jazzcash", "meezan bank", "payment", "payoneer", "withdrawal", "pkr", "dollars"],
@@ -562,8 +562,8 @@ export const FAQS: FaqItem[] = [
   },
   {
     id: "faq-13",
-    q: "Agar optimization ke baad bhi meri gig rank na ho ya results na milein toh kya refund milta hai?",
-    a: "Jee haan, 100% Refund Guarantee hai! Agar aap hamare optimized blueprint ko implement karte hain aur 20–25 days ke recommended algorithmic indexation period me aapko positive impressions growth ya buyer interaction nahi milti, toh aap WhatsApp par msg karke apna 100% refund claim kar sakte hain. Zero questions asked.",
+    q: "What if my gig doesn't rank or improve after optimization — is there a refund?",
+    a: "Yes, 100% Money-Back Guarantee! If you implement our optimized blueprint and do not experience positive organic search impression growth or buyer inquiries within the 20–25 day indexation window, simply message us on WhatsApp for an immediate 100% refund. Zero hassle, zero questions asked.",
     category: "payment",
     categoryLabel: "Payments, AnyDesk & Guarantee",
     tags: ["refund", "money back guarantee", "risk free", "guarantee", "whatsapp support", "policy"],
@@ -571,8 +571,8 @@ export const FAQS: FaqItem[] = [
   },
   {
     id: "faq-14",
-    q: "Kya Fiverr mobile app se gig edit karni chahiye ya desktop laptop se?",
-    a: "Hamesha desktop ya laptop ke browser se edit karein! Fiverr mobile app par search tags, FAQ sections, portfolio attachments, aur package metadata ke advance options restrict hote hain. Desktop se complete algorithmic fields populate hoti hain jo gig ko maximum search visibility deti hain.",
+    q: "Should I edit my Fiverr gig using the mobile app or a desktop browser?",
+    a: "Always use a desktop or laptop browser! The Fiverr mobile app restricts key advanced fields such as search tags, FAQ sections, portfolio attachments, and pricing metadata. Editing from a desktop browser ensures all algorithmic fields are thoroughly filled for maximum search visibility.",
     category: "editing",
     categoryLabel: "Editing Fears & De-ranking",
     tags: ["mobile app", "laptop", "desktop", "edit gig", "browser", "mobile vs desktop"],

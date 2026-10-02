@@ -4,7 +4,7 @@ import { TECHPULSE_CONFIG } from '../data/techpulseData';
 export function TechPulseWhatsAppFloat() {
   const phone = TECHPULSE_CONFIG.whatsappNumber.replace(/[^0-9]/g, '');
   const message = encodeURIComponent(
-    'Assalam-o-Alaikum! Mujhe Smart SEO Solutions Fiverr Profile & Gig Optimization (Rs. 8,000) ke baray mein details chahiyein.'
+    'Hello! I would like to get more information about the Smart SEO Solutions Fiverr Profile & Gig Optimization (Rs. 8,000 package).'
   );
 
   return (
