@@ -94,7 +94,7 @@ export function TrustIndicatorsSection({ onEnroll }: TrustIndicatorsProps) {
                 20–25 Days Money-Back Guarantee
               </h3>
               <p className="mt-2 text-xs sm:text-sm text-[#535f6f] leading-relaxed">
-                If your Fiverr profile &amp; gigs do not show organic algorithmic impression growth or inbound buyer inquiries within 20–25 days of optimization, get an unconditional 100% refund.
+                If you apply our step-by-step method properly and your Fiverr gigs do not show organic algorithmic impression growth or inbound buyer inquiries within 20–25 days, get an unconditional 100% refund.
               </p>
 
               {/* Guarantee highlights */}
@@ -112,7 +112,7 @@ export function TrustIndicatorsSection({ onEnroll }: TrustIndicatorsProps) {
 
             <div className="mt-5 flex items-center gap-1.5 text-xs font-extrabold text-[#109655]">
               <ShieldCheck className="h-4 w-4 shrink-0" />
-              <span>Zero-Risk Guarantee on Rs. 8,000 Fee</span>
+              <span>Zero-Risk Guarantee on Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()} Fee</span>
             </div>
           </div>
 
@@ -132,28 +132,28 @@ export function TrustIndicatorsSection({ onEnroll }: TrustIndicatorsProps) {
               </div>
 
               <h3 className="mt-4 font-display text-lg sm:text-xl font-extrabold text-[#0c172f]">
-                24/7 WhatsApp &amp; AnyDesk Support
+                Instant Delivery &amp; WhatsApp Support
               </h3>
               <p className="mt-2 text-xs sm:text-sm text-[#535f6f] leading-relaxed">
-                Dedicated Pakistani SEO consultants ready to assist you on WhatsApp 24/7. Transparent live AnyDesk screen-sharing so you see every keyword and description change live on your own screen.
+                Receive the complete 24-Hour Ranking Method PDF &amp; templates immediately on WhatsApp &amp; Email. Need help applying a step? Our team is available 24/7 on WhatsApp to guide you.
               </p>
 
               {/* Support channels */}
               <div className="mt-4 space-y-1.5 pt-3 border-t border-[#dfe5ed]/60 text-xs text-[#0c172f]">
                 <div className="flex items-center gap-1.5">
                   <span className="text-purple-600 font-bold">✓</span>
-                  <span>Direct 1-on-1 WhatsApp chat guidance</span>
+                  <span>Instant digital method delivery after payment</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="text-purple-600 font-bold">✓</span>
-                  <span>AnyDesk screen-share with zero password sharing</span>
+                  <span>Zero account login or password sharing needed</span>
                 </div>
               </div>
             </div>
 
             <div className="mt-5 flex items-center justify-between pt-1 border-t border-[#dfe5ed]/60">
               <a
-                href={`https://wa.me/${phone}?text=${encodeURIComponent('Hello! I would like to get Fiverr Profile & Gig Optimization support.')}`}
+                href={`https://wa.me/${phone}?text=${encodeURIComponent('Hello! I would like to buy the 24-Hour Fiverr Gig Ranking Method (Rs. 500).')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-[#109655] hover:underline"
@@ -173,11 +173,11 @@ export function TrustIndicatorsSection({ onEnroll }: TrustIndicatorsProps) {
           </div>
           <div className="flex items-center gap-1.5">
             <Lock className="h-4 w-4 text-[#2b62ef] shrink-0" />
-            <span>Zero Password Sharing Required</span>
+            <span>Zero Account Access Required</span>
           </div>
           <div className="flex items-center gap-1.5">
             <Clock className="h-4 w-4 text-amber-600 shrink-0" />
-            <span>Fast 24–48h Optimization Delivery</span>
+            <span>Instant WhatsApp &amp; Email Delivery</span>
           </div>
           <div className="flex items-center gap-1.5">
             <span className="text-sm">🇵🇰</span>

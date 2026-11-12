@@ -1,8 +1,9 @@
 import React from 'react';
 import { TECHPULSE_CONFIG } from '../data/techpulseData';
+import type { AppRoute } from '../App';
 
 interface FooterProps {
-  onNavigate: (page: 'landing' | 'training' | 'enroll' | 'admin') => void;
+  onNavigate: (page: AppRoute) => void;
 }
 
 export function TechPulseFooter({ onNavigate }: FooterProps) {
@@ -29,7 +30,7 @@ export function TechPulseFooter({ onNavigate }: FooterProps) {
               Smart SEO Solutions
             </div>
             <div className="text-xs text-white/60">
-              Pakistan's #1 Fiverr Profile & Gig Optimization
+              Pakistan's #1 Fiverr 24h Gig Ranking Method
             </div>
           </div>
         </div>
@@ -38,17 +39,24 @@ export function TechPulseFooter({ onNavigate }: FooterProps) {
         <nav className="flex flex-wrap items-center justify-center gap-6 text-sm font-medium">
           <button
             type="button"
-            onClick={() => onNavigate('enroll')}
-            className="hover:text-white transition-colors"
+            onClick={() => onNavigate('method')}
+            className="text-[#5eead4] hover:text-white transition-colors font-semibold"
           >
-            Book Optimization
+            ⚡ 24h Ranking Method
           </button>
           <button
             type="button"
-            onClick={() => scrollTo('services')}
+            onClick={() => onNavigate('enroll')}
             className="hover:text-white transition-colors"
           >
-            10 Deliverables
+            Get The Method
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollTo('trust')}
+            className="hover:text-white transition-colors"
+          >
+            Guarantee &amp; Safety
           </button>
           <button
             type="button"
@@ -69,7 +77,7 @@ export function TechPulseFooter({ onNavigate }: FooterProps) {
             onClick={() => onNavigate('training')}
             className="hover:text-white transition-colors"
           >
-            Service Scope
+            Method Scope
           </button>
           <a
             href={`https://wa.me/${TECHPULSE_CONFIG.whatsappNumber.replace(/[^0-9]/g, '')}`}

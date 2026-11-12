@@ -12,8 +12,8 @@ import {
 } from 'lucide-react';
 import { TECHPULSE_CONFIG } from '../data/techpulseData';
 
-const PRIMARY_TOP_RATED_IMAGE = '/techpulse-assets/top-rated-seller-profile.jpg';
-const FALLBACK_TOP_RATED_IMAGE = '/techpulse-assets/fiverr-top-rated-seller.svg';
+const PRIMARY_TOP_RATED_IMAGE = '/techpulse-assets/fiverr-aqacca-seller.svg';
+const FALLBACK_TOP_RATED_IMAGE = '/techpulse-assets/fiverr-aqacca-seller.svg';
 
 interface HeroProps {
   onEnroll: () => void;
@@ -38,7 +38,7 @@ export function TechPulseHero({
 
   const handleImageClick = () => {
     if (onOpenImage) {
-      onOpenImage(currentImg, 'Fiverr Top Rated Seller Profile — Smart SEO Solutions Optimization Proof');
+      onOpenImage(currentImg, 'Fiverr Verified Seller Profile AQACCA (@aqacca) — Smart SEO Solutions Optimization Proof');
     }
   };
 
@@ -53,10 +53,10 @@ export function TechPulseHero({
           <span className="truncate">{TECHPULSE_CONFIG.badge}</span>
         </div>
 
-        {/* Main Headline: Get 1st Client With Full Optimization */}
+        {/* Main Headline: Get 1st Client With Proven Ranking Method */}
         <h1 className="mt-4 sm:mt-5 font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.18] sm:leading-[1.12] tracking-tight text-[#0c172f] max-w-4xl mx-auto px-2">
           Get Your 1st Client With{' '}
-          <span className="text-gradient block xs:inline mt-1 xs:mt-0">Full Fiverr Optimization</span>
+          <span className="text-gradient block xs:inline mt-1 xs:mt-0">24h Fiverr Ranking Method</span>
         </h1>
 
         {/* Subtitle */}
@@ -64,18 +64,18 @@ export function TechPulseHero({
           {TECHPULSE_CONFIG.heroSubtitle}
         </p>
 
-        {/* Top Rated Seller Profile Showcase Label */}
+        {/* Verified Seller Profile Showcase Label */}
         <div className="mt-5 sm:mt-7 flex items-center justify-center gap-2 text-xs sm:text-sm font-bold text-[#0c172f] px-2">
-          <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/15 px-2.5 py-0.5 text-[11px] sm:text-xs font-black text-amber-700 border border-amber-300">
-            <Award className="h-3.5 w-3.5 fill-amber-500 text-amber-600" /> Top Rated Seller Proof
+          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[11px] sm:text-xs font-black text-emerald-800 border border-emerald-300">
+            <Award className="h-3.5 w-3.5 fill-emerald-500 text-emerald-600" /> Verified Method Proof
           </span>
           <span className="text-[#535f6f] hidden xs:inline">•</span>
           <span className="text-xs sm:text-sm text-[#0c172f]">
-            Verified Results After 10-Point Full Optimization
+            Verified Results After Applying The 24h Ranking Method
           </span>
         </div>
 
-        {/* --- TOP RATED SELLER PROFILE IMAGE SHOWCASE --- */}
+        {/* --- AQACCA SELLER PROFILE IMAGE SHOWCASE --- */}
         <div className="mt-3 sm:mt-4 mx-auto max-w-4xl">
           <div className="relative overflow-hidden rounded-2xl border-2 border-[#1dbf73]/50 bg-gradient-to-b from-[#0c172f] via-[#091326] to-[#040915] p-2.5 sm:p-4 shadow-2xl shadow-emerald-950/20 text-left">
             {/* Card Top Bar */}
@@ -86,14 +86,14 @@ export function TechPulseHero({
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5 text-xs sm:text-sm font-extrabold text-white">
-                    <span>Fiverr Top Rated Seller Profile</span>
+                    <span>AQACCA (@aqacca) — Level 2 Verified Profile</span>
                     <span className="inline-flex items-center gap-1 rounded-full bg-amber-400/20 px-2 py-0.5 text-[10px] font-black text-amber-300 border border-amber-400/30">
                       <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
-                      5.0 (1,250+ Reviews)
+                      4.9 (1.0k Reviews)
                     </span>
                   </div>
                   <div className="text-[10px] text-gray-400 font-medium hidden sm:block">
-                    Optimized Profile &amp; Gigs · 100% White-Hat Algorithm Compliance
+                    UK Accountant &amp; Consultant · PKR 21,800.60/hr Rate · 100% White-Hat Optimization
                   </div>
                 </div>
               </div>
@@ -121,12 +121,12 @@ export function TechPulseHero({
                   handleImageClick();
                 }
               }}
-              aria-label="View full size Top Rated Seller profile screenshot"
+              aria-label="View full size AQACCA seller profile screenshot"
               className="group relative mt-2.5 sm:mt-3 overflow-hidden rounded-xl bg-black border border-white/10 cursor-pointer"
             >
               <img
                 src={currentImg}
-                alt="Fiverr Top Rated Seller Profile optimized by Smart SEO Solutions"
+                alt="Fiverr Seller AQACCA Profile optimized by Smart SEO Solutions"
                 className="w-full aspect-[16/9] object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                 referrerPolicy="no-referrer"
                 onError={() => {
@@ -148,7 +148,7 @@ export function TechPulseHero({
               <div className="absolute bottom-2.5 left-2.5 sm:bottom-3 sm:left-3 z-10 pointer-events-none">
                 <span className="inline-flex items-center gap-1 rounded-full bg-black/75 backdrop-blur-md px-2.5 py-1 text-[10px] sm:text-xs font-bold text-emerald-300 border border-emerald-500/30 shadow-md">
                   <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
-                  Verified Top Rated Seller Optimization
+                  Verified Fiverr Seller Optimization
                 </span>
               </div>
             </div>
@@ -158,18 +158,18 @@ export function TechPulseHero({
               <div className="rounded-lg bg-white/5 p-2 text-center border border-white/5">
                 <div className="text-[10px] text-gray-400">Seller Level</div>
                 <div className="font-extrabold text-amber-300 mt-0.5 flex items-center justify-center gap-1">
-                  <Award className="h-3 w-3 fill-amber-400 text-amber-400" /> Top Rated
+                  <Award className="h-3 w-3 fill-amber-400 text-amber-400" /> Level 2 Seller
                 </div>
               </div>
 
               <div className="rounded-lg bg-white/5 p-2 text-center border border-white/5">
                 <div className="text-[10px] text-gray-400">Client Rating</div>
-                <div className="font-extrabold text-emerald-400 mt-0.5">5.0 ★ (1,250+)</div>
+                <div className="font-extrabold text-emerald-400 mt-0.5">4.9 ★ (1.0k+)</div>
               </div>
 
               <div className="rounded-lg bg-white/5 p-2 text-center border border-white/5">
-                <div className="text-[10px] text-gray-400">Delivery &amp; Response</div>
-                <div className="font-extrabold text-cyan-300 mt-0.5">100% On-Time</div>
+                <div className="text-[10px] text-gray-400">Consultation Rate</div>
+                <div className="font-extrabold text-cyan-300 mt-0.5">PKR 21,800/hr</div>
               </div>
 
               <div className="rounded-lg bg-white/5 p-2 text-center border border-white/5">
@@ -189,18 +189,18 @@ export function TechPulseHero({
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-rose-600" />
               </span>
               <Zap className="h-4 w-4 fill-amber-500 text-amber-600 shrink-0" />
-              Limited Time Slots
+              Limited Time Method Copies
             </span>
             <span className="shrink-0 rounded-full bg-rose-600 px-2.5 py-0.5 text-[11px] sm:text-xs font-black text-white animate-pulse shadow-xs">
-              Only {TECHPULSE_CONFIG.slotsLeft} Spots Left!
+              Only {TECHPULSE_CONFIG.slotsLeft} Copies Left!
             </span>
           </div>
 
           {/* Progress bar */}
           <div className="mt-2.5">
             <div className="flex justify-between text-[11px] font-semibold text-[#535f6f] mb-1">
-              <span>{TECHPULSE_CONFIG.slotsFilled} Client Gigs Optimized This Month</span>
-              <span className="text-[#0c172f] font-bold">{percentFilled}% Filled</span>
+              <span>{TECHPULSE_CONFIG.slotsFilled} Sellers Grabbed The Method This Month</span>
+              <span className="text-[#0c172f] font-bold">{percentFilled}% Claimed</span>
             </div>
             <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200">
               <div
@@ -218,7 +218,7 @@ export function TechPulseHero({
             onClick={onEnroll}
             className="gradient-brand inline-flex items-center justify-center gap-2 rounded-full px-5 py-3.5 sm:px-9 sm:py-4 text-sm sm:text-base font-bold text-white shadow-glow transition-all hover:scale-[1.02] active:scale-95 w-full sm:w-auto cursor-pointer"
           >
-            <span>Book Full Optimization — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
+            <span>Get The Complete Method — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
             <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" />
           </button>
 
@@ -235,7 +235,7 @@ export function TechPulseHero({
 
         {/* Subtext urgency notice */}
         <p className="mt-2.5 text-[11px] sm:text-xs font-semibold text-[#535f6f] px-2">
-          🔒 Promotional Fee Rs. 8,000 (Reg. Rs. 16,000) · 20–25 Days Money-Back Guarantee
+          🔒 Instant Digital Access Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()} (Reg. Rs. {TECHPULSE_CONFIG.originalPricePKR.toLocaleString()}) · 20–25 Days Money-Back Guarantee
         </p>
 
         {/* Trust Badges - Mobile Responsive Wrap */}

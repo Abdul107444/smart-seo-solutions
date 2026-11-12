@@ -304,7 +304,7 @@ export function generateGigRankMethodPdf(): void {
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8);
   doc.setTextColor(156, 163, 175);
-  doc.text('Smart SEO Solutions • Page 2 of 2 • WhatsApp Support: +92 306 0880466', pageWidth / 2, pageHeight - 14, { align: 'center' });
+  doc.text('Smart SEO Solutions • Page 2 of 2 • WhatsApp Support: +92 310 6625091', pageWidth / 2, pageHeight - 14, { align: 'center' });
 
   // Trigger browser download
   doc.save('Fiverr_Gig_Rank_Method_Blueprint.pdf');

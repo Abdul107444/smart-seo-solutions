@@ -3,9 +3,10 @@ import { TechPulseLandingPage } from './pages/TechPulseLandingPage';
 import { AiVideosTrainingPage } from './pages/AiVideosTrainingPage';
 import { TechPulseEnrollPage } from './pages/TechPulseEnrollPage';
 import { AdminDashboardPage } from './pages/AdminDashboardPage';
+import { GigRank24hMethodPage } from './pages/GigRank24hMethodPage';
 import { AuthProvider } from './lib/authContext';
 
-export type AppRoute = 'landing' | 'training' | 'enroll' | 'admin';
+export type AppRoute = 'landing' | 'training' | 'enroll' | 'admin' | 'method';
 
 export default function App() {
   const getInitialPath = (): AppRoute => {
@@ -20,6 +21,15 @@ export default function App() {
       search.includes('page=admin')
     ) {
       return 'admin';
+    }
+    if (
+      pathname.includes('method') ||
+      pathname.includes('gigrank') ||
+      hash.includes('method') ||
+      search.includes('method') ||
+      search.includes('page=method')
+    ) {
+      return 'method';
     }
     if (
       pathname.includes('training') ||
@@ -54,6 +64,14 @@ export default function App() {
         search.includes('page=admin')
       ) {
         setCurrentPage('admin');
+      } else if (
+        pathname.includes('method') ||
+        pathname.includes('gigrank') ||
+        hash.includes('method') ||
+        search.includes('method') ||
+        search.includes('page=method')
+      ) {
+        setCurrentPage('method');
       } else if (
         pathname.includes('training') ||
         pathname.includes('aivideostraining') ||
@@ -95,7 +113,8 @@ export default function App() {
 
   const navigateTo = (page: AppRoute) => {
     let path = '/';
-    if (page === 'training') path = '/aivideostraining';
+    if (page === 'method') path = '/method';
+    else if (page === 'training') path = '/aivideostraining';
     else if (page === 'enroll') path = '/enroll';
     else if (page === 'admin') path = '/admin';
 
@@ -109,6 +128,8 @@ export default function App() {
       <div className="min-h-screen bg-[#f7fbfd] text-[#0c172f] antialiased">
         {currentPage === 'landing' ? (
           <TechPulseLandingPage onNavigate={navigateTo} />
+        ) : currentPage === 'method' ? (
+          <GigRank24hMethodPage onNavigate={navigateTo} />
         ) : currentPage === 'training' ? (
           <AiVideosTrainingPage
             onBack={() => navigateTo('landing')}

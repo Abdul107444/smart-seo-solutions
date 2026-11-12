@@ -3,13 +3,13 @@ import { PortfolioItem, CompanyPartner, FAQItem } from '../types';
 export const BUSINESS_INFO = {
   name: 'Smart SEO Solutions',
   serviceName: 'Fiverr Profile & Gig Optimization',
-  price: 'Rs. 8,000',
-  priceNumeric: 8000,
+  price: 'Rs. 500',
+  priceNumeric: 500,
   currency: 'PKR',
-  whatsAppNumber: '+92 306 0880466',
-  whatsAppSecondary: '+92 306 0880466',
-  whatsAppLink: 'https://wa.me/923060880466',
-  whatsAppMessageText: 'Hi Smart SEO Solutions! I am interested in your Fiverr Profile & Gig Optimization service (Rs. 8,000). Please share the next steps.',
+  whatsAppNumber: '+92 310 6625091',
+  whatsAppSecondary: '+92 310 6625091',
+  whatsAppLink: 'https://wa.me/923106625091',
+  whatsAppMessageText: 'Hi Smart SEO Solutions! I am interested in your Fiverr Profile & Gig Optimization service (Rs. 500). Please share the next steps.',
   tagline: 'Turn your Fiverr presence into a professional sales machine.',
 };
 
@@ -643,8 +643,8 @@ export const FAQ_LIST: FAQItem[] = [
   },
   {
     id: 'faq-8',
-    question: 'Is Rs. 8,000 a one-time payment?',
-    answer: 'Yes, Rs. 8,000 is a transparent, one-time payment for the complete Fiverr Profile & Gig Optimization service. There are no hidden fees or recurring subscriptions.',
+    question: 'Is Rs. 500 a one-time payment?',
+    answer: 'Yes, Rs. 500 is a transparent, one-time payment for the complete Fiverr Profile & Gig Optimization service. There are no hidden fees or recurring subscriptions.',
   },
 ];
 
@@ -656,8 +656,8 @@ export const GIG_RANK_METHOD_INFO = {
   originalPrice: '2,999 PKR',
   discount: '80% OFF (Limited Time Special)',
   priceNumeric: 575,
-  whatsAppNumber: '+92 306 0880466',
-  whatsAppLink: 'https://wa.me/923060880466',
+  whatsAppNumber: '+92 310 6625091',
+  whatsAppLink: 'https://wa.me/923106625091',
   whatsAppMessageText: 'Hi Smart SEO Solutions! I just purchased the Fiverr 24-Hour Gig Ranking Method PDF (575 PKR) and completed my Meezan Bank payment.',
 };
 
@@ -695,7 +695,7 @@ export const GIG_METHOD_FAQS: FAQItem[] = [
   {
     id: 'gm-faq-7',
     question: 'Do I get support if I have questions while applying the method?',
-    answer: 'Yes! Our dedicated customer support line on WhatsApp (+92 306 0880466) is available to assist you. If you need help picking high-intent keywords or verifying your gig setup, we are here to support you.',
+    answer: 'Yes! Our dedicated customer support line on WhatsApp (+92 310 6625091) is available to assist you. If you need help picking high-intent keywords or verifying your gig setup, we are here to support you.',
   },
 ];
 

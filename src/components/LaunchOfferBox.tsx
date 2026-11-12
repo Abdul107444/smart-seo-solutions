@@ -37,10 +37,10 @@ export function LaunchOfferBox({ onEnroll }: LaunchOfferBoxProps) {
         <div className="mx-auto mt-6 max-w-md rounded-2xl bg-[#f7fbfd] p-3.5 border border-[#dfe5ed]">
           <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-[#0c172f] mb-1.5">
             <span className="text-emerald-700 flex items-center gap-1">
-              <CheckCircle2 className="h-4 w-4" /> {TECHPULSE_CONFIG.slotsFilled} Gigs Optimized
+              <CheckCircle2 className="h-4 w-4" /> {TECHPULSE_CONFIG.slotsFilled} Copies Claimed
             </span>
             <span className="text-rose-600 font-extrabold animate-pulse">
-              ⚡ Only {TECHPULSE_CONFIG.slotsLeft} Slots Left!
+              ⚡ Only {TECHPULSE_CONFIG.slotsLeft} Copies Left!
             </span>
           </div>
           <div className="h-2.5 w-full overflow-hidden rounded-full bg-gray-200">
@@ -55,23 +55,23 @@ export function LaunchOfferBox({ onEnroll }: LaunchOfferBoxProps) {
         <div className="mx-auto mt-6 max-w-md text-left text-xs sm:text-sm text-[#0c172f] space-y-2 border-y border-[#dfe5ed] py-4">
           <div className="flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
-            <span>5 Low-Competition Buyer Search Tags & Keyword Placement</span>
+            <span>Complete 24-Hour Gig Ranking Method &amp; Step-by-Step Guide</span>
           </div>
           <div className="flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
-            <span>Permanent SEO Title & 1,200-Character AIDA Description</span>
+            <span>5 Low-Competition Buyer Search Tag Extraction Formula</span>
           </div>
           <div className="flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
-            <span>3-Tier Decoy Pricing & High-CTR Thumbnail Visual Guide</span>
+            <span>Permanent URL Permalink &amp; Copy-Paste AIDA Description Templates</span>
           </div>
           <div className="flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
-            <span>Live Screen-Share Setup & Transparent AnyDesk Support</span>
+            <span>3-Tier Decoy Pricing Blueprint &amp; High-CTR Thumbnail Guide</span>
           </div>
           <div className="flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
-            <span><strong>20–25 Days 100% Money-Back Guarantee</strong></span>
+            <span>Instant WhatsApp/Email Delivery + <strong>20–25 Days Money-Back Guarantee</strong></span>
           </div>
         </div>
 
@@ -80,9 +80,9 @@ export function LaunchOfferBox({ onEnroll }: LaunchOfferBoxProps) {
           <button
             type="button"
             onClick={onEnroll}
-            className="gradient-brand inline-flex w-full items-center justify-center gap-2 rounded-full px-10 py-4 text-lg font-extrabold text-white shadow-glow transition-all hover:scale-[1.02] active:scale-95 sm:w-auto"
+            className="gradient-brand inline-flex w-full items-center justify-center gap-2 rounded-full px-10 py-4 text-lg font-extrabold text-white shadow-glow transition-all hover:scale-[1.02] active:scale-95 sm:w-auto cursor-pointer"
           >
-            <span>Book Fiverr Optimization — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
+            <span>Get The 24h Ranking Method — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
             <ArrowRight className="h-5 w-5" />
           </button>
         </div>
@@ -99,7 +99,7 @@ export function LaunchOfferBox({ onEnroll }: LaunchOfferBoxProps) {
         {/* Subtext guarantees */}
         <div className="mt-4 flex items-center justify-center gap-2 text-xs sm:text-sm font-medium text-[#535f6f]">
           <ShieldCheck className="h-4 w-4 text-emerald-600" />
-          <span>100% Risk-Free Guarantee · If no impressions surge in 20–25 days, get a full refund</span>
+          <span>100% Risk-Free Guarantee · If no impressions surge after applying the method in 20–25 days, get a full refund</span>
         </div>
       </div>
     </section>

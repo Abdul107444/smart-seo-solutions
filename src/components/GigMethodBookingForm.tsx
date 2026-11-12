@@ -258,7 +258,7 @@ export const GigMethodBookingForm: React.FC = () => {
     const text = encodeURIComponent(
       `Hi Smart SEO Solutions!\n\nI just purchased the *Fiverr 24-Hour Gig Ranking Method PDF* (${GIG_RANK_METHOD_INFO.price}).\n\n*Name:* ${fullName || 'Client'}\n*WhatsApp:* ${whatsapp}\n*Niche:* ${niche}\n*Payment Method:* Meezan Bank (Zeenat yasmin)\n*Transaction ID:* ${transactionId || 'Verified in receipt'}\n\nPlease save my number for 1st page ranking updates and support.`
     );
-    window.open(`https://wa.me/923060880466?text=${text}`, '_blank');
+    window.open(`https://wa.me/923106625091?text=${text}`, '_blank');
   };
 
   return (

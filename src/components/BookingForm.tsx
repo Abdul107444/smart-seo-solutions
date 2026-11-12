@@ -269,7 +269,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
     msg += `\n\nI have messaged to verify my payment and details. Please guide me through the next onboarding steps!`;
 
     const encoded = encodeURIComponent(msg);
-    const targetNumber = '923060880466';
+    const targetNumber = '923106625091';
     return `https://api.whatsapp.com/send?phone=${targetNumber}&text=${encoded}`;
   };
 

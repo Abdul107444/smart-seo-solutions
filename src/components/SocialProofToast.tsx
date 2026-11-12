@@ -14,13 +14,13 @@ const CITIES = [
 ];
 
 const ACTIONS = [
-  { text: 'booked', service: 'Get 1st Client Full Optimization', highlight: 'text-[#109655]' },
-  { text: 'closed', service: 'First $250 Client Order on Fiverr', highlight: 'text-[#109655]' },
-  { text: 'booked', service: '10-Point Fiverr Gig & Profile Audit', highlight: 'text-[#2b62ef]' },
-  { text: 'received', service: '1st US Buyer Inquiry after Optimization', highlight: 'text-[#109655]' },
-  { text: 'booked', service: 'Live AnyDesk Screen-Share Setup', highlight: 'text-[#2b62ef]' },
-  { text: 'cleared', service: 'First $180 Order after Gig Overhaul', highlight: 'text-[#109655]' },
-  { text: 'booked', service: 'Fiverr 5 Search Tags & SEO Title Pack', highlight: 'text-[#2b62ef]' },
+  { text: 'purchased', service: '24h Fiverr Gig Ranking Method (Rs. 500)', highlight: 'text-[#109655]' },
+  { text: 'closed', service: 'First $250 Client Order using the 24h Method', highlight: 'text-[#109655]' },
+  { text: 'downloaded', service: '5 Buyer Tags & Permalink Blueprint', highlight: 'text-[#2b62ef]' },
+  { text: 'received', service: '1st US Buyer Inquiry within 48 Hours', highlight: 'text-[#109655]' },
+  { text: 'purchased', service: '24h Ranking Method + AIDA Templates', highlight: 'text-[#2b62ef]' },
+  { text: 'cleared', service: 'First $180 Order using the 3-Tier Formula', highlight: 'text-[#109655]' },
+  { text: 'unlocked', service: 'Fiverr 24-Hour Search Indexing Method', highlight: 'text-[#2b62ef]' },
 ];
 
 function getRandom<T>(arr: T[]): T {

@@ -13,6 +13,7 @@ import {
 } from 'firebase/firestore';
 import { db } from './firebase';
 import { LeadSubmission, LeadStatus } from '../types';
+import { TECHPULSE_CONFIG } from '../data/techpulseData';
 
 const LEADS_COLLECTION = 'leads';
 const LOCAL_STORAGE_KEY = 'smart_seo_fiverr_leads_v2';
@@ -113,7 +114,7 @@ export async function saveLeadToFirestore(
     id: temporaryId,
     status: lead.status || 'new',
     notes: lead.notes || '',
-    price: lead.price || 'Rs. 8,000',
+    price: lead.price || `Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()}`,
     createdAt: timestamp,
     updatedAt: timestamp,
   };

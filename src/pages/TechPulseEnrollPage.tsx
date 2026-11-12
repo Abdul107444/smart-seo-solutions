@@ -82,9 +82,9 @@ export function TechPulseEnrollPage({ onBack }: EnrollPageProps) {
         fullName: name,
         email: email,
         whatsapp: whatsapp,
-        profileUrl: 'Smart SEO Solutions — Fiverr Profile & Gig Optimization',
+        profileUrl: 'Smart SEO Solutions — 24h Fiverr Gig Ranking Method',
         status: 'new',
-        notes: `Selected Fiverr Profile & Gig Optimization - Rs. ${TECHPULSE_CONFIG.pricePKR}`,
+        notes: `Ordered 24h Fiverr Gig Ranking Method - Rs. ${TECHPULSE_CONFIG.pricePKR}`,
         price: `Rs. ${TECHPULSE_CONFIG.pricePKR}`
       });
 
@@ -141,10 +141,10 @@ export function TechPulseEnrollPage({ onBack }: EnrollPageProps) {
         fullName: leadInfo.name,
         email: leadInfo.email,
         whatsapp: leadInfo.whatsapp,
-        profileUrl: 'Smart SEO Solutions Fiverr Optimization Completed',
+        profileUrl: 'Smart SEO Solutions 24h Method Payment Submitted',
         status: 'pending_payment',
         receiptUrl: base64 || undefined,
-        notes: `Payment submitted for Smart SEO Solutions Fiverr Optimization (Rs. ${TECHPULSE_CONFIG.pricePKR}). Sender account: ${senderAccountName || leadInfo.name}`,
+        notes: `Payment submitted for 24h Fiverr Gig Ranking Method (Rs. ${TECHPULSE_CONFIG.pricePKR}). Sender account: ${senderAccountName || leadInfo.name}`,
         price: `Rs. ${TECHPULSE_CONFIG.pricePKR}`
       });
 
@@ -162,9 +162,9 @@ export function TechPulseEnrollPage({ onBack }: EnrollPageProps) {
   const getWhatsAppVerificationUrl = () => {
     const phone = TECHPULSE_CONFIG.whatsappEnrollNumber.replace(/[^0-9]/g, '');
     const accountName = senderAccountName.trim() || leadInfo.name || 'Client';
-    const text = `Hello! I have sent the Rs. 8,000 payment for Fiverr Profile & Gig Optimization, and attached the screenshot.
-Please verify my payment and begin onboarding for my Fiverr account optimization.
-Client Name: ${accountName}
+    const text = `Hello! I have sent the Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} payment for the 24-Hour Fiverr Gig Ranking Method, and attached the screenshot.
+Please verify my payment and send me the complete Method PDF & Templates.
+Name: ${accountName}
 Email: ${leadInfo.email}`;
     return `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(text)}`;
   };
@@ -209,7 +209,7 @@ Email: ${leadInfo.email}`;
               <span className="h-2.5 w-2.5 rounded-full bg-[#00bad2]" />
             </div>
             <div className="font-bold text-[#535f6f]">
-              Book Optimization · Step {isSuccess ? '3' : step} of 3
+              Order Method · Step {isSuccess ? '3' : step} of 3
             </div>
             <div className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-[#2b62ef]">
               <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -267,10 +267,10 @@ Email: ${leadInfo.email}`;
 
               <div>
                 <h1 className="font-display text-2xl font-extrabold text-[#0c172f]">
-                  Order Fiverr Profile & Gig Optimization
+                  Get The 24-Hour Gig Ranking Method
                 </h1>
                 <p className="mt-1 text-xs sm:text-sm font-semibold text-[#2b62ef]">
-                  Complete DFY Package: Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()} (Regular: Rs. {TECHPULSE_CONFIG.originalPricePKR.toLocaleString()})
+                  Complete Method Blueprint &amp; Templates: Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()} (Regular: Rs. {TECHPULSE_CONFIG.originalPricePKR.toLocaleString()})
                 </p>
               </div>
 
@@ -302,7 +302,7 @@ Email: ${leadInfo.email}`;
                     className="w-full rounded-xl border border-[#dfe5ed] bg-[#f7fbfd] px-4 py-2.5 text-sm text-[#0c172f] outline-none transition focus:border-[#2b62ef] focus:bg-white"
                   />
                   <p className="mt-1 text-[11px] text-[#535f6f]">
-                    We send your optimized keywords & 24h Ranking PDF to this email.
+                    We send your 24h Ranking Method PDF &amp; templates to this email.
                   </p>
                 </div>
 
@@ -319,34 +319,8 @@ Email: ${leadInfo.email}`;
                     className="w-full rounded-xl border border-[#dfe5ed] bg-[#f7fbfd] px-4 py-2.5 text-sm text-[#0c172f] outline-none transition focus:border-[#2b62ef] focus:bg-white"
                   />
                   <p className="mt-1 text-[11px] text-[#535f6f]">
-                    For direct SEO team audit updates and onboarding support.
+                    For instant method delivery &amp; 24/7 implementation guidance.
                   </p>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-[#535f6f] mb-1">
-                    Fiverr Profile URL or Username (Optional)
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="e.g. fiverr.com/yourusername"
-                    value={(leadInfo as any).fiverrProfileUrl || ''}
-                    onChange={(e) => setLeadInfo({ ...leadInfo, fiverrProfileUrl: e.target.value } as any)}
-                    className="w-full rounded-xl border border-[#dfe5ed] bg-[#f7fbfd] px-4 py-2.5 text-sm text-[#0c172f] outline-none transition focus:border-[#2b62ef] focus:bg-white"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-[#535f6f] mb-1">
-                    Your Service Niche / Skill
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="e.g. WordPress, Video Editing, Graphic Design, Shopify, SEO..."
-                    value={(leadInfo as any).niche || ''}
-                    onChange={(e) => setLeadInfo({ ...leadInfo, niche: e.target.value } as any)}
-                    className="w-full rounded-xl border border-[#dfe5ed] bg-[#f7fbfd] px-4 py-2.5 text-sm text-[#0c172f] outline-none transition focus:border-[#2b62ef] focus:bg-white"
-                  />
                 </div>
               </div>
 
@@ -551,7 +525,7 @@ Email: ${leadInfo.email}`;
                   Upload Proof of Payment.
                 </h1>
                 <p className="mt-1 text-xs sm:text-sm text-[#535f6f]">
-                  Attach payment receipt screenshot so our team can verify and start your Fiverr gig audit.
+                  Attach payment receipt screenshot so we can verify and send your 24h Ranking Method immediately.
                 </p>
               </div>
 
@@ -683,9 +657,9 @@ Email: ${leadInfo.email}`;
                   What Happens Next:
                 </div>
                 <ul className="list-disc list-inside space-y-1 text-emerald-800 text-xs">
-                  <li>Our team is currently verifying your payment.</li>
-                  <li>An onboarding confirmation message and details are being sent to your WhatsApp and email: <strong className="text-emerald-950 font-bold">{leadInfo.email}</strong>.</li>
-                  <li>To begin your profile audit immediately, please tap the green WhatsApp button below to share your transaction receipt with our SEO specialist.</li>
+                  <li>Our team is verifying your Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()} payment right now.</li>
+                  <li>Your complete 24-Hour Gig Ranking Method PDF &amp; Templates will be delivered straight to your WhatsApp and email: <strong className="text-emerald-950 font-bold">{leadInfo.email}</strong>.</li>
+                  <li>To get instant delivery right away, please tap the green WhatsApp button below to share your transaction screenshot.</li>
                 </ul>
               </div>
 
@@ -720,20 +694,20 @@ Email: ${leadInfo.email}`;
           <div className="space-y-2.5">
             {[
               {
-                q: 'How will the Fiverr optimization be executed?',
-                a: 'Once your Rs. 8,000 payment is verified, we connect with you on WhatsApp. We can either execute directly on your Fiverr account or share the complete deliverables sheet and guide you on a live AnyDesk screen-share session.'
+                q: 'Am I buying a method or a done-for-you service?',
+                a: `You are purchasing our complete, step-by-step 24-Hour Fiverr Gig Ranking Method (PDF Blueprint + AIDA Templates + Keyword Formula) for Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} so you can easily optimize your own gigs yourself.`
               },
               {
-                q: 'How long does the optimization take?',
-                a: 'Full competitor research, SEO titles, 5 intent search tags, 1,200-character description, 3-tier pricing, and high-CTR thumbnail strategy are delivered in 2–4 business days.'
+                q: 'How fast will I receive the method after payment?',
+                a: 'Once your Rs. 500 payment receipt is verified (usually within 10–15 minutes), we send the complete method package directly to your WhatsApp and Email.'
               },
               {
                 q: 'What is the 20–25 Days 100% Money-Back Guarantee?',
-                a: 'If after 20–25 days of published optimization you do not see search impressions growth, clicks, or buyer messages, we immediately refund your full Rs. 8,000 fee via WhatsApp with zero hassle.'
+                a: `If after 20–25 days of applying the steps inside our method you do not see search impressions growth, clicks, or buyer messages, we immediately refund your full Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} fee via WhatsApp with zero hassle.`
               },
               {
-                q: 'Is this process safe for my Fiverr account?',
-                a: 'Yes, 100%! We strictly follow Fiverr Terms of Service with ethical white-hat SEO strategies. No fake reviews, no bots, and no black-hat tactics.'
+                q: 'Do I need to share my Fiverr login or password?',
+                a: 'No! We never ask for your Fiverr login, password, or remote computer access. You apply the entire white-hat method safely on your own account.'
               }
             ].map((faq, idx) => {
               const isOpen = openFaq === idx;

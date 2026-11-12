@@ -41,6 +41,7 @@ import {
 } from 'lucide-react';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
 import { AdminLogin } from '../components/admin/AdminLogin';
+import { TECHPULSE_CONFIG } from '../data/techpulseData';
 
 interface AdminDashboardPageProps {
   onNavigateHome: () => void;
@@ -186,7 +187,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
   const inProgressCount = leads.filter(l => l.status === 'in_progress' || l.status === 'contacted').length;
   const completedCount = leads.filter(l => l.status === 'completed').length;
   const newLeadsCount = leads.filter(l => (l.status || 'new') === 'new').length;
-  const estimatedRevenue = totalLeads * 8000;
+  const estimatedRevenue = totalLeads * TECHPULSE_CONFIG.pricePKR;
 
   // Actions
   const handleStatusChange = async (leadId: string, newStatus: LeadStatus) => {
@@ -217,7 +218,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
       paymentScreenshot: newLeadScreenshot || undefined,
       notes: newLeadNotes,
       status: 'new',
-      price: 'Rs. 8,000'
+      price: `Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()}`
     });
 
     setIsAdding(false);
@@ -293,7 +294,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
       `"${l.paymentMethod || 'Meezan Bank'}"`,
       `"${(l.transactionId || '').replace(/"/g, '""')}"`,
       `"${l.status || 'new'}"`,
-      `"${l.price || 'Rs. 8,000'}"`,
+      `"${l.price || `Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()}`}"`,
       `"${new Date(l.createdAt).toLocaleString()}"`,
       `"${(l.notes || '').replace(/"/g, '""')}"`
     ]);
@@ -318,7 +319,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
       cleanPhone = '92' + cleanPhone;
     }
 
-    const messageText = `👋 Hello ${lead.fullName}!\n\nThis is Smart SEO Solutions regarding your Fiverr Profile & Gig Optimization intake (Rs. 8,000 DFY Package).\n\nWe received your details and payment verification (${lead.price || 'Rs. 8,000'}, TID: ${lead.transactionId || 'Verified'}).\n\nTarget Niche: *${lead.niche || 'Fiverr Profile'}*\n\nPlease share your Fiverr profile link and target gig URLs so our team can start your manual keyword audit!`;
+    const messageText = `👋 Hello ${lead.fullName}!\n\nThis is Smart SEO Solutions regarding your Fiverr Profile & Gig Optimization intake (Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} DFY Package).\n\nWe received your details and payment verification (${lead.price || `Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()}`}, TID: ${lead.transactionId || 'Verified'}).\n\nTarget Niche: *${lead.niche || 'Fiverr Profile'}*\n\nPlease share your Fiverr profile link and target gig URLs so our team can start your manual keyword audit!`;
 
     const message = encodeURIComponent(messageText);
 
@@ -475,7 +476,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
           <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
             <span className="px-3.5 py-1.5 rounded-lg bg-blue-500/15 border border-blue-500/30 text-xs text-blue-300 font-semibold whitespace-nowrap flex items-center gap-1.5">
               <Briefcase className="w-3.5 h-3.5" />
-              <span>Fiverr Profile & Gig Optimization (Rs. 8,000)</span>
+              <span>Fiverr Profile &amp; Gig Optimization (Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()})</span>
             </span>
           </div>
         </div>
@@ -617,7 +618,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
                             {lead.paymentMethod || 'Meezan Bank'}
                           </span>
                           <span className="text-[10px] font-bold text-emerald-400">
-                            {lead.price || 'Rs. 8,000'}
+                            {lead.price || `Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()}`}
                           </span>
                           {lead.isPaymentVerified ? (
                             <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[9px] font-extrabold flex items-center gap-0.5">
@@ -992,7 +993,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
               <div className="p-3.5 rounded-2xl bg-black/40 border border-white/10 space-y-3">
                 <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-400">
                   <CreditCard className="w-3.5 h-3.5" />
-                  <span>Payment Information (Rs. 8,000)</span>
+                  <span>Payment Information (Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()})</span>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

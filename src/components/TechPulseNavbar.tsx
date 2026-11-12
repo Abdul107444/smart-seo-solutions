@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Menu, X, ArrowRight, Sparkles, ShieldCheck } from 'lucide-react';
+import { Menu, X, ArrowRight, Sparkles, ShieldCheck, Zap } from 'lucide-react';
 import { TECHPULSE_CONFIG } from '../data/techpulseData';
+import type { AppRoute } from '../App';
 
 interface NavbarProps {
-  onNavigate: (page: 'landing' | 'training' | 'enroll' | 'admin') => void;
+  onNavigate: (page: AppRoute) => void;
   currentPage: string;
 }
 
@@ -47,13 +48,25 @@ export function TechPulseNavbar({ onNavigate, currentPage }: NavbarProps) {
               Smart SEO Solutions
             </div>
             <div className="text-[11px] font-medium text-[#535f6f] hidden xs:block">
-              Get 1st Client — Full Fiverr Optimization
+              24h Fiverr Ranking Method — Get 1st Order Fast
             </div>
           </div>
         </button>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-7 text-sm font-semibold text-[#535f6f]">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-7 text-sm font-semibold text-[#535f6f]">
+          <button
+            type="button"
+            onClick={() => onNavigate('method')}
+            className={`transition-colors flex items-center gap-1.5 py-1 px-2.5 rounded-full ${
+              currentPage === 'method'
+                ? 'bg-[#2b62ef]/10 text-[#2b62ef] font-bold border border-[#2b62ef]/30'
+                : 'hover:text-[#2b62ef]'
+            }`}
+          >
+            <span className="inline-block h-2 w-2 rounded-full bg-[#1dbf73] animate-pulse" />
+            <span>24h Ranking Method</span>
+          </button>
           <button
             type="button"
             onClick={() => handleNavClick('trust')}
@@ -73,7 +86,7 @@ export function TechPulseNavbar({ onNavigate, currentPage }: NavbarProps) {
             onClick={() => handleNavClick('pricing')}
             className="transition-colors hover:text-[#2b62ef]"
           >
-            Pricing (Rs. 8,000)
+            Pricing (Rs. 500)
           </button>
           <button
             type="button"
@@ -91,8 +104,8 @@ export function TechPulseNavbar({ onNavigate, currentPage }: NavbarProps) {
             onClick={() => onNavigate('enroll')}
             className="gradient-brand inline-flex items-center gap-1.5 sm:gap-2 rounded-full px-3.5 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-bold text-white shadow-glow transition-all hover:scale-[1.03] active:scale-95 cursor-pointer"
           >
-            <span className="hidden sm:inline">Book Optimization — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
-            <span className="sm:hidden">Book — Rs. 8k</span>
+            <span className="hidden sm:inline">Get The Method — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
+            <span className="sm:hidden">Method — Rs. 500</span>
             <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
           </button>
 
@@ -114,6 +127,26 @@ export function TechPulseNavbar({ onNavigate, currentPage }: NavbarProps) {
           <div className="flex flex-col gap-3 font-semibold text-sm text-[#0c172f]">
             <button
               type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onNavigate('method');
+              }}
+              className={`rounded-lg px-3 py-2 text-left flex items-center justify-between ${
+                currentPage === 'method'
+                  ? 'bg-[#2b62ef]/10 text-[#2b62ef] font-bold border border-[#2b62ef]/30'
+                  : 'bg-[#2b62ef]/5 text-[#2b62ef] hover:bg-[#2b62ef]/10'
+              }`}
+            >
+              <span className="flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-[#1dbf73] animate-pulse" />
+                24h Ranking Method
+              </span>
+              <span className="text-[10px] font-bold uppercase tracking-wider bg-[#2b62ef] text-white px-2 py-0.5 rounded-full">
+                HOT
+              </span>
+            </button>
+            <button
+              type="button"
               onClick={() => handleNavClick('trust')}
               className="rounded-lg px-3 py-2 text-left hover:bg-[#ecf3f8]"
             >
@@ -131,7 +164,7 @@ export function TechPulseNavbar({ onNavigate, currentPage }: NavbarProps) {
               onClick={() => handleNavClick('pricing')}
               className="rounded-lg px-3 py-2 text-left hover:bg-[#ecf3f8]"
             >
-              Pricing &amp; Bank Details (Rs. 8,000)
+              Pricing &amp; Bank Details (Rs. 500)
             </button>
             <button
               type="button"
@@ -149,7 +182,7 @@ export function TechPulseNavbar({ onNavigate, currentPage }: NavbarProps) {
                 }}
                 className="gradient-brand w-full flex items-center justify-center gap-2 rounded-xl py-3 font-bold text-white shadow-glow"
               >
-                Book Optimization — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}
+                Get 24h Ranking Method — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}
                 <ArrowRight className="h-4 w-4" />
               </button>
             </div>

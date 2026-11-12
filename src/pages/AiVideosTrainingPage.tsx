@@ -28,20 +28,20 @@ export function AiVideosTrainingPage({ onBack, onEnroll, onSeeReviews }: Trainin
 
   const serviceFaqs = [
     {
-      q: 'How long does the optimization take to complete?',
-      a: 'A complete, manual audit and done-for-you optimization is typically delivered within 2 to 4 business days after you submit your profile details.'
+      q: 'How fast do I receive the method after payment?',
+      a: 'This is an instant digital method (PDF Blueprint + AIDA Templates + Keyword Formula). Once your Rs. 500 payment receipt is verified, we send the complete method package to your WhatsApp and Email within 10–15 minutes.'
     },
     {
-      q: 'How do you apply the changes to my Fiverr account?',
-      a: 'We offer two 100% secure methods: (1) Direct login credentials if you prefer completely hands-free execution, or (2) A live screen-share session via AnyDesk or TeamViewer where we apply all keywords, titles, tags, and packages in front of your eyes.'
+      q: 'Do I apply the method myself or do you log into my Fiverr account?',
+      a: 'You apply the steps yourself using our easy step-by-step guide! We never ask for your Fiverr password, login, or AnyDesk access. Everything stays 100% private and in your full control.'
     },
     {
       q: 'What is your 20–25 Days 100% Money-Back Guarantee?',
-      a: 'Once our optimization is published on your profile, we allow Fiverr algorithms 20 to 25 days to re-index your keywords and boost search impressions. If you follow our instructions and do not receive organic search progress or buyer interaction, we issue a 100% full refund on WhatsApp with zero hassle.'
+      a: 'Once you apply our method on your gig, we allow Fiverr algorithms 20 to 25 days to index your keywords and boost search impressions. If you follow the steps and do not receive organic search progress or buyer interaction, we issue a 100% full refund on WhatsApp with zero hassle.'
     },
     {
-      q: 'Will my existing gigs be de-ranked if you edit them?',
-      a: 'No! If your gig is already getting 0 impressions or orders, keeping it un-optimized guarantees 0 results. When optimized using our white-hat algorithm tags and preserving your permanent URL structure, Fiverr briefly re-indexes your gig and pushes it to targeted buyer search streams.'
+      q: 'Will my existing gigs be de-ranked if I update them using this method?',
+      a: 'No! If your gig is already getting 0 impressions or orders, keeping it un-optimized guarantees 0 results. When you apply our white-hat algorithm tags and preserve your permanent URL structure, Fiverr re-indexes your gig within 24 hours and pushes it to targeted buyer search streams.'
     },
     {
       q: 'What payment methods do you accept in Pakistan?',
@@ -79,7 +79,7 @@ export function AiVideosTrainingPage({ onBack, onEnroll, onSeeReviews }: Trainin
             onClick={onEnroll}
             className="gradient-brand inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-bold text-white shadow-sm hover:scale-105 transition-transform"
           >
-            <span>Book — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
+            <span>Get Method — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
           </button>
         </div>
       </header>
@@ -89,14 +89,14 @@ export function AiVideosTrainingPage({ onBack, onEnroll, onSeeReviews }: Trainin
         {/* Title */}
         <div className="text-center">
           <div className="inline-flex items-center gap-1.5 rounded-full bg-[#2b62ef]/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#2b62ef]">
-            <Sparkles className="h-3.5 w-3.5" /> Done-For-You Service Overview
+            <Sparkles className="h-3.5 w-3.5" /> Complete 24-Hour Method Overview
           </div>
           <h1 className="mt-4 font-display text-2xl font-extrabold leading-tight text-[#0c172f] sm:text-4xl">
-            Complete Fiverr Profile & Gig Optimization —{' '}
-            <span className="text-gradient">Rank on Page 1 & Multiply Orders</span>
+            Gig Rank Within 24 Hours To Get 1st Order —{' '}
+            <span className="text-gradient">Complete Step-by-Step Method</span>
           </h1>
           <p className="mx-auto mt-3 max-w-xl text-sm sm:text-base text-[#535f6f] leading-relaxed">
-            Stop waiting for buyer requests or wondering why your gigs are frozen at 0 impressions. We overhaul your Fiverr presence to attract international high-ticket buyers.
+            Stop waiting for buyer requests or wondering why your gigs are frozen at 0 impressions. Learn the exact ranking blueprint to push your gigs into high-ticket buyer searches yourself.
           </p>
         </div>
 
@@ -120,7 +120,7 @@ export function AiVideosTrainingPage({ onBack, onEnroll, onSeeReviews }: Trainin
             onClick={onEnroll}
             className="gradient-brand w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-bold text-white shadow-glow hover:scale-[1.02] transition-transform"
           >
-            <span>Book Optimization — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
+            <span>Get The Method — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
             <ArrowRight className="h-5 w-5" />
           </button>
 
@@ -133,7 +133,7 @@ export function AiVideosTrainingPage({ onBack, onEnroll, onSeeReviews }: Trainin
           </button>
         </div>
         <p className="mt-2 text-center text-xs text-[#535f6f]">
-          Promotional Package Fee · Regular Fee: Rs. {TECHPULSE_CONFIG.originalPricePKR.toLocaleString()}
+          Promotional Method Fee · Regular Price: Rs. {TECHPULSE_CONFIG.originalPricePKR.toLocaleString()}
         </p>
 
         {/* Service Specifications Card */}
@@ -143,32 +143,32 @@ export function AiVideosTrainingPage({ onBack, onEnroll, onSeeReviews }: Trainin
               Full Specifications
             </span>
             <h2 className="mt-1 font-display text-2xl font-bold text-[#0c172f]">
-              Service Delivery Specifications
+              What You Receive In This Method
             </h2>
             <p className="mt-1 text-xs sm:text-sm text-[#535f6f]">
-              Everything delivered directly to your Fiverr profile.
+              Everything delivered instantly to your WhatsApp &amp; Email.
             </p>
           </div>
 
           <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
             <div className="rounded-2xl border border-[#dfe5ed] bg-[#f7fbfd] p-3 text-center">
-              <div className="text-[10px] font-bold uppercase text-[#535f6f]">Service Charges</div>
+              <div className="text-[10px] font-bold uppercase text-[#535f6f]">Method Price</div>
               <div className="mt-1 font-display text-base font-extrabold text-[#2b62ef]">
                 PKR {TECHPULSE_CONFIG.pricePKR.toLocaleString()}
               </div>
             </div>
 
             <div className="rounded-2xl border border-[#dfe5ed] bg-[#f7fbfd] p-3 text-center">
-              <div className="text-[10px] font-bold uppercase text-[#535f6f]">Turnaround Time</div>
+              <div className="text-[10px] font-bold uppercase text-[#535f6f]">Delivery Time</div>
               <div className="mt-1 font-display text-base font-extrabold text-[#0c172f]">
-                2–4 Days
+                Instant (15m)
               </div>
             </div>
 
             <div className="rounded-2xl border border-[#dfe5ed] bg-[#f7fbfd] p-3 text-center">
-              <div className="text-[10px] font-bold uppercase text-[#535f6f]">Delivery Mode</div>
+              <div className="text-[10px] font-bold uppercase text-[#535f6f]">Format</div>
               <div className="mt-1 font-display text-base font-extrabold text-[#0c172f]">
-                AnyDesk / Direct
+                PDF + Templates
               </div>
             </div>
 
@@ -239,19 +239,19 @@ export function AiVideosTrainingPage({ onBack, onEnroll, onSeeReviews }: Trainin
               100% Risk-Free Money-Back Guarantee
             </h3>
             <p className="mx-auto mt-1 max-w-md text-xs sm:text-sm text-emerald-900 leading-relaxed">
-              If after 20–25 days of published optimization you do not see search impression growth or buyer outreach, you receive an immediate 100% refund via WhatsApp.
+              If after 20–25 days of applying our method you do not see search impression growth or buyer outreach, you receive an immediate 100% refund via WhatsApp.
             </p>
           </div>
         </div>
 
-        {/* Service FAQs */}
+        {/* Method FAQs */}
         <div className="mt-12">
           <div className="text-center mb-6">
             <h2 className="font-display text-2xl font-bold text-[#0c172f]">
-              Service FAQ
+              Method FAQ
             </h2>
             <p className="text-xs text-[#535f6f]">
-              Got questions before booking? We have you covered.
+              Got questions before buying the method? We have you covered.
             </p>
           </div>
 
@@ -297,7 +297,7 @@ export function AiVideosTrainingPage({ onBack, onEnroll, onSeeReviews }: Trainin
             onClick={onEnroll}
             className="gradient-brand inline-flex items-center gap-2 rounded-full px-10 py-4 text-base font-bold text-white shadow-glow hover:scale-[1.02] transition-transform"
           >
-            <span>Book Optimization — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
+            <span>Get The 24h Method — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
             <ArrowRight className="h-5 w-5" />
           </button>
           <div className="mt-3 flex items-center justify-center gap-1.5 text-xs text-[#535f6f]">

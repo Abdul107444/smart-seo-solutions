@@ -9,9 +9,10 @@ import { TechPulseFooter } from '../components/TechPulseFooter';
 import { SocialProofToast } from '../components/SocialProofToast';
 import { TechPulseWhatsAppFloat } from '../components/TechPulseWhatsAppFloat';
 import { ScreenshotLightbox } from '../components/ScreenshotLightbox';
+import type { AppRoute } from '../App';
 
 interface LandingPageProps {
-  onNavigate: (page: 'landing' | 'training' | 'enroll' | 'admin') => void;
+  onNavigate: (page: AppRoute) => void;
 }
 
 export function TechPulseLandingPage({ onNavigate }: LandingPageProps) {

@@ -73,12 +73,12 @@ export const GigMethodFaqSection: React.FC = () => {
         <div className="mt-12 text-center text-xs sm:text-sm text-white/50">
           Have more questions? Contact our dedicated WhatsApp support directly at{' '}
           <a
-            href="https://wa.me/923060880466"
+            href="https://wa.me/923106625091"
             target="_blank"
             rel="noopener noreferrer"
             className="text-orange-400 hover:text-orange-300 font-bold underline decoration-orange-400/50"
           >
-            +92 306 0880466
+            +92 310 6625091
           </a>{' '}
           for immediate assistance.
         </div>

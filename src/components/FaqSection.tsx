@@ -20,26 +20,26 @@ interface FaqItemData {
 const FOCUSED_FAQS: FaqItemData[] = [
   {
     id: 'faq-1',
-    q: 'My Fiverr gig has 0 impressions or seems frozen — can optimization revive it?',
-    a: 'Yes, 100%! The Fiverr search algorithm deprioritizes gigs with outdated generic tags, low keyword relevance, or mismatched category metadata. During optimization, we re-index your gig using low-to-medium competition buyer search terms and algorithmic tags. Once your metadata matches active buyer search intent, the algorithm pushes your gig into fresh search streams to capture real impressions.',
+    q: 'My Fiverr gig has 0 impressions or seems frozen — can this method revive it?',
+    a: 'Yes, 100%! The Fiverr search algorithm deprioritizes gigs with outdated generic tags, low keyword relevance, or mismatched category metadata. Our step-by-step method shows you how to re-index your gig using low-to-medium competition buyer search terms and algorithmic tags so Fiverr pushes your gig into active search streams.',
     highlight: '100% Algorithmic Re-Indexing'
   },
   {
     id: 'faq-2',
-    q: 'If you edit my existing gig, is there any risk of de-ranking?',
-    a: 'Not at all. If your gig is already receiving zero orders, leaving it untouched only prolongs the deadlock. When we update your title, description, and tags according to 2026 Fiverr algorithm standards, the system enters a temporary 24–48 hour re-indexing phase before displaying your gig in higher, more relevant search tiers. We never alter your permanent URL permalink, ensuring your account authority stays completely protected.',
+    q: 'If I update my existing gig using this method, is there any risk of de-ranking?',
+    a: 'Not at all. Leaving a zero-order gig untouched only prolongs the deadlock. Inside the method, you learn how to update your title, description, and tags safely according to Fiverr algorithm rules—triggering a 24-hour re-indexing cycle without touching your permanent URL permalink.',
     highlight: 'Zero De-Rank Risk on URL Permalinks'
   },
   {
     id: 'faq-3',
-    q: 'How does the AnyDesk session work? Do I need to share passwords?',
-    a: 'Zero password sharing is required! You never need to share your Fiverr login or password. We conduct a live screen-share session over AnyDesk or TeamViewer where our SEO specialist applies every keyword, tag, description, and pricing tier directly in front of your eyes. The process is completely transparent and 100% secure.',
-    highlight: 'Zero Password Sharing Required'
+    q: 'Do you do the optimization for me, or am I buying the method?',
+    a: 'You are purchasing the complete, step-by-step 24-Hour Fiverr Ranking Method (with copy-paste AIDA templates, keyword research formula, and pricing chart). We do NOT ask for your Fiverr password or log into your account—you receive the full method on WhatsApp & Email and apply it safely yourself in under 45 minutes.',
+    highlight: 'Self-Apply Blueprint · Zero Password Sharing'
   },
   {
     id: 'faq-4',
     q: 'How does the 20–25 Days Money-Back Guarantee work?',
-    a: 'Our 20–25 day guarantee is 100% unconditional. If you implement our optimized setup and do not experience positive organic search impression growth or genuine buyer inquiries within 20–25 days, simply message us on WhatsApp for an immediate 100% refund of your Rs. 8,000 fee directly to your Pakistani bank account or mobile wallet. Zero disputes, zero hassle.',
+    a: 'Our 20–25 day guarantee is 100% unconditional. If you follow our step-by-step method properly and do not experience positive organic search impression growth or genuine buyer inquiries within 20–25 days, simply message us on WhatsApp for an immediate 100% refund of your Rs. 500 fee directly to your Pakistani bank account or mobile wallet.',
     highlight: '100% Unconditional Refund Policy'
   }
 ];
@@ -145,16 +145,16 @@ export function FaqSection() {
         <div className="mt-10 overflow-hidden rounded-2xl border border-[#2b62ef]/25 bg-gradient-to-r from-blue-50/40 via-white to-emerald-50/40 p-5 sm:p-6 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-center sm:text-left">
             <h3 className="text-sm sm:text-base font-extrabold text-[#0c172f]">
-              Have another question about your Fiverr profile?
+              Have another question about the 24h Ranking Method?
             </h3>
             <p className="text-xs text-[#535f6f] mt-0.5">
-              Talk directly to our SEO Specialist on WhatsApp for instant guidance.
+              Message us on WhatsApp for quick answers before ordering.
             </p>
           </div>
 
           <a
             href={`https://wa.me/${phone}?text=${encodeURIComponent(
-              'Hello! I have a question regarding the Fiverr Profile & Gig Optimization service.'
+              'Hello! I have a question regarding the Fiverr 24-Hour Gig Ranking Method (Rs. 500).'
             )}`}
             target="_blank"
             rel="noopener noreferrer"

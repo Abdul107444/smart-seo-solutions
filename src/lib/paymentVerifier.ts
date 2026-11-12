@@ -213,16 +213,14 @@ export async function verifyPaymentScreenshot(
     const detectedAccount = hasIban ? 'PK20MEZN0000300114121316' : (hasMeezanBank ? 'Meezan Bank' : undefined);
 
     // 7. Amount Verification
-    // Target: Rs. 8,000 (Full Fiverr Optimization Package), Rs. 5,600 (70% Advance), or Rs. 2,400 (30% Final)
-    const hasFullAmount = norm.includes('8000') || norm.includes('8,000') || norm.includes('8 000');
-    const hasAdvanceAmount = norm.includes('5600') || norm.includes('5,600') || norm.includes('5 600');
-    const hasRemainingAmount = norm.includes('2400') || norm.includes('2,400') || norm.includes('2 400');
-    const amountMatched = hasFullAmount || hasAdvanceAmount || hasRemainingAmount;
+    // Target: Rs. 500 (Full Fiverr Optimization Package)
+    const has500 = norm.includes('500') || norm.includes('500.00') || norm.includes('500,00');
+    const has8000 = norm.includes('8000') || norm.includes('8,000') || norm.includes('8 000');
+    const amountMatched = has500 || has8000;
     
     let detectedAmount = 'Unspecified';
-    if (hasFullAmount) detectedAmount = 'Rs. 8,000 (Full Optimization Package)';
-    else if (hasAdvanceAmount) detectedAmount = 'Rs. 5,600 (70% Advance)';
-    else if (hasRemainingAmount) detectedAmount = 'Rs. 2,400 (30% Final)';
+    if (has500) detectedAmount = 'Rs. 500 (Full Optimization Package)';
+    else if (has8000) detectedAmount = 'Rs. 8,000 (Legacy Package)';
 
     // 8. Transaction ID (TID) extraction
     let detectedTid: string | undefined;
