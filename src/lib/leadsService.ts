@@ -348,6 +348,10 @@ export async function updateLeadPaymentInFirestore(
     transactionId?: string;
     paymentScreenshot?: string;
     price?: string;
+    isPaymentVerified?: boolean;
+    verificationNote?: string;
+    status?: LeadStatus;
+    notes?: string;
   }
 ): Promise<boolean> {
   const timestamp = new Date().toISOString();

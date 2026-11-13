@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { PAYMENT_ACCOUNTS, GIG_RANK_METHOD_INFO } from '../data/funnelData';
 import { verifyPaymentScreenshot, VerificationResult } from '../lib/paymentVerifier';
 import { saveLeadToFirestore } from '../lib/leadsService';
-import { generateGigRankMethodPdf } from '../lib/generateGigRankMethodPdf';
+import { downloadOfficialMethodPdf, METHOD_PDF_URL } from '../lib/methodPdfDownload';
 import { 
   ShieldCheck, 
   Check, 
@@ -185,12 +185,14 @@ export const GigMethodBookingForm: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const triggerDownload = () => {
+  const triggerDownload = async () => {
     try {
-      generateGigRankMethodPdf();
-      setDownloadCount(prev => prev + 1);
+      const ok = await downloadOfficialMethodPdf();
+      if (ok) {
+        setDownloadCount(prev => prev + 1);
+      }
     } catch (err) {
-      console.error('PDF generation error:', err);
+      console.error('PDF download error:', err);
     }
   };
 
@@ -304,6 +306,16 @@ export const GigMethodBookingForm: React.FC = () => {
                   <Download className="w-5 h-5 stroke-[2.5]" />
                   <span>📥 Download Your PDF Guide Now</span>
                 </button>
+
+                <a
+                  href={METHOD_PDF_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto px-6 py-4 rounded-2xl bg-white/10 border border-white/25 text-white hover:bg-white/20 font-bold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer"
+                >
+                  <span>Open PDF</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
 
                 <button
                   onClick={handleOpenWhatsApp}

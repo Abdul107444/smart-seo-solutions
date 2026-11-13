@@ -11,11 +11,22 @@ import {
   Wallet,
   Lock,
   MessageCircle,
-  HelpCircle,
-  ChevronDown
+  ChevronDown,
+  Download,
+  FileText,
+  ExternalLink,
+  AlertCircle,
+  Loader2,
+  Sparkles
 } from 'lucide-react';
 import { TECHPULSE_CONFIG } from '../data/techpulseData';
-import { saveLeadToFirestore } from '../lib/leadsService';
+import { saveLeadToFirestore, updateLeadPaymentInFirestore } from '../lib/leadsService';
+import { verifyPaymentScreenshot, VerificationResult } from '../lib/paymentVerifier';
+import {
+  downloadOfficialMethodPdf,
+  METHOD_PDF_URL,
+  METHOD_PDF_FILENAME
+} from '../lib/methodPdfDownload';
 
 interface EnrollPageProps {
   onBack: () => void;
@@ -24,7 +35,7 @@ interface EnrollPageProps {
 const STEP_TITLES: Record<number, string> = {
   1: 'Your Details',
   2: 'Send Payment',
-  3: 'Upload Proof'
+  3: 'AI Verification'
 };
 
 export function TechPulseEnrollPage({ onBack }: EnrollPageProps) {
@@ -37,12 +48,21 @@ export function TechPulseEnrollPage({ onBack }: EnrollPageProps) {
   const [leadId, setLeadId] = useState<string>('');
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
-  // Step 3 proof states
+  // Step 3 proof & AI verification states
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [compressedScreenshot, setCompressedScreenshot] = useState<string>('');
   const [senderAccountName, setSenderAccountName] = useState<string>('');
+  const [transactionId, setTransactionId] = useState<string>('');
+  const [isVerifying, setIsVerifying] = useState<boolean>(false);
+  const [verificationProgress, setVerificationProgress] = useState<string>('');
+  const [verificationResult, setVerificationResult] = useState<VerificationResult | null>(null);
+
+  // Submission & PDF download states
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [downloadCount, setDownloadCount] = useState<number>(0);
+  const [isDownloadingPdf, setIsDownloadingPdf] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   // FAQ toggle
@@ -52,6 +72,57 @@ export function TechPulseEnrollPage({ onBack }: EnrollPageProps) {
     navigator.clipboard?.writeText(text);
     setCopiedKey(key);
     setTimeout(() => setCopiedKey(null), 1800);
+  };
+
+  // Compress uploaded image for Firestore 1MB safety
+  const compressReceiptImage = (file: File): Promise<string> => {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const rawResult = (event.target?.result as string) || '';
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const maxDim = 1200;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > maxDim || height > maxDim) {
+            if (width > height) {
+              height = Math.round((height * maxDim) / width);
+              width = maxDim;
+            } else {
+              width = Math.round((width * maxDim) / height);
+              height = maxDim;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+            ctx.drawImage(img, 0, 0, width, height);
+            resolve(canvas.toDataURL('image/jpeg', 0.82));
+          } else {
+            resolve(rawResult);
+          }
+        };
+        img.onerror = () => resolve(rawResult);
+        img.src = rawResult;
+      };
+      reader.onerror = () => resolve('');
+      reader.readAsDataURL(file);
+    });
+  };
+
+  // Trigger PDF Download cleanly
+  const handleDownloadPdf = async () => {
+    setIsDownloadingPdf(true);
+    const ok = await downloadOfficialMethodPdf();
+    setIsDownloadingPdf(false);
+    if (ok) {
+      setDownloadCount((prev) => prev + 1);
+    }
   };
 
   // Step 1: Submit Details
@@ -82,9 +153,10 @@ export function TechPulseEnrollPage({ onBack }: EnrollPageProps) {
         fullName: name,
         email: email,
         whatsapp: whatsapp,
+        niche: '24-Hour Fiverr Gig Ranking Method (PDF)',
         profileUrl: 'Smart SEO Solutions — 24h Fiverr Gig Ranking Method',
         status: 'new',
-        notes: `Ordered 24h Fiverr Gig Ranking Method - Rs. ${TECHPULSE_CONFIG.pricePKR}`,
+        notes: `Started order for 24h Fiverr Gig Ranking Method - Rs. ${TECHPULSE_CONFIG.pricePKR}`,
         price: `Rs. ${TECHPULSE_CONFIG.pricePKR}`
       });
 
@@ -94,78 +166,148 @@ export function TechPulseEnrollPage({ onBack }: EnrollPageProps) {
       setSubmitting(false);
       setStep(2);
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    } catch (err: any) {
+    } catch {
       setSubmitting(false);
-      // Proceed even if network fails locally
       setStep(2);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
-  // Handle Proof File Change
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
+  // Handle Proof File Change + Automatic AI Verification
+  const processUploadedScreenshot = async (file: File) => {
     if (!file.type.startsWith('image/')) {
-      setErrorMessage('Please upload an image file (PNG, JPG, JPEG).');
+      setErrorMessage('Please upload a valid image file (PNG, JPG, JPEG, WEBP).');
       return;
     }
 
+    setErrorMessage(null);
     setSelectedFile(file);
     setPreviewUrl(URL.createObjectURL(file));
-    setErrorMessage(null);
+    setVerificationResult(null);
+    setIsVerifying(true);
+    setVerificationProgress('Starting AI receipt scan...');
+
+    try {
+      const [compressed, aiResult] = await Promise.all([
+        compressReceiptImage(file),
+        verifyPaymentScreenshot(file, (progress) => {
+          setVerificationProgress(progress);
+        })
+      ]);
+
+      setCompressedScreenshot(compressed);
+      setVerificationResult(aiResult);
+
+      if (aiResult.isValid && aiResult.detectedDetails?.transactionId) {
+        setTransactionId(aiResult.detectedDetails.transactionId);
+      }
+
+      if (!aiResult.isValid) {
+        setErrorMessage(aiResult.reason);
+      }
+    } catch (err: any) {
+      setErrorMessage(
+        err?.message || 'AI verification encountered an error. Please upload a clear payment screenshot.'
+      );
+    } finally {
+      setIsVerifying(false);
+      setVerificationProgress('');
+    }
   };
 
-  // Step 3: Complete Submission
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      processUploadedScreenshot(file);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLLabelElement>) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files?.[0];
+    if (file) {
+      processUploadedScreenshot(file);
+    }
+  };
+
+  // Step 3: Complete Verified Submission & Unlock PDF
   const handleCompleteEnrollment = async () => {
-    if (!selectedFile && !senderAccountName) {
-      setErrorMessage('Please attach your payment screenshot or enter your sending account name.');
+    if (!selectedFile) {
+      setErrorMessage('Please upload your payment receipt screenshot first.');
+      return;
+    }
+
+    if (isVerifying) {
+      setErrorMessage('Please wait a moment while AI verification finishes scanning your receipt.');
+      return;
+    }
+
+    if (!verificationResult?.isValid) {
+      setErrorMessage(
+        verificationResult?.reason ||
+          'Payment screenshot must pass AI verification before unlocking the PDF download.'
+      );
       return;
     }
 
     setSubmitting(true);
     setErrorMessage(null);
 
+    const finalTid =
+      transactionId.trim() || verificationResult.detectedDetails?.transactionId || '';
+    const provider = verificationResult.detectedDetails?.provider || 'Meezan Bank';
+    const noteText = `AI Verified (${verificationResult.confidence}% confidence) • ${provider} • Sender: ${
+      senderAccountName.trim() || leadInfo.name
+    }${finalTid ? ` • TID: ${finalTid}` : ''} • PDF Unlocked`;
+
     try {
-      let base64 = '';
-      if (selectedFile) {
-        const reader = new FileReader();
-        base64 = await new Promise((resolve) => {
-          reader.onloadend = () => resolve(reader.result as string);
-          reader.readAsDataURL(selectedFile);
+      if (leadId) {
+        await updateLeadPaymentInFirestore(leadId, {
+          paymentMethod: provider,
+          transactionId: finalTid,
+          paymentScreenshot: compressedScreenshot || undefined,
+          price: `Rs. ${TECHPULSE_CONFIG.pricePKR}`,
+          isPaymentVerified: true,
+          verificationNote: verificationResult.reason,
+          status: 'completed',
+          notes: noteText
+        });
+      } else {
+        await saveLeadToFirestore({
+          fullName: leadInfo.name.trim(),
+          email: leadInfo.email.trim(),
+          whatsapp: leadInfo.whatsapp.trim(),
+          niche: '24-Hour Fiverr Gig Ranking Method (PDF)',
+          profileUrl: 'Smart SEO Solutions 24h Method Payment Verified',
+          paymentMethod: provider,
+          transactionId: finalTid,
+          paymentScreenshot: compressedScreenshot || undefined,
+          isPaymentVerified: true,
+          verificationNote: verificationResult.reason,
+          status: 'completed',
+          notes: noteText,
+          price: `Rs. ${TECHPULSE_CONFIG.pricePKR}`
         });
       }
-
-      await saveLeadToFirestore({
-        fullName: leadInfo.name,
-        email: leadInfo.email,
-        whatsapp: leadInfo.whatsapp,
-        profileUrl: 'Smart SEO Solutions 24h Method Payment Submitted',
-        status: 'pending_payment',
-        receiptUrl: base64 || undefined,
-        notes: `Payment submitted for 24h Fiverr Gig Ranking Method (Rs. ${TECHPULSE_CONFIG.pricePKR}). Sender account: ${senderAccountName || leadInfo.name}`,
-        price: `Rs. ${TECHPULSE_CONFIG.pricePKR}`
-      });
-
+    } catch (err) {
+      console.warn('Firestore update warning (unlocking PDF anyway):', err);
+    } finally {
       setSubmitting(false);
       setIsSuccess(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    } catch (err: any) {
-      setSubmitting(false);
-      setIsSuccess(true);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Automatically start downloading the official PDF
+      handleDownloadPdf();
     }
   };
 
-  // WhatsApp verification message generator
-  const getWhatsAppVerificationUrl = () => {
+  // WhatsApp support message generator
+  const getWhatsAppSupportUrl = () => {
     const phone = TECHPULSE_CONFIG.whatsappEnrollNumber.replace(/[^0-9]/g, '');
     const accountName = senderAccountName.trim() || leadInfo.name || 'Client';
-    const text = `Hello! I have sent the Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} payment for the 24-Hour Fiverr Gig Ranking Method, and attached the screenshot.
-Please verify my payment and send me the complete Method PDF & Templates.
+    const text = `Hello! I have completed my Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} payment and AI verification for the 24-Hour Fiverr Gig Ranking Method PDF.
 Name: ${accountName}
-Email: ${leadInfo.email}`;
+Email: ${leadInfo.email}
+${transactionId ? `Transaction ID: ${transactionId}\n` : ''}I have downloaded the PDF and wanted to connect for support.`;
     return `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(text)}`;
   };
 
@@ -177,7 +319,7 @@ Email: ${leadInfo.email}`;
           <button
             type="button"
             onClick={onBack}
-            className="inline-flex items-center gap-1.5 rounded-full border border-[#dfe5ed] bg-white px-3 py-1.5 text-xs font-semibold text-[#0c172f] shadow-sm hover:bg-[#ecf3f8]"
+            className="inline-flex items-center gap-1.5 rounded-full border border-[#dfe5ed] bg-white px-3 py-1.5 text-xs font-semibold text-[#0c172f] shadow-sm hover:bg-[#ecf3f8] cursor-pointer"
           >
             <ArrowLeft className="h-3.5 w-3.5 text-[#2b62ef]" />
             <span>Back</span>
@@ -209,11 +351,11 @@ Email: ${leadInfo.email}`;
               <span className="h-2.5 w-2.5 rounded-full bg-[#00bad2]" />
             </div>
             <div className="font-bold text-[#535f6f]">
-              Order Method · Step {isSuccess ? '3' : step} of 3
+              {isSuccess ? 'Verified · Instant PDF Download' : `Order Method · Step ${step} of 3`}
             </div>
             <div className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-[#2b62ef]">
               <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              Live
+              AI Active
             </div>
           </div>
 
@@ -253,8 +395,9 @@ Email: ${leadInfo.email}`;
 
           {/* Error Message */}
           {errorMessage && (
-            <div className="mb-4 rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs font-medium text-rose-700">
-              {errorMessage}
+            <div className="mb-4 flex items-start gap-2.5 rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs font-medium text-rose-700">
+              <AlertCircle className="h-4 w-4 shrink-0 text-rose-600 mt-0.5" />
+              <span>{errorMessage}</span>
             </div>
           )}
 
@@ -270,7 +413,7 @@ Email: ${leadInfo.email}`;
                   Get The 24-Hour Gig Ranking Method
                 </h1>
                 <p className="mt-1 text-xs sm:text-sm font-semibold text-[#2b62ef]">
-                  Complete Method Blueprint &amp; Templates: Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()} (Regular: Rs. {TECHPULSE_CONFIG.originalPricePKR.toLocaleString()})
+                  Complete Method Blueprint PDF: Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()} (Regular: Rs. {TECHPULSE_CONFIG.originalPricePKR.toLocaleString()})
                 </p>
               </div>
 
@@ -302,7 +445,7 @@ Email: ${leadInfo.email}`;
                     className="w-full rounded-xl border border-[#dfe5ed] bg-[#f7fbfd] px-4 py-2.5 text-sm text-[#0c172f] outline-none transition focus:border-[#2b62ef] focus:bg-white"
                   />
                   <p className="mt-1 text-[11px] text-[#535f6f]">
-                    We send your 24h Ranking Method PDF &amp; templates to this email.
+                    Used for your purchase receipt &amp; instant PDF access unlock.
                   </p>
                 </div>
 
@@ -313,13 +456,13 @@ Email: ${leadInfo.email}`;
                   <input
                     type="tel"
                     required
-                    placeholder="e.g. 0306 1234567"
+                    placeholder="e.g. 0310 1234567"
                     value={leadInfo.whatsapp}
                     onChange={(e) => setLeadInfo({ ...leadInfo, whatsapp: e.target.value })}
                     className="w-full rounded-xl border border-[#dfe5ed] bg-[#f7fbfd] px-4 py-2.5 text-sm text-[#0c172f] outline-none transition focus:border-[#2b62ef] focus:bg-white"
                   />
                   <p className="mt-1 text-[11px] text-[#535f6f]">
-                    For instant method delivery &amp; 24/7 implementation guidance.
+                    For instant method delivery &amp; 24/7 implementation support.
                   </p>
                 </div>
               </div>
@@ -328,7 +471,7 @@ Email: ${leadInfo.email}`;
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="gradient-brand w-full flex items-center justify-center gap-2 rounded-full py-4 text-base font-extrabold text-white shadow-glow hover:scale-[1.01] transition-transform"
+                  className="gradient-brand w-full flex items-center justify-center gap-2 rounded-full py-4 text-base font-extrabold text-white shadow-glow hover:scale-[1.01] transition-transform cursor-pointer"
                 >
                   <span>Continue to Payment</span>
                   <ArrowRight className="h-5 w-5" />
@@ -337,7 +480,7 @@ Email: ${leadInfo.email}`;
 
               <div className="flex items-center justify-center gap-1.5 text-xs text-[#535f6f] pt-1">
                 <Lock className="h-3.5 w-3.5 text-[#2b62ef]" />
-                <span>Your details are private and used only to send your access.</span>
+                <span>Your details are private and used only to unlock your PDF access.</span>
               </div>
             </form>
           )}
@@ -360,14 +503,14 @@ Email: ${leadInfo.email}`;
                     <span className="font-bold text-[#0c172f]">
                       Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}
                     </span>{' '}
-                    to the account below.
+                    to the Meezan Bank account below.
                   </span>
                 </p>
               </div>
 
               {/* Supported Apps Chips */}
               <div className="flex flex-wrap gap-1.5">
-                {['UBL App', 'Easypaisa', 'JazzCash', 'Meezan Bank', 'SadaPay', 'NayaPay', '1Link'].map(
+                {['Meezan Bank', 'Easypaisa', 'JazzCash', 'SadaPay', 'NayaPay', 'UBL App', '1Link'].map(
                   (method) => (
                     <span
                       key={method}
@@ -411,7 +554,7 @@ Email: ${leadInfo.email}`;
                     onClick={() =>
                       handleCopy('title', TECHPULSE_CONFIG.bankDetails.accountTitle)
                     }
-                    className="inline-flex items-center gap-1 rounded-full border border-[#dfe5ed] bg-white px-3 py-1.5 text-xs font-bold text-[#0c172f] hover:bg-[#ecf3f8]"
+                    className="inline-flex items-center gap-1 rounded-full border border-[#dfe5ed] bg-white px-3 py-1.5 text-xs font-bold text-[#0c172f] hover:bg-[#ecf3f8] cursor-pointer"
                   >
                     {copiedKey === 'title' ? (
                       <>
@@ -425,13 +568,13 @@ Email: ${leadInfo.email}`;
                   </button>
                 </div>
 
-                {/* Account Number */}
+                {/* Account Number / IBAN */}
                 <div className="flex items-center justify-between gap-3 border-b border-[#dfe5ed] pb-3">
-                  <div>
+                  <div className="min-w-0">
                     <div className="text-[10px] font-bold uppercase tracking-wider text-[#535f6f]">
-                      Account Number
+                      IBAN / Account Number
                     </div>
-                    <div className="font-mono text-base sm:text-lg font-black tracking-wide text-[#2b62ef]">
+                    <div className="font-mono text-sm sm:text-base font-black tracking-wide text-[#2b62ef] break-all">
                       {TECHPULSE_CONFIG.bankDetails.accountNumber}
                     </div>
                   </div>
@@ -440,7 +583,7 @@ Email: ${leadInfo.email}`;
                     onClick={() =>
                       handleCopy('number', TECHPULSE_CONFIG.bankDetails.accountNumber)
                     }
-                    className="inline-flex items-center gap-1 rounded-full gradient-brand px-3 py-1.5 text-xs font-bold text-white shadow-sm hover:scale-105 transition-transform"
+                    className="inline-flex shrink-0 items-center gap-1 rounded-full gradient-brand px-3 py-1.5 text-xs font-bold text-white shadow-sm hover:scale-105 transition-transform cursor-pointer"
                   >
                     {copiedKey === 'number' ? (
                       <>
@@ -448,7 +591,7 @@ Email: ${leadInfo.email}`;
                       </>
                     ) : (
                       <>
-                        <Copy className="h-3.5 w-3.5" /> Copy Number
+                        <Copy className="h-3.5 w-3.5" /> Copy IBAN
                       </>
                     )}
                   </button>
@@ -469,7 +612,7 @@ Email: ${leadInfo.email}`;
                     onClick={() =>
                       handleCopy('amount', TECHPULSE_CONFIG.pricePKR.toString())
                     }
-                    className="inline-flex items-center gap-1 rounded-full border border-[#dfe5ed] bg-white px-3 py-1.5 text-xs font-bold text-[#0c172f] hover:bg-[#ecf3f8]"
+                    className="inline-flex items-center gap-1 rounded-full border border-[#dfe5ed] bg-white px-3 py-1.5 text-xs font-bold text-[#0c172f] hover:bg-[#ecf3f8] cursor-pointer"
                   >
                     {copiedKey === 'amount' ? (
                       <>
@@ -486,7 +629,7 @@ Email: ${leadInfo.email}`;
 
               {/* Instructions */}
               <div className="rounded-xl border border-amber-200 bg-amber-50/70 p-3 text-xs leading-relaxed text-amber-900">
-                <span className="font-bold">Instructions:</span> Transfer Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()} via your banking app (Meezan Bank, UBL, Easypaisa, JazzCash, or any Pakistani bank) and save a screenshot of the successful transaction.
+                <span className="font-bold">Instructions:</span> Transfer Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()} via your banking app (Meezan Bank, Easypaisa, JazzCash, SadaPay, NayaPay, or any bank) and save a screenshot of the successful transaction. In the next step, our AI will verify your receipt and immediately unlock your PDF download!
               </div>
 
               {/* Controls */}
@@ -494,17 +637,18 @@ Email: ${leadInfo.email}`;
                 <button
                   type="button"
                   onClick={() => setStep(1)}
-                  className="rounded-full border border-[#dfe5ed] bg-white px-5 py-3.5 text-xs font-bold text-[#535f6f] hover:bg-[#ecf3f8]"
+                  className="rounded-full border border-[#dfe5ed] bg-white px-5 py-3.5 text-xs font-bold text-[#535f6f] hover:bg-[#ecf3f8] cursor-pointer"
                 >
                   Back
                 </button>
                 <button
                   type="button"
                   onClick={() => {
+                    setErrorMessage(null);
                     setStep(3);
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="gradient-brand flex-1 flex items-center justify-center gap-2 rounded-full py-3.5 text-sm sm:text-base font-extrabold text-white shadow-glow hover:scale-[1.01] transition-transform"
+                  className="gradient-brand flex-1 flex items-center justify-center gap-2 rounded-full py-3.5 text-sm sm:text-base font-extrabold text-white shadow-glow hover:scale-[1.01] transition-transform cursor-pointer"
                 >
                   <span>I Have Sent The Payment</span>
                   <ArrowRight className="h-5 w-5" />
@@ -513,30 +657,31 @@ Email: ${leadInfo.email}`;
             </div>
           )}
 
-          {/* STEP 3: Upload Proof */}
+          {/* STEP 3: Upload Proof & Instant AI Verification */}
           {!isSuccess && step === 3 && (
             <div className="space-y-5">
               <div className="inline-flex items-center gap-2 rounded-full border border-[#2b62ef]/30 bg-[#2b62ef]/10 px-3 py-1 text-xs font-bold uppercase text-[#2b62ef]">
-                <Upload className="h-3.5 w-3.5" /> Step 3 of 3
+                <ShieldCheck className="h-3.5 w-3.5" /> Step 3 of 3 · AI Verification
               </div>
 
               <div>
                 <h1 className="font-display text-2xl font-extrabold text-[#0c172f]">
-                  Upload Proof of Payment.
+                  Upload Payment Screenshot.
                 </h1>
                 <p className="mt-1 text-xs sm:text-sm text-[#535f6f]">
-                  Attach payment receipt screenshot so we can verify and send your 24h Ranking Method immediately.
+                  Upload your Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()} transfer receipt. Our AI verifies your receipt in seconds and immediately unlocks your{' '}
+                  <strong className="text-[#0c172f]">Fiverr Gig Rank Method PDF</strong> for download.
                 </p>
               </div>
 
               {/* Sender Account Name */}
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#535f6f] mb-1">
-                  Your Sending Bank Account Name
+                  Sender Bank / Wallet Account Name (Optional)
                 </label>
                 <input
                   type="text"
-                  placeholder="e.g. Ali Khan (as shown in your bank account)"
+                  placeholder="e.g. Ali Khan (as shown on your receipt)"
                   value={senderAccountName}
                   onChange={(e) => setSenderAccountName(e.target.value)}
                   className="w-full rounded-xl border border-[#dfe5ed] bg-[#f7fbfd] px-4 py-2.5 text-sm text-[#0c172f] outline-none transition focus:border-[#2b62ef] focus:bg-white"
@@ -546,9 +691,19 @@ Email: ${leadInfo.email}`;
               {/* File Upload Drop Area */}
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#535f6f] mb-1">
-                  Payment Receipt Screenshot
+                  Payment Receipt Screenshot *
                 </label>
-                <label className="group relative flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-[#2b62ef]/40 bg-[#f7fbfd] p-6 text-center cursor-pointer transition hover:bg-[#2b62ef]/5">
+                <label
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={handleDrop}
+                  className={`group relative flex flex-col items-center justify-center rounded-2xl border-2 border-dashed p-6 text-center cursor-pointer transition ${
+                    verificationResult?.isValid
+                      ? 'border-emerald-400 bg-emerald-50/40'
+                      : verificationResult && !verificationResult.isValid
+                      ? 'border-rose-300 bg-rose-50/40'
+                      : 'border-[#2b62ef]/40 bg-[#f7fbfd] hover:bg-[#2b62ef]/5'
+                  }`}
+                >
                   <input
                     type="file"
                     accept="image/*"
@@ -556,14 +711,14 @@ Email: ${leadInfo.email}`;
                     className="sr-only"
                   />
                   {previewUrl ? (
-                    <div className="w-full space-y-2">
+                    <div className="w-full space-y-2.5">
                       <img
                         src={previewUrl}
-                        alt="Payment preview"
-                        className="mx-auto max-h-48 rounded-lg border border-[#dfe5ed] object-contain shadow-sm"
+                        alt="Payment receipt preview"
+                        className="mx-auto max-h-52 rounded-lg border border-[#dfe5ed] object-contain shadow-sm"
                       />
-                      <span className="block text-xs font-bold text-[#2b62ef]">
-                        Click to choose another screenshot
+                      <span className="inline-block text-xs font-bold text-[#2b62ef] underline">
+                        Click or drop to upload a different screenshot
                       </span>
                     </div>
                   ) : (
@@ -572,63 +727,142 @@ Email: ${leadInfo.email}`;
                         <Upload className="h-6 w-6" />
                       </div>
                       <span className="text-sm font-bold text-[#0c172f]">
-                        Tap to upload payment screenshot
+                        Tap or drag &amp; drop payment screenshot
                       </span>
                       <span className="mt-1 text-[11px] text-[#535f6f]">
-                        PNG, JPG, or screenshot from banking app
+                        PNG, JPG, or screenshot showing transfer to Zeenat yasmin (Meezan Bank)
                       </span>
                     </>
                   )}
                 </label>
               </div>
 
-              {/* Direct WhatsApp Verification CTA */}
-              <div className="rounded-2xl border border-emerald-200 bg-emerald-50/70 p-4">
-                <div className="flex items-start gap-3">
-                  <div className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-emerald-600 text-white">
-                    <MessageCircle className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-emerald-900">
-                      Instant WhatsApp Verification
+              {/* Live AI Verification Status Box */}
+              {isVerifying && (
+                <div className="rounded-2xl border border-[#2b62ef]/30 bg-[#2b62ef]/5 p-4 flex items-center gap-3">
+                  <Loader2 className="h-5 w-5 animate-spin text-[#2b62ef] shrink-0" />
+                  <div className="min-w-0">
+                    <div className="text-xs font-extrabold text-[#0c172f]">
+                      AI Receipt Verification Running...
                     </div>
-                    <p className="mt-0.5 text-xs text-emerald-800 leading-relaxed">
-                      You can also send your screenshot directly on WhatsApp to get immediate verification:
+                    <p className="text-[11px] text-[#535f6f] mt-0.5 truncate">
+                      {verificationProgress || 'Analyzing recipient, amount & transaction ID...'}
                     </p>
-                    <a
-                      href={getWhatsAppVerificationUrl()}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-2.5 inline-flex items-center gap-1.5 rounded-full bg-[#25D366] px-3.5 py-1.5 text-xs font-extrabold text-white shadow-sm hover:scale-105 transition-transform"
-                    >
-                      <MessageCircle className="h-3.5 w-3.5 fill-current" />
-                      <span>Send Screenshot on WhatsApp</span>
-                    </a>
                   </div>
                 </div>
-              </div>
+              )}
 
-              {/* Submit Button */}
+              {/* AI Verification Result Card */}
+              {!isVerifying && verificationResult && (
+                <div
+                  className={`rounded-2xl border p-4 space-y-2.5 ${
+                    verificationResult.isValid
+                      ? 'border-emerald-300 bg-emerald-50/80'
+                      : 'border-rose-300 bg-rose-50/80'
+                  }`}
+                >
+                  <div className="flex items-start gap-2.5">
+                    {verificationResult.isValid ? (
+                      <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0 mt-0.5" />
+                    ) : (
+                      <AlertCircle className="h-5 w-5 text-rose-600 shrink-0 mt-0.5" />
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <span
+                          className={`text-xs font-extrabold ${
+                            verificationResult.isValid ? 'text-emerald-900' : 'text-rose-900'
+                          }`}
+                        >
+                          {verificationResult.title}
+                        </span>
+                        {verificationResult.isValid && (
+                          <span className="rounded-full bg-emerald-600 px-2 py-0.5 text-[10px] font-bold text-white">
+                            AI Verified ({verificationResult.confidence}%)
+                          </span>
+                        )}
+                      </div>
+                      <p
+                        className={`text-xs mt-1 leading-relaxed ${
+                          verificationResult.isValid ? 'text-emerald-800' : 'text-rose-800'
+                        }`}
+                      >
+                        {verificationResult.reason}
+                      </p>
+                    </div>
+                  </div>
+
+                  {verificationResult.isValid && (
+                    <div className="grid grid-cols-2 gap-2 pt-2 border-t border-emerald-200/80 text-[11px]">
+                      <div className="rounded-lg bg-white/80 px-2.5 py-1.5 border border-emerald-200/70">
+                        <span className="text-[#535f6f] block text-[10px]">Recipient</span>
+                        <span className="font-bold text-emerald-950">
+                          {verificationResult.detectedDetails?.recipientName || 'Zeenat yasmin'}
+                        </span>
+                      </div>
+                      <div className="rounded-lg bg-white/80 px-2.5 py-1.5 border border-emerald-200/70">
+                        <span className="text-[#535f6f] block text-[10px]">Provider</span>
+                        <span className="font-bold text-emerald-950">
+                          {verificationResult.detectedDetails?.provider || 'Meezan Bank'}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Extracted / Optional Transaction ID */}
+              {verificationResult?.isValid && (
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[#535f6f] mb-1">
+                    Transaction ID / TID (Auto-Detected)
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. FT2512345678"
+                    value={transactionId}
+                    onChange={(e) => setTransactionId(e.target.value)}
+                    className="w-full rounded-xl border border-[#dfe5ed] bg-[#f7fbfd] px-4 py-2.5 text-sm font-mono text-[#0c172f] outline-none transition focus:border-[#2b62ef] focus:bg-white"
+                  />
+                </div>
+              )}
+
+              {/* Submit & Unlock PDF Button */}
               <div className="flex items-center gap-3 pt-2">
                 <button
                   type="button"
-                  onClick={() => setStep(2)}
-                  className="rounded-full border border-[#dfe5ed] bg-white px-5 py-3.5 text-xs font-bold text-[#535f6f] hover:bg-[#ecf3f8]"
+                  onClick={() => {
+                    setErrorMessage(null);
+                    setStep(2);
+                  }}
+                  className="rounded-full border border-[#dfe5ed] bg-white px-5 py-3.5 text-xs font-bold text-[#535f6f] hover:bg-[#ecf3f8] cursor-pointer"
                 >
                   Back
                 </button>
                 <button
                   type="button"
                   onClick={handleCompleteEnrollment}
-                  disabled={submitting}
-                  className="gradient-brand flex-1 flex items-center justify-center gap-2 rounded-full py-4 text-base font-extrabold text-white shadow-glow hover:scale-[1.01] transition-transform"
+                  disabled={submitting || isVerifying || !verificationResult?.isValid}
+                  className={`flex-1 flex items-center justify-center gap-2 rounded-full py-4 px-5 text-sm sm:text-base font-extrabold text-white transition-all ${
+                    submitting || isVerifying || !verificationResult?.isValid
+                      ? 'bg-slate-300 text-slate-500 cursor-not-allowed'
+                      : 'gradient-brand shadow-glow hover:scale-[1.01] cursor-pointer'
+                  }`}
                 >
                   {submitting ? (
-                    <span>Verifying...</span>
+                    <>
+                      <Loader2 className="h-5 w-5 animate-spin" />
+                      <span>Unlocking PDF...</span>
+                    </>
+                  ) : isVerifying ? (
+                    <>
+                      <Loader2 className="h-5 w-5 animate-spin" />
+                      <span>AI Scanning...</span>
+                    </>
                   ) : (
                     <>
-                      <span>Submit Payment Proof</span>
-                      <CheckCircle2 className="h-5 w-5" />
+                      <Download className="h-5 w-5" />
+                      <span>Unlock &amp; Download Method PDF</span>
                     </>
                   )}
                 </button>
@@ -636,48 +870,104 @@ Email: ${leadInfo.email}`;
             </div>
           )}
 
-          {/* STEP 4: Success Screen */}
+          {/* STEP 4: Success & Instant PDF Download Screen */}
           {isSuccess && (
-            <div className="text-center py-6 space-y-4">
-              <div className="mx-auto grid h-16 w-16 place-items-center rounded-full gradient-brand text-white shadow-glow">
-                <Check className="h-9 w-9" />
+            <div className="text-center py-4 space-y-5">
+              <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-emerald-500 text-white shadow-lg shadow-emerald-500/30">
+                <Check className="h-9 w-9 stroke-[3]" />
               </div>
 
-              <h1 className="font-display text-3xl font-extrabold text-[#0c172f]">
-                You're In! 🎉
-              </h1>
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-extrabold uppercase tracking-wider text-emerald-700">
+                <Sparkles className="h-3.5 w-3.5" />
+                <span>AI Payment Verified · Instant Access Unlocked</span>
+              </div>
 
-              <p className="text-sm font-semibold text-[#0c172f] max-w-md mx-auto">
-                Thank you <span className="text-[#2b62ef]">{leadInfo.name}</span>! Your payment proof submission has been received.
-              </p>
+              <div>
+                <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-[#0c172f]">
+                  Your PDF Is Ready, {leadInfo.name}!
+                </h1>
+                <p className="mt-2 text-xs sm:text-sm text-[#535f6f] max-w-md mx-auto leading-relaxed">
+                  Your Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()} payment has been verified by AI. Download your official{' '}
+                  <strong className="text-[#0c172f]">Fiverr Gig Rank Method PDF</strong> below and start ranking on page 1!
+                </p>
+              </div>
 
-              <div className="rounded-2xl border border-emerald-200 bg-emerald-50/80 p-5 text-left text-xs sm:text-sm space-y-2">
-                <div className="font-bold text-emerald-900 flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                  What Happens Next:
+              {/* Highlighted PDF Download Card */}
+              <div className="rounded-2xl border-2 border-[#2b62ef]/30 bg-gradient-to-b from-[#f7fbfd] to-white p-5 sm:p-6 shadow-sm space-y-4">
+                <div className="flex items-center gap-3.5 rounded-xl border border-[#dfe5ed] bg-white p-3.5 text-left">
+                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-rose-50 border border-rose-200 text-rose-600">
+                    <FileText className="h-6 w-6" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="text-sm font-extrabold text-[#0c172f] truncate">
+                      {METHOD_PDF_FILENAME}
+                    </div>
+                    <div className="text-[11px] font-medium text-[#535f6f]">
+                      Official Step-by-Step 24-Hour Fiverr Gig Ranking Blueprint
+                    </div>
+                  </div>
+                  <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-[10px] font-extrabold text-emerald-800 shrink-0">
+                    UNLOCKED
+                  </span>
                 </div>
-                <ul className="list-disc list-inside space-y-1 text-emerald-800 text-xs">
-                  <li>Our team is verifying your Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()} payment right now.</li>
-                  <li>Your complete 24-Hour Gig Ranking Method PDF &amp; Templates will be delivered straight to your WhatsApp and email: <strong className="text-emerald-950 font-bold">{leadInfo.email}</strong>.</li>
-                  <li>To get instant delivery right away, please tap the green WhatsApp button below to share your transaction screenshot.</li>
-                </ul>
-              </div>
 
-              <div className="pt-3 space-y-2">
+                {/* Primary Download Button */}
+                <button
+                  type="button"
+                  onClick={handleDownloadPdf}
+                  disabled={isDownloadingPdf}
+                  className="gradient-brand w-full flex items-center justify-center gap-2.5 rounded-full py-4 px-6 text-base font-extrabold text-white shadow-glow hover:scale-[1.02] active:scale-[0.99] transition-transform cursor-pointer"
+                >
+                  {isDownloadingPdf ? (
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                  ) : (
+                    <Download className="h-5 w-5" />
+                  )}
+                  <span>
+                    {isDownloadingPdf ? 'Downloading PDF...' : 'Download Gig Rank Method PDF'}
+                  </span>
+                </button>
+
+                {/* Secondary Open/View in New Tab Button */}
                 <a
-                  href={getWhatsAppVerificationUrl()}
+                  href={METHOD_PDF_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] py-4 text-base font-bold text-white shadow-lg hover:scale-[1.02] transition-transform"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#dfe5ed] bg-white py-3 px-5 text-xs sm:text-sm font-bold text-[#0c172f] hover:bg-[#ecf3f8] transition-colors"
                 >
-                  <MessageCircle className="h-5 w-5 fill-current" />
-                  <span>Connect On WhatsApp ({TECHPULSE_CONFIG.whatsappEnrollNumber})</span>
+                  <ExternalLink className="h-4 w-4 text-[#2b62ef]" />
+                  <span>Open / View PDF in Browser</span>
+                </a>
+
+                {downloadCount > 0 && (
+                  <div className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                    <span>
+                      PDF download started! ({downloadCount}x — tap the blue button anytime to download again)
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              {/* Optional Support Actions */}
+              <div className="pt-2 space-y-3 border-t border-[#dfe5ed]">
+                <p className="text-xs text-[#535f6f]">
+                  Need help picking a long-tail keyword or applying the method?
+                </p>
+                <a
+                  href={getWhatsAppSupportUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] py-3.5 text-sm font-bold text-white shadow-md hover:scale-[1.01] transition-transform"
+                >
+                  <MessageCircle className="h-4 w-4 fill-current" />
+                  <span>WhatsApp Support ({TECHPULSE_CONFIG.whatsappEnrollNumber})</span>
                 </a>
 
                 <button
                   type="button"
                   onClick={onBack}
-                  className="inline-block text-xs font-semibold text-[#535f6f] hover:text-[#0c172f] pt-2"
+                  className="inline-block text-xs font-semibold text-[#535f6f] hover:text-[#0c172f] pt-1 cursor-pointer"
                 >
                   Return to Home
                 </button>
@@ -695,11 +985,11 @@ Email: ${leadInfo.email}`;
             {[
               {
                 q: 'Am I buying a method or a done-for-you service?',
-                a: `You are purchasing our complete, step-by-step 24-Hour Fiverr Gig Ranking Method (PDF Blueprint + AIDA Templates + Keyword Formula) for Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} so you can easily optimize your own gigs yourself.`
+                a: `You are purchasing our complete, step-by-step 24-Hour Fiverr Gig Ranking Method PDF for Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} so you can rank your own gigs yourself.`
               },
               {
-                q: 'How fast will I receive the method after payment?',
-                a: 'Once your Rs. 500 payment receipt is verified (usually within 10–15 minutes), we send the complete method package directly to your WhatsApp and Email.'
+                q: 'How fast will I receive the PDF after payment?',
+                a: 'Instantly! As soon as you upload your Rs. 500 payment screenshot, our AI verification system checks your receipt in seconds and immediately unlocks the Fiverr Gig Rank Method PDF for one-click download.'
               },
               {
                 q: 'What is the 20–25 Days 100% Money-Back Guarantee?',
@@ -719,7 +1009,7 @@ Email: ${leadInfo.email}`;
                   <button
                     type="button"
                     onClick={() => setOpenFaq(isOpen ? null : idx)}
-                    className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left font-bold text-[#0c172f]"
+                    className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left font-bold text-[#0c172f] cursor-pointer"
                   >
                     <span>{faq.q}</span>
                     <ChevronDown
