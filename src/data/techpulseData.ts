@@ -76,10 +76,11 @@ export const TECHPULSE_CONFIG = {
   whatsappNumber: "+92 310 6625091",
   whatsappEnrollNumber: "+92 310 6625091",
   bankDetails: {
-    bankName: "Meezan Bank",
-    accountTitle: "Zeenat yasmin",
-    accountNumber: "PK20MEZN0000300114121316",
-    iban: "PK20MEZN0000300114121316",
+    bankName: "Meezan Bank (MEEZAN DIGITAL CENTRE)",
+    branchName: "MEEZAN DIGITAL CENTRE",
+    accountTitle: "ABDUL REHMAN",
+    accountNumber: "00300114577623",
+    iban: "PK89MEZN0000300114577623",
     feeAmount: 4500,
     instructions: "Transfer Rs. 4,500 via Meezan Bank, Easypaisa, JazzCash, SadaPay, NayaPay, or any Pakistani banking app."
   }

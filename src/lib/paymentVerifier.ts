@@ -147,14 +147,21 @@ export async function verifyPaymentScreenshot(
     const norm = normalizeText(cleanRawText);
     const compactClean = norm.replace(/[^a-z0-9]/g, '');
 
-    // Target constants for Meezan Bank
-    const targetIban = 'pk20mezn0000300114121316';
-    const targetIbanShort = '300114121316';
-    const targetAccountEnd = '14121316';
+    // Target constants for Meezan Bank (MEEZAN DIGITAL CENTRE)
+    const targetIban = 'pk89mezn0000300114577623';
+    const targetAccountFull = '00300114577623';
+    const targetIbanShort = '300114577623';
+    const targetAccountEnd = '14577623';
 
     // 3. Provider detection
     let detectedProvider: 'Meezan Bank' | 'Bank Transfer' | 'JazzCash' | 'SadaPay' | 'Unknown' = 'Unknown';
-    if (norm.includes('meezan') || compactClean.includes('mezn') || norm.includes('mbl') || norm.includes('mezan')) {
+    if (
+      norm.includes('meezan') ||
+      compactClean.includes('mezn') ||
+      norm.includes('mbl') ||
+      norm.includes('mezan') ||
+      norm.includes('digital centre')
+    ) {
       detectedProvider = 'Meezan Bank';
     } else if (norm.includes('sadapay') || norm.includes('sada pay') || norm.includes('sada')) {
       detectedProvider = 'SadaPay';
@@ -205,41 +212,46 @@ export async function verifyPaymentScreenshot(
     }
 
     // 5. Recipient Name Verification
-    // Target: "Zeenat yasmin"
-    const hasZeenat =
-      norm.includes('zeenat') ||
-      norm.includes('zenat') ||
-      norm.includes('zeent') ||
-      norm.includes('zeenal') ||
-      norm.includes('zeena') ||
-      compactClean.includes('zeenat');
-    const hasYasmin =
-      norm.includes('yasmin') ||
-      norm.includes('yasmeen') ||
-      norm.includes('yasmn') ||
-      norm.includes('yasm1n') ||
-      compactClean.includes('yasmin');
-    const recipientMatched = hasZeenat || hasYasmin;
-    const recipientName = hasZeenat && hasYasmin 
-      ? 'Zeenat yasmin' 
-      : hasZeenat 
-      ? 'Zeenat (Verified)' 
-      : hasYasmin 
-      ? 'Yasmin (Verified)' 
+    // Target: "ABDUL REHMAN"
+    const hasAbdul =
+      norm.includes('abdul') ||
+      norm.includes('abdu1') ||
+      compactClean.includes('abdul');
+    const hasRehman =
+      norm.includes('rehman') ||
+      norm.includes('rahman') ||
+      norm.includes('rehmn') ||
+      compactClean.includes('rehman');
+    const recipientMatched = hasAbdul || hasRehman;
+    const recipientName = hasAbdul && hasRehman
+      ? 'ABDUL REHMAN'
+      : hasAbdul
+      ? 'ABDUL (Verified)'
+      : hasRehman
+      ? 'REHMAN (Verified)'
       : undefined;
 
     // 6. Recipient Account / IBAN / Bank Verification
-    // Target: PK20MEZN0000300114121316 or Meezan Bank
-    const hasIban = compactClean.includes(targetIban) || compactClean.includes('pk20mezn');
+    // Target: PK89MEZN0000300114577623 / 00300114577623 / MEEZAN DIGITAL CENTRE
+    const hasIban = compactClean.includes(targetIban) || compactClean.includes('pk89mezn');
     const hasAccountNum =
+      compactClean.includes(targetAccountFull) ||
       compactClean.includes(targetIbanShort) ||
       compactClean.includes(targetAccountEnd) ||
-      compactClean.includes('0000300114121316') ||
-      (compactClean.includes('121316') && isPaymentReceipt);
-    const hasMeezanBank = norm.includes('meezan') || norm.includes('mezan') || compactClean.includes('mezn');
+      (compactClean.includes('577623') && isPaymentReceipt);
+    const hasMeezanBank =
+      norm.includes('meezan') ||
+      norm.includes('mezan') ||
+      norm.includes('digital centre') ||
+      compactClean.includes('mezn');
     
     const accountMatched = hasIban || hasAccountNum || (hasMeezanBank && (recipientMatched || isPaymentReceipt));
-    const detectedAccount = hasIban || hasAccountNum ? 'PK20MEZN0000300114121316' : (hasMeezanBank ? 'Meezan Bank' : undefined);
+    const detectedAccount =
+      hasIban || hasAccountNum
+        ? 'PK89MEZN0000300114577623'
+        : hasMeezanBank
+        ? 'MEEZAN DIGITAL CENTRE'
+        : undefined;
 
     // 7. Amount Verification
     // Target: Rs. 4,500 (24h Fiverr Gig Ranking Method)
@@ -304,7 +316,7 @@ export async function verifyPaymentScreenshot(
     }
 
     // 10. Final Decision Logic
-    // Must match either Recipient Name ("Zeenat yasmin") OR Account / Bank details ("PK20MEZN0000300114121316" / "Meezan Bank")
+    // Must match either Recipient Name ("ABDUL REHMAN") OR Account / Bank details ("PK89MEZN0000300114577623" / "00300114577623" / "Meezan Bank")
     const isAuthenticAccount = recipientMatched || accountMatched;
 
     if (!isAuthenticAccount) {
@@ -313,7 +325,7 @@ export async function verifyPaymentScreenshot(
         status: 'rejected',
         confidence: 90,
         title: 'Account Recipient Does Not Match',
-        reason: 'This receipt was not sent to our verified account. Payment MUST be transferred to Zeenat yasmin (Meezan Bank IBAN: PK20MEZN0000300114121316). Fake or third-party screenshots cannot be accepted.',
+        reason: 'This receipt was not sent to our verified account. Payment MUST be transferred to ABDUL REHMAN (MEEZAN DIGITAL CENTRE · Account: 00300114577623 · IBAN: PK89MEZN0000300114577623). Fake or third-party screenshots cannot be accepted.',
         detectedDetails: {
           recipientMatched: false,
           numberMatched: false,
@@ -337,12 +349,12 @@ export async function verifyPaymentScreenshot(
       status: 'verified',
       confidence: Math.min(confidence, 100),
       title: 'Payment Receipt Verified Successfully',
-      reason: `Verified payment transfer to Zeenat yasmin (Meezan Bank - PK20MEZN0000300114121316).`,
+      reason: `Verified payment transfer to ABDUL REHMAN (MEEZAN DIGITAL CENTRE - PK89MEZN0000300114577623).`,
       detectedDetails: {
         recipientMatched: true,
-        recipientName: recipientName || 'Zeenat yasmin',
+        recipientName: recipientName || 'ABDUL REHMAN',
         numberMatched: true,
-        detectedAccount: 'PK20MEZN0000300114121316',
+        detectedAccount: 'PK89MEZN0000300114577623',
         provider: detectedProvider !== 'Unknown' ? detectedProvider : 'Meezan Bank',
         amountMatched,
         detectedAmount,

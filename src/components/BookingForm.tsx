@@ -97,7 +97,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
       } else {
         setErrors((prev) => ({
           ...prev,
-          paymentScreenshot: result.reason || 'Screenshot verification failed. Payment must be sent to Zeenat yasmin (Meezan Bank: PK20MEZN0000300114121316).',
+          paymentScreenshot: result.reason || 'Screenshot verification failed. Payment must be sent to ABDUL REHMAN (MEEZAN DIGITAL CENTRE · Account: 00300114577623 · IBAN: PK89MEZN0000300114577623).',
         }));
       }
     } catch (err: any) {
@@ -243,8 +243,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
     msg += `💼 *Service / Niche:* ${serviceNiche.trim()}\n`;
     msg += `📦 *Package:* Complete Profile & Gig SEO (${BUSINESS_INFO.price})\n\n`;
 
-    msg += `💳 *Payment Method:* ${selectedMethod} (Meezan Bank - PK20MEZN0000300114121316)\n`;
-    msg += `👤 *Account Title:* Zeenat yasmin\n`;
+    msg += `💳 *Payment Method:* ${selectedMethod} (MEEZAN DIGITAL CENTRE - Account: 00300114577623 | IBAN: PK89MEZN0000300114577623)\n`;
+    msg += `👤 *Account Title:* ABDUL REHMAN\n`;
     msg += `💰 *Amount:* ${BUSINESS_INFO.price}\n`;
     if (trx.trim()) {
       msg += `🔢 *Trx ID / Ref:* ${trx.trim()}\n`;
@@ -253,7 +253,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
       msg += `📸 *Payment Screenshot:* Attached with verified receipt\n`;
     }
     if (verificationResult?.isValid) {
-      msg += `🛡️ *Payment Verification:* ✅ Genuine Receipt Verified (${verificationResult.detectedDetails?.provider || selectedMethod} to Zeenat yasmin - Meezan Bank)\n`;
+      msg += `🛡️ *Payment Verification:* ✅ Genuine Receipt Verified (${verificationResult.detectedDetails?.provider || selectedMethod} to ABDUL REHMAN - MEEZAN DIGITAL CENTRE)\n`;
     }
 
     if (profile && profile.trim()) {
@@ -290,7 +290,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
 
     const isVerified = verificationResult?.isValid ?? false;
     const verifyNote = isVerified 
-      ? `Verified ${verificationResult?.detectedDetails?.provider || paymentMethod} transfer to Zeenat yasmin (TID: ${transactionId || 'In image'})`
+      ? `Verified ${verificationResult?.detectedDetails?.provider || paymentMethod} transfer to ABDUL REHMAN (TID: ${transactionId || 'In image'})`
       : undefined;
 
     const leadData = {
@@ -713,7 +713,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
                         <div className="h-full bg-gradient-to-r from-orange-400 via-amber-300 to-emerald-400 animate-pulse w-full rounded-full" />
                       </div>
                       <p className="text-[10px] text-white/50">
-                        Checking recipient (Zeenat yasmin - Meezan Bank PK20MEZN0000300114121316) & duplicate receipts database.
+                        Checking recipient (ABDUL REHMAN - MEEZAN DIGITAL CENTRE PK89MEZN0000300114577623) & duplicate receipts database.
                       </p>
                     </div>
                   )}
@@ -753,7 +753,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
                         <div className="text-[11px] space-y-0.5 min-w-0">
                           <div className="text-white font-medium flex items-center gap-1">
                             <span className="text-white/60">Recipient:</span>
-                            <span className="font-bold text-emerald-300">Zeenat yasmin (Meezan Bank)</span>
+                            <span className="font-bold text-emerald-300">ABDUL REHMAN (MEEZAN DIGITAL CENTRE)</span>
                           </div>
                           <div className="text-white/70 flex items-center gap-2">
                             <span>Method: <strong className="text-white">{verificationResult.detectedDetails.provider || paymentMethod}</strong></span>
@@ -811,7 +811,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
                         <div className="text-[11px] text-red-200/90 leading-relaxed">
                           <p className="font-semibold text-red-400 mb-1">{verificationResult.reason}</p>
                           <p className="text-[10px] text-white/60">
-                            Fake receipts, unrelated screenshots, or transfers to other accounts are strictly blocked. Payment must be sent to <strong>Zeenat yasmin (Meezan Bank: PK20MEZN0000300114121316)</strong>.
+                            Fake receipts, unrelated screenshots, or transfers to other accounts are strictly blocked. Payment must be sent to <strong>ABDUL REHMAN (MEEZAN DIGITAL CENTRE · 00300114577623 · IBAN: PK89MEZN0000300114577623)</strong>.
                           </p>
                         </div>
                       </div>
@@ -934,7 +934,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({ onBackToLanding }) => 
               <div className="flex items-center justify-center gap-2 text-xs text-white/50 text-center">
                 <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
                 <span>
-                  Automated anti-fraud protection active. Only genuine Meezan Bank transfers to Zeenat yasmin are accepted.
+                  Automated anti-fraud protection active. Only genuine Meezan Bank transfers to ABDUL REHMAN are accepted.
                 </span>
               </div>
             </div>

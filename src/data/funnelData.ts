@@ -16,11 +16,11 @@ export const BUSINESS_INFO = {
 export const PAYMENT_ACCOUNTS = [
   {
     id: 'meezan',
-    name: 'Meezan Bank',
-    accountNumber: 'PK20MEZN0000300114121316',
-    accountTitle: 'Zeenat yasmin',
-    bankName: 'Meezan Bank',
-    iban: 'PK20MEZN0000300114121316',
+    name: 'Meezan Bank (MEEZAN DIGITAL CENTRE)',
+    accountNumber: '00300114577623',
+    accountTitle: 'ABDUL REHMAN',
+    bankName: 'MEEZAN DIGITAL CENTRE',
+    iban: 'PK89MEZN0000300114577623',
     color: 'from-blue-600 to-indigo-800',
     badgeBg: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
   },
@@ -690,7 +690,7 @@ export const GIG_METHOD_FAQS: FAQItem[] = [
   {
     id: 'gm-faq-6',
     question: 'Which payment methods are accepted for 4,500 PKR?',
-    answer: 'We accept payments through our official Meezan Bank account (Title: Zeenat yasmin, IBAN: PK20MEZN0000300114121316). You can transfer from any banking app in Pakistan (Meezan, HBL, UBL, Nayapay, SadaPay, JazzCash, Easypaisa, etc.) using direct IBFT or Raast.',
+    answer: 'We accept payments through our official Meezan Bank account — MEEZAN DIGITAL CENTRE (Title: ABDUL REHMAN, Account: 00300114577623, IBAN: PK89MEZN0000300114577623). You can transfer from any banking app in Pakistan (Meezan, HBL, UBL, Nayapay, SadaPay, JazzCash, Easypaisa, etc.) using direct IBFT or Raast.',
   },
   {
     id: 'gm-faq-7',

@@ -45,9 +45,10 @@ export const GigMethodBookingForm: React.FC = () => {
 
   // Meezan Bank details from data
   const meezanAccount = PAYMENT_ACCOUNTS.find(a => a.id === 'meezan') || {
-    name: 'Meezan Bank',
-    accountTitle: 'Zeenat yasmin',
-    accountNumber: 'PK20MEZN0000300114121316',
+    name: 'Meezan Bank (MEEZAN DIGITAL CENTRE)',
+    accountTitle: 'ABDUL REHMAN',
+    accountNumber: '00300114577623',
+    iban: 'PK89MEZN0000300114577623',
     instruction: 'Transfer 4,500 PKR via Raast or IBFT and upload the payment receipt.',
   };
 
@@ -135,7 +136,7 @@ export const GigMethodBookingForm: React.FC = () => {
             reason: 'Screenshot attached. Automated fast-track verification active.',
             detectedDetails: {
               recipientMatched: true,
-              recipientName: 'Zeenat yasmin',
+              recipientName: 'ABDUL REHMAN',
               numberMatched: true,
               amountMatched: true,
               provider: 'Meezan Bank',
@@ -258,7 +259,7 @@ export const GigMethodBookingForm: React.FC = () => {
 
   const handleOpenWhatsApp = () => {
     const text = encodeURIComponent(
-      `Hi Smart SEO Solutions!\n\nI just purchased the *Fiverr 24-Hour Gig Ranking Method PDF* (${GIG_RANK_METHOD_INFO.price}).\n\n*Name:* ${fullName || 'Client'}\n*WhatsApp:* ${whatsapp}\n*Niche:* ${niche}\n*Payment Method:* Meezan Bank (Zeenat yasmin)\n*Transaction ID:* ${transactionId || 'Verified in receipt'}\n\nPlease save my number for 1st page ranking updates and support.`
+      `Hi Smart SEO Solutions!\n\nI just purchased the *Fiverr 24-Hour Gig Ranking Method PDF* (${GIG_RANK_METHOD_INFO.price}).\n\n*Name:* ${fullName || 'Client'}\n*WhatsApp:* ${whatsapp}\n*Niche:* ${niche}\n*Payment Method:* MEEZAN DIGITAL CENTRE (ABDUL REHMAN)\n*Transaction ID:* ${transactionId || 'Verified in receipt'}\n\nPlease save my number for 1st page ranking updates and support.`
     );
     window.open(`https://wa.me/923106625091?text=${text}`, '_blank');
   };
@@ -578,20 +579,38 @@ export const GigMethodBookingForm: React.FC = () => {
                     <div className="bg-black/30 p-3 rounded-xl border border-white/5">
                       <span className="text-[11px] text-white/60 block mb-0.5">Account Title:</span>
                       <span className="font-bold text-white text-sm">{meezanAccount.accountTitle}</span>
-                      <span className="text-[10px] text-emerald-400 block mt-0.5">✓ Official Title Verified</span>
+                      <span className="text-[10px] text-emerald-400 block mt-0.5">✓ MEEZAN DIGITAL CENTRE</span>
                     </div>
 
                     <div className="bg-black/30 p-3 rounded-xl border border-white/5">
-                      <span className="text-[11px] text-white/60 block mb-0.5">Meezan IBAN / Account Number:</span>
+                      <span className="text-[11px] text-white/60 block mb-0.5">Account Number:</span>
                       <button
                         type="button"
-                        onClick={() => copyToClipboard(meezanAccount.accountNumber, 'meezan-iban')}
+                        onClick={() => copyToClipboard(meezanAccount.accountNumber, 'meezan-number')}
                         className="w-full font-mono font-bold text-blue-300 hover:text-white flex items-center justify-between gap-1.5 transition-colors cursor-pointer bg-blue-500/10 hover:bg-blue-500/20 px-2.5 py-1 rounded-lg border border-blue-500/20 text-xs mt-1"
                       >
                         <span className="truncate">{meezanAccount.accountNumber}</span>
-                        {copiedAccount === 'meezan-iban' ? (
+                        {copiedAccount === 'meezan-number' ? (
                           <span className="text-[10px] text-emerald-400 font-sans flex items-center gap-0.5 shrink-0">
                             <Check className="w-3 h-3 text-emerald-400" /> Copied
+                          </span>
+                        ) : (
+                          <Copy className="w-3.5 h-3.5 text-blue-300 shrink-0" />
+                        )}
+                      </button>
+                    </div>
+
+                    <div className="sm:col-span-2 bg-black/30 p-3 rounded-xl border border-white/5">
+                      <span className="text-[11px] text-white/60 block mb-0.5">Meezan IBAN (For Raast / IBFT from Other Banks):</span>
+                      <button
+                        type="button"
+                        onClick={() => copyToClipboard(meezanAccount.iban || 'PK89MEZN0000300114577623', 'meezan-iban')}
+                        className="w-full font-mono font-bold text-blue-300 hover:text-white flex items-center justify-between gap-1.5 transition-colors cursor-pointer bg-blue-500/10 hover:bg-blue-500/20 px-2.5 py-1.5 rounded-lg border border-blue-500/20 text-xs mt-1"
+                      >
+                        <span className="truncate">{meezanAccount.iban || 'PK89MEZN0000300114577623'}</span>
+                        {copiedAccount === 'meezan-iban' ? (
+                          <span className="text-[10px] text-emerald-400 font-sans flex items-center gap-0.5 shrink-0">
+                            <Check className="w-3 h-3 text-emerald-400" /> Copied IBAN
                           </span>
                         ) : (
                           <Copy className="w-3.5 h-3.5 text-blue-300 shrink-0" />
@@ -717,7 +736,7 @@ export const GigMethodBookingForm: React.FC = () => {
                           <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                           <div>
                             <span className="font-bold">Receipt Authenticated:</span> Transfer to{' '}
-                            <strong>Zeenat yasmin (Meezan Bank)</strong> verified. Click the button below to complete your order and download the PDF.
+                            <strong>ABDUL REHMAN (MEEZAN DIGITAL CENTRE)</strong> verified. Click the button below to complete your order and download the PDF.
                           </div>
                         </div>
                       ) : (

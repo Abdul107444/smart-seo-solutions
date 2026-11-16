@@ -524,14 +524,17 @@ ${transactionId ? `Transaction ID: ${transactionId}\n` : ''}I have downloaded th
 
               {/* Bank Account Details Card with Copy Buttons */}
               <div className="rounded-2xl border border-[#dfe5ed] bg-[#f7fbfd] p-4 space-y-3.5">
-                {/* Bank Name */}
+                {/* Bank Name & Branch */}
                 <div className="flex items-center justify-between gap-3 border-b border-[#dfe5ed] pb-3">
                   <div>
                     <div className="text-[10px] font-bold uppercase tracking-wider text-[#535f6f]">
-                      Bank Name
+                      Bank &amp; Branch
                     </div>
                     <div className="font-display text-sm sm:text-base font-bold text-[#0c172f]">
-                      {TECHPULSE_CONFIG.bankDetails.bankName}
+                      Meezan Bank
+                    </div>
+                    <div className="text-xs font-bold text-[#2b62ef] mt-0.5">
+                      MEEZAN DIGITAL CENTRE
                     </div>
                   </div>
                   <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-extrabold text-emerald-800">
@@ -568,13 +571,13 @@ ${transactionId ? `Transaction ID: ${transactionId}\n` : ''}I have downloaded th
                   </button>
                 </div>
 
-                {/* Account Number / IBAN */}
+                {/* Account Number */}
                 <div className="flex items-center justify-between gap-3 border-b border-[#dfe5ed] pb-3">
                   <div className="min-w-0">
                     <div className="text-[10px] font-bold uppercase tracking-wider text-[#535f6f]">
-                      IBAN / Account Number
+                      Account Number
                     </div>
-                    <div className="font-mono text-sm sm:text-base font-black tracking-wide text-[#2b62ef] break-all">
+                    <div className="font-mono text-sm sm:text-base font-black tracking-wide text-[#0c172f] break-all">
                       {TECHPULSE_CONFIG.bankDetails.accountNumber}
                     </div>
                   </div>
@@ -583,9 +586,38 @@ ${transactionId ? `Transaction ID: ${transactionId}\n` : ''}I have downloaded th
                     onClick={() =>
                       handleCopy('number', TECHPULSE_CONFIG.bankDetails.accountNumber)
                     }
-                    className="inline-flex shrink-0 items-center gap-1 rounded-full gradient-brand px-3 py-1.5 text-xs font-bold text-white shadow-sm hover:scale-105 transition-transform cursor-pointer"
+                    className="inline-flex shrink-0 items-center gap-1 rounded-full border border-[#dfe5ed] bg-white px-3 py-1.5 text-xs font-bold text-[#0c172f] hover:bg-[#ecf3f8] cursor-pointer"
                   >
                     {copiedKey === 'number' ? (
+                      <>
+                        <Check className="h-3.5 w-3.5 text-emerald-600" /> Copied
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="h-3.5 w-3.5" /> Copy
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                {/* IBAN */}
+                <div className="flex items-center justify-between gap-3 border-b border-[#dfe5ed] pb-3">
+                  <div className="min-w-0">
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-[#535f6f]">
+                      IBAN
+                    </div>
+                    <div className="font-mono text-sm sm:text-base font-black tracking-wide text-[#2b62ef] break-all">
+                      {TECHPULSE_CONFIG.bankDetails.iban}
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      handleCopy('iban', TECHPULSE_CONFIG.bankDetails.iban)
+                    }
+                    className="inline-flex shrink-0 items-center gap-1 rounded-full gradient-brand px-3 py-1.5 text-xs font-bold text-white shadow-sm hover:scale-105 transition-transform cursor-pointer"
+                  >
+                    {copiedKey === 'iban' ? (
                       <>
                         <Check className="h-3.5 w-3.5" /> Copied
                       </>
@@ -730,7 +762,7 @@ ${transactionId ? `Transaction ID: ${transactionId}\n` : ''}I have downloaded th
                         Tap or drag &amp; drop payment screenshot
                       </span>
                       <span className="mt-1 text-[11px] text-[#535f6f]">
-                        PNG, JPG, or screenshot showing transfer to Zeenat yasmin (Meezan Bank)
+                        PNG, JPG, or screenshot showing transfer to ABDUL REHMAN (MEEZAN DIGITAL CENTRE)
                       </span>
                     </>
                   )}
@@ -797,7 +829,7 @@ ${transactionId ? `Transaction ID: ${transactionId}\n` : ''}I have downloaded th
                       <div className="rounded-lg bg-white/80 px-2.5 py-1.5 border border-emerald-200/70">
                         <span className="text-[#535f6f] block text-[10px]">Recipient</span>
                         <span className="font-bold text-emerald-950">
-                          {verificationResult.detectedDetails?.recipientName || 'Zeenat yasmin'}
+                          {verificationResult.detectedDetails?.recipientName || 'ABDUL REHMAN'}
                         </span>
                       </div>
                       <div className="rounded-lg bg-white/80 px-2.5 py-1.5 border border-emerald-200/70">

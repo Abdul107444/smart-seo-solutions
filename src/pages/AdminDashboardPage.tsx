@@ -1004,7 +1004,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
                       onChange={(e) => setNewLeadPaymentMethod(e.target.value as any)}
                       className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-white text-xs focus:outline-none focus:border-orange-400"
                     >
-                      <option value="Meezan Bank" className="bg-[#170928]">Meezan Bank (PK20MEZN0000300114121316)</option>
+                      <option value="Meezan Bank" className="bg-[#170928]">Meezan Bank (PK89MEZN0000300114577623)</option>
                       <option value="Bank Transfer" className="bg-[#170928]">Other Bank Transfer (IBFT / Raast)</option>
                       <option value="Cash" className="bg-[#170928]">Cash / Direct</option>
                     </select>
