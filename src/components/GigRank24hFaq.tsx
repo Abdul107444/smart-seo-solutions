@@ -15,9 +15,9 @@ const METHOD_FAQS: FaqItem[] = [
     highlight: '100% White-Hat & Safe'
   },
   {
-    question: 'How do I receive the method after paying Rs. 500?',
+    question: 'How do I receive the method after paying Rs. 4,500?',
     answer:
-      'This is a complete digital method & blueprint (not a done-for-you account access service). Immediately after your Rs. 500 payment is verified, we send the full step-by-step 24-Hour Ranking Method PDF, AIDA description templates, and keyword research sheet directly to your WhatsApp and Email so you can apply it right away.',
+      'This is a complete digital method & blueprint (not a done-for-you account access service). Immediately after your Rs. 4,500 payment is verified by AI, you can instantly download the full step-by-step 24-Hour Ranking Method PDF directly on screen.',
     highlight: 'Instant WhatsApp & Email Delivery'
   },
   {
@@ -29,7 +29,7 @@ const METHOD_FAQS: FaqItem[] = [
   {
     question: 'What is the 20 to 25 Days Money-Back Guarantee?',
     answer:
-      'If you apply the steps taught in our method, keep your gig active and online, and do not see positive organic search impression growth or client inquiries within 20 to 25 days, you will receive a full 100% refund of your Rs. 500 fee—no arguments, no hidden conditions.',
+      'If you apply the steps taught in our method, keep your gig active and online, and do not see positive organic search impression growth or client inquiries within 20 to 25 days, you will receive a full 100% refund of your Rs. 4,500 fee—no arguments, no hidden conditions.',
     highlight: '100% Risk-Free Guarantee'
   },
   {

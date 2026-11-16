@@ -29,7 +29,7 @@ export function AiVideosTrainingPage({ onBack, onEnroll, onSeeReviews }: Trainin
   const serviceFaqs = [
     {
       q: 'How fast do I receive the method after payment?',
-      a: 'This is an instant digital method (PDF Blueprint + AIDA Templates + Keyword Formula). Once your Rs. 500 payment receipt is verified, we send the complete method package to your WhatsApp and Email within 10–15 minutes.'
+      a: `This is an instant digital method (PDF Blueprint + AIDA Templates + Keyword Formula). Once your Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} payment receipt is verified, your complete method PDF unlocks for immediate download.`
     },
     {
       q: 'Do I apply the method myself or do you log into my Fiverr account?',

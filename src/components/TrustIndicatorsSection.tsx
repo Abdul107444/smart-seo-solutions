@@ -153,7 +153,7 @@ export function TrustIndicatorsSection({ onEnroll }: TrustIndicatorsProps) {
 
             <div className="mt-5 flex items-center justify-between pt-1 border-t border-[#dfe5ed]/60">
               <a
-                href={`https://wa.me/${phone}?text=${encodeURIComponent('Hello! I would like to buy the 24-Hour Fiverr Gig Ranking Method (Rs. 500).')}`}
+                href={`https://wa.me/${phone}?text=${encodeURIComponent('Hello! I would like to buy the 24-Hour Fiverr Gig Ranking Method (Rs. 4,500).')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-[#109655] hover:underline"

@@ -34,7 +34,7 @@ const FEATURED_PROOFS = [
     img: '/techpulse-assets/fiverr-first-order.svg',
     title: 'First International Client — $250 Order Closed in 5 Days!',
     seller: 'Bushra Bano — UI/UX & Mobile App Designer',
-    note: 'Just 5 days after following the step-by-step ranking method on my profile and gig, I secured my first paying client from the United Kingdom for $250. The Rs. 500 method fee paid for itself 100x over on that very first order!',
+    note: 'Just 5 days after following the step-by-step ranking method on my profile and gig, I secured my first paying client from the United Kingdom for $250. The Rs. 4,500 method fee paid for itself 15x over on that very first order!',
     tag: 'First Client Won',
     tagColor: 'bg-blue-50 text-blue-800 border-blue-200',
     result: '$250 Order Closed in 5 Days'

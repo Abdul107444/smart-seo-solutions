@@ -14,7 +14,7 @@ const CITIES = [
 ];
 
 const ACTIONS = [
-  { text: 'purchased', service: '24h Fiverr Gig Ranking Method (Rs. 500)', highlight: 'text-[#109655]' },
+  { text: 'purchased', service: '24h Fiverr Gig Ranking Method (Rs. 4,500)', highlight: 'text-[#109655]' },
   { text: 'closed', service: 'First $250 Client Order using the 24h Method', highlight: 'text-[#109655]' },
   { text: 'downloaded', service: '5 Buyer Tags & Permalink Blueprint', highlight: 'text-[#2b62ef]' },
   { text: 'received', service: '1st US Buyer Inquiry within 48 Hours', highlight: 'text-[#109655]' },

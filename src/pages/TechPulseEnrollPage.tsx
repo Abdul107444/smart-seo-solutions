@@ -989,7 +989,7 @@ ${transactionId ? `Transaction ID: ${transactionId}\n` : ''}I have downloaded th
               },
               {
                 q: 'How fast will I receive the PDF after payment?',
-                a: 'Instantly! As soon as you upload your Rs. 500 payment screenshot, our AI verification system checks your receipt in seconds and immediately unlocks the Fiverr Gig Rank Method PDF for one-click download.'
+                a: `Instantly! As soon as you upload your Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} payment screenshot, our AI verification system checks your receipt in seconds and immediately unlocks the Fiverr Gig Rank Method PDF for one-click download.`
               },
               {
                 q: 'What is the 20–25 Days 100% Money-Back Guarantee?',
