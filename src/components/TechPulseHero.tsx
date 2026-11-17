@@ -12,8 +12,8 @@ import {
 } from 'lucide-react';
 import { TECHPULSE_CONFIG } from '../data/techpulseData';
 
-const PRIMARY_TOP_RATED_IMAGE = '/techpulse-assets/fiverr-aqacca-seller.svg';
-const FALLBACK_TOP_RATED_IMAGE = '/techpulse-assets/fiverr-aqacca-seller.svg';
+const PRIMARY_TOP_RATED_IMAGE = '/techpulse-assets/fiverr-aqacca-seller.svg?v=2';
+const FALLBACK_TOP_RATED_IMAGE = '/techpulse-assets/fiverr-aqacca-seller.svg?v=2';
 
 interface HeroProps {
   onEnroll: () => void;

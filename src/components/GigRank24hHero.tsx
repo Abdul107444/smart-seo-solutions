@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import { TECHPULSE_CONFIG } from '../data/techpulseData';
 
-const AQACCA_IMAGE = '/techpulse-assets/fiverr-aqacca-seller.svg';
+const AQACCA_IMAGE = '/techpulse-assets/fiverr-aqacca-seller.svg?v=2';
 
 interface GigRank24hHeroProps {
   onEnroll: () => void;
