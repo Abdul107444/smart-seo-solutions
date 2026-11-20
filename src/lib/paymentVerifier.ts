@@ -254,7 +254,12 @@ export async function verifyPaymentScreenshot(
         : undefined;
 
     // 7. Amount Verification
-    // Target: Rs. 4,500 (24h Fiverr Gig Ranking Method)
+    // Target: Rs. 500 (24h Fiverr Gig Ranking Method)
+    const has500 =
+      compactClean.includes('500') ||
+      norm.includes('500') ||
+      norm.includes('500.00') ||
+      norm.includes('500,00');
     const has4500 =
       compactClean.includes('4500') ||
       norm.includes('4500') ||
@@ -263,14 +268,13 @@ export async function verifyPaymentScreenshot(
       compactClean.includes('7000') ||
       norm.includes('7000') ||
       norm.includes('7 000');
-    const has500 = norm.includes('500') || norm.includes('500.00') || norm.includes('500,00');
     const has8000 = norm.includes('8000') || norm.includes('8,000') || norm.includes('8 000');
-    const amountMatched = has4500 || has7000 || has500 || has8000;
+    const amountMatched = has500 || has4500 || has7000 || has8000;
     
     let detectedAmount = 'Unspecified';
-    if (has4500) detectedAmount = 'Rs. 4,500 (24h Fiverr Gig Ranking Method)';
+    if (has500 && !has4500) detectedAmount = 'Rs. 500 (24h Fiverr Gig Ranking Method)';
+    else if (has4500) detectedAmount = 'Rs. 4,500 (Previous Rate)';
     else if (has7000) detectedAmount = 'Rs. 7,000 (Previous Rate)';
-    else if (has500) detectedAmount = 'Rs. 500 (Promotional Rate)';
     else if (has8000) detectedAmount = 'Rs. 8,000 (Legacy Package)';
 
     // 8. Transaction ID (TID) extraction

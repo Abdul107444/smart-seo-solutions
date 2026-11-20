@@ -66,8 +66,8 @@ export const TECHPULSE_CONFIG = {
   heroTitle: "Get Your 1st Client With Our 24-Hour Fiverr Ranking Method",
   heroSubtitle: "Complete Step-by-Step Fiverr Ranking Method & Blueprint: Learn how to convert dead profiles and zero-click gigs into active dollar orders yourself. Includes low-competition buyer tag formula, AIDA description templates, 3-tier decoy pricing scripts, and high-CTR thumbnail guide.",
   videoUrl: "https://www.youtube.com/embed/zlNDZqFWb0A?rel=0&modestbranding=1&playsinline=1&enablejsapi=1",
-  pricePKR: 4500,
-  originalPricePKR: 9000,
+  pricePKR: 500,
+  originalPricePKR: 1000,
   discountPercentage: "50% OFF",
   slotsTotal: 100,
   slotsFilled: 94,
@@ -81,8 +81,8 @@ export const TECHPULSE_CONFIG = {
     accountTitle: "ABDUL REHMAN",
     accountNumber: "00300114577623",
     iban: "PK89MEZN0000300114577623",
-    feeAmount: 4500,
-    instructions: "Transfer Rs. 4,500 via Meezan Bank, Easypaisa, JazzCash, SadaPay, NayaPay, or any Pakistani banking app."
+    feeAmount: 500,
+    instructions: "Transfer Rs. 500 via Meezan Bank, Easypaisa, JazzCash, SadaPay, NayaPay, or any Pakistani banking app."
   }
 };
 
@@ -195,8 +195,8 @@ export const BONUS_DELIVERABLE = {
   badge: "🎁 Included With The Method",
   title: "Copy-Paste AIDA Templates & Keyword Research Sheet",
   desc: "Instant Digital Access: Get ready-to-use gig description frameworks, 3-tier decoy pricing templates, and our competitor tag extraction checklist delivered directly to your WhatsApp & Email.",
-  originalValue: "Rs. 9,000",
-  currentPrice: "FREE WITH RS. 4,500 METHOD"
+  originalValue: "Rs. 1,000",
+  currentPrice: "FREE WITH RS. 500 METHOD"
 };
 
 export const BONUS_MODULE = BONUS_DELIVERABLE;
@@ -220,7 +220,7 @@ export const REVIEWS: ReviewItem[] = [
     id: "rev-46",
     img: "/techpulse-assets/fiverr-first-order.svg",
     title: "First Order from International Customer — $250 Order!",
-    note: "Bushra Bano — UI/UX Designer: Just 5 days after applying the 24h ranking method to my gig, I won my first client from the UK for $250 — the Rs. 4,500 method cost was recovered 15x from that very first order!",
+    note: "Bushra Bano — UI/UX Designer: Just 5 days after applying the 24h ranking method to my gig, I won my first client from the UK for $250 — the Rs. 500 method cost was recovered 140x from that very first order!",
     tag: "First Dollar Order"
   },
   {
@@ -296,8 +296,8 @@ export const REVIEWS: ReviewItem[] = [
   {
     id: "rev-31",
     img: "/techpulse-assets/fiverr-roi-cleared.svg",
-    title: "Best Rs. 4,500 Investment — $850 Cleared & Withdrawn",
-    note: "Usman Khan — Video Editor: For Rs. 4,500, I received such a comprehensive profile overhaul and keyword blueprint that in my first month I withdrew $850 directly to my bank.",
+    title: "Best Rs. 500 Investment — $850 Cleared & Withdrawn",
+    note: "Usman Khan — Video Editor: For Rs. 500, I received such a comprehensive profile overhaul and keyword blueprint that in my first month I withdrew $850 directly to my bank.",
     tag: "Best Value"
   },
   {
@@ -555,7 +555,7 @@ export const FAQS: FaqItem[] = [
   {
     id: "faq-12",
     q: "How do I withdraw dollar earnings to Pakistan and how do I pay for the method?",
-    a: "The method fee (Rs. 4,500 one-time) can be paid in 1-click via Meezan Bank, Easypaisa, JazzCash, SadaPay, NayaPay, or any Pakistani commercial bank via IBFT/Raast. Once you earn on Fiverr, your USD earnings can be transferred via Payoneer directly into Meezan Bank, JazzCash, or any Pakistani bank account at live interbank rates.",
+    a: "The method fee (Rs. 500 one-time) can be paid in 1-click via Meezan Bank, Easypaisa, JazzCash, SadaPay, NayaPay, or any Pakistani commercial bank via IBFT/Raast. Once you earn on Fiverr, your USD earnings can be transferred via Payoneer directly into Meezan Bank, JazzCash, or any Pakistani bank account at live interbank rates.",
     category: "payment",
     categoryLabel: "Payments, Delivery & Guarantee",
     tags: ["easypaisa", "jazzcash", "meezan bank", "payment", "payoneer", "withdrawal", "pkr", "dollars"],

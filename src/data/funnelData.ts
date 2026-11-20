@@ -3,13 +3,13 @@ import { PortfolioItem, CompanyPartner, FAQItem } from '../types';
 export const BUSINESS_INFO = {
   name: 'Smart SEO Solutions',
   serviceName: 'Fiverr Profile & Gig Optimization',
-  price: 'Rs. 4,500',
-  priceNumeric: 4500,
+  price: 'Rs. 500',
+  priceNumeric: 500,
   currency: 'PKR',
   whatsAppNumber: '+92 310 6625091',
   whatsAppSecondary: '+92 310 6625091',
   whatsAppLink: 'https://wa.me/923106625091',
-  whatsAppMessageText: 'Hi Smart SEO Solutions! I am interested in your 24-Hour Fiverr Gig Ranking Method (Rs. 4,500). Please share the next steps.',
+  whatsAppMessageText: 'Hi Smart SEO Solutions! I am interested in your 24-Hour Fiverr Gig Ranking Method (Rs. 500). Please share the next steps.',
   tagline: 'Turn your Fiverr presence into a professional sales machine.',
 };
 
@@ -643,8 +643,8 @@ export const FAQ_LIST: FAQItem[] = [
   },
   {
     id: 'faq-8',
-    question: 'Is Rs. 4,500 a one-time payment?',
-    answer: 'Yes, Rs. 4,500 is a transparent, one-time payment for the complete 24-Hour Fiverr Gig Ranking Method. There are no hidden fees or recurring subscriptions.',
+    question: 'Is Rs. 500 a one-time payment?',
+    answer: 'Yes, Rs. 500 is a transparent, one-time payment for the complete 24-Hour Fiverr Gig Ranking Method. There are no hidden fees or recurring subscriptions.',
   },
 ];
 
@@ -652,13 +652,13 @@ export const GIG_RANK_METHOD_INFO = {
   name: 'Fiverr 24-Hour Gig Ranking Method',
   mainHeading: 'Gig rank on 1st page of fiverr within 24 hours Guranteded 100%',
   subHeading: 'Get our confidential step-by-step PDF blueprint revealing the exact algorithm keyword placement formula to rank any new or stalled gig on Fiverr’s 1st page within 24 hours. Follow the confidential blueprint and watch your gig rank on page 1.',
-  price: '4,500 PKR',
-  originalPrice: '9,000 PKR',
+  price: '500 PKR',
+  originalPrice: '1,000 PKR',
   discount: '50% OFF (Limited Time Special)',
-  priceNumeric: 4500,
+  priceNumeric: 500,
   whatsAppNumber: '+92 310 6625091',
   whatsAppLink: 'https://wa.me/923106625091',
-  whatsAppMessageText: 'Hi Smart SEO Solutions! I just purchased the Fiverr 24-Hour Gig Ranking Method PDF (4,500 PKR) and completed my Meezan Bank payment.',
+  whatsAppMessageText: 'Hi Smart SEO Solutions! I just purchased the Fiverr 24-Hour Gig Ranking Method PDF (500 PKR) and completed my Meezan Bank payment.',
 };
 
 export const GIG_METHOD_FAQS: FAQItem[] = [
@@ -679,8 +679,8 @@ export const GIG_METHOD_FAQS: FAQItem[] = [
   },
   {
     id: 'gm-faq-4',
-    question: 'How and when will I receive the PDF guide after paying 4,500 PKR?',
-    answer: 'Immediately! Once you transfer 4,500 PKR to our official Meezan Bank account and submit the receipt, our automated system instantly unlocks your "Download PDF Blueprint" button right inside the thank-you screen. You can download the PDF to your device right away.',
+    question: 'How and when will I receive the PDF guide after paying 500 PKR?',
+    answer: 'Immediately! Once you transfer 500 PKR to our official Meezan Bank account and submit the receipt, our automated system instantly unlocks your "Download PDF Blueprint" button right inside the thank-you screen. You can download the PDF to your device right away.',
   },
   {
     id: 'gm-faq-5',
@@ -689,7 +689,7 @@ export const GIG_METHOD_FAQS: FAQItem[] = [
   },
   {
     id: 'gm-faq-6',
-    question: 'Which payment methods are accepted for 4,500 PKR?',
+    question: 'Which payment methods are accepted for 500 PKR?',
     answer: 'We accept payments through our official Meezan Bank account — MEEZAN DIGITAL CENTRE (Title: ABDUL REHMAN, Account: 00300114577623, IBAN: PK89MEZN0000300114577623). You can transfer from any banking app in Pakistan (Meezan, HBL, UBL, Nayapay, SadaPay, JazzCash, Easypaisa, etc.) using direct IBFT or Raast.',
   },
   {

@@ -86,7 +86,7 @@ export function TechPulseNavbar({ onNavigate, currentPage }: NavbarProps) {
             onClick={() => handleNavClick('pricing')}
             className="transition-colors hover:text-[#2b62ef]"
           >
-            Pricing (Rs. 4,500)
+            Pricing (Rs. 500)
           </button>
           <button
             type="button"
@@ -105,7 +105,7 @@ export function TechPulseNavbar({ onNavigate, currentPage }: NavbarProps) {
             className="gradient-brand inline-flex items-center gap-1.5 sm:gap-2 rounded-full px-3.5 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-bold text-white shadow-glow transition-all hover:scale-[1.03] active:scale-95 cursor-pointer"
           >
             <span className="hidden sm:inline">Get The Method — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
-            <span className="sm:hidden">Method — Rs. 4,500</span>
+            <span className="sm:hidden">Method — Rs. 500</span>
             <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
           </button>
 
@@ -164,7 +164,7 @@ export function TechPulseNavbar({ onNavigate, currentPage }: NavbarProps) {
               onClick={() => handleNavClick('pricing')}
               className="rounded-lg px-3 py-2 text-left hover:bg-[#ecf3f8]"
             >
-              Pricing &amp; Bank Details (Rs. 4,500)
+              Pricing &amp; Bank Details (Rs. 500)
             </button>
             <button
               type="button"

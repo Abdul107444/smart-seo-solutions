@@ -39,7 +39,7 @@ const FOCUSED_FAQS: FaqItemData[] = [
   {
     id: 'faq-4',
     q: 'How does the 20–25 Days Money-Back Guarantee work?',
-    a: 'Our 20–25 day guarantee is 100% unconditional. If you follow our step-by-step method properly and do not experience positive organic search impression growth or genuine buyer inquiries within 20–25 days, simply message us on WhatsApp for an immediate 100% refund of your Rs. 4,500 fee directly to your Pakistani bank account or mobile wallet.',
+    a: 'Our 20–25 day guarantee is 100% unconditional. If you follow our step-by-step method properly and do not experience positive organic search impression growth or genuine buyer inquiries within 20–25 days, simply message us on WhatsApp for an immediate 100% refund of your Rs. 500 fee directly to your Pakistani bank account or mobile wallet.',
     highlight: '100% Unconditional Refund Policy'
   }
 ];
@@ -154,7 +154,7 @@ export function FaqSection() {
 
           <a
             href={`https://wa.me/${phone}?text=${encodeURIComponent(
-              'Hello! I have a question regarding the Fiverr 24-Hour Gig Ranking Method (Rs. 4,500).'
+              'Hello! I have a question regarding the Fiverr 24-Hour Gig Ranking Method (Rs. 500).'
             )}`}
             target="_blank"
             rel="noopener noreferrer"
