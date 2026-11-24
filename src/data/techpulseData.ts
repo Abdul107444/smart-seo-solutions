@@ -61,18 +61,18 @@ export interface FaqItem {
 }
 
 export const TECHPULSE_CONFIG = {
-  courseName: "Smart SEO Solutions — Fiverr 24h Gig Ranking Method",
-  badge: "🇵🇰 Pakistan's Proven Fiverr Method — Get Your 1st Order Fast",
-  heroTitle: "Get Your 1st Client With Our 24-Hour Fiverr Ranking Method",
-  heroSubtitle: "Complete Step-by-Step Fiverr Ranking Method & Blueprint: Learn how to convert dead profiles and zero-click gigs into active dollar orders yourself. Includes low-competition buyer tag formula, AIDA description templates, 3-tier decoy pricing scripts, and high-CTR thumbnail guide.",
+  courseName: "Smart SEO Solutions — Fiverr Profile & Gig Optimization",
+  badge: "🇵🇰 Pakistan's #1 Done-For-You Fiverr Optimization — 20–25 Days Guarantee",
+  heroTitle: "Get your 1st fiverr client within 20-25 days with Guarantee",
+  heroSubtitle: "Complete Done-For-You Fiverr Profile & Gig Optimization Service: Our SEO specialists optimize your entire Fiverr profile bio, low-competition buyer search tags, SEO-friendly title & permalink, high-converting AIDA description, 3-tier decoy pricing, and thumbnail strategy (via Direct Setup or Live AnyDesk) — backed by our 20–25 days 100% money-back guarantee.",
   videoUrl: "https://www.youtube.com/embed/zlNDZqFWb0A?rel=0&modestbranding=1&playsinline=1&enablejsapi=1",
-  pricePKR: 500,
-  originalPricePKR: 1000,
+  pricePKR: 8000,
+  originalPricePKR: 16000,
   discountPercentage: "50% OFF",
   slotsTotal: 100,
   slotsFilled: 94,
   slotsLeft: 6,
-  spotsRemainingBadge: "⚡ Limited Time: Only 6 Method Copies Left At Launch Price",
+  spotsRemainingBadge: "⚡ Limited Time: Only 6 Optimization Slots Left This Month",
   whatsappNumber: "+92 310 6625091",
   whatsappEnrollNumber: "+92 310 6625091",
   bankDetails: {
@@ -81,8 +81,8 @@ export const TECHPULSE_CONFIG = {
     accountTitle: "ABDUL REHMAN",
     accountNumber: "00300114577623",
     iban: "PK89MEZN0000300114577623",
-    feeAmount: 500,
-    instructions: "Transfer Rs. 500 via Meezan Bank, Easypaisa, JazzCash, SadaPay, NayaPay, or any Pakistani banking app."
+    feeAmount: 8000,
+    instructions: "Transfer Rs. 8,000 via Meezan Bank, Easypaisa, JazzCash, SadaPay, NayaPay, or any Pakistani banking app."
   }
 };
 
@@ -192,11 +192,11 @@ export const DELIVERABLES: Deliverable[] = [
 export const MODULES = DELIVERABLES;
 
 export const BONUS_DELIVERABLE = {
-  badge: "🎁 Included With The Method",
-  title: "Copy-Paste AIDA Templates & Keyword Research Sheet",
-  desc: "Instant Digital Access: Get ready-to-use gig description frameworks, 3-tier decoy pricing templates, and our competitor tag extraction checklist delivered directly to your WhatsApp & Email.",
-  originalValue: "Rs. 1,000",
-  currentPrice: "FREE WITH RS. 500 METHOD"
+  badge: "🎁 Included Free With Optimization",
+  title: "Full Profile Audit, Custom Keyword Sheet & 24/7 WhatsApp Support",
+  desc: "Done-For-You Bonus: Along with optimizing your profile & gig (directly or via live AnyDesk), you receive a custom competitor keyword spreadsheet, high-CTR thumbnail brief, and ongoing WhatsApp support.",
+  originalValue: "Rs. 16,000",
+  currentPrice: "FREE WITH 8,000 PKR OPTIMIZATION"
 };
 
 export const BONUS_MODULE = BONUS_DELIVERABLE;
@@ -206,28 +206,28 @@ export const REVIEWS: ReviewItem[] = [
     id: "rev-48",
     img: "/techpulse-assets/fiverr-earnings-proof.svg",
     title: "From Zero Impressions to 42,800 Impressions & Level 2 Seller!",
-    note: "Hamza Saeed (@saqibshahid08) — WordPress & Laravel Developer: My Fiverr gig was completely dormant with zero search clicks. I got the 24h Ranking Method from Smart SEO Solutions and applied it step-by-step — within 30 days, impressions surged by +340% and direct $350 and $600 international orders lined up in queue!",
+    note: "Hamza Saeed (@saqibshahid08) — WordPress & Laravel Developer: My Fiverr gig was completely dormant with zero search clicks. Smart SEO Solutions did a complete Done-For-You profile & gig optimization — within 30 days, impressions surged by +340% and direct $350 and $600 international orders lined up in queue!",
     tag: "Level 2 Seller"
   },
   {
     id: "rev-47",
     img: "/techpulse-assets/fiverr-ranking-proof.svg",
     title: "Page 1 #4 Rank — Recurring International Retainers!",
-    note: "Sikandar Usman (@sikandarusman1) — Cinematic Video Editor: In a crowded video editing niche, using this ranking formula pushed my gig to Page 1, Spot #4. Search clicks grew by +210%, and I secured recurring monthly clients from the US and Canada!",
+    note: "Sikandar Usman (@sikandarusman1) — Cinematic Video Editor: In a crowded video editing niche, Smart SEO Solutions optimized my gig title, permalink, and 5 buyer tags, pushing it to Page 1, Spot #4. Search clicks grew by +210%, and I secured recurring monthly clients from the US and Canada!",
     tag: "Page 1 Rank"
   },
   {
     id: "rev-46",
     img: "/techpulse-assets/fiverr-first-order.svg",
     title: "First Order from International Customer — $250 Order!",
-    note: "Bushra Bano — UI/UX Designer: Just 5 days after applying the 24h ranking method to my gig, I won my first client from the UK for $250 — the Rs. 500 method cost was recovered 140x from that very first order!",
+    note: "Bushra Bano — UI/UX Designer: Just 5 days after Smart SEO Solutions optimized my Fiverr profile and gig, I won my first client from the UK for $250 — the Rs. 8,000 optimization fee was recovered 8x from that very first order!",
     tag: "First Dollar Order"
   },
   {
     id: "rev-45",
     img: "/techpulse-assets/fiverr-seo-tags-proof.svg",
-    title: "Game-Changing 24h Ranking Method & 5 Buyer Tags Formula",
-    note: "Babar Zafar — Full Stack Dev: Following the keyword research blueprint and aligning the exact 5 buyer search tags brought my dormant gig back into active search results within 24 hours. Truly practical method!",
+    title: "Game-Changing Done-For-You SEO & 5 Buyer Tags Overhaul",
+    note: "Babar Zafar — Full Stack Dev: Their team researched low-competition buyer keywords and replaced my weak search tags live on AnyDesk, bringing my dormant gig back into active search results within days!",
     tag: "Fiverr SEO"
   },
   {
@@ -296,8 +296,8 @@ export const REVIEWS: ReviewItem[] = [
   {
     id: "rev-31",
     img: "/techpulse-assets/fiverr-roi-cleared.svg",
-    title: "Best Rs. 500 Investment — $850 Cleared & Withdrawn",
-    note: "Usman Khan — Video Editor: For Rs. 500, I received such a comprehensive profile overhaul and keyword blueprint that in my first month I withdrew $850 directly to my bank.",
+    title: "Best Rs. 8,000 Investment — $850 Cleared & Withdrawn",
+    note: "Usman Khan — Video Editor: For Rs. 8,000, Smart SEO Solutions delivered such a comprehensive Done-For-You profile overhaul and keyword optimization that in my first month I withdrew $850 directly to my bank.",
     tag: "Best Value"
   },
   {
@@ -554,8 +554,8 @@ export const FAQS: FaqItem[] = [
   },
   {
     id: "faq-12",
-    q: "How do I withdraw dollar earnings to Pakistan and how do I pay for the method?",
-    a: "The method fee (Rs. 500 one-time) can be paid in 1-click via Meezan Bank, Easypaisa, JazzCash, SadaPay, NayaPay, or any Pakistani commercial bank via IBFT/Raast. Once you earn on Fiverr, your USD earnings can be transferred via Payoneer directly into Meezan Bank, JazzCash, or any Pakistani bank account at live interbank rates.",
+    q: "How do I withdraw dollar earnings to Pakistan and how do I pay for optimization?",
+    a: "The complete Done-For-You optimization fee (8,000 PKR one-time) can be paid in 1-click via Meezan Bank, Easypaisa, JazzCash, SadaPay, NayaPay, or any Pakistani commercial bank via IBFT/Raast. Once you earn on Fiverr, your USD earnings can be transferred via Payoneer directly into Meezan Bank, JazzCash, or any Pakistani bank account at live interbank rates.",
     category: "payment",
     categoryLabel: "Payments, Delivery & Guarantee",
     tags: ["easypaisa", "jazzcash", "meezan bank", "payment", "payoneer", "withdrawal", "pkr", "dollars"],

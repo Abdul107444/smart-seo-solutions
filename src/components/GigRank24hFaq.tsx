@@ -9,34 +9,34 @@ interface FaqItem {
 
 const METHOD_FAQS: FaqItem[] = [
   {
-    question: 'How does the method rank a gig within 24 hours without violating Fiverr policies?',
+    question: 'How does your Done-For-You optimization get my 1st client in 20–25 days?',
     answer:
-      'This method uses 100% white-hat algorithmic alignment. Fiverr’s search bots re-index gigs every 12 to 24 hours when tags, permanent URL permalinks, and metadata are updated correctly. By following our blueprint to target low-competition, high-intent buyer keywords instead of saturated generic terms, your gig immediately qualifies for active search placement without any fake clicks or bots.',
-    highlight: '100% White-Hat & Safe'
+      'Our team uses 100% white-hat Fiverr SEO. We research low-competition, high-intent buyer keywords in your exact niche, rewrite your gig titles, backend search tags, AIDA descriptions, 3-tier pricing, and thumbnails so Fiverr’s search crawler indexes your gigs to active US/UK buyer search streams.',
+    highlight: '100% White-Hat & Proven'
   },
   {
-    question: 'How do I receive the method after paying Rs. 500?',
+    question: 'How does the process work after paying Rs. 8,000?',
     answer:
-      'This is a complete digital method & blueprint (not a done-for-you account access service). Immediately after your Rs. 500 payment is verified by AI, you can instantly download the full step-by-step 24-Hour Ranking Method PDF directly on screen.',
-    highlight: 'Instant WhatsApp & Email Delivery'
+      'Right after your Rs. 8,000 payment is verified by AI, you connect with our Fiverr SEO lead on WhatsApp (+92 310 6625091). We complete your full profile and gig optimization in 2–4 business days either directly or live via AnyDesk / TeamViewer.',
+    highlight: 'Direct or Live AnyDesk Setup'
   },
   {
-    question: 'Does this method work for brand-new accounts with 0 reviews?',
+    question: 'Does full optimization work for brand-new accounts with 0 reviews?',
     answer:
-      'Yes! In fact, brand-new accounts benefit the most because Fiverr grants an initial algorithmic "new seller boost" to newly published and properly structured gigs. Our method shows you how to capitalize on this window to lock in your search position and get your first messages in 2 to 7 days.',
-    highlight: 'Perfect for 0-Review Accounts'
+      'Yes! Brand-new accounts benefit the most because Fiverr grants an algorithmic "new seller boost" to properly structured gigs. Our optimization positions your gigs cleanly to turn that boost into your 1st paying client within 20–25 days.',
+    highlight: 'Built for New & Zero-Order Sellers'
   },
   {
-    question: 'What is the 20 to 25 Days Money-Back Guarantee?',
+    question: 'What is the 20 to 25 Days 1st Client Money-Back Guarantee?',
     answer:
-      'If you apply the steps taught in our method, keep your gig active and online, and do not see positive organic search impression growth or client inquiries within 20 to 25 days, you will receive a full 100% refund of your Rs. 500 fee—no arguments, no hidden conditions.',
+      'If our team completes your full Fiverr Profile & Gig Optimization, you keep your account active online, and you still do not get your 1st Fiverr client or inquiries within 20 to 25 days, we refund 100% of your Rs. 8,000 fee immediately via WhatsApp.',
     highlight: '100% Risk-Free Guarantee'
   },
   {
-    question: 'Do I need to share my Fiverr password or give account access?',
+    question: 'Do I have to share my Fiverr password?',
     answer:
-      'Never! We are selling you the proven step-by-step method so you can optimize your gigs yourself. We never ask for your Fiverr login, password, or remote computer access. You stay in 100% control of your account at all times.',
-    highlight: 'Zero Account Access Required'
+      'Not if you prefer not to! We offer two secure modes: Direct Account Optimization or Live AnyDesk / TeamViewer Screen-Share where we do every single update live in front of you.',
+    highlight: '100% Account Safety'
   }
 ];
 
@@ -54,13 +54,13 @@ export function GigRank24hFaq() {
         <div className="text-center max-w-2xl mx-auto">
           <div className="inline-flex items-center gap-1.5 rounded-full border border-[#2b62ef]/30 bg-[#2b62ef]/10 px-3.5 py-1 text-xs font-bold text-[#2b62ef]">
             <HelpCircle className="h-3.5 w-3.5 text-[#2b62ef]" />
-            <span>24-Hour Method Knowledge Base</span>
+            <span>Optimization Service FAQs</span>
           </div>
           <h2 className="mt-3 font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-[#0c172f]">
             Frequently Asked Questions
           </h2>
           <p className="mt-2 text-xs sm:text-sm text-[#535f6f]">
-            Clear, transparent answers on our 24-hour Fiverr ranking methodology, safety, and money-back guarantee.
+            Clear, transparent answers on our Done-For-You Fiverr Profile &amp; Gig Optimization, AnyDesk setup, and 20–25 days guarantee.
           </p>
         </div>
 

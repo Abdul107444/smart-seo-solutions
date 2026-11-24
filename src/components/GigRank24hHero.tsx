@@ -50,20 +50,20 @@ export function GigRank24hHero({
         {/* Authority Eyebrow Badge */}
         <div className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-[#2b62ef]/30 bg-[#2b62ef]/10 px-3 py-1 sm:px-4 sm:py-1.5 text-[11px] sm:text-xs font-bold text-[#2b62ef] shadow-xs max-w-full">
           <Clock className="h-3.5 w-3.5 text-[#2b62ef] shrink-0 animate-pulse" />
-          <span className="truncate">⚡ 24-Hour Fiverr Algorithmic Ranking Formula · Fast-Track 1st Order</span>
+          <span className="truncate">Done-For-You Fiverr Profile &amp; Gig Optimization · 20–25 Days Guarantee</span>
         </div>
 
         {/* Exact User-Requested Main Heading */}
         <h1 className="mt-4 sm:mt-5 font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.18] sm:leading-[1.12] tracking-tight text-[#0c172f] max-w-4xl mx-auto px-2">
-          Gig rank within 24 hours to{' '}
+          Get your 1st fiverr client within{' '}
           <span className="text-gradient block xs:inline mt-1 xs:mt-0">
-            get 1st order very soon method
+            20-25 days with Guarantee
           </span>
         </h1>
 
         {/* Subtitle */}
         <p className="mx-auto mt-3 sm:mt-4 max-w-2xl text-xs sm:text-base leading-relaxed text-[#535f6f] px-2 sm:px-0">
-          Stop waiting weeks with zero impressions. Get our complete step-by-step 24-hour algorithmic indexing method to force the Fiverr crawler to re-index your gigs, rank into high-intent buyer search streams, and win your first international client yourself.
+          Stop guessing keywords and getting zero impressions. Our Fiverr SEO team handles your complete profile bio, low-competition buyer keywords, SEO gig titles, descriptions, 3-tier pricing, and thumbnails for you—delivered in 2–4 days.
         </p>
 
         {/* Verified Seller Profile Showcase Label */}
@@ -186,18 +186,18 @@ export function GigRank24hHero({
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-rose-600" />
               </span>
               <Zap className="h-4 w-4 fill-amber-500 text-amber-600 shrink-0" />
-              24h Method Access Slots
+              Optimization Service Slots
             </span>
             <span className="shrink-0 rounded-full bg-rose-600 px-2.5 py-0.5 text-[11px] sm:text-xs font-black text-white animate-pulse shadow-xs">
-              Only {TECHPULSE_CONFIG.slotsLeft} Copies Left!
+              Only {TECHPULSE_CONFIG.slotsLeft} Slots Left!
             </span>
           </div>
 
           {/* Progress bar */}
           <div className="mt-2.5">
             <div className="flex justify-between text-[11px] font-semibold text-[#535f6f] mb-1">
-              <span>{TECHPULSE_CONFIG.slotsFilled} Freelancers Grabbed Method This Month</span>
-              <span className="text-[#0c172f] font-bold">{percentFilled}% Claimed</span>
+              <span>{TECHPULSE_CONFIG.slotsFilled} Freelancers Optimized This Month</span>
+              <span className="text-[#0c172f] font-bold">{percentFilled}% Booked</span>
             </div>
             <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200">
               <div
@@ -215,7 +215,7 @@ export function GigRank24hHero({
             onClick={onEnroll}
             className="gradient-brand inline-flex items-center justify-center gap-2 rounded-full px-5 py-3.5 sm:px-9 sm:py-4 text-sm sm:text-base font-bold text-white shadow-glow transition-all hover:scale-[1.02] active:scale-95 w-full sm:w-auto cursor-pointer"
           >
-            <span>Get 24h Ranking Method — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
+            <span>Book Full Optimization — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
             <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" />
           </button>
 
@@ -225,29 +225,29 @@ export function GigRank24hHero({
               onClick={onSeeMethod}
               className="inline-flex items-center justify-center gap-2 rounded-full border border-[#dfe5ed] bg-white px-5 py-3 sm:px-7 sm:py-4 text-xs sm:text-base font-bold text-[#0c172f] shadow-xs transition-all hover:bg-[#ecf3f8] hover:border-[#2b62ef]/40 active:scale-95 w-full sm:w-auto cursor-pointer"
             >
-              See What's Inside The Method
+              See What We Optimize
             </button>
           )}
         </div>
 
         {/* Subtext urgency notice */}
         <p className="mt-2.5 text-[11px] sm:text-xs font-semibold text-[#535f6f] px-2">
-          🔒 Instant Digital Method Delivery (WhatsApp &amp; Email) · 20–25 Days Money-Back Guarantee
+          Direct or Live AnyDesk Setup · Complete Delivery in 2–4 Days · 20–25 Days 1st Client Guarantee
         </p>
 
         {/* Trust Badges */}
         <div className="mt-5 sm:mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-[11px] sm:text-xs md:text-sm font-semibold text-[#535f6f]">
           <div className="flex items-center gap-1 bg-white/70 sm:bg-transparent px-2.5 py-1 sm:p-0 rounded-full border border-gray-200 sm:border-0">
             <Clock className="h-3.5 w-3.5 text-[#2b62ef] shrink-0" />
-            <span>24-Hour Algorithmic Indexation</span>
+            <span>Complete Setup in 2–4 Days</span>
           </div>
           <div className="flex items-center gap-1 bg-white/70 sm:bg-transparent px-2.5 py-1 sm:p-0 rounded-full border border-gray-200 sm:border-0">
             <ShieldCheck className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
-            <span>20–25 Days 100% Refund Guarantee</span>
+            <span>20–25 Days 1st Client Guarantee</span>
           </div>
           <div className="flex items-center gap-1 bg-white/70 sm:bg-transparent px-2.5 py-1 sm:p-0 rounded-full border border-gray-200 sm:border-0">
             <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
-            <span>100% White-Hat Fiverr TOS Safe</span>
+            <span>Live AnyDesk Option Available</span>
           </div>
         </div>
       </div>

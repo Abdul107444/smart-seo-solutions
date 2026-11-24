@@ -94,7 +94,7 @@ export function TrustIndicatorsSection({ onEnroll }: TrustIndicatorsProps) {
                 20–25 Days Money-Back Guarantee
               </h3>
               <p className="mt-2 text-xs sm:text-sm text-[#535f6f] leading-relaxed">
-                If you apply our step-by-step method properly and your Fiverr gigs do not show organic algorithmic impression growth or inbound buyer inquiries within 20–25 days, get an unconditional 100% refund.
+                If after our Done-For-You optimization your Fiverr gigs do not show organic search impression growth or bring your 1st client inquiries within 20–25 days, get an unconditional 100% refund.
               </p>
 
               {/* Guarantee highlights */}
@@ -132,28 +132,28 @@ export function TrustIndicatorsSection({ onEnroll }: TrustIndicatorsProps) {
               </div>
 
               <h3 className="mt-4 font-display text-lg sm:text-xl font-extrabold text-[#0c172f]">
-                Instant Delivery &amp; WhatsApp Support
+                Done-For-You &amp; Live AnyDesk Setup
               </h3>
               <p className="mt-2 text-xs sm:text-sm text-[#535f6f] leading-relaxed">
-                Receive the complete 24-Hour Ranking Method PDF &amp; templates immediately on WhatsApp &amp; Email. Need help applying a step? Our team is available 24/7 on WhatsApp to guide you.
+                Our SEO team optimizes your entire profile &amp; gigs for you — either directly or live on your screen via AnyDesk / TeamViewer. Available 24/7 on WhatsApp for updates and support.
               </p>
 
               {/* Support channels */}
               <div className="mt-4 space-y-1.5 pt-3 border-t border-[#dfe5ed]/60 text-xs text-[#0c172f]">
                 <div className="flex items-center gap-1.5">
                   <span className="text-purple-600 font-bold">✓</span>
-                  <span>Instant digital method delivery after payment</span>
+                  <span>100% Done-For-You Profile &amp; Gig Overhaul</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="text-purple-600 font-bold">✓</span>
-                  <span>Zero account login or password sharing needed</span>
+                  <span>Live AnyDesk / TeamViewer setup (no password needed)</span>
                 </div>
               </div>
             </div>
 
             <div className="mt-5 flex items-center justify-between pt-1 border-t border-[#dfe5ed]/60">
               <a
-                href={`https://wa.me/${phone}?text=${encodeURIComponent('Hello! I would like to buy the 24-Hour Fiverr Gig Ranking Method (Rs. 500).')}`}
+                href={`https://wa.me/${phone}?text=${encodeURIComponent('Hello! I would like to book Fiverr Profile & Gig Optimization (8,000 PKR) with the 20-25 days 1st client guarantee.')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-[#109655] hover:underline"
@@ -173,11 +173,11 @@ export function TrustIndicatorsSection({ onEnroll }: TrustIndicatorsProps) {
           </div>
           <div className="flex items-center gap-1.5">
             <Lock className="h-4 w-4 text-[#2b62ef] shrink-0" />
-            <span>Zero Account Access Required</span>
+            <span>Live AnyDesk Setup Available</span>
           </div>
           <div className="flex items-center gap-1.5">
             <Clock className="h-4 w-4 text-amber-600 shrink-0" />
-            <span>Instant WhatsApp &amp; Email Delivery</span>
+            <span>Complete Delivery in 2–4 Days</span>
           </div>
           <div className="flex items-center gap-1.5">
             <span className="text-sm">🇵🇰</span>

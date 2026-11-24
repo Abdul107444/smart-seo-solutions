@@ -150,7 +150,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Price Tag (Large Desktops) */}
           {currentPage === 'gig-method' ? (
             <div className="hidden xl:flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-500/15 border border-orange-500/30 text-xs font-semibold text-orange-300">
-              <span>PDF Method: <strong className="text-amber-400">500 PKR</strong></span>
+              <span>Full Optimization: <strong className="text-amber-400">{BUSINESS_INFO.price}</strong></span>
             </div>
           ) : (
             <div className="hidden xl:flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-white/90">
@@ -178,7 +178,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               }}
               className="flex items-center gap-1.5 h-9 px-3.5 sm:px-4.5 rounded-xl btn-gold-gradient text-xs sm:text-sm font-black shadow-md cursor-pointer flex-shrink-0 uppercase"
             >
-              <span>Download PDF</span>
+              <span>Book Optimization</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           ) : currentPage === 'admin' ? (
@@ -307,7 +307,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {currentPage === 'landing'
                   ? `Book Optimization — ${BUSINESS_INFO.price}`
                   : currentPage === 'gig-method'
-                  ? 'Download Method PDF — 500 PKR'
+                  ? `Book Optimization — ${BUSINESS_INFO.price}`
                   : 'Back to Home'}
               </span>
             </button>

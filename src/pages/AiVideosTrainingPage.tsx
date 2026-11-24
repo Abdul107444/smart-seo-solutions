@@ -28,20 +28,20 @@ export function AiVideosTrainingPage({ onBack, onEnroll, onSeeReviews }: Trainin
 
   const serviceFaqs = [
     {
-      q: 'How fast do I receive the method after payment?',
-      a: `This is an instant digital method (PDF Blueprint + AIDA Templates + Keyword Formula). Once your Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} payment receipt is verified, your complete method PDF unlocks for immediate download.`
+      q: 'How long does the complete Fiverr optimization take?',
+      a: `Once your ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR payment is verified and you share your Fiverr profile/niche on WhatsApp, our SEO specialists complete your full profile & gig overhaul within 2 to 4 business days.`
     },
     {
-      q: 'Do I apply the method myself or do you log into my Fiverr account?',
-      a: 'You apply the steps yourself using our easy step-by-step guide! We never ask for your Fiverr password, login, or AnyDesk access. Everything stays 100% private and in your full control.'
+      q: 'Do I have to share my Fiverr password, or do you support AnyDesk?',
+      a: 'It is completely up to you! You can share account access for a hassle-free direct setup, OR our specialist can optimize your entire Fiverr profile & gigs live in front of you via AnyDesk or TeamViewer screen-share so your login stays 100% private.'
     },
     {
-      q: 'What is your 20–25 Days 100% Money-Back Guarantee?',
-      a: 'Once you apply our method on your gig, we allow Fiverr algorithms 20 to 25 days to index your keywords and boost search impressions. If you follow the steps and do not receive organic search progress or buyer interaction, we issue a 100% full refund on WhatsApp with zero hassle.'
+      q: 'What is your 20–25 Days 1st Client 100% Money-Back Guarantee?',
+      a: `After we complete your optimization, if you keep your profile active and do not see search impression growth or get your 1st client inquiries within 20 to 25 days, we issue a 100% full refund of your ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR fee on WhatsApp with zero hassle.`
     },
     {
-      q: 'Will my existing gigs be de-ranked if I update them using this method?',
-      a: 'No! If your gig is already getting 0 impressions or orders, keeping it un-optimized guarantees 0 results. When you apply our white-hat algorithm tags and preserve your permanent URL structure, Fiverr re-indexes your gig within 24 hours and pushes it to targeted buyer search streams.'
+      q: 'Will my existing gigs be de-ranked if you optimize them?',
+      a: 'No! If your gig is already getting 0 impressions or orders, keeping it un-optimized guarantees 0 results. When we apply our white-hat algorithm tags and preserve your permanent URL structure, Fiverr re-indexes your gig cleanly and pushes it into targeted buyer search streams.'
     },
     {
       q: 'What payment methods do you accept in Pakistan?',
@@ -79,7 +79,7 @@ export function AiVideosTrainingPage({ onBack, onEnroll, onSeeReviews }: Trainin
             onClick={onEnroll}
             className="gradient-brand inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-bold text-white shadow-sm hover:scale-105 transition-transform"
           >
-            <span>Get Method — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
+            <span>Book Now — {TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR</span>
           </button>
         </div>
       </header>
@@ -89,14 +89,14 @@ export function AiVideosTrainingPage({ onBack, onEnroll, onSeeReviews }: Trainin
         {/* Title */}
         <div className="text-center">
           <div className="inline-flex items-center gap-1.5 rounded-full bg-[#2b62ef]/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#2b62ef]">
-            <Sparkles className="h-3.5 w-3.5" /> Complete 24-Hour Method Overview
+            <Sparkles className="h-3.5 w-3.5" /> Done-For-You Optimization Scope
           </div>
           <h1 className="mt-4 font-display text-2xl font-extrabold leading-tight text-[#0c172f] sm:text-4xl">
-            Gig Rank Within 24 Hours To Get 1st Order —{' '}
-            <span className="text-gradient">Complete Step-by-Step Method</span>
+            Get your 1st fiverr client within{' '}
+            <span className="text-gradient">20-25 days with Guarantee</span>
           </h1>
           <p className="mx-auto mt-3 max-w-xl text-sm sm:text-base text-[#535f6f] leading-relaxed">
-            Stop waiting for buyer requests or wondering why your gigs are frozen at 0 impressions. Learn the exact ranking blueprint to push your gigs into high-ticket buyer searches yourself.
+            Stop waiting for buyer requests or wondering why your gigs are frozen at 0 impressions. Our specialists optimize your full Fiverr profile &amp; gigs end-to-end so you start winning international orders.
           </p>
         </div>
 
@@ -120,7 +120,7 @@ export function AiVideosTrainingPage({ onBack, onEnroll, onSeeReviews }: Trainin
             onClick={onEnroll}
             className="gradient-brand w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-bold text-white shadow-glow hover:scale-[1.02] transition-transform"
           >
-            <span>Get The Method — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
+            <span>Book Full Optimization — {TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR</span>
             <ArrowRight className="h-5 w-5" />
           </button>
 
@@ -129,11 +129,11 @@ export function AiVideosTrainingPage({ onBack, onEnroll, onSeeReviews }: Trainin
             onClick={onSeeReviews}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-[#dfe5ed] bg-white px-7 py-4 text-sm font-bold text-[#0c172f] shadow-sm hover:bg-[#ecf3f8] transition-colors"
           >
-            View Fiverr Seller Proofs & Reviews
+            View Fiverr Seller Proofs &amp; Reviews
           </button>
         </div>
         <p className="mt-2 text-center text-xs text-[#535f6f]">
-          Promotional Method Fee · Regular Price: Rs. {TECHPULSE_CONFIG.originalPricePKR.toLocaleString()}
+          Done-For-You Optimization Fee · Regular Price: {TECHPULSE_CONFIG.originalPricePKR.toLocaleString()} PKR
         </p>
 
         {/* Service Specifications Card */}
@@ -143,37 +143,37 @@ export function AiVideosTrainingPage({ onBack, onEnroll, onSeeReviews }: Trainin
               Full Specifications
             </span>
             <h2 className="mt-1 font-display text-2xl font-bold text-[#0c172f]">
-              What You Receive In This Method
+              What Our Team Optimizes For You
             </h2>
             <p className="mt-1 text-xs sm:text-sm text-[#535f6f]">
-              Everything delivered instantly to your WhatsApp &amp; Email.
+              Done-For-You execution via Direct Setup or Live AnyDesk Screen-Share.
             </p>
           </div>
 
           <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
             <div className="rounded-2xl border border-[#dfe5ed] bg-[#f7fbfd] p-3 text-center">
-              <div className="text-[10px] font-bold uppercase text-[#535f6f]">Method Price</div>
+              <div className="text-[10px] font-bold uppercase text-[#535f6f]">Service Fee</div>
               <div className="mt-1 font-display text-base font-extrabold text-[#2b62ef]">
-                PKR {TECHPULSE_CONFIG.pricePKR.toLocaleString()}
+                {TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR
               </div>
             </div>
 
             <div className="rounded-2xl border border-[#dfe5ed] bg-[#f7fbfd] p-3 text-center">
               <div className="text-[10px] font-bold uppercase text-[#535f6f]">Delivery Time</div>
               <div className="mt-1 font-display text-base font-extrabold text-[#0c172f]">
-                Instant (15m)
+                2–4 Days
               </div>
             </div>
 
             <div className="rounded-2xl border border-[#dfe5ed] bg-[#f7fbfd] p-3 text-center">
-              <div className="text-[10px] font-bold uppercase text-[#535f6f]">Format</div>
+              <div className="text-[10px] font-bold uppercase text-[#535f6f]">Setup Mode</div>
               <div className="mt-1 font-display text-base font-extrabold text-[#0c172f]">
-                PDF + Templates
+                Direct / AnyDesk
               </div>
             </div>
 
             <div className="rounded-2xl border border-[#dfe5ed] bg-[#f7fbfd] p-3 text-center">
-              <div className="text-[10px] font-bold uppercase text-[#535f6f]">Refund Guarantee</div>
+              <div className="text-[10px] font-bold uppercase text-[#535f6f]">1st Client Guarantee</div>
               <div className="mt-1 font-display text-base font-extrabold text-emerald-600">
                 20–25 Days 100%
               </div>
@@ -236,22 +236,22 @@ export function AiVideosTrainingPage({ onBack, onEnroll, onSeeReviews }: Trainin
           <div className="mt-8 overflow-hidden rounded-2xl border-2 border-emerald-500/30 bg-emerald-50/60 p-5 text-center">
             <ShieldCheck className="mx-auto h-8 w-8 text-emerald-600" />
             <h3 className="mt-2 font-display text-lg font-bold text-emerald-950">
-              100% Risk-Free Money-Back Guarantee
+              20–25 Days 1st Client 100% Money-Back Guarantee
             </h3>
             <p className="mx-auto mt-1 max-w-md text-xs sm:text-sm text-emerald-900 leading-relaxed">
-              If after 20–25 days of applying our method you do not see search impression growth or buyer outreach, you receive an immediate 100% refund via WhatsApp.
+              If after our complete optimization you do not see search impression growth or receive your 1st client inquiries within 20–25 days, you receive an immediate 100% refund via WhatsApp.
             </p>
           </div>
         </div>
 
-        {/* Method FAQs */}
+        {/* Optimization FAQs */}
         <div className="mt-12">
           <div className="text-center mb-6">
             <h2 className="font-display text-2xl font-bold text-[#0c172f]">
-              Method FAQ
+              Optimization Service FAQ
             </h2>
             <p className="text-xs text-[#535f6f]">
-              Got questions before buying the method? We have you covered.
+              Got questions before booking your optimization? We have you covered.
             </p>
           </div>
 
@@ -297,7 +297,7 @@ export function AiVideosTrainingPage({ onBack, onEnroll, onSeeReviews }: Trainin
             onClick={onEnroll}
             className="gradient-brand inline-flex items-center gap-2 rounded-full px-10 py-4 text-base font-bold text-white shadow-glow hover:scale-[1.02] transition-transform"
           >
-            <span>Get The 24h Method — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
+            <span>Book Full Optimization — {TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR</span>
             <ArrowRight className="h-5 w-5" />
           </button>
           <div className="mt-3 flex items-center justify-center gap-1.5 text-xs text-[#535f6f]">

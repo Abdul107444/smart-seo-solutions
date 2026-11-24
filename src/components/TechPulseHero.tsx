@@ -53,10 +53,10 @@ export function TechPulseHero({
           <span className="truncate">{TECHPULSE_CONFIG.badge}</span>
         </div>
 
-        {/* Main Headline: Get 1st Client With Proven Ranking Method */}
+        {/* Main Headline: Get your 1st fiverr client within 20-25 days with Guarantee */}
         <h1 className="mt-4 sm:mt-5 font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.18] sm:leading-[1.12] tracking-tight text-[#0c172f] max-w-4xl mx-auto px-2">
-          Get Your 1st Client With{' '}
-          <span className="text-gradient block xs:inline mt-1 xs:mt-0">24h Fiverr Ranking Method</span>
+          Get your 1st fiverr client within{' '}
+          <span className="text-gradient block xs:inline mt-1 xs:mt-0">20-25 days with Guarantee</span>
         </h1>
 
         {/* Subtitle */}
@@ -67,11 +67,11 @@ export function TechPulseHero({
         {/* Verified Seller Profile Showcase Label */}
         <div className="mt-5 sm:mt-7 flex items-center justify-center gap-2 text-xs sm:text-sm font-bold text-[#0c172f] px-2">
           <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[11px] sm:text-xs font-black text-emerald-800 border border-emerald-300">
-            <Award className="h-3.5 w-3.5 fill-emerald-500 text-emerald-600" /> Verified Method Proof
+            <Award className="h-3.5 w-3.5 fill-emerald-500 text-emerald-600" /> Verified Optimization Proof
           </span>
           <span className="text-[#535f6f] hidden xs:inline">•</span>
           <span className="text-xs sm:text-sm text-[#0c172f]">
-            Verified Results After Applying The 24h Ranking Method
+            Real Results After Our Done-For-You Fiverr Profile &amp; Gig Optimization
           </span>
         </div>
 
@@ -189,18 +189,18 @@ export function TechPulseHero({
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-rose-600" />
               </span>
               <Zap className="h-4 w-4 fill-amber-500 text-amber-600 shrink-0" />
-              Limited Time Method Copies
+              Limited Time Optimization Slots
             </span>
             <span className="shrink-0 rounded-full bg-rose-600 px-2.5 py-0.5 text-[11px] sm:text-xs font-black text-white animate-pulse shadow-xs">
-              Only {TECHPULSE_CONFIG.slotsLeft} Copies Left!
+              Only {TECHPULSE_CONFIG.slotsLeft} Slots Left!
             </span>
           </div>
 
           {/* Progress bar */}
           <div className="mt-2.5">
             <div className="flex justify-between text-[11px] font-semibold text-[#535f6f] mb-1">
-              <span>{TECHPULSE_CONFIG.slotsFilled} Sellers Grabbed The Method This Month</span>
-              <span className="text-[#0c172f] font-bold">{percentFilled}% Claimed</span>
+              <span>{TECHPULSE_CONFIG.slotsFilled} Sellers Optimized This Month</span>
+              <span className="text-[#0c172f] font-bold">{percentFilled}% Booked</span>
             </div>
             <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200">
               <div
@@ -218,7 +218,7 @@ export function TechPulseHero({
             onClick={onEnroll}
             className="gradient-brand inline-flex items-center justify-center gap-2 rounded-full px-5 py-3.5 sm:px-9 sm:py-4 text-sm sm:text-base font-bold text-white shadow-glow transition-all hover:scale-[1.02] active:scale-95 w-full sm:w-auto cursor-pointer"
           >
-            <span>Get The Complete Method — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
+            <span>Book Full Optimization — {TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR</span>
             <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" />
           </button>
 
@@ -235,7 +235,7 @@ export function TechPulseHero({
 
         {/* Subtext urgency notice */}
         <p className="mt-2.5 text-[11px] sm:text-xs font-semibold text-[#535f6f] px-2">
-          🔒 Instant Digital Access Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()} (Reg. Rs. {TECHPULSE_CONFIG.originalPricePKR.toLocaleString()}) · 20–25 Days Money-Back Guarantee
+          🔒 Done-For-You Optimization {TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR (Reg. {TECHPULSE_CONFIG.originalPricePKR.toLocaleString()} PKR) · Direct or Live AnyDesk Setup · 20–25 Days Guarantee
         </p>
 
         {/* Trust Badges - Mobile Responsive Wrap */}
@@ -246,7 +246,7 @@ export function TechPulseHero({
           </div>
           <div className="flex items-center gap-1 bg-white/70 sm:bg-transparent px-2.5 py-1 sm:p-0 rounded-full border border-gray-200 sm:border-0">
             <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
-            <span>100% White-Hat Fiverr TOS Safe</span>
+            <span>Live AnyDesk / Safe Direct Setup</span>
           </div>
           <div className="flex items-center gap-1 bg-white/70 sm:bg-transparent px-2.5 py-1 sm:p-0 rounded-full border border-gray-200 sm:border-0">
             <span className="text-sm">🇵🇰</span>

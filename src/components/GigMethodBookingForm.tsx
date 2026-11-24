@@ -49,7 +49,7 @@ export const GigMethodBookingForm: React.FC = () => {
     accountTitle: 'ABDUL REHMAN',
     accountNumber: '00300114577623',
     iban: 'PK89MEZN0000300114577623',
-    instruction: 'Transfer 500 PKR via Raast or IBFT and upload the payment receipt.',
+    instruction: 'Transfer 8,000 PKR via Raast or IBFT and upload the payment receipt.',
   };
 
   const copyToClipboard = (text: string, fieldId: string) => {

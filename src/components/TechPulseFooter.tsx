@@ -30,7 +30,7 @@ export function TechPulseFooter({ onNavigate }: FooterProps) {
               Smart SEO Solutions
             </div>
             <div className="text-xs text-white/60">
-              Pakistan's #1 Fiverr 24h Gig Ranking Method
+              Pakistan&apos;s #1 Fiverr Profile &amp; Gig Optimization Service
             </div>
           </div>
         </div>
@@ -39,17 +39,17 @@ export function TechPulseFooter({ onNavigate }: FooterProps) {
         <nav className="flex flex-wrap items-center justify-center gap-6 text-sm font-medium">
           <button
             type="button"
-            onClick={() => onNavigate('method')}
+            onClick={() => onNavigate('training')}
             className="text-[#5eead4] hover:text-white transition-colors font-semibold"
           >
-            ⚡ 24h Ranking Method
+            ⚡ Optimization Scope
           </button>
           <button
             type="button"
             onClick={() => onNavigate('enroll')}
             className="hover:text-white transition-colors"
           >
-            Get The Method
+            Book Optimization
           </button>
           <button
             type="button"
@@ -71,13 +71,6 @@ export function TechPulseFooter({ onNavigate }: FooterProps) {
             className="hover:text-white transition-colors"
           >
             FAQ
-          </button>
-          <button
-            type="button"
-            onClick={() => onNavigate('training')}
-            className="hover:text-white transition-colors"
-          >
-            Method Scope
           </button>
           <a
             href={`https://wa.me/${TECHPULSE_CONFIG.whatsappNumber.replace(/[^0-9]/g, '')}`}

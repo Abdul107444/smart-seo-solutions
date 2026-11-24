@@ -86,14 +86,14 @@ const PILLARS = [
   {
     icon: MonitorCheck,
     number: '06',
-    title: 'Instant Digital Method & Self-Execution Guide',
-    tagline: 'Zero Account Sharing · Total Control',
+    title: 'Direct Setup or Live AnyDesk Optimization',
+    tagline: 'Done For You · 100% Safe',
     description:
-      'You never hand over your Fiverr login, password, or computer access to anyone. You receive the complete 24-hour ranking method via WhatsApp & Email and apply every step safely yourself in under 45 minutes.',
+      'Choose whatever feels safest for you: let our SEO specialists optimize directly or schedule a live AnyDesk / TeamViewer session where we implement every update live on your screen in 2–4 days.',
     bulletPoints: [
-      '100% self-paced step-by-step guide you own forever',
-      'Zero Fiverr TOS risks, no third-party logins or IP flags',
-      'Full clarity on how Fiverr search indexing works'
+      'Complete Done-For-You implementation by senior Fiverr SEOs',
+      'Zero Fiverr TOS risks — 100% white-hat algorithmic SEO',
+      'Backed by our 20–25 Days 1st Client Money-Back Guarantee'
     ]
   }
 ];
@@ -106,13 +106,13 @@ export function GigRank24hPillars({ onEnroll }: GigRank24hPillarsProps) {
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-1.5 rounded-full border border-[#2b62ef]/30 bg-[#2b62ef]/10 px-3.5 py-1 text-xs font-bold text-[#2b62ef]">
             <Sparkles className="h-3.5 w-3.5 text-[#2b62ef]" />
-            <span>What's Inside The Method</span>
+            <span>What We Optimize For You</span>
           </div>
           <h2 className="mt-3 font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-[#0c172f]">
-            The 6 Core Pillars Revealed Inside The 24-Hour Method
+            The 6 Core Pillars We Implement Across Your Fiverr Account
           </h2>
           <p className="mt-3 text-sm sm:text-base text-[#535f6f] leading-relaxed">
-            Every strategy inside this downloadable blueprint is engineered to trigger Fiverr’s algorithmic relevancy signals without spam, black-hat tricks, or handing over your account.
+            Every optimization step is executed by our experienced Fiverr SEO specialists to trigger Fiverr’s relevancy signals and get your 1st client within 20–25 days.
           </p>
         </div>
 
@@ -174,10 +174,10 @@ export function GigRank24hPillars({ onEnroll }: GigRank24hPillarsProps) {
             </div>
             <div>
               <div className="font-display text-base sm:text-lg font-bold text-[#0c172f]">
-                Ready to Apply the 24-Hour Method Yourself?
+                Ready for Us to Optimize Your Fiverr Profile &amp; Gigs?
               </div>
               <div className="text-xs sm:text-sm text-[#535f6f]">
-                Instant delivery via WhatsApp &amp; Email · 20 to 25 Days Money-Back Guarantee · Easy 45-min setup
+                Direct or Live AnyDesk Setup · 2–4 Days Delivery · 20–25 Days 1st Client Guarantee
               </div>
             </div>
           </div>
@@ -187,7 +187,7 @@ export function GigRank24hPillars({ onEnroll }: GigRank24hPillarsProps) {
             onClick={onEnroll}
             className="gradient-brand inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-white shadow-glow hover:scale-[1.03] active:scale-95 transition-all cursor-pointer whitespace-nowrap shrink-0"
           >
-            <span>Get Complete Method — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
+            <span>Book Full Optimization — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
             <ArrowRight className="h-4 w-4" />
           </button>
         </div>

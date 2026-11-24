@@ -4,7 +4,7 @@ import { TECHPULSE_CONFIG } from '../data/techpulseData';
 export function TechPulseWhatsAppFloat() {
   const phone = TECHPULSE_CONFIG.whatsappNumber.replace(/[^0-9]/g, '');
   const message = encodeURIComponent(
-    `Hello! I would like to get the Fiverr 24-Hour Gig Ranking Method (Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()}). Please share details.`
+    `Hello! I would like to book Fiverr Profile & Gig Optimization (${TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR) with the 20-25 days 1st client guarantee. Please share details.`
   );
 
   return (

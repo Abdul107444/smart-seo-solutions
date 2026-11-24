@@ -3,13 +3,13 @@ import { PortfolioItem, CompanyPartner, FAQItem } from '../types';
 export const BUSINESS_INFO = {
   name: 'Smart SEO Solutions',
   serviceName: 'Fiverr Profile & Gig Optimization',
-  price: 'Rs. 500',
-  priceNumeric: 500,
+  price: 'Rs. 8,000',
+  priceNumeric: 8000,
   currency: 'PKR',
   whatsAppNumber: '+92 310 6625091',
   whatsAppSecondary: '+92 310 6625091',
   whatsAppLink: 'https://wa.me/923106625091',
-  whatsAppMessageText: 'Hi Smart SEO Solutions! I am interested in your 24-Hour Fiverr Gig Ranking Method (Rs. 500). Please share the next steps.',
+  whatsAppMessageText: 'Hi Smart SEO Solutions! I want to book Fiverr Profile & Gig Optimization (8,000 PKR) with the 20-25 days 1st client guarantee. Please share the next steps.',
   tagline: 'Turn your Fiverr presence into a professional sales machine.',
 };
 
@@ -643,53 +643,53 @@ export const FAQ_LIST: FAQItem[] = [
   },
   {
     id: 'faq-8',
-    question: 'Is Rs. 500 a one-time payment?',
-    answer: 'Yes, Rs. 500 is a transparent, one-time payment for the complete 24-Hour Fiverr Gig Ranking Method. There are no hidden fees or recurring subscriptions.',
+    question: 'Is Rs. 8,000 a one-time payment?',
+    answer: 'Yes, 8,000 PKR is a transparent, one-time payment for our complete Done-For-You Fiverr Profile & Gig Optimization service with the 20–25 days 1st client money-back guarantee. There are no hidden fees or recurring subscriptions.',
   },
 ];
 
 export const GIG_RANK_METHOD_INFO = {
   name: 'Fiverr 24-Hour Gig Ranking Method',
-  mainHeading: 'Gig rank on 1st page of fiverr within 24 hours Guranteded 100%',
-  subHeading: 'Get our confidential step-by-step PDF blueprint revealing the exact algorithm keyword placement formula to rank any new or stalled gig on Fiverr’s 1st page within 24 hours. Follow the confidential blueprint and watch your gig rank on page 1.',
-  price: '500 PKR',
-  originalPrice: '1,000 PKR',
+  mainHeading: 'Get your 1st fiverr client within 20-25 days with Guarantee',
+  subHeading: 'Complete Done-For-You Fiverr Profile & Gig Optimization Service to get your 1st Fiverr client within 20–25 days with a 100% money-back guarantee.',
+  price: '8,000 PKR',
+  originalPrice: '16,000 PKR',
   discount: '50% OFF (Limited Time Special)',
-  priceNumeric: 500,
+  priceNumeric: 8000,
   whatsAppNumber: '+92 310 6625091',
   whatsAppLink: 'https://wa.me/923106625091',
-  whatsAppMessageText: 'Hi Smart SEO Solutions! I just purchased the Fiverr 24-Hour Gig Ranking Method PDF (500 PKR) and completed my Meezan Bank payment.',
+  whatsAppMessageText: 'Hi Smart SEO Solutions! I just booked Fiverr Profile & Gig Optimization (8,000 PKR) and completed my Meezan Bank payment.',
 };
 
 export const GIG_METHOD_FAQS: FAQItem[] = [
   {
     id: 'gm-faq-1',
     question: 'Does this method really rank a gig on Fiverr’s 1st page within 24 hours?',
-    answer: 'Yes, 100%! Fiverr’s indexing algorithm evaluates specific keyword relevance signals across key on-page locations. When you align your long-tail keyword following the exact placement formula revealed in our PDF, Fiverr’s automated search re-indexing crawler ranks the gig on the 1st page within 24 hours.',
+    answer: 'Yes, 100%! Fiverr’s indexing algorithm evaluates specific keyword relevance signals across key on-page locations. When you align your long-tail keyword following the exact placement formula, Fiverr’s automated search re-indexing crawler ranks the gig rapidly.',
   },
   {
     id: 'gm-faq-2',
-    question: 'Does this formula work for both brand new and existing gigs?',
-    answer: 'Yes, it works on both new and existing gigs. If you are creating a new gig, simply follow the blueprint before publishing. If you have an existing gig that is de-ranked or getting zero impressions, apply the confidential placement formula and re-publish — your gig will be indexed and ranked on page 1 within 24 hours.',
+    question: 'Does this optimization work for both brand new and existing gigs?',
+    answer: 'Yes, it works on both new and existing gigs. Whether you have a brand-new profile with 0 reviews or an older gig stuck at zero impressions, our SEO team optimizes every ranking signal to get your 1st client within 20–25 days.',
   },
   {
     id: 'gm-faq-3',
-    question: 'What is a long-tail keyword and why is it essential for 24-hour ranking?',
-    answer: 'A long-tail keyword is a targeted, high-intent 3-to-4 word search phrase (for example: "perfect squarespace expert"). These keywords have direct buyer intent and lower saturation, allowing the algorithm to give your gig immediate 1st-page priority.',
+    question: 'What is a long-tail keyword and why is it essential for ranking?',
+    answer: 'A long-tail keyword is a targeted, high-intent 3-to-4 word search phrase. These keywords have direct buyer intent and lower saturation, allowing the algorithm to give your gig immediate 1st-page priority.',
   },
   {
     id: 'gm-faq-4',
-    question: 'How and when will I receive the PDF guide after paying 500 PKR?',
-    answer: 'Immediately! Once you transfer 500 PKR to our official Meezan Bank account and submit the receipt, our automated system instantly unlocks your "Download PDF Blueprint" button right inside the thank-you screen. You can download the PDF to your device right away.',
+    question: 'How does the optimization process work after paying 8,000 PKR?',
+    answer: 'Immediately after your 8,000 PKR payment is verified, you connect with our SEO team on WhatsApp (+92 310 6625091) to start your profile audit and complete setup — either directly or live on your screen via AnyDesk/TeamViewer.',
   },
   {
     id: 'gm-faq-5',
-    question: 'Is this method 100% safe and compliant with Fiverr’s Terms of Service?',
-    answer: 'Absolutely. This blueprint utilizes 100% white-hat, on-page algorithmic optimization. It does not use any automated bots, fake reviews, or forbidden tricks. It strictly aligns your gig metadata with how Fiverr’s search engine ranks relevance.',
+    question: 'Is this optimization 100% safe and compliant with Fiverr’s Terms of Service?',
+    answer: 'Absolutely. We strictly utilize 100% white-hat, on-page algorithmic optimization. It does not use any automated bots, fake reviews, or forbidden tricks.',
   },
   {
     id: 'gm-faq-6',
-    question: 'Which payment methods are accepted for 500 PKR?',
+    question: 'Which payment methods are accepted for 8,000 PKR?',
     answer: 'We accept payments through our official Meezan Bank account — MEEZAN DIGITAL CENTRE (Title: ABDUL REHMAN, Account: 00300114577623, IBAN: PK89MEZN0000300114577623). You can transfer from any banking app in Pakistan (Meezan, HBL, UBL, Nayapay, SadaPay, JazzCash, Easypaisa, etc.) using direct IBFT or Raast.',
   },
   {

@@ -60,13 +60,13 @@ export function GigRank24hProcess({ onEnroll }: GigRank24hProcessProps) {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-1.5 rounded-full bg-[#2b62ef]/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-[#2b62ef]">
-            <Clock className="h-3.5 w-3.5" /> Algorithmic Indexing Roadmap
+            <Clock className="h-3.5 w-3.5" /> Done-For-You Optimization Roadmap
           </div>
           <h2 className="mt-3 font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0c172f] tracking-tight">
-            How The 24-Hour Ranking Formula Works
+            How Our Full Fiverr Optimization Works
           </h2>
           <p className="mt-2 text-xs sm:text-base text-[#535f6f] leading-relaxed">
-            Fiverr’s search engine runs continuous 24-hour evaluation cycles. Here is how our method triggers the algorithm to rank your gig and generate your 1st order very soon.
+            Our SEO specialists rebuild every ranking signal on your Fiverr profile and gigs so you start ranking and win your 1st client within 20–25 days.
           </p>
         </div>
 
@@ -187,7 +187,7 @@ export function GigRank24hProcess({ onEnroll }: GigRank24hProcessProps) {
               onClick={onEnroll}
               className="gradient-brand inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm sm:text-base font-extrabold text-white shadow-glow hover:scale-[1.02] active:scale-95 transition-all cursor-pointer"
             >
-              <span>Get 24h Ranking Method — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
+              <span>Book Full Optimization — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
               <ArrowRight className="h-4 w-4" />
             </button>
           </div>

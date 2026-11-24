@@ -12,21 +12,14 @@ import {
   Lock,
   MessageCircle,
   ChevronDown,
-  Download,
-  FileText,
-  ExternalLink,
   AlertCircle,
   Loader2,
-  Sparkles
+  Sparkles,
+  Award
 } from 'lucide-react';
 import { TECHPULSE_CONFIG } from '../data/techpulseData';
 import { saveLeadToFirestore, updateLeadPaymentInFirestore } from '../lib/leadsService';
 import { verifyPaymentScreenshot, VerificationResult } from '../lib/paymentVerifier';
-import {
-  downloadOfficialMethodPdf,
-  METHOD_PDF_URL,
-  METHOD_PDF_FILENAME
-} from '../lib/methodPdfDownload';
 
 interface EnrollPageProps {
   onBack: () => void;
@@ -58,11 +51,9 @@ export function TechPulseEnrollPage({ onBack }: EnrollPageProps) {
   const [verificationProgress, setVerificationProgress] = useState<string>('');
   const [verificationResult, setVerificationResult] = useState<VerificationResult | null>(null);
 
-  // Submission & PDF download states
+  // Submission states
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
-  const [downloadCount, setDownloadCount] = useState<number>(0);
-  const [isDownloadingPdf, setIsDownloadingPdf] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   // FAQ toggle
@@ -115,16 +106,6 @@ export function TechPulseEnrollPage({ onBack }: EnrollPageProps) {
     });
   };
 
-  // Trigger PDF Download cleanly
-  const handleDownloadPdf = async () => {
-    setIsDownloadingPdf(true);
-    const ok = await downloadOfficialMethodPdf();
-    setIsDownloadingPdf(false);
-    if (ok) {
-      setDownloadCount((prev) => prev + 1);
-    }
-  };
-
   // Step 1: Submit Details
   const handleStep1Submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -133,6 +114,8 @@ export function TechPulseEnrollPage({ onBack }: EnrollPageProps) {
     const name = leadInfo.name.trim();
     const email = leadInfo.email.trim();
     const whatsapp = leadInfo.whatsapp.trim();
+    const niche = 'Fiverr Profile & Gig Optimization';
+    const profileUrl = 'To be shared on WhatsApp';
 
     if (!name) {
       setErrorMessage('Please enter your full name.');
@@ -153,11 +136,11 @@ export function TechPulseEnrollPage({ onBack }: EnrollPageProps) {
         fullName: name,
         email: email,
         whatsapp: whatsapp,
-        niche: '24-Hour Fiverr Gig Ranking Method (PDF)',
-        profileUrl: 'Smart SEO Solutions — 24h Fiverr Gig Ranking Method',
+        niche,
+        profileUrl,
         status: 'new',
-        notes: `Started order for 24h Fiverr Gig Ranking Method - Rs. ${TECHPULSE_CONFIG.pricePKR}`,
-        price: `Rs. ${TECHPULSE_CONFIG.pricePKR}`
+        notes: `Started Fiverr Profile & Gig Optimization booking - ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR`,
+        price: `Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()}`
       });
 
       if (res.id) {
@@ -230,7 +213,7 @@ export function TechPulseEnrollPage({ onBack }: EnrollPageProps) {
     }
   };
 
-  // Step 3: Complete Verified Submission & Unlock PDF
+  // Step 3: Complete Verified Booking & Confirm Optimization Slot
   const handleCompleteEnrollment = async () => {
     if (!selectedFile) {
       setErrorMessage('Please upload your payment receipt screenshot first.');
@@ -245,7 +228,7 @@ export function TechPulseEnrollPage({ onBack }: EnrollPageProps) {
     if (!verificationResult?.isValid) {
       setErrorMessage(
         verificationResult?.reason ||
-          'Payment screenshot must pass AI verification before unlocking the PDF download.'
+          'Payment screenshot must pass AI verification before confirming your optimization booking.'
       );
       return;
     }
@@ -258,7 +241,7 @@ export function TechPulseEnrollPage({ onBack }: EnrollPageProps) {
     const provider = verificationResult.detectedDetails?.provider || 'Meezan Bank';
     const noteText = `AI Verified (${verificationResult.confidence}% confidence) • ${provider} • Sender: ${
       senderAccountName.trim() || leadInfo.name
-    }${finalTid ? ` • TID: ${finalTid}` : ''} • PDF Unlocked`;
+    }${finalTid ? ` • TID: ${finalTid}` : ''} • Optimization Booked`;
 
     try {
       if (leadId) {
@@ -266,7 +249,7 @@ export function TechPulseEnrollPage({ onBack }: EnrollPageProps) {
           paymentMethod: provider,
           transactionId: finalTid,
           paymentScreenshot: compressedScreenshot || undefined,
-          price: `Rs. ${TECHPULSE_CONFIG.pricePKR}`,
+          price: `Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()}`,
           isPaymentVerified: true,
           verificationNote: verificationResult.reason,
           status: 'completed',
@@ -277,8 +260,8 @@ export function TechPulseEnrollPage({ onBack }: EnrollPageProps) {
           fullName: leadInfo.name.trim(),
           email: leadInfo.email.trim(),
           whatsapp: leadInfo.whatsapp.trim(),
-          niche: '24-Hour Fiverr Gig Ranking Method (PDF)',
-          profileUrl: 'Smart SEO Solutions 24h Method Payment Verified',
+          niche: 'Fiverr Profile & Gig Optimization',
+          profileUrl: 'To be shared on WhatsApp',
           paymentMethod: provider,
           transactionId: finalTid,
           paymentScreenshot: compressedScreenshot || undefined,
@@ -286,28 +269,26 @@ export function TechPulseEnrollPage({ onBack }: EnrollPageProps) {
           verificationNote: verificationResult.reason,
           status: 'completed',
           notes: noteText,
-          price: `Rs. ${TECHPULSE_CONFIG.pricePKR}`
+          price: `Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()}`
         });
       }
     } catch (err) {
-      console.warn('Firestore update warning (unlocking PDF anyway):', err);
+      console.warn('Firestore update warning (confirming booking anyway):', err);
     } finally {
       setSubmitting(false);
       setIsSuccess(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      // Automatically start downloading the official PDF
-      handleDownloadPdf();
     }
   };
 
-  // WhatsApp support message generator
+  // WhatsApp onboarding message generator
   const getWhatsAppSupportUrl = () => {
     const phone = TECHPULSE_CONFIG.whatsappEnrollNumber.replace(/[^0-9]/g, '');
     const accountName = senderAccountName.trim() || leadInfo.name || 'Client';
-    const text = `Hello! I have completed my Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} payment and AI verification for the 24-Hour Fiverr Gig Ranking Method PDF.
+    const text = `Hello Smart SEO Solutions! I have completed my ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR payment and AI verification for Fiverr Profile & Gig Optimization (20-25 Days Guarantee).
 Name: ${accountName}
 Email: ${leadInfo.email}
-${transactionId ? `Transaction ID: ${transactionId}\n` : ''}I have downloaded the PDF and wanted to connect for support.`;
+${transactionId ? `Transaction ID: ${transactionId}\n` : ''}Please start my profile & gig optimization onboarding!`;
     return `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(text)}`;
   };
 
@@ -351,7 +332,7 @@ ${transactionId ? `Transaction ID: ${transactionId}\n` : ''}I have downloaded th
               <span className="h-2.5 w-2.5 rounded-full bg-[#00bad2]" />
             </div>
             <div className="font-bold text-[#535f6f]">
-              {isSuccess ? 'Verified · Instant PDF Download' : `Order Method · Step ${step} of 3`}
+              {isSuccess ? 'AI Verified · Booking Confirmed' : `Book Optimization · Step ${step} of 3`}
             </div>
             <div className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-[#2b62ef]">
               <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -410,10 +391,10 @@ ${transactionId ? `Transaction ID: ${transactionId}\n` : ''}I have downloaded th
 
               <div>
                 <h1 className="font-display text-2xl font-extrabold text-[#0c172f]">
-                  Get The 24-Hour Gig Ranking Method
+                  Book Fiverr Profile &amp; Gig Optimization
                 </h1>
                 <p className="mt-1 text-xs sm:text-sm font-semibold text-[#2b62ef]">
-                  Complete Method Blueprint PDF: Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()} (Regular: Rs. {TECHPULSE_CONFIG.originalPricePKR.toLocaleString()})
+                  Done-For-You Service: {TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR (Regular: {TECHPULSE_CONFIG.originalPricePKR.toLocaleString()} PKR) · 20–25 Days Guarantee
                 </p>
               </div>
 
@@ -445,7 +426,7 @@ ${transactionId ? `Transaction ID: ${transactionId}\n` : ''}I have downloaded th
                     className="w-full rounded-xl border border-[#dfe5ed] bg-[#f7fbfd] px-4 py-2.5 text-sm text-[#0c172f] outline-none transition focus:border-[#2b62ef] focus:bg-white"
                   />
                   <p className="mt-1 text-[11px] text-[#535f6f]">
-                    Used for your purchase receipt &amp; instant PDF access unlock.
+                    Used for your booking confirmation &amp; keyword research sheet.
                   </p>
                 </div>
 
@@ -462,7 +443,7 @@ ${transactionId ? `Transaction ID: ${transactionId}\n` : ''}I have downloaded th
                     className="w-full rounded-xl border border-[#dfe5ed] bg-[#f7fbfd] px-4 py-2.5 text-sm text-[#0c172f] outline-none transition focus:border-[#2b62ef] focus:bg-white"
                   />
                   <p className="mt-1 text-[11px] text-[#535f6f]">
-                    For instant method delivery &amp; 24/7 implementation support.
+                    For optimization onboarding, AnyDesk scheduling &amp; 24/7 support.
                   </p>
                 </div>
               </div>
@@ -480,7 +461,7 @@ ${transactionId ? `Transaction ID: ${transactionId}\n` : ''}I have downloaded th
 
               <div className="flex items-center justify-center gap-1.5 text-xs text-[#535f6f] pt-1">
                 <Lock className="h-3.5 w-3.5 text-[#2b62ef]" />
-                <span>Your details are private and used only to unlock your PDF access.</span>
+                <span>Your details are private and used only for your optimization onboarding.</span>
               </div>
             </form>
           )}
@@ -661,7 +642,7 @@ ${transactionId ? `Transaction ID: ${transactionId}\n` : ''}I have downloaded th
 
               {/* Instructions */}
               <div className="rounded-xl border border-amber-200 bg-amber-50/70 p-3 text-xs leading-relaxed text-amber-900">
-                <span className="font-bold">Instructions:</span> Transfer Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()} via your banking app (Meezan Bank, Easypaisa, JazzCash, SadaPay, NayaPay, or any bank) and save a screenshot of the successful transaction. In the next step, our AI will verify your receipt and immediately unlock your PDF download!
+                <span className="font-bold">Instructions:</span> Transfer {TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR via your banking app (Meezan Bank, Easypaisa, JazzCash, SadaPay, NayaPay, or any bank) and save a screenshot of the successful transaction. In the next step, our AI verifies your receipt and confirms your optimization slot!
               </div>
 
               {/* Controls */}
@@ -701,8 +682,8 @@ ${transactionId ? `Transaction ID: ${transactionId}\n` : ''}I have downloaded th
                   Upload Payment Screenshot.
                 </h1>
                 <p className="mt-1 text-xs sm:text-sm text-[#535f6f]">
-                  Upload your Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()} transfer receipt. Our AI verifies your receipt in seconds and immediately unlocks your{' '}
-                  <strong className="text-[#0c172f]">Fiverr Gig Rank Method PDF</strong> for download.
+                  Upload your {TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR transfer receipt. Our AI verifies your receipt in seconds and confirms your{' '}
+                  <strong className="text-[#0c172f]">Fiverr Profile &amp; Gig Optimization</strong> booking.
                 </p>
               </div>
 
@@ -884,7 +865,7 @@ ${transactionId ? `Transaction ID: ${transactionId}\n` : ''}I have downloaded th
                   {submitting ? (
                     <>
                       <Loader2 className="h-5 w-5 animate-spin" />
-                      <span>Unlocking PDF...</span>
+                      <span>Confirming Booking...</span>
                     </>
                   ) : isVerifying ? (
                     <>
@@ -893,8 +874,8 @@ ${transactionId ? `Transaction ID: ${transactionId}\n` : ''}I have downloaded th
                     </>
                   ) : (
                     <>
-                      <Download className="h-5 w-5" />
-                      <span>Unlock &amp; Download Method PDF</span>
+                      <CheckCircle2 className="h-5 w-5" />
+                      <span>Confirm &amp; Book Optimization</span>
                     </>
                   )}
                 </button>
@@ -902,7 +883,7 @@ ${transactionId ? `Transaction ID: ${transactionId}\n` : ''}I have downloaded th
             </div>
           )}
 
-          {/* STEP 4: Success & Instant PDF Download Screen */}
+          {/* STEP 4: Booking Confirmed & WhatsApp Onboarding Screen */}
           {isSuccess && (
             <div className="text-center py-4 space-y-5">
               <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-emerald-500 text-white shadow-lg shadow-emerald-500/30">
@@ -911,99 +892,77 @@ ${transactionId ? `Transaction ID: ${transactionId}\n` : ''}I have downloaded th
 
               <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-extrabold uppercase tracking-wider text-emerald-700">
                 <Sparkles className="h-3.5 w-3.5" />
-                <span>AI Payment Verified · Instant Access Unlocked</span>
+                <span>AI Payment Verified · Optimization Slot Reserved</span>
               </div>
 
               <div>
                 <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-[#0c172f]">
-                  Your PDF Is Ready, {leadInfo.name}!
+                  Booking Confirmed, {leadInfo.name}!
                 </h1>
                 <p className="mt-2 text-xs sm:text-sm text-[#535f6f] max-w-md mx-auto leading-relaxed">
-                  Your Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()} payment has been verified by AI. Download your official{' '}
-                  <strong className="text-[#0c172f]">Fiverr Gig Rank Method PDF</strong> below and start ranking on page 1!
+                  Your {TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR payment has been verified by AI. Click below to start your{' '}
+                  <strong className="text-[#0c172f]">Fiverr Profile &amp; Gig Optimization</strong> onboarding on WhatsApp!
                 </p>
               </div>
 
-              {/* Highlighted PDF Download Card */}
-              <div className="rounded-2xl border-2 border-[#2b62ef]/30 bg-gradient-to-b from-[#f7fbfd] to-white p-5 sm:p-6 shadow-sm space-y-4">
-                <div className="flex items-center gap-3.5 rounded-xl border border-[#dfe5ed] bg-white p-3.5 text-left">
-                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-rose-50 border border-rose-200 text-rose-600">
-                    <FileText className="h-6 w-6" />
+              {/* Booking Summary Card */}
+              <div className="rounded-2xl border-2 border-[#2b62ef]/30 bg-gradient-to-b from-[#f7fbfd] to-white p-5 sm:p-6 shadow-sm space-y-4 text-left">
+                <div className="flex items-center gap-3.5 rounded-xl border border-[#dfe5ed] bg-white p-3.5">
+                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-600">
+                    <Award className="h-6 w-6" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="text-sm font-extrabold text-[#0c172f] truncate">
-                      {METHOD_PDF_FILENAME}
+                      Fiverr Profile &amp; Gig Optimization
                     </div>
                     <div className="text-[11px] font-medium text-[#535f6f]">
-                      Official Step-by-Step 24-Hour Fiverr Gig Ranking Blueprint
+                      20–25 Days 1st Client Guarantee · Direct or AnyDesk Setup
                     </div>
                   </div>
                   <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-[10px] font-extrabold text-emerald-800 shrink-0">
-                    UNLOCKED
+                    CONFIRMED
                   </span>
                 </div>
 
-                {/* Primary Download Button */}
-                <button
-                  type="button"
-                  onClick={handleDownloadPdf}
-                  disabled={isDownloadingPdf}
-                  className="gradient-brand w-full flex items-center justify-center gap-2.5 rounded-full py-4 px-6 text-base font-extrabold text-white shadow-glow hover:scale-[1.02] active:scale-[0.99] transition-transform cursor-pointer"
-                >
-                  {isDownloadingPdf ? (
-                    <Loader2 className="h-5 w-5 animate-spin" />
-                  ) : (
-                    <Download className="h-5 w-5" />
-                  )}
-                  <span>
-                    {isDownloadingPdf ? 'Downloading PDF...' : 'Download Gig Rank Method PDF'}
-                  </span>
-                </button>
-
-                {/* Secondary Open/View in New Tab Button */}
-                <a
-                  href={METHOD_PDF_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#dfe5ed] bg-white py-3 px-5 text-xs sm:text-sm font-bold text-[#0c172f] hover:bg-[#ecf3f8] transition-colors"
-                >
-                  <ExternalLink className="h-4 w-4 text-[#2b62ef]" />
-                  <span>Open / View PDF in Browser</span>
-                </a>
-
-                {downloadCount > 0 && (
-                  <div className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                    <span>
-                      PDF download started! ({downloadCount}x — tap the blue button anytime to download again)
-                    </span>
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div className="rounded-xl border border-[#dfe5ed] bg-white p-3">
+                    <div className="text-[10px] font-bold uppercase text-[#535f6f]">Amount Paid</div>
+                    <div className="font-extrabold text-emerald-700 mt-0.5">
+                      {TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR
+                    </div>
                   </div>
-                )}
-              </div>
+                  <div className="rounded-xl border border-[#dfe5ed] bg-white p-3">
+                    <div className="text-[10px] font-bold uppercase text-[#535f6f]">Delivery Window</div>
+                    <div className="font-extrabold text-[#0c172f] mt-0.5">2–4 Business Days</div>
+                  </div>
+                </div>
 
-              {/* Optional Support Actions */}
-              <div className="pt-2 space-y-3 border-t border-[#dfe5ed]">
-                <p className="text-xs text-[#535f6f]">
-                  Need help picking a long-tail keyword or applying the method?
-                </p>
+                <div className="rounded-xl border border-[#dfe5ed] bg-white p-3.5 space-y-1.5 text-xs text-[#535f6f]">
+                  <div className="font-extrabold text-[#0c172f]">Next Steps:</div>
+                  <div>1. Tap the WhatsApp button below to message our SEO lead.</div>
+                  <div>2. Share your Fiverr link or schedule a live AnyDesk / TeamViewer session.</div>
+                  <div>3. Our team completes your full profile &amp; gig optimization in 2–4 days!</div>
+                </div>
+
+                {/* Primary WhatsApp Onboarding CTA */}
                 <a
                   href={getWhatsAppSupportUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] py-3.5 text-sm font-bold text-white shadow-md hover:scale-[1.01] transition-transform"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] py-4 px-6 text-sm sm:text-base font-extrabold text-white shadow-md hover:scale-[1.01] transition-transform"
                 >
-                  <MessageCircle className="h-4 w-4 fill-current" />
-                  <span>WhatsApp Support ({TECHPULSE_CONFIG.whatsappEnrollNumber})</span>
+                  <MessageCircle className="h-5 w-5 fill-current" />
+                  <span>Start Onboarding on WhatsApp ({TECHPULSE_CONFIG.whatsappEnrollNumber})</span>
                 </a>
-
-                <button
-                  type="button"
-                  onClick={onBack}
-                  className="inline-block text-xs font-semibold text-[#535f6f] hover:text-[#0c172f] pt-1 cursor-pointer"
-                >
-                  Return to Home
-                </button>
               </div>
+
+              <button
+                type="button"
+                onClick={onBack}
+                className="inline-block text-xs font-semibold text-[#535f6f] hover:text-[#0c172f] pt-1 cursor-pointer"
+              >
+                Return to Home
+              </button>
             </div>
           )}
         </div>
@@ -1016,20 +975,20 @@ ${transactionId ? `Transaction ID: ${transactionId}\n` : ''}I have downloaded th
           <div className="space-y-2.5">
             {[
               {
-                q: 'Am I buying a method or a done-for-you service?',
-                a: `You are purchasing our complete, step-by-step 24-Hour Fiverr Gig Ranking Method PDF for Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} so you can rank your own gigs yourself.`
+                q: 'Is this a Done-For-You optimization service?',
+                a: `Yes! For ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR one-time, our Fiverr SEO specialists handle your full profile bio, buyer keyword research, SEO title, permalink, 5 tags, AIDA description, 3-tier pricing, and thumbnail strategy.`
               },
               {
-                q: 'How fast will I receive the PDF after payment?',
-                a: `Instantly! As soon as you upload your Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} payment screenshot, our AI verification system checks your receipt in seconds and immediately unlocks the Fiverr Gig Rank Method PDF for one-click download.`
+                q: 'How do we start after my payment is verified?',
+                a: `Right after AI verifies your ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR screenshot, you message us via the WhatsApp onboarding button. Our specialist reviews your niche and starts optimizing directly or live on your screen via AnyDesk / TeamViewer.`
               },
               {
-                q: 'What is the 20–25 Days 100% Money-Back Guarantee?',
-                a: `If after 20–25 days of applying the steps inside our method you do not see search impressions growth, clicks, or buyer messages, we immediately refund your full Rs. ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} fee via WhatsApp with zero hassle.`
+                q: 'What is the 20–25 Days 1st Client 100% Money-Back Guarantee?',
+                a: `If within 20–25 days after our complete optimization you do not see search impression growth or get your 1st Fiverr client inquiries, we immediately refund your full ${TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR fee via WhatsApp with zero hassle.`
               },
               {
-                q: 'Do I need to share my Fiverr login or password?',
-                a: 'No! We never ask for your Fiverr login, password, or remote computer access. You apply the entire white-hat method safely on your own account.'
+                q: 'Do I have to share my Fiverr password?',
+                a: 'No, if you prefer! You can either share access for direct optimization OR choose a live AnyDesk / TeamViewer session where we perform every optimization step live on your screen.'
               }
             ].map((faq, idx) => {
               const isOpen = openFaq === idx;

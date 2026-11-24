@@ -24,7 +24,7 @@ const FEATURED_PROOFS = [
     img: '/techpulse-assets/fiverr-earnings-proof.svg',
     title: 'From Zero Impressions to 42,800 Impressions & Level 2 Seller!',
     seller: 'Hamza Saeed (@saqibshahid08) — WordPress & Laravel Developer',
-    note: 'My Fiverr gig had been completely dormant with zero search clicks. I got the 24-Hour Ranking Method from Smart SEO Solutions and applied it myself — within 30 days, impressions surged by +340% and direct international orders started lining up in queue!',
+    note: 'My Fiverr gig had been completely dormant with zero search clicks. Smart SEO Solutions optimized my complete profile and gig — within 30 days, impressions surged by +340% and direct international orders started lining up in queue!',
     tag: 'Level 2 Seller',
     tagColor: 'bg-emerald-50 text-emerald-800 border-emerald-200',
     result: '$1,450+ Cleared Earnings & Level 2 Status'
@@ -34,7 +34,7 @@ const FEATURED_PROOFS = [
     img: '/techpulse-assets/fiverr-first-order.svg',
     title: 'First International Client — $250 Order Closed in 5 Days!',
     seller: 'Bushra Bano — UI/UX & Mobile App Designer',
-    note: 'Just 5 days after following the step-by-step ranking method on my profile and gig, I secured my first paying client from the United Kingdom for $250. The Rs. 500 method fee paid for itself 140x over on that very first order!',
+    note: 'Just 5 days after Smart SEO Solutions optimized my Fiverr profile and gig, I secured my first paying client from the United Kingdom for $250. The 8,000 PKR optimization fee paid for itself 8x over on that very first order!',
     tag: 'First Client Won',
     tagColor: 'bg-blue-50 text-blue-800 border-blue-200',
     result: '$250 Order Closed in 5 Days'
@@ -44,7 +44,7 @@ const FEATURED_PROOFS = [
     img: '/techpulse-assets/fiverr-ranking-proof.svg',
     title: 'Page 1 #4 Rank — Consistent International Retainers!',
     seller: 'Sikandar Usman (@sikandarusman1) — Cinematic Video Editor',
-    note: 'In a crowded niche, applying this keyword & permalink formula pushed my gig to Page 1, Spot #4. Search clicks climbed by +210%, and I locked in recurring monthly clients from the US and Canada. A truly legitimate ranking method!',
+    note: 'In a crowded niche, their SEO team optimized my gig title, permalink, and 5 buyer tags, pushing my gig to Page 1, Spot #4. Search clicks climbed by +210%, and I locked in recurring monthly clients from the US and Canada!',
     tag: 'Page 1 Ranking',
     tagColor: 'bg-purple-50 text-purple-800 border-purple-200',
     result: 'Page 1 #4 Rank & +210% Clicks'
@@ -54,7 +54,7 @@ const FEATURED_PROOFS = [
     img: '/techpulse-assets/fiverr-clicks-surge.svg',
     title: 'Clicks Grew by +265% in 2 Weeks — 40+ Daily Buyer Clicks',
     seller: 'Allah Bachaya — Professional Voiceover Artist',
-    note: 'My gigs used to get barely 1 to 2 clicks per day. After applying the method’s search tags and thumbnail layout rules, I now receive over 40 genuine international buyer clicks daily along with continuous inbox inquiries.',
+    note: 'My gigs used to get barely 1 to 2 clicks per day. After their full Fiverr gig optimization, search tags overhaul, and thumbnail guidance, I now receive over 40 genuine international buyer clicks daily along with continuous inbox inquiries.',
     tag: 'Traffic Surge',
     tagColor: 'bg-amber-50 text-amber-800 border-amber-200',
     result: '40+ Daily Buyer Clicks & +265% Surge'
@@ -74,18 +74,18 @@ export function ReviewsWallSection({ onEnroll, onOpenImage }: ReviewsWallProps) 
             Verified Fiverr Client Reviews &amp; Screenshots
           </h2>
           <p className="mt-3 text-sm sm:text-base text-[#535f6f] leading-relaxed">
-            100% genuine results from Pakistani Fiverr sellers who purchased and applied our 24-Hour Gig Ranking Method (Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}).
+            100% genuine results from Pakistani Fiverr sellers who booked our Done-For-You Profile &amp; Gig Optimization ({TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR).
           </p>
 
           {/* Social Proof Stats Counter Bar */}
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs font-semibold text-[#0c172f]">
             <div className="flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 border border-[#dfe5ed] shadow-xs">
               <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
-              <span>4.9 / 5.0 Buyer Satisfaction</span>
+              <span>4.9 / 5.0 Client Satisfaction</span>
             </div>
             <div className="flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 border border-[#dfe5ed] shadow-xs">
               <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
-              <span>954+ Freelancers Using This Method</span>
+              <span>954+ Freelancers Optimized</span>
             </div>
             <div className="flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 border border-[#dfe5ed] shadow-xs">
               <ShieldCheck className="h-3.5 w-3.5 text-[#2b62ef]" />
@@ -176,10 +176,10 @@ export function ReviewsWallSection({ onEnroll, onOpenImage }: ReviewsWallProps) 
             <TrendingUp className="h-3.5 w-3.5" /> Ready for similar results?
           </div>
           <h3 className="font-display text-xl sm:text-3xl font-extrabold text-[#0c172f]">
-            Get Your 1st Paying Client With Our 24-Hour Ranking Method
+            Get your 1st fiverr client within 20-25 days with Guarantee
           </h3>
           <p className="mx-auto mt-2 max-w-xl text-xs sm:text-sm text-[#535f6f] leading-relaxed px-2 sm:px-0">
-            Stop waiting months with zero clicks. Get our complete step-by-step ranking blueprint &amp; templates to rank your own gig in 24 hours and land your 1st paying international client fast.
+            Stop waiting months with zero clicks. Let our Fiverr SEO specialists optimize your entire profile and gigs (directly or live on AnyDesk) to win your 1st client within 20–25 days.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -188,7 +188,7 @@ export function ReviewsWallSection({ onEnroll, onOpenImage }: ReviewsWallProps) 
               onClick={onEnroll}
               className="gradient-brand inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 sm:px-8 sm:py-3.5 text-sm sm:text-base font-extrabold text-white shadow-glow hover:scale-[1.02] active:scale-95 transition-all w-full sm:w-auto cursor-pointer"
             >
-              <span>Get The Method — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
+              <span>Book Optimization — {TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR</span>
               <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
             </button>
           </div>

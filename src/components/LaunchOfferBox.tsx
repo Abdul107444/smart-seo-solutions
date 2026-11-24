@@ -23,10 +23,10 @@ export function LaunchOfferBox({ onEnroll }: LaunchOfferBoxProps) {
         {/* Pricing Heading */}
         <div className="mt-5 flex items-baseline justify-center gap-3">
           <span className="font-display text-4xl font-extrabold text-[#0c172f] sm:text-6xl tracking-tight">
-            Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}
+            {TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR
           </span>
           <span className="text-xl sm:text-2xl font-bold text-[#535f6f] line-through">
-            Rs. {TECHPULSE_CONFIG.originalPricePKR.toLocaleString()}
+            {TECHPULSE_CONFIG.originalPricePKR.toLocaleString()} PKR
           </span>
           <span className="rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs sm:text-sm font-extrabold text-emerald-800">
             {TECHPULSE_CONFIG.discountPercentage}
@@ -37,10 +37,10 @@ export function LaunchOfferBox({ onEnroll }: LaunchOfferBoxProps) {
         <div className="mx-auto mt-6 max-w-md rounded-2xl bg-[#f7fbfd] p-3.5 border border-[#dfe5ed]">
           <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-[#0c172f] mb-1.5">
             <span className="text-emerald-700 flex items-center gap-1">
-              <CheckCircle2 className="h-4 w-4" /> {TECHPULSE_CONFIG.slotsFilled} Copies Claimed
+              <CheckCircle2 className="h-4 w-4" /> {TECHPULSE_CONFIG.slotsFilled} Profiles Optimized
             </span>
             <span className="text-rose-600 font-extrabold animate-pulse">
-              ⚡ Only {TECHPULSE_CONFIG.slotsLeft} Copies Left!
+              ⚡ Only {TECHPULSE_CONFIG.slotsLeft} Slots Left!
             </span>
           </div>
           <div className="h-2.5 w-full overflow-hidden rounded-full bg-gray-200">
@@ -55,23 +55,23 @@ export function LaunchOfferBox({ onEnroll }: LaunchOfferBoxProps) {
         <div className="mx-auto mt-6 max-w-md text-left text-xs sm:text-sm text-[#0c172f] space-y-2 border-y border-[#dfe5ed] py-4">
           <div className="flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
-            <span>Complete 24-Hour Gig Ranking Method &amp; Step-by-Step Guide</span>
+            <span>Complete Done-For-You Fiverr Profile &amp; Authority Bio Overhaul</span>
           </div>
           <div className="flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
-            <span>5 Low-Competition Buyer Search Tag Extraction Formula</span>
+            <span>Low-Competition, High-Intent Buyer Keyword Research &amp; 5 Search Tags</span>
           </div>
           <div className="flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
-            <span>Permanent URL Permalink &amp; Copy-Paste AIDA Description Templates</span>
+            <span>SEO-Friendly Title, Permalink &amp; 1200-Char AIDA Description Rewrite</span>
           </div>
           <div className="flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
-            <span>3-Tier Decoy Pricing Blueprint &amp; High-CTR Thumbnail Guide</span>
+            <span>3-Tier Decoy Pricing Setup &amp; High-CTR Thumbnail Visual Strategy</span>
           </div>
           <div className="flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
-            <span>Instant WhatsApp/Email Delivery + <strong>20–25 Days Money-Back Guarantee</strong></span>
+            <span>Direct Setup or Live AnyDesk Session + <strong>20–25 Days 1st Client Guarantee</strong></span>
           </div>
         </div>
 
@@ -82,7 +82,7 @@ export function LaunchOfferBox({ onEnroll }: LaunchOfferBoxProps) {
             onClick={onEnroll}
             className="gradient-brand inline-flex w-full items-center justify-center gap-2 rounded-full px-10 py-4 text-lg font-extrabold text-white shadow-glow transition-all hover:scale-[1.02] active:scale-95 sm:w-auto cursor-pointer"
           >
-            <span>Get The 24h Ranking Method — Rs. {TECHPULSE_CONFIG.pricePKR.toLocaleString()}</span>
+            <span>Book Full Optimization — {TECHPULSE_CONFIG.pricePKR.toLocaleString()} PKR</span>
             <ArrowRight className="h-5 w-5" />
           </button>
         </div>
@@ -99,7 +99,7 @@ export function LaunchOfferBox({ onEnroll }: LaunchOfferBoxProps) {
         {/* Subtext guarantees */}
         <div className="mt-4 flex items-center justify-center gap-2 text-xs sm:text-sm font-medium text-[#535f6f]">
           <ShieldCheck className="h-4 w-4 text-emerald-600" />
-          <span>100% Risk-Free Guarantee · If no impressions surge after applying the method in 20–25 days, get a full refund</span>
+          <span>100% Risk-Free Guarantee · If you don&apos;t get your 1st client or ranking progress in 20–25 days, get a full refund</span>
         </div>
       </div>
     </section>

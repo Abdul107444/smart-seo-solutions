@@ -20,26 +20,26 @@ interface FaqItemData {
 const FOCUSED_FAQS: FaqItemData[] = [
   {
     id: 'faq-1',
-    q: 'My Fiverr gig has 0 impressions or seems frozen — can this method revive it?',
-    a: 'Yes, 100%! The Fiverr search algorithm deprioritizes gigs with outdated generic tags, low keyword relevance, or mismatched category metadata. Our step-by-step method shows you how to re-index your gig using low-to-medium competition buyer search terms and algorithmic tags so Fiverr pushes your gig into active search streams.',
+    q: 'My Fiverr gig has 0 impressions or seems frozen — can you revive it?',
+    a: 'Yes, 100%! The Fiverr search algorithm deprioritizes gigs with outdated generic tags, low keyword relevance, or mismatched category metadata. Our SEO specialists re-optimize your entire gig using low-competition buyer search terms and algorithmic tags so Fiverr pushes your gig into active search streams.',
     highlight: '100% Algorithmic Re-Indexing'
   },
   {
     id: 'faq-2',
-    q: 'If I update my existing gig using this method, is there any risk of de-ranking?',
-    a: 'Not at all. Leaving a zero-order gig untouched only prolongs the deadlock. Inside the method, you learn how to update your title, description, and tags safely according to Fiverr algorithm rules—triggering a 24-hour re-indexing cycle without touching your permanent URL permalink.',
+    q: 'Will my existing gigs lose ranking if you optimize them?',
+    a: 'Not at all. Leaving a zero-order gig untouched only prolongs the deadlock. Our team updates your title, description, and 5 buyer search tags safely according to Fiverr algorithm rules—triggering a clean re-indexing cycle without hurting your permanent URL permalink.',
     highlight: 'Zero De-Rank Risk on URL Permalinks'
   },
   {
     id: 'faq-3',
-    q: 'Do you do the optimization for me, or am I buying the method?',
-    a: 'You are purchasing the complete, step-by-step 24-Hour Fiverr Ranking Method (with copy-paste AIDA templates, keyword research formula, and pricing chart). We do NOT ask for your Fiverr password or log into your account—you receive the full method on WhatsApp & Email and apply it safely yourself in under 45 minutes.',
-    highlight: 'Self-Apply Blueprint · Zero Password Sharing'
+    q: 'Do you optimize my profile and gigs for me, or do I have to do it myself?',
+    a: 'It is a 100% Done-For-You optimization service! Our SEO specialists handle your keyword research, profile bio rewrite, gig titles, 5 search tags, AIDA description, 3-tier pricing, and thumbnail strategy. You can either provide access or let us do everything live on your screen via AnyDesk / TeamViewer.',
+    highlight: '100% Done-For-You · Direct or AnyDesk Setup'
   },
   {
     id: 'faq-4',
-    q: 'How does the 20–25 Days Money-Back Guarantee work?',
-    a: 'Our 20–25 day guarantee is 100% unconditional. If you follow our step-by-step method properly and do not experience positive organic search impression growth or genuine buyer inquiries within 20–25 days, simply message us on WhatsApp for an immediate 100% refund of your Rs. 500 fee directly to your Pakistani bank account or mobile wallet.',
+    q: 'How does the 20–25 Days 1st Client Money-Back Guarantee work?',
+    a: 'Our 20–25 day guarantee is 100% unconditional. After our complete profile & gig optimization, if you do not see search impression growth or get your 1st Fiverr client inquiries within 20–25 days, simply message us on WhatsApp for an immediate 100% refund of your 8,000 PKR fee directly to your Pakistani bank account or mobile wallet.',
     highlight: '100% Unconditional Refund Policy'
   }
 ];
@@ -145,16 +145,16 @@ export function FaqSection() {
         <div className="mt-10 overflow-hidden rounded-2xl border border-[#2b62ef]/25 bg-gradient-to-r from-blue-50/40 via-white to-emerald-50/40 p-5 sm:p-6 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-center sm:text-left">
             <h3 className="text-sm sm:text-base font-extrabold text-[#0c172f]">
-              Have another question about the 24h Ranking Method?
+              Have another question about our Fiverr Optimization?
             </h3>
             <p className="text-xs text-[#535f6f] mt-0.5">
-              Message us on WhatsApp for quick answers before ordering.
+              Message us on WhatsApp for quick answers before booking.
             </p>
           </div>
 
           <a
             href={`https://wa.me/${phone}?text=${encodeURIComponent(
-              'Hello! I have a question regarding the Fiverr 24-Hour Gig Ranking Method (Rs. 500).'
+              'Hello! I have a question regarding Fiverr Profile & Gig Optimization (8,000 PKR) with the 20-25 days guarantee.'
             )}`}
             target="_blank"
             rel="noopener noreferrer"
